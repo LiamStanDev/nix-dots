@@ -1,0 +1,25 @@
+[[manager.prepend_keymap]]
+on = "L"
+run = "enter"
+
+[[manager.prepend_keymap]]
+on = "H"
+run = "leave"
+
+[[manager.prepend_keymap]]
+on = "<C-s>"
+run = "filter"
+
+[[manager.prepend_keymap]]
+on = "<C-f>"
+run = "seek 5"
+
+[[manager.prepend_keymap]]
+on = ["<C-b>"]
+run = "seek -5"
+
+[[input.prepend_keymap]]
+on   = "<Esc>"
+run  = "close"
+desc = "Cancel input"
+

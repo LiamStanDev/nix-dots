@@ -1,0 +1,46 @@
+{
+  "Import React": {
+    "prefix": "imr",
+    "body": ["import React from 'react';"],
+    "description": "Imports React"
+  },
+  "Functional Component": {
+    "prefix": "rfc",
+    "body": [
+      "const ${1:${TM_FILENAME_BASE}} = () => {",
+      "  return (",
+      "    <div>",
+      "      ${2}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}};"
+    ],
+    "description": "Create ReactJS Functional Component Typescript"
+  },
+  "useState": {
+    "prefix": "us",
+    "body": "const [${1:val}, set${2:setterName}] = useState(${3:defVal})",
+    "description": "use state hook"
+  },
+  "useEffect": {
+    "prefix": "ue",
+    "body": ["useEffect(() => {", "\t$1", "}, [${3:dependencies}])$0"],
+    "description": "React useEffect() hook"
+  },
+  "virtual fragment": {
+    "prefix": "<>",
+    "body": ["<>", "${1}", "</>"],
+    "description": "React useEffect() hook"
+  },
+  "destructuring of state": {
+    "prefix": "ds",
+    "body": ["const { ${1:name} } = this.state"]
+  },
+  "Try-Catch Statement": {
+    "prefix": "try",
+    "body": ["try {", "\t$0", "} catch (${1:error}) {", "\t", "}"],
+    "description": "Try-Catch Statement"
+  }
+}
