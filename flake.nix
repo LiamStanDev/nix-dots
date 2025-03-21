@@ -20,9 +20,6 @@
         inherit pkgs;
 
         modules = [ ./home.nix ];
-        extraSpecialArgs = {
-          repoPath = toString ./.;
-        };
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix

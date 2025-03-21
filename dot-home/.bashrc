@@ -1,6 +1,3 @@
-# zsh config dir
-export ZDOTDIR=$HOME/.config/zsh
-
 # nix
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
     . $HOME/.nix-profile/etc/profile.d/nix.sh

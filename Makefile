@@ -32,7 +32,6 @@ uninstall-nix:
 .PHONY: link
 link:
 	@echo "📦 Link Config..."
-	@mv ~/.config/fish ~/.config/fish.bak
 	@cd dot-home && make
 	@cd dot-config && make
 	@echo "✅ Config files linked successfully"
