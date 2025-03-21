@@ -3,23 +3,42 @@
 {
   programs.git = {
     enable = true;
-    
-    # User configuration
+
     userName = "Liam";
     userEmail = "geffc1454@gmail.com";
-    
-    # Other basic settings that have direct HomeManager options
+    delta.enable = true;
+    # signing = {
+    #   signByDefault = true;
+    #   key = "AEBCC7C9B7BE9F02";
+    # };
+    ignores = [ ".DS_Store" ];
     extraConfig = {
-      # Init section
       init.defaultBranch = "main";
-      # Core section
       core = {
         editor = "nvim";
       };
-      # Pull section
+      diff = {
+        external = "difft";
+        tool = "nvimdiff";
+      };
+      difftool = {
+        prompt = false;
+      };
+      merge = {
+        tool = "nvimdiff";
+      };
       pull.rebase = true;
-      # Merge section
       merge.ff = "no";
+    };
+
+    aliases = {
+      # Get the current branch name (not so useful in itself, but used in
+      # other aliases)
+      branch-name = "!git rev-parse --abbrev-ref HEAD";
+
+      # Push the current branch to the remote "origin", and set it to track
+      # the upstream branch
+      publish = "!git push -u origin $(git branch-name)";
     };
   };
 }

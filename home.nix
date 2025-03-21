@@ -4,49 +4,33 @@
   home.username = "liam";
   home.homeDirectory = "/home/liam";
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs;
-    [
-      zsh
-      fish
-      babelfish # translate bash to fish
-      openssh
-      neovim
-      zoxide
-      wget
-      starship
-      perf-tools # perf
-      sysstat # iostat and pidstat
-      ripgrep
-      fd
-      lazygit
-      lazydocker
-      htop
-      btop
-      duf
-      dust
-      eza
-      direnv
-      netcat
-      speedtest-cli
-      stow
-      yazi
-      fastfetch
-      (hiPrio gcc) # set high priority because of clang
-      clang
-      cmake
-      ninja
-      rustup
-      go
-      uv
-      python313
-      nodejs_22
-    ];
 
   imports = [
+    ./modules/packages.nix
+    ./modules/shell
     ./modules/git.nix
   ];
+
+  home.sessionVariables = {
+    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+    TERM = "xterm-256color";
+    LANG = "en_US.UTF-8";
+    LC_ALL = "en_US.UTF-8";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_RUNTIME_DIR = "/run/user/$UID";
+    XDG_DESKTOP_DIR = "$HOME/Desktop";
+    XDG_DOWNLOAD_DIR = "$HOME/Downloads";
+    XDG_TEMPLATES_DIR = "$HOME/Templates";
+    XDG_PUBLICSHARE_DIR = "$HOME/Public";
+    XDG_DOCUMENTS_DIR = "$HOME/Documents";
+    XDG_MUSIC_DIR = "$HOME/Music";
+    XDG_PICTURES_DIR = "$HOME/Pictures";
+    XDG_VIDEOS_DIR = "$HOME/Videos";
+  };
 
   nixpkgs.config.allowUnfree = true;
   # Let Home Manager install and manage itself.
@@ -55,9 +39,4 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.11"; # WARN: Please read the comment before changing.
-
-  imports = [
-    ./modules/packages.nix
-    ./modules/git.nix
-  ];
 }

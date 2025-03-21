@@ -1,0 +1,39 @@
+#!/bin/bash
+echo "⚠️  This will completely remove Nix and Home Manager from your system."
+read -p "Are you sure you want to continue? (y/N) " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Uninstallation cancelled."
+    exit 1
+fi
+
+# Uninstall Home Manager
+echo "📦 Uninstalling Home Manager..."
+if ! nix run home-manager -- uninstall -y; then
+    echo "⚠️  Home Manager uninstallation failed, continuing anyway..."
+fi
+echo "✅ Home Manager Uninstalled!"
+
+# Uninstall Nix
+echo "📦 Uninstalling Nix..."
+
+# Remove Nix profile
+if [ -d "$HOME/.nix-profile" ]; then
+    rm -v -rf "$HOME/.nix-profile"
+fi
+
+# Remove Nix store
+if [ -d /nix ]; then
+    sudo rm -v -rf /nix
+fi
+
+# Clean up Nix channels
+rm -rf "$HOME/.nix-channels"
+
+# Clean up Nix configuration
+sudo rm -v -rf /etc/nix
+
+make unlink
+
+# Suggest manual cleanup of shell profiles
+echo "✅ Uninstalled!"

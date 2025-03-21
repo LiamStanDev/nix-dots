@@ -4,13 +4,13 @@
   home.packages = with pkgs;
     [
       zsh
-      fish
       babelfish # translate bash to fish
       openssh
+      trashy
       neovim
-      zoxide
+      delta
+      cacert # for $SSL_CERT_FILE not found error
       wget
-      starship
       perf-tools # perf
       sysstat # iostat and pidstat
       ripgrep
@@ -24,9 +24,9 @@
       eza
       direnv
       netcat
+      httpie
       speedtest-cli
       stow
-      yazi
       fastfetch
       (hiPrio gcc) # set high priority because of clang
       clang
