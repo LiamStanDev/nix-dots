@@ -1,7 +1,7 @@
 .PHONY: update
 update:
 	@echo "🔄 Updating..."
-	@home-manager switch --flake .#profile
+	@home-manager switch --flake .#profile --verbose
 
 .PHONY: clean
 clean:
