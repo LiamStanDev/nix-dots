@@ -2,7 +2,8 @@
 update:
 	@echo "🔄 Updating..."
 	@git add .
-	@home-manager switch --flake .#profile --verbose -b bckp
+	@home-manager switch --flake .#profile --verbose -b bckp |& nom --json 
+	# @nom build --keep-going --out-link generation .#homeConfigurations.profile.activationPackage --verbose
 
 .PHONY: clean
 clean:

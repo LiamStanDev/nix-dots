@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs;
     [
+      nix-output-monitor
       zsh
       babelfish # translate bash to fish
       openssh
