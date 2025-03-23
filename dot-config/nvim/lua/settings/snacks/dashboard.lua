@@ -20,8 +20,18 @@ else
 	})
 end
 
-table.insert(sections, { section = "startup", padding = 1 })
-table.insert(sections, { pane = 2, section = "keys", gap = 1, padding = 1 })
+table.insert(sections, {
+	section = "startup",
+	padding = 1,
+})
+table.insert(sections, {
+	pane = 2,
+	icon = " ",
+	section = "keys",
+	title = "Keymaps",
+	indent = 2,
+	padding = 1,
+})
 table.insert(sections, {
 	pane = 2,
 	icon = " ",
@@ -53,19 +63,17 @@ return {
 	enabled = true,
 	preset = {
 		keys = {
-			{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            -- stylua: ignore start
+			{ icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.picker.explorer({ hidden = true, ignored = true })" },
+			{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files({ hidden = true })" },
 			{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-			{ icon = " ", key = "g", desc = "Grep", action = ":lua Snacks.dashboard.pick('live_grep')" },
+			{ icon = " ", key = "g", desc = "Grep", action = ":lua Snacks.picker.grep({ hidden = true })" },
 			{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-			{
-				icon = " ",
-				key = "c",
-				desc = "Config",
-				action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
-			},
+			{ icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})", },
 			{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
 			{ icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
 			{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+			-- stylua: ignore end
 		},
 		header = [[
 ⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

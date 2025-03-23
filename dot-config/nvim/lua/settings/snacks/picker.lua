@@ -6,6 +6,8 @@ end, { nargs = 0 })
 
 -- Top Pickers & Explorer
 -- stylua: ignore start
+-- expolorer
+map("n", "<leader>e", function() Snacks.picker.explorer({ hidden = true, ignored = true }) end, { desc = "Explorer" })
 
 -- task runner
 map({ "n", "i", "v", "t" }, "<A-]>", "<CMD>ShowTasks<CR>")
@@ -39,5 +41,5 @@ map("n", "<leader>sC", function() Snacks.picker.colorschemes() end, { desc = "Co
 
 return {
 	enabled = true,
-	-- prompt = "   ",
+	prompt = "   ",
 }

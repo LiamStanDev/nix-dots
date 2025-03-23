@@ -77,7 +77,7 @@ return {
 		opts = {
 			bigfile = { enabled = true },
 			dashboard = require("settings.snacks.dashboard"),
-			explorer = require("settings.snacks.explorer"),
+			explorer = { enabled = true },
 			indent = { enabled = true },
 			input = { enabled = true },
 			picker = require("settings.snacks.picker"),
