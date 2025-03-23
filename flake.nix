@@ -33,8 +33,8 @@
             switch-home = pkgs.writeShellApplication {
               name = "switch-home";
               text = ''
-                # set -e
-                nom build --verbose --keep-going --out-link generation ${self}#homeConfigurations.profile.activationPackage
+                set -e
+                nom build --keep-going --out-link generation ${self}#homeConfigurations.profile.activationPackage
                 ./generation/activate
               '';
               runtimeInputs = [ pkgs.nix-output-monitor ];
