@@ -10,6 +10,7 @@ return function()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		callback = function(event)
 			local map = vim.keymap.set
+            -- stylua: ignore start
 			map("n", "gd", "<CMD>Lspsaga goto_definition<CR>", { desc = "Go to Definition" })
 			map("n", "gr", "<CMD>Lspsaga finder<CR>", { desc = "Go to References" })
 			map("n", "gD", "<CMD>Lspsaga peek_definition<CR>", { desc = "Peek Definition" })
@@ -20,15 +21,14 @@ return function()
 			-- map("n", "gt", "<CMD>Lspsaga goto_type_definition<CR>", { desc = "Go to Type Definition" })
 			map("n", "gl", "<CMD>Lspsaga show_cursor_diagnostics<CR>", { desc = "Show Cursor Diagnostics" })
 			map("n", "gL", "<CMD>Lspsaga show_buf_diagnostics<CR>", { desc = "Show Buffer Diagnostics" })
-			map("n", "gw", "<CMD>Lspsaga show_workspace_diagnostics<CR>", { desc = "Show Buffer Diagnostics" })
+			map("n", "gw", "<CMD>Lspsaga show_workspace_diagnostics<CR>", { desc = "Show Workspace Diagnostics" })
 			map("n", "gh", "<CMD>Lspsaga hover_doc<CR>", { desc = "Hover Documentation" })
 			map("n", "gk", "<CMD>Lspsaga diagnostic_jump_prev<CR>", { desc = "Previous Diagnostic" })
 			map("n", "gj", "<CMD>Lspsaga diagnostic_jump_next<CR>", { desc = "Next Diagnostic" })
 			map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
-			map("n", "gI", function()
-				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-			end)
+			map("n", "gI", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hint" })
 			map("n", "gR", "<CMD>LspRestart<CR>", { desc = "Lsp Restart" })
+			-- stylua: ignore end
 
 			local client = vim.lsp.get_client_by_id(event.data.client_id)
 			if
@@ -100,7 +100,7 @@ return function()
 			capabilities = capabilities,
 		}
 
-		-- find services.lsp-settings/*
+		-- find settings.lsp-settings/*
 		local require_ok, conf_opts = pcall(require, "services.lsp-settings." .. server)
 		if require_ok then
 			opts = vim.tbl_deep_extend("force", conf_opts, opts)

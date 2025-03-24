@@ -20,8 +20,6 @@ local component = {
 	},
 	lsp = {
 		function()
-			local buf_ft = vim.bo.filetype
-
 			local clients = vim.lsp.get_clients({ bufnr = 0 })
 			if not clients or vim.tbl_isempty(clients) then
 				return "Inactive"
@@ -123,7 +121,7 @@ local component = {
 
 	indent = {
 		function()
-			return "" .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+			return "" .. vim.bo.shiftwidth
 		end,
 	},
 }
