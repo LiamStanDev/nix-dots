@@ -3,6 +3,7 @@
 {
   programs.fish = {
     enable = true;
+    generateCompletions = true;
 
     shellInit = ''
       if test -f "$HOME/.nix-profile/etc/profile.d/nix.fish"
@@ -12,6 +13,11 @@
     interactiveShellInit = ''
       set fish_greeting
       fish_vi_key_bindings
+      # selection with vi key bindings
+      bind -M insert \cj 'commandline -P; and down-or-search; or commandline -f execute'
+      bind -M insert \ck 'commandline -P; and up-or-search'
+      bind -M insert \ch 'commandline -P; and commandline -f backward-char; or commandline -f backward-delete-char'
+      bind -M insert \cl 'commandline -P; and commandline -f forward-char; or commandline -f clear-screen'
     '';
 
     plugins = with pkgs.fishPlugins; [
