@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
+let
+  catppuccin-fish = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "fish";
+    rev = "6a85af2ff722ad0f9fbc8424ea0a5c454661dfed"; # commit hash or tag
+    hash = "sha256-Oc0emnIUI4LV7QJLs4B2/FQtCFewRFVp7EDv8GawFsA=";
+  };
+in
 {
+
+  xdg.configFile."fish/themes/Catppuccin Frappe.theme".source = "${catppuccin-fish}/themes/Catppuccin Frappe.theme";
   programs.fish = {
     enable = true;
     generateCompletions = true;
@@ -13,6 +23,7 @@
     interactiveShellInit = ''
       set fish_greeting
       fish_vi_key_bindings
+      fish_config theme save "Catppuccin Frappe"
       # selection with vi key bindings
       bind -M insert \cj 'commandline -P; and down-or-search; or commandline -f execute'
       bind -M insert \ck 'commandline -P; and up-or-search'
