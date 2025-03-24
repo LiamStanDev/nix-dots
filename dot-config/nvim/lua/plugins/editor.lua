@@ -308,16 +308,4 @@ return {
             { "S", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" }
         },
 	},
-
-	-- Remote
-	{
-		"amitds1997/remote-nvim.nvim",
-		version = "*",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-		config = true,
-	},
 }

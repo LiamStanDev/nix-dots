@@ -14,7 +14,9 @@ local component = {
 			end
 			return ""
 		end,
-		color = { fg = "#dbcd0b" },
+		color = { bg = "#2a2c3f", fg = "#dbcd0b" },
+
+		separator = { left = "", right = " " },
 	},
 	lsp = {
 		function()
@@ -49,11 +51,12 @@ local component = {
 			return vim.fn.winwidth(0) > 80
 		end,
 	},
+
 	spaces = {
 		function()
 			return " "
 		end,
-		padding = -1,
+		padding = 0.3,
 	},
 
 	diagnostics = {
@@ -78,7 +81,8 @@ local component = {
 		"branch",
 		icon = "",
 		separator = { left = "", right = "" },
-		padding = 0.1,
+		padding = 1,
+		color = { bg = "#2a2c3f", fg = "#BDCBD6" },
 	},
 
 	diff = {
@@ -89,6 +93,7 @@ local component = {
 			modified = " ",
 			removed = " ",
 		},
+		color = { bg = "#2a2c3f" },
 		separator = { left = "", right = "" },
 	},
 
