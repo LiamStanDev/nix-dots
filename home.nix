@@ -9,6 +9,7 @@
     ./modules/packages.nix
     ./modules/shell
     ./modules/git.nix
+    ./modules/ssh.nix
   ];
 
   home.sessionVariables = {

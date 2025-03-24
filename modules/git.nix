@@ -40,5 +40,6 @@
       # the upstream branch
       publish = "!git push -u origin $(git branch-name)";
     };
+
   };
 }
