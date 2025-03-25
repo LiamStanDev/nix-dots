@@ -17,7 +17,12 @@
         container.disabled = true;
       };
     };
-    yazi.enable = true;
+    yazi = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+      shellWrapperName = "y";
+    };
     direnv = {
       enable = true;
       config = {

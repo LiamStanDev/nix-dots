@@ -7,11 +7,12 @@
     userName = "Liam";
     userEmail = "geffc1454@gmail.com";
     delta.enable = true;
-    signing = {
-      signByDefault = true;
-      format = "ssh";
-      key = "~/.ssh/id_ed25519";
-    };
+    # unstable channel
+    # signing = {
+    #   signByDefault = true;
+    #   format = "ssh";
+    #   key = "~/.ssh/id_ed25519";
+    # };
     ignores = [ ".DS_Store" ];
     extraConfig = {
       init.defaultBranch = "main";
