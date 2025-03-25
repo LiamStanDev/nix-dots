@@ -34,8 +34,18 @@
               name = "switch-home";
               text = ''
                 set -e
-                nom build --keep-going --out-link generation ${self}#homeConfigurations.profile.activationPackage
+
+                # Generate timestamp for backup
+                TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
+
+                # Set backup environment variable with timestamp
+                export HOME_MANAGER_BACKUP_EXT="bckp-$TIMESTAMP"
+                nom build --verbose --keep-going --out-link generation ${self}#homeConfigurations.profile.activationPackage
+
+                # Activate
                 ./generation/activate
+
+                echo "Activated successfully. Backups (if any) created with extension .$HOME_MANAGER_BACKUP_EXT"
               '';
               runtimeInputs = [ pkgs.nix-output-monitor ];
             };

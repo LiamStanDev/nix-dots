@@ -1,6 +1,9 @@
 #!/bin/bash
 
-make link
+if ! make link; then
+    echo "❌ make link failed!"
+    exit 1
+fi
 
 # Install Nix
 if command -v nix-env >/dev/null 2>&1; then

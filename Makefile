@@ -5,6 +5,13 @@ update:
 	@# @home-manager switch --flake .#profile --verbose -b bckp
 	@nix run .#switch
 
+.PHONY:
+upgrade:
+	@echo "🔄 Updating..."
+	@git add .
+	@nix flake update
+	@nix run .#switch
+
 .PHONY: clean
 clean:
 	@echo "🧹 Cleaning..."
