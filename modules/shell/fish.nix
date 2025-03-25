@@ -23,7 +23,7 @@ in
     interactiveShellInit = ''
       set fish_greeting
       fish_vi_key_bindings
-      fish_config theme save "Catppuccin Frappe"
+      fish_config theme choose "Catppuccin Frappe"
       # selection with vi key bindings
       bind -M insert \cj 'commandline -P; and down-or-search; or commandline -f execute'
       bind -M insert \ck 'commandline -P; and up-or-search'
