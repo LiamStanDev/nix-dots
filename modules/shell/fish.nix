@@ -19,6 +19,7 @@ in
       if test -f "$HOME/.nix-profile/etc/profile.d/nix.fish"
           source "$HOME/.nix-profile/etc/profile.d/nix.fish"
       end
+      fish_add_path -g "$HOME/.local/share/nvim/mason/bin" # fix lsp client not found
     '';
     interactiveShellInit = ''
       set fish_greeting
