@@ -71,20 +71,21 @@ return function()
 			},
 		},
 		update_in_insert = true,
-		virtual_text = {
-			source = "if_many",
-			prefix = "●",
-			spacing = 2,
-			format = function(diagnostic)
-				local diagnostic_message = {
-					[vim.diagnostic.severity.ERROR] = diagnostic.message,
-					[vim.diagnostic.severity.WARN] = diagnostic.message,
-					[vim.diagnostic.severity.INFO] = diagnostic.message,
-					[vim.diagnostic.severity.HINT] = diagnostic.message,
-				}
-				return diagnostic_message[diagnostic.severity]
-			end,
-		},
+		-- replace by tiny-inline-diagnostic
+		-- virtual_text = {
+		-- 	source = "if_many",
+		-- 	prefix = "●",
+		-- 	spacing = 2,
+		-- 	format = function(diagnostic)
+		-- 		local diagnostic_message = {
+		-- 			[vim.diagnostic.severity.ERROR] = diagnostic.message,
+		-- 			[vim.diagnostic.severity.WARN] = diagnostic.message,
+		-- 			[vim.diagnostic.severity.INFO] = diagnostic.message,
+		-- 			[vim.diagnostic.severity.HINT] = diagnostic.message,
+		-- 		}
+		-- 		return diagnostic_message[diagnostic.severity]
+		-- 	end,
+		-- },
 	})
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()

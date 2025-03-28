@@ -308,4 +308,29 @@ return {
             { "S", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" }
         },
 	},
+
+	-- beautiful diagnostic
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "LspAttach", -- Or `LspAttach`
+		priority = 1000, -- needs to be loaded in first
+		config = function()
+			require("tiny-inline-diagnostic").setup({
+
+				preset = "ghost",
+				multilines = true,
+				break_line = {
+					enabled = true,
+				},
+			})
+			vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
+		end,
+	},
+
+	-- quit bad vim habit
+	{
+		"m4xshen/hardtime.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {},
+	},
 }
