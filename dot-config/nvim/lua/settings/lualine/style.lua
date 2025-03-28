@@ -14,7 +14,7 @@ local M = {
 	},
 	sections = {
 		lualine_a = {
-			components.custom_icons,
+			components.mode,
 		},
 		lualine_b = {
 			components.spaces,

@@ -104,19 +104,13 @@ local component = {
 		"location",
 	},
 
-	custom_icons = {
-		function()
-			-- return ""
-			-- return ""
+	mode = {
+		"mode",
+		fmt = function()
 			return ""
 		end,
-		separator = { left = "", right = "" },
-	},
-
-	modes = {
-		"mode",
-		separator = { left = "", right = "" },
-		padding = 0.8,
+		separator = { left = "", right = " " },
+		padding = { left = 1, right = 1 },
 	},
 
 	indent = {
