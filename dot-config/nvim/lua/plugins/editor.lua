@@ -204,7 +204,14 @@ return {
 	{ "echasnovski/mini.files", version = false, config = require("settings.mini-files") },
 
 	-- Status line
-	{ "nvim-lualine/lualine.nvim", event = "VeryLazy", config = require("settings.lualine") },
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		config = require("settings.lualine"),
+		dependencies = {
+			"AndreM222/copilot-lualine",
+		},
+	},
 
 	-- Terminal [replace by snacks.nvim]
 	-- { "akinsho/toggleterm.nvim", version = "*", config = require("settings.toggleterm") },
