@@ -64,8 +64,8 @@ return {
 	preset = {
 		keys = {
             -- stylua: ignore start
-			{ icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.picker.explorer({ hidden = true, ignored = true })" },
 			{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files({ hidden = true })" },
+            { icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.picker.explorer({ hidden = true, ignored = true })" },
 			{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 			{ icon = " ", key = "g", desc = "Grep", action = ":lua Snacks.picker.grep({ hidden = true })" },
 			{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
