@@ -30,6 +30,7 @@ return function()
 			map("n", "gj", "<CMD>Lspsaga diagnostic_jump_next<CR>", { desc = "Next Diagnostic" })
 			map("n", "gI", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hint" })
 			map("n", "gR", "<CMD>LspRestart<CR>", { desc = "Lsp Restart" })
+			-- ctrl + s is default to vim.lsp.buf.signature_help()
 			-- stylua: ignore end
 
 			local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -90,32 +91,23 @@ return function()
 		-- },
 	})
 
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	local capabilities = {
+		textDocument = {
+			semanticTokens = {
+				multilineTokenSupport = true,
+			},
+		},
+	}
 	-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
+	vim.lsp.config("*", {
+		capabilities = capabilities,
+		root_markers = { ".git" },
+	})
+
 	local servers = require("core.globals").lsp_servers
 	for _, server in ipairs(servers) do
-		if server == "clangd" then
-			capabilities.offsetEncoding = { "utf-16" }
-		end
-
-		local opts = {
-			capabilities = capabilities,
-		}
-
-		-- find settings.lsp-settings/*
-		local require_ok, conf_opts = pcall(require, "services.lsp-settings." .. server)
-		if require_ok then
-			opts = vim.tbl_deep_extend("force", conf_opts, opts)
-		end
-
-		if server == "tailwindcss-language-server" then
-			require("lspconfig").tailwindcss.setup({})
-			goto continue
-		else
-			require("lspconfig")[server].setup(opts)
-		end
-		::continue::
+		vim.lsp.enable_server(server)
 	end
 end

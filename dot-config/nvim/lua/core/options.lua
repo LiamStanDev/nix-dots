@@ -79,6 +79,9 @@ local options = {
 
 	-- Preview substitutions live
 	inccommand = "split",
+
+	-- NOTE: this will affect all window (Nvim 0.11)
+	-- winborder = "single",
 }
 
 for option, val in pairs(options) do

@@ -43,7 +43,7 @@ map("n", "<leader>p", function()
 		show_empty = tue,
 		support_live = true,
 		hidden = true,
-		layout = "vscode",
+		layout = "select",
 	})
 end, { desc = "Smart Find Files" })
 
@@ -82,9 +82,14 @@ end, { desc = "Grep" })
 -- map("n", "<leader>s:", function()
 -- 	Snacks.picker.command_history()
 -- end, { desc = "Command History" })
--- map("n", "<leader>sn", function()
--- 	Snacks.picker.notifications()
--- end, { desc = "Notification History" })
+map("n", "<leader>sn", function()
+	Snacks.picker.notifications({
+		on_show = function()
+			vim.cmd.stopinsert()
+		end,
+		layout = "ivy",
+	})
+end, { desc = "Notification History" })
 -- map("n", "<leader>sp", function()
 -- 	Snacks.picker.projects()
 -- end, { desc = "Projects" })

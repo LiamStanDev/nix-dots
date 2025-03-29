@@ -1,13 +1,15 @@
 return function()
+	local config = require("core.globals")
 	local blink = require("blink.cmp")
 	blink.setup({
-		-- signature = { enabled = true },
+		-- signature = { enabled = false }, -- use noice.nvim instead
 		completion = {
 			keyword = { range = "full" },
 			accept = { auto_brackets = { enabled = true } },
 			list = { selection = { preselect = true, auto_insert = true } },
 			menu = {
 				auto_show = true,
+				border = config.cmp_window_border,
 				draw = {
 					columns = { { "kind_icon" }, { "label", "source_id", gap = 1 } },
 					components = {
@@ -23,7 +25,13 @@ return function()
 					treesitter = { "lsp" },
 				},
 			},
-			documentation = { auto_show = true, auto_show_delay_ms = 100 },
+			documentation = {
+				window = {
+					border = config.cmp_window_border,
+				},
+				auto_show = true,
+				auto_show_delay_ms = 100,
+			},
 			ghost_text = { enabled = false }, -- conflict with menu auto show
 		},
 		cmdline = {
