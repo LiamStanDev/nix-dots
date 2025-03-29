@@ -17,7 +17,7 @@ require("lazy").setup({
 		require("plugins.debug"),
 		require("plugins.editor"),
 	},
-	-- checker = { enabled = true },
+	checker = { enabled = true },
 	rocks = { enabled = false },
 }, {
 	ui = {

@@ -119,6 +119,17 @@ return function()
 					padding = { left = 1, right = 1 },
 				},
 				{
+					utils.mason_updates() .. "",
+					color = { fg = palette.maroon },
+					cond = function()
+						return utils.mason_updates() > 0
+					end,
+					icon = "",
+					on_click = function()
+						vim.cmd("Mason")
+					end,
+				},
+				{
 					require("lazy.status").updates,
 					cond = require("lazy.status").has_updates,
 					padding = { left = 1, right = 2 },
