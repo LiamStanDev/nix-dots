@@ -87,13 +87,13 @@ return {
 		},
 		cmd = { "Trouble", "TroubleToggle" },
 		opts = {},
-  -- stylua: ignore
-      keys = {
-        { "gr", "<CMD>Trouble lsp_references toggle<CR>" },
-            { "gw", "<CMD>Trouble diagnostics toggle<CR>" },
-        { "<leader>st", "<CMD>Trouble todo toggle<CR>" },
-        { "<leader>o", "<CMD>Trouble symbols toggle win.position=right<CR>" },
-      },
+        --stylua: ignore
+		keys = {
+			{ "gr", "<CMD>Trouble lsp_references toggle<CR>" },
+			{ "gw", "<CMD>Trouble diagnostics toggle<CR>" },
+			{ "<leader>st", "<CMD>Trouble todo toggle<CR>" },
+			{ "<leader>o", "<CMD>Trouble symbols toggle win.position=right<CR>" },
+		},
 	},
 
 	-- input and select ui
@@ -116,6 +116,13 @@ return {
 			words = { enabled = false },
 			terminal = require("settings.snacks.terminal"),
 			lazygit = require("settings.snacks.lazygit"),
+			styles = {
+				notification = {
+					wo = {
+						wrap = true,
+					},
+				},
+			},
 		},
 		dependencies = {},
 	},

@@ -53,4 +53,5 @@ return {
 		TRACE = "✎ ",
 	},
 	top_down = true,
+	timeout = 5000,
 }

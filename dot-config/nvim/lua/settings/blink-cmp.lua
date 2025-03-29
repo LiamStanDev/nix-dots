@@ -2,7 +2,7 @@ return function()
 	local config = require("core.globals")
 	local blink = require("blink.cmp")
 	blink.setup({
-		-- signature = { enabled = false }, -- use noice.nvim instead
+		signature = { enabled = true }, -- use noice.nvim instead
 		completion = {
 			keyword = { range = "full" },
 			accept = { auto_brackets = { enabled = true } },
