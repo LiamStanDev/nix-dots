@@ -80,6 +80,21 @@ return {
 			"fang2hou/blink-copilot",
 		},
 	},
+	{
+		"folke/trouble.nvim",
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+		},
+		cmd = { "Trouble", "TroubleToggle" },
+		opts = {},
+  -- stylua: ignore
+      keys = {
+        { "gr", "<CMD>Trouble lsp_references toggle<CR>" },
+            { "gw", "<CMD>Trouble diagnostics toggle<CR>" },
+        { "<leader>st", "<CMD>Trouble todo toggle<CR>" },
+        { "<leader>o", "<CMD>Trouble symbols toggle win.position=right<CR>" },
+      },
+	},
 
 	-- input and select ui
 	{

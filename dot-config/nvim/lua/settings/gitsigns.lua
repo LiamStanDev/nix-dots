@@ -30,12 +30,11 @@ return function()
 	-- normal mode
 	map({ "n", "v" }, "<leader>gs", gitsigns.stage_hunk, { desc = "Git stage hunk" })
 	map({ "n", "v" }, "<leader>gr", gitsigns.reset_hunk, { desc = "Git reset hunk" })
-
 	map({ "n", "v" }, "<leader>gu", gitsigns.stage_hunk, { desc = "Git undo hunk" })
 	map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "Git stage buffer" })
 	map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "git reset buffer" })
 	map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "git preview hunk" })
-	map("n", "<leader>gl", gitsigns.blame_line, { desc = "Git blame line" })
+	map("n", "<leader>gL", gitsigns.blame_line, { desc = "Git blame line" })
 	map("n", "<leader>gd", gitsigns.diffthis, { desc = "Git diff against index" })
 	map("n", "<leader>gD", function()
 		gitsigns.diffthis("@")

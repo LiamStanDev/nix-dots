@@ -47,6 +47,14 @@ return {
 				dependencies = { "nvim-tree/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
 				opts = require("settings.lspsaga"),
 			},
+			{
+				"folke/trouble.nvim",
+				dependencies = {
+					{ "nvim-tree/nvim-web-devicons" },
+				},
+				cmd = { "Trouble", "TroubleToggle" },
+				opts = {},
+			},
 		},
 		config = require("settings.lspconfig"),
 	},
