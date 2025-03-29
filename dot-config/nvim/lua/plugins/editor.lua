@@ -40,32 +40,45 @@ return {
 	},
 
 	-- Completion Engine
+	-- {
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	event = "InsertEnter",
+	-- 	dependencies = {
+	-- 		"hrsh7th/cmp-nvim-lsp",
+	-- 		"hrsh7th/cmp-nvim-lsp-signature-help",
+	-- 		"hrsh7th/cmp-buffer",
+	-- 		"hrsh7th/cmp-cmdline",
+	-- 		"hrsh7th/cmp-path",
+	-- 		"hrsh7th/cmp-nvim-lua",
+	-- 		"saadparwaiz1/cmp_luasnip",
+	-- 		"rcarriga/cmp-dap",
+	-- 		"onsails/lspkind.nvim",
+	-- 		"teramako/cmp-cmdline-prompt.nvim",
+	-- 		{
+	-- 			"L3MON4D3/LuaSnip",
+	-- 			version = "v2.*",
+	-- 			build = "make install_jsregexp",
+	-- 			config = require("settings.luasnippet"),
+	-- 		},
+	-- 		{
+	-- 			"zbirenbaum/copilot-cmp",
+	-- 			config = true,
+	-- 		},
+	-- 	},
+	-- 	config = require("settings.nvim-cmp").config,
+	-- },
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		"saghen/blink.cmp",
+		version = "1.*",
+		config = require("settings.blink-cmp"),
+		opts_extend = { "sources.default" },
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lua",
-			"saadparwaiz1/cmp_luasnip",
-			"rcarriga/cmp-dap",
-			"onsails/lspkind.nvim",
-			"teramako/cmp-cmdline-prompt.nvim",
 			{
-				"L3MON4D3/LuaSnip",
-				version = "v2.*",
-				build = "make install_jsregexp",
-				config = require("settings.luasnippet"),
-			},
-			{
-				"zbirenbaum/copilot-cmp",
+				"xzbdmw/colorful-menu.nvim",
 				config = true,
 			},
+			"fang2hou/blink-copilot",
 		},
-		config = require("settings.nvim-cmp").config,
 	},
 
 	-- input and select ui
@@ -73,7 +86,6 @@ return {
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
-		---@type snacks.Config
 		opts = {
 			bigfile = { enabled = true },
 			dashboard = require("settings.snacks.dashboard"),

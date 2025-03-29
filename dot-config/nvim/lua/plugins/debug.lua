@@ -7,7 +7,13 @@ return {
 			{
 				"rcarriga/nvim-dap-ui",
 				config = require("settings.dapui"),
-				dependencies = { "nvim-neotest/nvim-nio", "folke/neodev.nvim" },
+				dependencies = {
+					"nvim-neotest/nvim-nio",
+					{
+						"folke/neodev.nvim",
+						enabled = false, -- conflict with lazydev
+					},
+				},
 			},
 		},
 		init = require("settings.dap").init,
