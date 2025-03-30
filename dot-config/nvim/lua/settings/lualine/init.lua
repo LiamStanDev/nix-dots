@@ -33,19 +33,21 @@ return function()
 					icon_only = true,
 					colored = true,
 					padding = -1,
-					color = { bg = "#2a2c3f", fg = palette.text },
+					color = { bg = palette.mantle, fg = palette.text },
 					separator = { left = "", right = "" },
 				},
 				{
 					"filename",
 					file_status = true,
 					padding = 0,
+					-- show directory name
+					path = 1,
 					separator = { left = "", right = "" },
 					symbols = {
 						modified = "",
 						readonly = "",
 					},
-					color = { bg = "#2a2c3f", fg = palette.text },
+					color = { bg = palette.mantle, fg = palette.text },
 					cond = utils.buffer_not_empty,
 				},
 				components.spaces,
@@ -71,7 +73,7 @@ return function()
 					icon = "",
 					separator = { left = "", right = "" },
 					-- padding = 1,
-					color = { bg = "#2a2c3f", fg = palette.text },
+					color = { bg = palette.mantle, fg = palette.rosewater },
 				},
 				{
 					"diff",
@@ -82,7 +84,7 @@ return function()
 						removed = " ",
 					},
 					separator = { left = "", right = "" },
-					color = { bg = "#2a2c3f" },
+					color = { bg = palette.mantle },
 				},
 				components.spaces,
 				{
@@ -132,6 +134,7 @@ return function()
 				{
 					require("lazy.status").updates,
 					cond = require("lazy.status").has_updates,
+					color = { fg = palette.subtext0 },
 					padding = { left = 1, right = 2 },
 					separator = { right = "" },
 				},
@@ -166,11 +169,8 @@ return function()
 						return text_client
 					end,
 					icon = " ",
-					-- color = { bg = "#2a2c3f", fg = "#BDCBD6" },
 					color = { fg = palette.yellow },
-					-- separator = { left = "", right = " " },
 					padding = { left = 0, right = 2 },
-					-- separator = { right = "", left = "" },
 				},
 				{
 					"encoding",
@@ -179,7 +179,7 @@ return function()
 				},
 				{
 					"fileformat",
-					color = { fg = palette.cyan },
+					color = { fg = palette.blue },
 					padding = { left = 0, right = 2 },
 				},
 				{
@@ -204,7 +204,6 @@ return function()
 					icon_only = false,
 					colored = true,
 					padding = 1,
-					-- color = { bg = "#2a2c3f", fg = "#BDCBD6" },
 				},
 				{
 					function()
@@ -214,10 +213,6 @@ return function()
 					color = { bg = "#86AAEC", fg = "#000000" },
 					padding = 0.3,
 				},
-				-- {
-				-- 	"progress",
-				-- 	-- color = { bg = "#2a2c3f", fg = "#BDCBD6" },
-				-- },
 				{
 					"progress",
 					padding = { left = 1, right = 1 },
