@@ -1,4 +1,4 @@
-vim.lsp.config.taplo = {
+return {
 	cmd = { "taplo", "lsp", "stdio" },
 	root_markers = {
 		".git",

@@ -1,4 +1,4 @@
-vim.lsp.config.clangd = {
+return {
 	cmd = {
 		"clangd",
 		"--background-index", -- make background index for quick jump into definition

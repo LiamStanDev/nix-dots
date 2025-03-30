@@ -1,4 +1,4 @@
-vim.lsp.config.pyright = {
+return {
 	cmd = { "pyright-langserver", "--stdio" },
 	root_markers = {
 		"pyproject.toml",

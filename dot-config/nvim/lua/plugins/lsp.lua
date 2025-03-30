@@ -1,4 +1,5 @@
 local config = require("core.globals")
+local map = vim.keymap.set
 
 vim.lsp.enable(config.lsp_servers)
 
@@ -12,7 +13,6 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
-		local map = vim.keymap.set
         --stylua: ignore start
 		map("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Go to Definition" })
 		map("n", "gr", function() Snacks.picker.lsp_references({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
@@ -71,8 +71,13 @@ vim.diagnostic.config({
 	-- 	prefix = "●",
 	-- 	spacing = 2,
 	-- },
-	virtual_lines = { current_line = true },
+	-- virtual_lines = { current_line = true },
 })
+
+vim.keymap.set("n", "gK", function()
+	local new_config = not vim.diagnostic.config().virtual_lines
+	vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = "Toggle diagnostic virtual_lines" })
 
 return {
 	-- Services installer

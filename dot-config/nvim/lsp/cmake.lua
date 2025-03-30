@@ -1,4 +1,4 @@
-vim.lsp.config.cmake = {
+return {
 	cmd = { "cmake-language-server" },
 	root_markers = {
 		"CMakePresets.json",

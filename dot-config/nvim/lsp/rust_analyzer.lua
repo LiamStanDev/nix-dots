@@ -1,4 +1,4 @@
-vim.lsp.config.rust_analyzer = {
+return {
 	cmd = { "rust-analyzer" },
 	root_markers = {
 		".clangd",
