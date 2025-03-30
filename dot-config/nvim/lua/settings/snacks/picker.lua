@@ -110,5 +110,5 @@ end, { desc = "Colorschemes" })
 return {
 	enabled = true,
 	prompt = "   ",
-	layout = { cycle = false },
+	layout = { cycle = false, preset = "ivy" },
 }

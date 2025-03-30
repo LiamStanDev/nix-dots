@@ -41,8 +41,16 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
 map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
 
 -- Buffer Navigation
-map("n", "<A-l>", ":bnext<CR>", { desc = "Next buffer" })
-map("n", "<A-h>", ":bprevious<CR>", { desc = "Previous buffer" })
+-- map("n", "<A-l>", ":bnext<CR>", { desc = "Next buffer" })
+-- map("n", "<A-h>", ":bprevious<CR>", { desc = "Previous buffer" })
+
+-- Cursor History Navigation
+map("n", "<A-l>", "<C-i>", { desc = "Next buffer" })
+map("n", "<A-h>", "<C-o>", { desc = "Previous buffer" })
+
+-- Better Scroll
+map({ "n", "i", "v", "x" }, "<C-d>", "<C-d>zz", { desc = "Center cursor after moving down half-page" })
+map({ "n", "i", "v", "x" }, "<C-u>", "<C-u>zz", { desc = "Center cursor after moving down half-page" })
 
 -- Quick Indenting
 map("v", "<", "<gv", { desc = "Indent left" })
@@ -59,7 +67,3 @@ map("n", "<leader>W", "<CMD>silent! wa!<CR>", { desc = "Save all file" })
 -- Quit
 map("n", "<leader>q", "<CMD>confirm q<CR>", { desc = "Quit" })
 map("n", "<leader>;", ":e $MYVIMRC<CR>", { desc = "Configuration" })
-
--- Split window
-map("n", "<leader>bl", "<CMD>vsplit<CR>", { desc = "Split Right" })
-map("n", "<leader>bj", "<CMD>split<CR>", { desc = "Split Down" })

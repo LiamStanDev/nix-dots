@@ -37,7 +37,7 @@ return function()
 				["cmp.entry.get_documentation"] = true,
 			},
 			hover = {
-				enabled = false,
+				enabled = true,
 				view = nil, -- when nil, use defaults from documentation
 				opts = {}, -- merged with defaults from documentation
 			},

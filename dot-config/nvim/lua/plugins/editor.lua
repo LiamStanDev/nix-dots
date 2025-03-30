@@ -39,34 +39,6 @@ return {
 		end,
 	},
 
-	-- Completion Engine
-	-- {
-	-- 	"hrsh7th/nvim-cmp",
-	-- 	event = "InsertEnter",
-	-- 	dependencies = {
-	-- 		"hrsh7th/cmp-nvim-lsp",
-	-- 		"hrsh7th/cmp-nvim-lsp-signature-help",
-	-- 		"hrsh7th/cmp-buffer",
-	-- 		"hrsh7th/cmp-cmdline",
-	-- 		"hrsh7th/cmp-path",
-	-- 		"hrsh7th/cmp-nvim-lua",
-	-- 		"saadparwaiz1/cmp_luasnip",
-	-- 		"rcarriga/cmp-dap",
-	-- 		"onsails/lspkind.nvim",
-	-- 		"teramako/cmp-cmdline-prompt.nvim",
-	-- 		{
-	-- 			"L3MON4D3/LuaSnip",
-	-- 			version = "v2.*",
-	-- 			build = "make install_jsregexp",
-	-- 			config = require("settings.luasnippet"),
-	-- 		},
-	-- 		{
-	-- 			"zbirenbaum/copilot-cmp",
-	-- 			config = true,
-	-- 		},
-	-- 	},
-	-- 	config = require("settings.nvim-cmp").config,
-	-- },
 	{
 		"saghen/blink.cmp",
 		version = "1.*",
@@ -89,10 +61,7 @@ return {
 		opts = {},
         --stylua: ignore
 		keys = {
-			{ "gr", "<CMD>Trouble lsp_references toggle<CR>" },
-			{ "gw", "<CMD>Trouble diagnostics toggle<CR>" },
 			{ "<leader>st", "<CMD>Trouble todo toggle<CR>" },
-			{ "<leader>o", "<CMD>Trouble symbols toggle win.position=right<CR>" },
 		},
 	},
 
@@ -111,7 +80,7 @@ return {
 			notifier = require("settings.snacks.notifier"),
 			quickfile = { enabled = true },
 			scope = { enabled = true },
-			scroll = { enabled = false },
+			scroll = { enabled = true },
 			statuscolumn = { enabled = true },
 			words = { enabled = false },
 			terminal = require("settings.snacks.terminal"),
@@ -121,6 +90,10 @@ return {
 					wo = {
 						wrap = true,
 					},
+				},
+				input = {
+					relative = "cursor",
+					width = 30,
 				},
 			},
 		},
@@ -164,7 +137,7 @@ return {
 			spec = {
 				{ "<leader>s", group = "Search" },
 				{ "<leader>a", group = "AI" },
-				{ "<leader>b", group = "Buffer" },
+				-- { "<leader>b", group = "Buffer" },
 				{ "<leader>g", group = "Git", mode = { "n", "v" } },
 				{ "<leader>d", group = "Debug", mode = "n" },
 			},
@@ -348,29 +321,6 @@ return {
         keys = {
             { "S", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" }
         },
-	},
-
-	-- beautiful diagnostic
-	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "LspAttach", -- Or `LspAttach`
-		priority = 1000, -- needs to be loaded in first
-		config = function()
-			require("tiny-inline-diagnostic").setup({
-				preset = "ghost",
-				options = {
-					enable_on_insert = true,
-					multilines = {
-						enabled = true,
-						always_show = true,
-					},
-					break_line = {
-						enabled = true,
-					},
-				},
-			})
-			vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
-		end,
 	},
 
 	-- quit bad vim habit
