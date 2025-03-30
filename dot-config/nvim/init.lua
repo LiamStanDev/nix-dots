@@ -32,23 +32,21 @@ config.code_hight_servers = {
 -- lsp server for auto completion
 -- see https://github.com/williamboman/mason-lspconfig.nvim
 config.lsp_servers = {
-	"html",
-	"jsonls",
+	-- "html",
+	-- "jsonls",
 	"lua_ls",
-	"cssls",
-	-- "pylsp", -- pylsp doc more clean, and can reload mode no need to RestartLsp
+	-- "cssls",
 	"pyright",
 	"bashls",
-	"dockerls",
-	"ts_ls",
-	"tailwindcss",
+	-- "dockerls",
+	-- "ts_ls",
+	-- "tailwindcss",
 	"taplo", -- toml lsp
 	"rust_analyzer",
-	"gopls",
+	-- "gopls",
 	"cmake",
 	"clangd",
 	"nil_ls", -- nix
-	-- "omnisharp",
 }
 
 -- formatters

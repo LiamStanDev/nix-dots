@@ -65,7 +65,8 @@ return {
 		keys = {
             -- stylua: ignore start
 			{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files({ hidden = true })" },
-            { icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.picker.explorer({ hidden = true, ignored = true })" },
+            -- { icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.picker.explorer({ hidden = true, ignored = true })" },
+            { icon = " ", key = "e", desc = "Explorer", action = "<CMD>Yazi<CR>" },
 			{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 			{ icon = " ", key = "g", desc = "Grep", action = ":lua Snacks.picker.grep({ hidden = true })" },
 			{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },

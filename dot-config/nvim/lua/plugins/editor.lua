@@ -73,14 +73,14 @@ return {
 		opts = {
 			bigfile = { enabled = true },
 			dashboard = require("settings.snacks.dashboard"),
-			explorer = { enabled = true },
+			explorer = { enabled = false },
 			indent = { enabled = true },
 			input = { enabled = true },
 			picker = require("settings.snacks.picker"),
 			notifier = require("settings.snacks.notifier"),
 			quickfile = { enabled = true },
 			scope = { enabled = true },
-			scroll = { enabled = true },
+			scroll = { enabled = false },
 			statuscolumn = { enabled = true },
 			words = { enabled = false },
 			terminal = require("settings.snacks.terminal"),
@@ -208,7 +208,39 @@ return {
 	-- },
 
 	-- File explorer
-	{ "echasnovski/mini.files", version = false, config = require("settings.mini-files") },
+	-- { "echasnovski/mini.files", version = false, config = require("settings.mini-files") },
+	{
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
+		dependencies = { "folke/snacks.nvim", lazy = true },
+		keys = {
+			{
+				"<leader>e",
+				mode = { "n", "v" },
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
+			},
+		},
+		---@type YaziConfig | {}
+		opts = {
+			open_for_directories = false,
+			keymaps = {
+				show_help = "<f1>",
+				open_file_in_vertical_split = "<c-v>",
+				open_file_in_horizontal_split = "<c-x>",
+				-- open_file_in_tab = "<c-t>",
+				-- grep_in_directory = "<c-s>",
+				-- replace_in_directory = "<c-g>",
+				-- cycle_open_buffers = "<tab>",
+				-- copy_relative_path_to_selected_files = "<c-y>",
+				send_to_quickfix_list = "<c-q>",
+				change_working_directory = "<c-\\>",
+			},
+		},
+		init = function()
+			vim.g.loaded_netrwPlugin = 1
+		end,
+	},
 
 	-- Status line
 	{
