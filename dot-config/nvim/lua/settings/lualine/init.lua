@@ -136,22 +136,11 @@ return function()
 					separator = { right = "" },
 				},
 				{
-					"copilot",
-					symbols = {
-						status = {
-							hl = {
-								enabled = palette.green,
-								sleep = palette.subtext0,
-								disabled = palette.red,
-								warning = palette.yellow,
-								unknown = palette.red,
-							},
-						},
-					},
-					show_colors = true,
-					show_loading = false,
+					-- copilot
+					utils.copilot_status_icon,
 					padding = { left = 0, right = 2 },
 					separator = { right = "" },
+					color = { fg = palette.flamingo },
 				},
 				{
 					-- lsp

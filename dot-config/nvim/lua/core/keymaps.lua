@@ -12,11 +12,11 @@ map("n", "<Esc>", "<CMD>nohlsearch<CR>")
 map({ "n", "v", "x" }, "x", '"_x', { desc = "Disable copy when delete" })
 map({ "n", "v", "x" }, "X", '"_X', { desc = "Disable copy when delete" })
 
--- Split window navigation
-map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- Split window navigation (use default keymap instead)
+-- map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+-- map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+-- map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+-- map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Disable arrow keys in normal mode
 map("n", "<left>", '<CMD>echo "Use h to move!!"<CR>')

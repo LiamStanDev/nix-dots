@@ -151,45 +151,6 @@ return {
 		config = require("settings.gitsigns"),
 	},
 
-	-- Telescope [replace by snacks.nvim picker]
-	-- {
-	-- 	"nvim-telescope/telescope.nvim",
-	-- 	event = "VimEnter",
-	-- 	branch = "0.1.x",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-tree/nvim-web-devicons",
-	-- 		{
-	-- 			"nvim-telescope/telescope-fzf-native.nvim",
-	-- 			build = "make",
-	-- 			cond = function()
-	-- 				return vim.fn.executable("make") == 1
-	-- 			end,
-	-- 		},
-	-- 		{
-	-- 			"tomasky/bookmarks.nvim",
-	-- 			config = true,
-	-- 		},
-	-- 	},
-	-- 	config = require("settings.telescope"),
-	-- },
-
-	-- Column segments (ufo, dap, gitsign) [replace by snacks.nvim]
-	-- {
-	-- 	"luukvbaal/statuscol.nvim",
-	-- 	config = function()
-	-- 		local builtin = require("statuscol.builtin")
-	-- 		require("statuscol").setup({
-	-- 			relculright = true,
-	-- 			segments = {
-	-- 				{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-	-- 				{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-	-- 				{ text = { "%s" }, click = "v:lua.ScSa" },
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
-
 	-- Markdown
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -199,13 +160,6 @@ return {
 			render_modes = true,
 		},
 	},
-
-	-- Dashboard [replace by snack.nvim]
-	-- {
-	-- 	"goolord/alpha-nvim",
-	-- 	dependencies = { "echasnovski/mini.icons" },
-	-- 	config = require("settings.alpha"),
-	-- },
 
 	-- File explorer
 	-- { "echasnovski/mini.files", version = false, config = require("settings.mini-files") },
@@ -247,13 +201,7 @@ return {
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		config = require("settings.lualine"),
-		dependencies = {
-			"AndreM222/copilot-lualine",
-		},
 	},
-
-	-- Terminal [replace by snacks.nvim]
-	-- { "akinsho/toggleterm.nvim", version = "*", config = require("settings.toggleterm") },
 
 	-- Copilot
 	{
@@ -266,30 +214,6 @@ return {
 		build = "make tiktoken", -- Only on MacOS or Linux
 		config = require("settings.copilot-chat"),
 	},
-
-	-- Indent [replace by snackes.nvim]
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	main = "ibl",
-	-- 	event = { "BufReadPost", "BufNewFile" },
-	-- 	config = function()
-	-- 		require("ibl").setup({
-	-- 			indent = { char = "▎" },
-	-- 			scope = {
-	-- 				enabled = false,
-	-- 				show_exact_scope = true,
-	-- 				highlight = { "IBLScope" },
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
-	-- {
-	-- 	"echasnovski/mini.indentscope",
-	-- 	version = "*",
-	-- 	event = { "BufReadPre", "BufNewFile" },
-	-- 	init = require("settings.indentscope").init,
-	-- 	config = require("settings.indentscope").config,
-	-- },
 
 	--  Code folding
 	{
