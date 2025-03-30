@@ -43,18 +43,45 @@ function M.open_task_menu()
 	for _, task in ipairs(tasks) do
 		table.insert(entries, { label = task.label, command = task.command })
 	end
-	vim.ui.select(entries, {
-		prompt = "Select Task",
-		format_item = function(item)
-			return item.label
+
+	Snacks.picker.pick({
+		title = "Tasks",
+		items = entries,
+		source = "select",
+		layout = {
+			preview = false,
+			layout = {
+				height = math.floor(math.min(vim.o.lines * 0.8 - 10, #entries + 2) + 0.5),
+			},
+		},
+		on_show = function()
+			vim.cmd.stopinsert()
 		end,
-	}, function(selected, _)
-		if selected then
-			local user_cmd = vim.fn.input("command: ", selected.command)
-			local dir = vim.fn.getcwd()
-			Snacks.terminal.open(user_cmd, { cwd = dir, auto_close = false })
-		end
-	end)
+		actions = {
+			confirm = function(picker, item)
+				picker:close()
+				vim.schedule(function()
+					local user_cmd = vim.fn.input("command: ", item.command)
+					local dir = vim.fn.getcwd()
+					Snacks.terminal.open(user_cmd, { cwd = dir, auto_close = false })
+				end)
+			end,
+		},
+	})
+
+	-- use vim.ui.select
+	-- vim.ui.select(entries, {
+	-- 	prompt = "Select Task",
+	-- 	format_item = function(item)
+	-- 		return item.label
+	-- 	end,
+	-- }, function(selected, _)
+	-- 	if selected then
+	-- 		local user_cmd = vim.fn.input("command: ", selected.command)
+	-- 		local dir = vim.fn.getcwd()
+	-- 		Snacks.terminal.open(user_cmd, { cwd = dir, auto_close = false })
+	-- 	end
+	-- end)
 end
 
 return M

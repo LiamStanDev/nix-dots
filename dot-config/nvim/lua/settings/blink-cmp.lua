@@ -63,7 +63,7 @@ return function()
 
 			["<C-k>"] = { "select_prev", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
-			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-p>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-b>"] = { "scroll_documentation_up", "fallback" },
 			["<C-f>"] = { "scroll_documentation_down", "fallback" },
 			["<C-n>"] = { "show_signature", "hide_signature", "fallback" },

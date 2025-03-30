@@ -13,51 +13,21 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local map = vim.keymap.set
-		map("n", "gd", function()
-			vim.lsp.buf.definition()
-		end, { desc = "Go to Definition" })
-		map("n", "gr", function()
-			Snacks.picker.lsp_references({
-				on_show = function()
-					vim.cmd.stopinsert()
-				end,
-				layout = "ivy",
-			})
-		end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
-		map("n", "gi", function()
-			Snacks.picker.lsp_implementations({
-				on_show = function()
-					vim.cmd.stopinsert()
-				end,
-				layout = "ivy",
-			})
-		end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+        --stylua: ignore start
+		map("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Go to Definition" })
+		map("n", "gr", function() Snacks.picker.lsp_references({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+		map("n", "gi", function() Snacks.picker.lsp_implementations({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
 		map("n", "go", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
-		map("n", "gn", function()
-			vim.lsp.buf.rename()
-		end, { desc = "Rename" })
-		map("n", "ga", function()
-			vim.lsp.buf.code_action()
-		end, { desc = "Code Action" })
+		map("n", "gn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
+		map("n", "ga", function() vim.lsp.buf.code_action() end, { desc = "Code Action" })
 		map("n", "gw", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Show Workspace Diagnostics" })
-		map("n", "K", function()
-			vim.lsp.buf.hover()
-		end, { desc = "Hover Documentation" })
+		map("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover Documentation" })
 		map("n", "gk", "<CMD>Lspsaga diagnostic_jump_prev<CR>", { desc = "Previous Diagnostic" })
-		map("n", "gI", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		end, { desc = "Toggle Inlay Hint" })
-		map("n", "gH", function()
-			vim.cmd("checkhealth vim.lsp")
-		end, { desc = "Toggle Inlay Hint" })
-		map("n", "gR", function()
-			vim.lsp.stop_client(vim.lsp.get_clients())
-			-- defer then reload
-			vim.defer_fn(function()
-				vim.cmd("edit")
-			end, 2000)
-		end, { desc = "Lsp Restart" })
+		map("n", "gI", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hint" })
+		map("n", "gH", function() vim.cmd("checkhealth vim.lsp") end, { desc = "Toggle Inlay Hint" })
+		map("n", "gR", function() vim.lsp.stop_client(vim.lsp.get_clients()) vim.defer_fn(function() vim.cmd("edit") end, 2000) end, { desc = "Lsp Restart" })
 		-- ctrl + s is default to vim.lsp.buf.signature_help()
+		--stylua: ignore end
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if

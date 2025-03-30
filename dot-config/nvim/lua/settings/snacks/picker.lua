@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 vim.api.nvim_create_user_command("ShowTasks", function()
-	require("utils.task").open_task_menu()
+	require("utils.picker").open_task_menu()
 end, { nargs = 0 })
 
 -- NOTE: layout has following options: vertical, ivy, ivy_split,
@@ -22,6 +22,7 @@ map("n", "<leader>gb", function()
 		layout = "select",
 	})
 end, { desc = "Git Branches" })
+
 map("n", "<leader>gl", function()
 	Snacks.picker.git_log({
 		finder = "git_log",
@@ -31,6 +32,7 @@ map("n", "<leader>gl", function()
 		layout = "vertical",
 	})
 end, { desc = "Git Log" })
+
 map("n", "<leader>gS", function()
 	Snacks.picker.git_stash()
 end, { desc = "Git Stash" })
@@ -66,6 +68,7 @@ map("n", "<leader>bl", function()
 		layout = "ivy",
 	})
 end, { desc = "Buffers" })
+
 map("n", "<leader>sg", function()
 	Snacks.picker.grep({
 		hidden = true,
@@ -79,9 +82,7 @@ map("n", "<leader>sg", function()
 		layout = "ivy",
 	})
 end, { desc = "Grep" })
--- map("n", "<leader>s:", function()
--- 	Snacks.picker.command_history()
--- end, { desc = "Command History" })
+
 map("n", "<leader>sn", function()
 	Snacks.picker.notifications({
 		on_show = function()
@@ -90,18 +91,6 @@ map("n", "<leader>sn", function()
 		layout = "ivy",
 	})
 end, { desc = "Notification History" })
--- map("n", "<leader>sp", function()
--- 	Snacks.picker.projects()
--- end, { desc = "Projects" })
--- map("n", "<leader>sr", function()
--- 	Snacks.picker.recent()
--- end, { desc = "Recent" })
--- map("n", "<leader>s/", function()
--- 	Snacks.picker.search_history()
--- end, { desc = "Search History" })
--- map("n", "<leader>sq", function()
--- 	Snacks.picker.qflist()
--- end, { desc = "Quickfix List" })
 
 map("n", "<leader>sC", function()
 	Snacks.picker.colorschemes()
