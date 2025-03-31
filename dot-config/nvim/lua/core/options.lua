@@ -10,63 +10,40 @@ end)
 
 -- General options
 local options = {
-	-- file formate
-	ff = "unix",
-	ffs = "unix,dos",
-	-- line number
+	ff = "unix", -- file formate
+	ffs = "unix,dos", -- file formate
+	number = true, -- line number
 	relativenumber = true,
-	number = true,
-
-	-- indentation
-	tabstop = 4,
-	shiftwidth = 4,
-	expandtab = true,
-	autoindent = true,
+	tabstop = 2, -- number of spaces tabs count when display
+	shiftwidth = 2, -- size of an indent
+	smartindent = true, -- auto indent
+	expandtab = true, -- use space instead of tabs
 	-- breakindent = true, -- long line wrap will align
 	wrap = false, -- line wrapping (conflict with break indent)
-
-	-- whit space display
-	list = true,
+	list = true, -- invisible characters
 	listchars = { tab = "» ", trail = "·", nbsp = "␣" },
-
-	-- search settings
 	ignorecase = true,
 	smartcase = true,
 	hlsearch = true, -- highlight search
-	infercase = true,
-
-	-- cursor
-	cursorline = true,
-	scrolloff = 15, -- Minimal number of screen lines to keep above and below the cursor
-
-	-- appearance
-	termguicolors = true,
-	signcolumn = "yes",
-
-	-- typing
+	cursorline = true, -- highlighting of the current line
+	scrolloff = 4, -- minimal number of screen lines to keep above and below the cursor
+	termguicolors = true, -- true color
+	signcolumn = "yes", -- always show signcolumn, otherwise it would shift text each time
 	undofile = true, -- can persistent undo
-
-	-- split windows
+	undolevels = 10000,
 	splitbelow = true,
 	splitright = true,
-
-	-- mouse
 	mouse = "a",
-
+	pumblend = 10, -- popup blend
 	hidden = true,
-	magic = true,
-	virtualedit = "block",
+	virtualedit = "block", -- allow cursor to move where there is no text in visual block mode
 	wildignorecase = true,
-
-	-- swap need to set false, true lead to dead lock
 	swapfile = false,
 	directory = cache_dir .. "swap/",
 	undodir = cache_dir .. "undo/",
 	backupdir = cache_dir .. "backup/",
 	viewdir = cache_dir .. "view/",
 	spellfile = cache_dir .. "spell/en.uft-8.add",
-
-	-- other setting
 	history = 2000,
 	timeout = true,
 	ttimeout = true,
@@ -74,14 +51,24 @@ local options = {
 	ttimeoutlen = 10,
 	updatetime = 100,
 	redrawtime = 1500,
-
-	showmode = false,
-
-	-- Preview substitutions live
-	inccommand = "split",
-
-	-- NOTE: this will affect all window (Nvim 0.11)
-	-- winborder = "single",
+	showmode = false, -- dont show mode since we use statusline
+	virtualedit = "block", -- Allow cursor to move where there is no text in visual block mode
+	inccommand = "split", -- preview substitutions live
+	grepprg = "rg --vimgrep",
+	spelllang = { "en" },
+	foldcolumn = "1",
+	foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
+	foldlevelstart = 99,
+	fillchars = {
+		foldopen = "",
+		foldclose = "",
+		fold = " ",
+		foldsep = " ",
+		diff = "╱",
+		eob = " ",
+	},
+	foldenable = true,
+	-- winborder = "single", -- this will affect all window (Nvim 0.11)
 }
 
 for option, val in pairs(options) do
