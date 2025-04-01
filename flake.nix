@@ -2,11 +2,15 @@
   description = "Home Manager configuration";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     home-manager = {
-      # url = "github:nix-community/home-manager/release-24.11";
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -14,15 +18,21 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
     in
     {
       homeConfigurations."profile" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
+        modules = [ ./home.nix ];
+      };
+
+      homeConfigurations."profile-stable" = inputs.home-manager-stable.lib.homeManagerConfiguration {
+        pkgs = pkgs-stable;
         modules = [ ./home.nix ];
       };
 
