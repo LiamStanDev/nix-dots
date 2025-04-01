@@ -39,7 +39,7 @@ config.lsp_servers = {
 	"pyright",
 	"bashls",
 	-- "dockerls",
-	-- "ts_ls",
+	"ts_ls",
 	-- "tailwindcss",
 	"taplo", -- toml lsp
 	"rust_analyzer",
