@@ -160,7 +160,6 @@ return {
 		},
 		config = function(_, opts)
 			require("lint").linters_by_ft = config.linting_services
-			print(vim.inspect(config.linting_services))
 			local M = {}
 			function M.debounce(ms, fn)
 				local timer = vim.uv.new_timer()
