@@ -13,10 +13,10 @@ map({ "n", "v", "x" }, "x", '"_x', { desc = "Disable copy when delete" })
 map({ "n", "v", "x" }, "X", '"_X', { desc = "Disable copy when delete" })
 
 -- Split window navigation (use default keymap instead)
--- map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
--- map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
--- map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
--- map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- map("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
+-- map("n", "<C-l>", "<C-w>l", { desc = "Move focus to the right window" })
+-- map("n", "<C-j>", "<C-w>j", { desc = "Move focus to the lower window" })
+-- map("n", "<C-k>", "<C-w>k", { desc = "Move focus to the upper window" })
 
 -- Disable arrow keys in normal mode
 map("n", "<left>", '<CMD>echo "Use h to move!!"<CR>')
@@ -45,8 +45,8 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Resize window right" 
 -- map("n", "<A-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 
 -- Cursor History Navigation
-map("n", "<A-l>", "<C-i>", { desc = "Next buffer" })
-map("n", "<A-h>", "<C-o>", { desc = "Previous buffer" })
+-- map("n", "<A-l>", "<C-i>", { desc = "Next buffer" })
+-- map("n", "<A-h>", "<C-o>", { desc = "Previous buffer" })
 
 -- Better Scroll
 map({ "n", "i", "v", "x" }, "<C-d>", "<C-d>zz", { desc = "Center cursor after moving down half-page" })
