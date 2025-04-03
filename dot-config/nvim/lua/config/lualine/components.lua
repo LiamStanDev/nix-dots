@@ -1,4 +1,4 @@
-local utils = require("settings.lualine.utils")
+local utils = require("config.lualine.utils")
 
 -- setup component
 local component = {

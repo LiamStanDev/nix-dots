@@ -1,4 +1,4 @@
-local config = require("core.globals")
+local G = require("core.globals")
 
 return {
 	-- Hightlight
@@ -12,7 +12,7 @@ return {
 				highlight = { enable = true },
 				additional_vim_regex_highlighting = false, -- true will slow down editor.
 				indent = { enable = true }, -- can use `=` operator
-				ensure_installed = config.code_hight_servers,
+				ensure_installed = G.code_hight_servers,
 				auto_install = true,
 			})
 		end,
@@ -27,8 +27,6 @@ return {
 		},
 	},
 
-	-- Autopairs
-	-- { "windwp/nvim-autopairs", event = "InsertEnter", opts = require("settings.autopairs") },
 	{
 		"echasnovski/mini.pairs",
 		event = "VeryLazy",
@@ -62,7 +60,7 @@ return {
 	{
 		"saghen/blink.cmp",
 		version = "1.*",
-		config = require("settings.blink-cmp"),
+		config = require("config.blink-cmp"),
 		opts_extend = { "sources.default" },
 		dependencies = {
 			{
@@ -92,19 +90,19 @@ return {
 		lazy = false,
 		opts = {
 			bigfile = { enabled = true },
-			dashboard = require("settings.snacks.dashboard"),
+			dashboard = require("config.snacks.dashboard"),
 			explorer = { enabled = false },
 			indent = { enabled = true },
 			input = { enabled = true },
-			picker = require("settings.snacks.picker"),
-			notifier = require("settings.snacks.notifier"),
+			picker = require("config.snacks.picker"),
+			notifier = require("config.snacks.notifier"),
 			quickfile = { enabled = true },
 			scope = { enabled = true },
 			scroll = { enabled = false },
 			statuscolumn = { enabled = true },
 			words = { enabled = false },
-			terminal = require("settings.snacks.terminal"),
-			lazygit = require("settings.snacks.lazygit"),
+			terminal = require("config.snacks.terminal"),
+			lazygit = require("config.snacks.lazygit"),
 			styles = {
 				notification = {
 					wo = {
@@ -127,7 +125,7 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
-		config = require("settings.noice"),
+		config = require("config.noice"),
 	},
 
 	-- Keymap hint
@@ -142,7 +140,7 @@ return {
 				group = "+", -- symbol prepended to a group,
 				mappings = false,
 			},
-			win = { border = config.which_key_window_border },
+			win = { border = G.which_key_window_border },
 			keys = {
 				scroll_down = "<c-d>", -- binding to scroll down inside the popup
 				scroll_up = "<c-u>", -- binding to scroll up inside the popup
@@ -168,7 +166,7 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
-		config = require("settings.gitsigns"),
+		config = require("config.gitsigns"),
 	},
 
 	-- Markdown
@@ -220,7 +218,7 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		config = require("settings.lualine"),
+		config = require("config.lualine.init"),
 	},
 
 	-- Copilot
@@ -232,7 +230,7 @@ return {
 		},
 		branch = "main",
 		build = "make tiktoken", -- Only on MacOS or Linux
-		config = require("settings.copilot-chat"),
+		config = require("config.copilot-chat"),
 	},
 
 	--  Code folding
@@ -268,7 +266,7 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = require("settings.todo-comment"),
+		opts = require("config.todo-comment"),
 		-- config = true,
 	},
 

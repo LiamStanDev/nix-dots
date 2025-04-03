@@ -6,7 +6,7 @@ return {
 			{ "theHamsta/nvim-dap-virtual-text", config = true },
 			{
 				"rcarriga/nvim-dap-ui",
-				config = require("settings.dapui"),
+				config = require("config.dapui"),
 				dependencies = {
 					"nvim-neotest/nvim-nio",
 					{
@@ -16,7 +16,7 @@ return {
 				},
 			},
 		},
-		init = require("settings.dap").init,
-		config = require("settings.dap").config,
+		init = require("config.dap").init,
+		config = require("config.dap").config,
 	},
 }

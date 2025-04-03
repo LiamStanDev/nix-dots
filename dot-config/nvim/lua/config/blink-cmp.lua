@@ -1,15 +1,15 @@
 return function()
-	local config = require("core.globals")
+	local G = require("core.globals")
 	local blink = require("blink.cmp")
 	blink.setup({
-		signature = { enabled = true }, -- use noice.nvim instead
+		signature = { enabled = true }, -- this is show when insert but use noice.nvim not.
 		completion = {
 			keyword = { range = "full" },
 			accept = { auto_brackets = { enabled = true } },
 			list = { selection = { preselect = true, auto_insert = true } },
 			menu = {
 				auto_show = true,
-				border = config.cmp_window_border,
+				border = G.cmp_window_border,
 				draw = {
 					columns = { { "kind_icon" }, { "label", "source_id", gap = 1 } },
 					components = {
@@ -27,7 +27,7 @@ return function()
 			},
 			documentation = {
 				window = {
-					border = config.cmp_window_border,
+					border = G.cmp_window_border,
 				},
 				auto_show = true,
 				auto_show_delay_ms = 100,

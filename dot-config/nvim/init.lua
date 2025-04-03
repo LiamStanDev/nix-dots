@@ -1,12 +1,11 @@
 -- the core plugins
-require("core")
-local config = require("core.globals")
+local G = require("core.globals")
 
 -- -----------------------------------------------------
 -- Register server
 -- -----------------------------------------------------
 -- tree-sitter code highlight
-config.code_hight_servers = {
+G.code_hight_servers = {
 	"regex",
 	"json",
 	"javascript",
@@ -31,7 +30,7 @@ config.code_hight_servers = {
 
 -- lsp server for auto completion
 -- see https://github.com/williamboman/mason-lspconfig.nvim
-config.lsp_servers = {
+G.lsp_servers = {
 	-- "html",
 	-- "jsonls",
 	"lua_ls",
@@ -51,7 +50,7 @@ config.lsp_servers = {
 
 -- formatters
 -- see: https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
-config.formatter_services = {
+G.formatter_services = {
 	lua = { "stylua" },
 	python = { "ruff_format" },
 	-- python = { "ruff_format", "ruff_fix" }, -- ruff_fix will auto fix lint
@@ -75,7 +74,7 @@ config.formatter_services = {
 
 -- linter
 -- see: https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters
-config.linting_services = {
+G.linting_services = {
 	javascript = { "eslint_d" },
 	javascriptreact = { "eslint_d" },
 	typescript = { "eslint_d" },
@@ -85,7 +84,7 @@ config.linting_services = {
 
 -- debuger server
 -- see: https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
-config.dap_servers = {
+G.dap_servers = {
 	"python",
 	"cppdbg",
 	"codelldb",
@@ -96,16 +95,16 @@ config.dap_servers = {
 -- Others
 -- -----------------------------------------------------
 -- set color theme here
-config.colorscheme = "catppuccin"
+G.colorscheme = "catppuccin"
 
 -- border style
-config.cmp_window_border = "single" -- none, single, rounded
-config.lspsaga_window_border = "single" -- none, single, rounded
-config.which_key_window_border = "single" -- none, single, double, shadow
+G.cmp_window_border = "single" -- none, single, rounded
+G.lspsaga_window_border = "single" -- none, single, rounded
+G.which_key_window_border = "single" -- none, single, double, shadow
 
 -- show inline hint
-config.open_type_hint = true -- for variable
-config.open_parameter_hint = true
+G.open_type_hint = true -- for variable
+G.open_parameter_hint = true
 
 -- setup all plugin
 require("plugins-setup")

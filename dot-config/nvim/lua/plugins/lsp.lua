@@ -1,7 +1,7 @@
-local config = require("core.globals")
+local G = require("core.globals")
 local map = vim.keymap.set
 
-vim.lsp.enable(config.lsp_servers)
+vim.lsp.enable(G.lsp_servers)
 
 local function client_supports_method(client, method, bufnr)
 	if vim.fn.has("nvim-0.11") == 1 then
@@ -14,7 +14,7 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
         --stylua: ignore start
-		map("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Go to Definition" })
+		map("n", "gd", function() Snacks.picker.lsp_definitions({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to Definition" })
 		map("n", "gr", function() Snacks.picker.lsp_references({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
 		map("n", "gi", function() Snacks.picker.lsp_implementations({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
 		map("n", "go", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
@@ -93,7 +93,7 @@ return {
 			{
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
 				config = function()
-					local service_identifiers = require("utils.lsp").get_service_identifiers(config)
+					local service_identifiers = require("utils.lsp").get_service_identifiers(G)
 					require("mason-tool-installer").setup({
 						ensure_installed = service_identifiers,
 					})
@@ -150,7 +150,7 @@ return {
 		},
 		opts = {
 			notify_on_error = false,
-			formatters_by_ft = require("core.globals").formatter_services,
+			formatters_by_ft = G.formatter_services,
 		},
 	},
 	{ -- Autolint
@@ -159,7 +159,7 @@ return {
 			events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 		},
 		config = function(_, opts)
-			require("lint").linters_by_ft = config.linting_services
+			require("lint").linters_by_ft = G.linting_services
 			local M = {}
 			function M.debounce(ms, fn)
 				local timer = vim.uv.new_timer()

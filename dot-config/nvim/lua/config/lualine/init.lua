@@ -1,6 +1,6 @@
 return function()
-	local components = require("settings.lualine.components")
-	local utils = require("settings.lualine.utils")
+	local components = require("config.lualine.components")
+	local utils = require("config.lualine.utils")
 	local palette = require("catppuccin.palettes").get_palette("frappe")
 	local statusline = require("arrow.statusline")
 

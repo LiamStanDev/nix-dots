@@ -31,7 +31,7 @@ local function detect_project_type()
 end
 
 function M.open_task_menu()
-	local project_type = detect_project_type() or "unknown"
+	local project_type = detect_project_type() or ""
 	vim.notify("Project type: " .. project_type)
 	local tasks = require("tasks")[project_type] or {}
 	if #tasks == 0 then

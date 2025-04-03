@@ -10,12 +10,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("core").setup()
 require("lazy").setup({
 	spec = {
-		require("plugins.colorschemes"),
-		require("plugins.lsp"),
-		require("plugins.debug"),
-		require("plugins.editor"),
+		{ import = "plugins" }, -- add all ~/.config/nvim/lua/plugins/*.lua here
 	},
 	checker = { enabled = true },
 	rocks = { enabled = false },

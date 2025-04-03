@@ -92,6 +92,33 @@ map("n", "<leader>sn", function()
 	})
 end, { desc = "Notification History" })
 
+map("n", "<leader>sq", function()
+	Snacks.picker.qflist({
+		on_show = function()
+			vim.cmd.stopinsert()
+		end,
+		layout = "ivy",
+	})
+end, { desc = "Quickfix List" })
+
+map("n", "<leader>s/", function()
+	Snacks.picker.search_history({
+		on_show = function()
+			vim.cmd.stopinsert()
+		end,
+		layout = "ivy",
+	})
+end, { desc = "Search History" })
+
+map("n", "<leader>s/", function()
+	Snacks.picker.search_history({
+		on_show = function()
+			vim.cmd.stopinsert()
+		end,
+		layout = "ivy",
+	})
+end, { desc = "Search History" })
+
 map("n", "<leader>sC", function()
 	Snacks.picker.colorschemes()
 end, { desc = "Colorschemes" })

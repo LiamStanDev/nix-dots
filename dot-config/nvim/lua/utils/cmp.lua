@@ -1,7 +1,7 @@
 local M = {}
 function M.window_setup()
-	local config = require("core.globals")
-	if config.cmp_window_border == "rounded" then
+	local G = require("core.globals")
+	if G.cmp_window_border == "rounded" then
 		local border_opt = {
 			border = "rounded", -- single, rounded
 			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
@@ -13,7 +13,7 @@ function M.window_setup()
 			documentation = require("cmp.config.window").bordered(border_opt),
 		}
 	end
-	if config.cmp_window_border == "single" then
+	if G.cmp_window_border == "single" then
 		local border_opt = {
 			border = "single", -- single, rounded
 			winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",

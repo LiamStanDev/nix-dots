@@ -26,8 +26,8 @@ function M.config()
 	local dap = require("dap")
 	local dapui = require("dapui")
 
-	require("settings.dap-settings.dap-adaptor-setup")
-	require("settings.dap-settings.dap-lang-setup")
+	require("config.dap-settings.dap-adaptor-setup")
+	require("config.dap-settings.dap-lang-setup")
 
 	local map = vim.keymap.set
 	map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })

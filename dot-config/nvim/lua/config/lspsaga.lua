@@ -1,10 +1,10 @@
-local config = require("core.globals")
+local G = require("core.globals")
 
 return {
 	ui = {
 		title = true,
 		-- Border type can be single, double, rounded, solid, shadow.
-		border = config.lspsaga_window_border,
+		border = G.lspsaga_window_border,
 		winblend = 0,
 		expand = "",
 		collapse = "",
