@@ -85,6 +85,7 @@ in
       gtp = "git stash pop";
       gp = "git pull";
       gP = "git publish";
+      ga = "git add .";
       gc = "git commit -m";
       gca = "git commit -am";
       gC = "git commit";
