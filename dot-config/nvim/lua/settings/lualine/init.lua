@@ -2,6 +2,7 @@ return function()
 	local components = require("settings.lualine.components")
 	local utils = require("settings.lualine.utils")
 	local palette = require("catppuccin.palettes").get_palette("frappe")
+	local statusline = require("arrow.statusline")
 
 	require("lualine").setup({
 		options = {
@@ -137,6 +138,14 @@ return function()
 					color = { fg = palette.subtext0 },
 					padding = { left = 1, right = 2 },
 					separator = { right = "" },
+				},
+				{
+					-- arrow nvim
+					function()
+						return statusline.text_for_statusline_with_icons()
+					end,
+					color = { fg = palette.green },
+					padding = { left = 0, right = 2 },
 				},
 				{
 					-- copilot
