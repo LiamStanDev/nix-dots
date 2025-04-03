@@ -76,7 +76,9 @@ return {
 			{ "nvim-tree/nvim-web-devicons" },
 		},
 		cmd = { "Trouble", "TroubleToggle" },
-		opts = {},
+		opts = {
+			focus = true,
+		},
         --stylua: ignore
 		keys = {
 			{ "<leader>st", "<CMD>Trouble todo toggle<CR>", desc = "Todo" },
