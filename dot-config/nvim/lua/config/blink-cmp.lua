@@ -1,5 +1,5 @@
 return function()
-	local G = require("core.globals")
+	local G = require("core")
 	local blink = require("blink.cmp")
 	blink.setup({
 		signature = { enabled = true }, -- this is show when insert but use noice.nvim not.

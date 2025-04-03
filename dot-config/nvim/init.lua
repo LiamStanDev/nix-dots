@@ -1,5 +1,5 @@
 -- the core plugins
-local G = require("core.globals")
+local G = require("core")
 
 -- -----------------------------------------------------
 -- Register server
@@ -66,8 +66,6 @@ G.formatter_services = {
 	c = { "clang_format" },
 	cpp = { "clang_format" },
 	cmake = { "gersemi" },
-	-- rust = { "rustfmt" },
-	-- cs = { "csharpier" },
 	sql = { "sqlfmt" },
 	nix = { "nixpkgs_fmt" },
 }
@@ -99,12 +97,7 @@ G.colorscheme = "catppuccin"
 
 -- border style
 G.cmp_window_border = "single" -- none, single, rounded
-G.lspsaga_window_border = "single" -- none, single, rounded
 G.which_key_window_border = "single" -- none, single, double, shadow
 
--- show inline hint
-G.open_type_hint = true -- for variable
-G.open_parameter_hint = true
-
 -- setup all plugin
-require("plugins-setup")
+G.setup()

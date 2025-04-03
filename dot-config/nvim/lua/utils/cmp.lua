@@ -1,6 +1,6 @@
 local M = {}
 function M.window_setup()
-	local G = require("core.globals")
+	local G = require("core")
 	if G.cmp_window_border == "rounded" then
 		local border_opt = {
 			border = "rounded", -- single, rounded

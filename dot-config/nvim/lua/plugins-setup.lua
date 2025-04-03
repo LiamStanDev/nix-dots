@@ -1,3 +1,4 @@
+local G = require("core")
 -- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -10,7 +11,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("core").setup()
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" }, -- add all ~/.config/nvim/lua/plugins/*.lua here
@@ -39,4 +39,4 @@ require("lazy").setup({
 	},
 })
 
-vim.cmd("colorscheme " .. require("core.globals").colorscheme)
+vim.cmd("colorscheme " .. G.colorscheme)

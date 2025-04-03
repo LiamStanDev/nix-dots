@@ -1,4 +1,4 @@
-local G = require("core.globals")
+local G = require("core")
 
 return {
 	-- Hightlight

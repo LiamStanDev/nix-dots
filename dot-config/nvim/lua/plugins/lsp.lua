@@ -1,4 +1,4 @@
-local G = require("core.globals")
+local G = require("core")
 local map = vim.keymap.set
 
 vim.lsp.enable(G.lsp_servers)
