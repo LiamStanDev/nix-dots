@@ -12,7 +12,7 @@ return {
 				highlight = { enable = true },
 				additional_vim_regex_highlighting = false, -- true will slow down editor.
 				indent = { enable = true }, -- can use `=` operator
-				ensure_installed = G.code_hight_servers,
+				ensure_installed = G.code_hl_servers,
 				auto_install = true,
 			})
 		end,
@@ -108,7 +108,7 @@ return {
 			styles = {
 				notification = {
 					wo = {
-						wrap = true,
+						wrap = true, -- see all message inside window
 					},
 				},
 				input = {
@@ -157,7 +157,7 @@ return {
 			spec = {
 				{ "<leader>s", group = "Search" },
 				{ "<leader>a", group = "AI" },
-				-- { "<leader>b", group = "Buffer" },
+				{ "<leader>b", group = "Buffer" },
 				{ "<leader>g", group = "Git", mode = { "n", "v" } },
 				{ "<leader>d", group = "Debug", mode = "n" },
 			},
@@ -269,7 +269,6 @@ return {
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = require("config.todo-comment"),
-		-- config = true,
 	},
 
 	-- Text Color
@@ -296,7 +295,11 @@ return {
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
-		opts = {},
+		opts = {
+			enabled = G.quit_bad_habit,
+			max_count = 4,
+			disable_mouse = false,
+		},
 	},
 
 	{

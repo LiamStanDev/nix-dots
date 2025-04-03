@@ -150,7 +150,7 @@ return {
 		},
 		opts = {
 			notify_on_error = false,
-			formatters_by_ft = G.formatter_services,
+			formatters_by_ft = G.formatters,
 		},
 	},
 	{ -- Autolint
@@ -159,7 +159,7 @@ return {
 			events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 		},
 		config = function(_, opts)
-			require("lint").linters_by_ft = G.linting_services
+			require("lint").linters_by_ft = G.linters
 			local M = {}
 			function M.debounce(ms, fn)
 				local timer = vim.uv.new_timer()

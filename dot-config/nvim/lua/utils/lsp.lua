@@ -21,7 +21,7 @@ function M.get_service_identifiers(config)
 	end
 
 	-- Add formatter services
-	for _, servers in pairs(config.formatter_services) do
+	for _, servers in pairs(config.formatters) do
 		for _, server in ipairs(servers) do
 			if type(server) == "string" then
 				local pkg = utils.conform_to_package[server]
@@ -34,7 +34,7 @@ function M.get_service_identifiers(config)
 	end
 
 	-- Add linting services
-	for _, servers in pairs(config.linting_services) do
+	for _, servers in pairs(config.linters) do
 		for _, server in ipairs(servers) do
 			local pkg = utils.nvimlint_to_pakcage[server]
 			if pkg and not packages_seen[pkg] then

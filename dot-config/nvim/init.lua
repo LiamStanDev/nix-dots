@@ -5,7 +5,7 @@ local G = require("core")
 -- Register server
 -- -----------------------------------------------------
 -- tree-sitter code highlight
-G.code_hight_servers = {
+G.code_hl_servers = {
 	"regex",
 	"json",
 	"javascript",
@@ -50,7 +50,7 @@ G.lsp_servers = {
 
 -- formatters
 -- see: https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
-G.formatter_services = {
+G.formatters = {
 	lua = { "stylua" },
 	python = { "ruff_format" },
 	-- python = { "ruff_format", "ruff_fix" }, -- ruff_fix will auto fix lint
@@ -72,7 +72,7 @@ G.formatter_services = {
 
 -- linter
 -- see: https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters
-G.linting_services = {
+G.linters = {
 	javascript = { "eslint_d" },
 	javascriptreact = { "eslint_d" },
 	typescript = { "eslint_d" },
@@ -94,6 +94,7 @@ G.dap_servers = {
 -- -----------------------------------------------------
 -- set color theme here
 G.colorscheme = "catppuccin"
+G.quit_bad_habit = true
 
 -- border style
 G.cmp_window_border = "single" -- none, single, rounded

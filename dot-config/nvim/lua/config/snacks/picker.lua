@@ -49,7 +49,7 @@ map("n", "<leader>p", function()
 	})
 end, { desc = "Smart Find Files" })
 
-map("n", "<leader>bl", function()
+map("n", "<leader>bb", function()
 	Snacks.picker.buffers({
 		-- start in normal mode
 		on_show = function()
@@ -126,7 +126,7 @@ end, { desc = "Colorschemes" })
 return {
 	enabled = true,
 	prompt = "   ",
-	layout = { cycle = false, preset = "ivy" },
+	layout = { cycle = true, preset = "ivy" },
 	win = {
 		input = {
 			keys = {
@@ -195,7 +195,8 @@ return {
 				["<Esc>"] = "cancel",
 				["<S-CR>"] = { { "pick_win", "jump" } },
 				["<S-Tab>"] = { "select_and_prev", mode = { "n", "x" } },
-				["<Tab>"] = { "select_and_next", mode = { "n", "x" } },
+				["<tab>"] = { "qflist", mode = { "n", "i" } },
+				-- ["<Tab>"] = { "select_and_next", mode = { "n", "x" } },
 				["<Up>"] = "list_up",
 				["<a-d>"] = "inspect",
 				["<a-f>"] = "toggle_follow",
