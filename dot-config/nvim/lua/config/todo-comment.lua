@@ -8,11 +8,18 @@ return {
 			alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
 			-- signs = false, -- configure signs for some keywords individually
 		},
+		-- TODO:
+		-- HACK:
+		-- WARN:
+		-- PERF:
+		-- NOTE:
+		-- TEST:
+		-- FIXME:
 		TODO = { icon = " ", color = "info" },
 		HACK = { icon = " ", color = "warning" },
 		WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 		PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-		NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+		NOTE = { icon = " ", color = "#9399b2", alt = { "INFO" } },
 		TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 	},
 
@@ -24,7 +31,7 @@ return {
 		error = { "DiagnosticError", "ErrorMsg", "#F28FAD" },
 		warning = { "DiagnosticWarn", "WarningMsg", "#FAE3B0" },
 		info = { "DiagnosticInfo", "#96CDFB" },
-		hint = { "DiagnosticHint", "#ABE9B3" },
+		hint = { "DiagnosticHint", "#9399b2" },
 		default = { "Identifier", "#DDB6F2" },
 		test = { "Identifier", "#F5C2E7" },
 	},

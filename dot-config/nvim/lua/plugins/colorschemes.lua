@@ -5,7 +5,7 @@ return {
 		priority = 1000,
 		opts = {
 			transparent_background = true,
-			no_italic = true,
+			no_italic = false,
 
 			custom_highlights = {
 				-- trouble
