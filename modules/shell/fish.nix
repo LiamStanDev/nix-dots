@@ -65,6 +65,7 @@ in
       ll = "eza -l";
       la = "eza -la";
       lt = "eza --tree";
+      lR = "eza -lR";
 
       # vim and neovim
       v = "vim";
