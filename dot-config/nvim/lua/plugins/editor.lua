@@ -64,10 +64,19 @@ return {
 		opts_extend = { "sources.default" },
 		dependencies = {
 			{
+				-- nvim-cmp compatibility layer
+				"saghen/blink.compat",
+				version = "*",
+				lazy = true,
+				opts = {},
+			},
+			{
 				"xzbdmw/colorful-menu.nvim",
 				config = true,
 			},
+			"kristijanhusak/vim-dadbod-completion",
 			"fang2hou/blink-copilot",
+			"rcarriga/cmp-dap",
 		},
 	},
 	{

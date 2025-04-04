@@ -1,7 +1,7 @@
 -- task-runner
 
 local function cpp_build_single_file()
-	local command = "g++ -g -o /tmp/a.out -std=c++20 "
+	local command = "g++ -g -o ./a.out -std=c++20 "
 	command = command .. vim.api.nvim_buf_get_name(0)
 	return command
 end
@@ -29,7 +29,7 @@ return {
 	},
 	cpp = {
 		{ label = "Build Single File", command = cpp_build_single_file() },
-		{ label = "Run Single File", command = "/tmp/a.out" },
+		{ label = "Run Single File", command = cpp_build_single_file() .. " && /tmp/a.out" },
 		{ label = "Clang Format Init", command = "clang-format --style=Google -dump-config > .clang-format" },
 	},
 	python = {

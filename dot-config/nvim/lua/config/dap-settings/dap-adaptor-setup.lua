@@ -36,13 +36,6 @@ dap.adapters.codelldb = {
 	},
 }
 
--- c/c++: gdb config, need gdb 14 (don't have)
--- dap.adapters.gdb = {
--- 	type = "executable",
--- 	command = "gdb",
--- 	args = { "-i", "dap" },
--- }
-
 -- go: delve configs
 dap.adapters.delve = {
 	type = "server",

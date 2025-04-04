@@ -1,7 +1,14 @@
+-- whether to enable blink-cmp
+local function is_cmp_buffer()
+	local cmp_dap = require("cmp_dap")
+	return vim.bo.buftype ~= "prompt" or cmp_dap.is_dap_buffer()
+end
+
 return function()
 	local G = require("core")
 	local blink = require("blink.cmp")
 	blink.setup({
+		enabled = is_cmp_buffer,
 		signature = { enabled = true }, -- this is show when insert but use noice.nvim not.
 		completion = {
 			keyword = { range = "full" },
@@ -43,7 +50,17 @@ return function()
 			completion = { menu = { auto_show = true } },
 		},
 		sources = {
-			default = { "copilot", "lazydev", "lsp", "path", "snippets", "buffer" },
+			default = function(_)
+				local cmp_dap = require("cmp_dap")
+				local sql_filetypes = { mysql = true, sql = true }
+				if sql_filetypes[vim.bo.filetype] ~= nil then
+					return { "dadbod", "snippets", "buffer" }
+				elseif cmp_dap.is_dap_buffer() then
+					return { "dap", "snippets", "buffer" }
+				else
+					return { "copilot", "lazydev", "lsp", "path", "snippets", "buffer" }
+				end
+			end,
 			providers = {
 				lazydev = {
 					name = "LazyDev",
@@ -56,6 +73,8 @@ return function()
 					score_offset = 100,
 					async = true,
 				},
+				dap = { name = "dap", module = "blink.compat.source" },
+				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 			},
 		},
 		keymap = {
