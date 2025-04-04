@@ -100,5 +100,76 @@ G.quit_bad_habit = true
 G.cmp_window_border = "single" -- none, single, rounded
 G.which_key_window_border = "single" -- none, single, double, shadow
 
+-- exclude pattern in search
+G.exclude_pattern = {
+	-- General
+	".git",
+	".DS_Store",
+	".idea",
+	".vscode",
+	".history",
+	".github",
+	"dist",
+	"build",
+	"out",
+	"*.swp",
+	"*.swo",
+	"*.log",
+	".cache",
+	"tmp",
+	"*.bckp",
+
+	-- Node/JS
+	"node_modules",
+	"package-lock.json",
+	"yarn.lock",
+	".npm",
+
+	-- Python
+	"__pycache__",
+	".venv",
+	"venv",
+	"env",
+	"*.pyc",
+	"*.pyo",
+	"*.pyd",
+	".pytest_cache",
+	".coverage",
+	"*.egg-info",
+	".tox",
+
+	-- Rust
+	"Cargo.lock",
+	"target",
+	"*.rs.bk",
+	".cargo",
+
+	-- C/C++
+	"*.o",
+	"*.a",
+	"*.so",
+	"*.dll",
+	"*.exe",
+	"*.obj",
+	"CMakeFiles",
+	"CMakeCache.txt",
+	"compile_commands.json",
+
+	-- Go
+	"vendor",
+	"go.sum",
+	"*.test",
+
+	-- Java/Kotlin
+	"*.class",
+	"*.jar",
+	".gradle",
+	".mvn",
+	"target",
+
+	-- Miscellaneous
+	"Thumbs.db",
+	".next",
+}
 -- setup all plugin
 G.setup()

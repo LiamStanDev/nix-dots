@@ -245,10 +245,25 @@ return {
 					return { "treesitter", "indent" }
 				end,
 			})
-			local map = vim.keymap.set
-			map("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
-			map("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
 		end,
+		keys = {
+			{
+				"zR",
+				mode = "n",
+				function()
+					require("ufo").openAllFolds()
+				end,
+				desc = "Open all folds",
+			},
+			{
+				"zM",
+				mode = "n",
+				function()
+					require("ufo").closeAllFolds()
+				end,
+				desc = "Close all folds",
+			},
+		},
 		event = { "BufReadPost" },
 		dependencies = {
 			"kevinhwang91/promise-async",

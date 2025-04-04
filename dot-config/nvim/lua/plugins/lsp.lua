@@ -13,7 +13,7 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
-        --stylua: ignore start
+    --stylua: ignore start
 		map("n", "gd", function() Snacks.picker.lsp_definitions({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to Definition" })
 		map("n", "gr", function() Snacks.picker.lsp_references({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
 		map("n", "gi", function() Snacks.picker.lsp_implementations({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })

@@ -1,4 +1,4 @@
-local map = vim.keymap.set
+local G = require("core")
 
 vim.api.nvim_create_user_command("ShowTasks", function()
 	require("utils.picker").open_task_menu()
@@ -7,121 +7,173 @@ end, { nargs = 0 })
 -- NOTE: layout has following options: vertical, ivy, ivy_split,
 -- dropdown, select, default, sidebar, vscode.
 
--- Top Pickers & Explorer
--- expolorer
-map("n", "<leader>e", function()
-	Snacks.picker.explorer({ hidden = true, ignored = true })
-end, { desc = "Explorer" })
-
--- task runner
-map({ "n", "i", "v", "t" }, "<A-]>", "<CMD>ShowTasks<CR>")
-
--- git
-map("n", "<leader>gb", function()
-	Snacks.picker.git_branches({
-		layout = "select",
-	})
-end, { desc = "Git Branches" })
-
-map("n", "<leader>gl", function()
-	Snacks.picker.git_log({
-		finder = "git_log",
-		format = "git_log",
-		preview = "git_show",
-		checkout = "git_checkout",
-		layout = "vertical",
-	})
-end, { desc = "Git Log" })
-
-map("n", "<leader>gS", function()
-	Snacks.picker.git_stash()
-end, { desc = "Git Stash" })
-
--- search
-map("n", "<leader>p", function()
-	Snacks.picker.files({
-		finder = "files",
-		format = "file",
-		show_empty = tue,
-		support_live = true,
-		hidden = true,
-		layout = "select",
-	})
-end, { desc = "Smart Find Files" })
-
-map("n", "<leader>bb", function()
-	Snacks.picker.buffers({
-		-- start in normal mode
-		on_show = function()
-			vim.cmd.stopinsert()
+local mappings = {
+	-- Explorer
+	{
+		mode = "n",
+		key = "<leader>e",
+		action = function()
+			Snacks.picker.explorer({ hidden = true, ignored = true })
 		end,
-		finder = "buffers",
-		format = "buffer",
-		hidden = false,
-		unloaded = true,
-		current = true,
-		sort_lastused = true,
-		win = {
-			input = { keys = { ["d"] = "bufdelete" } },
-			list = { keys = { ["d"] = "bufdelete" } },
-		},
-		layout = "ivy",
-	})
-end, { desc = "Buffers" })
+		desc = "Explorer",
+	},
 
-map("n", "<leader>sg", function()
-	Snacks.picker.grep({
-		hidden = true,
-		regex = true,
-		live = true,
-		dirs = { vim.fn.getcwd() },
-		args = { "--no-ignore" },
-		finder = "grep",
-		format = "file",
-		show_empty = true,
-		layout = "ivy",
-	})
-end, { desc = "Grep" })
+	-- Task Runner
+	{ mode = { "n", "i", "v", "t" }, key = "<A-]>", action = "<CMD>ShowTasks<CR>" },
 
-map("n", "<leader>sn", function()
-	Snacks.picker.notifications({
-		on_show = function()
-			vim.cmd.stopinsert()
+	-- Git
+	{
+		mode = "n",
+		key = "<leader>gb",
+		action = function()
+			Snacks.picker.git_branches({ layout = "select" })
 		end,
-		layout = "ivy",
-	})
-end, { desc = "Notification History" })
-
-map("n", "<leader>sq", function()
-	Snacks.picker.qflist({
-		on_show = function()
-			vim.cmd.stopinsert()
+		desc = "Git Branches",
+	},
+	{
+		mode = "n",
+		key = "<leader>gl",
+		action = function()
+			Snacks.picker.git_log({
+				finder = "git_log",
+				format = "git_log",
+				preview = "git_show",
+				checkout = "git_checkout",
+				layout = "vertical",
+			})
 		end,
-		layout = "ivy",
-	})
-end, { desc = "Quickfix List" })
-
-map("n", "<leader>s/", function()
-	Snacks.picker.search_history({
-		on_show = function()
-			vim.cmd.stopinsert()
+		desc = "Git Log",
+	},
+	{
+		mode = "n",
+		key = "<leader>gS",
+		action = function()
+			Snacks.picker.git_stash()
 		end,
-		layout = "ivy",
-	})
-end, { desc = "Search History" })
+		desc = "Git Stash",
+	},
 
-map("n", "<leader>s/", function()
-	Snacks.picker.search_history({
-		on_show = function()
-			vim.cmd.stopinsert()
+	-- Search
+	{
+		mode = "n",
+		key = "<leader>p",
+		action = function()
+			Snacks.picker.files({
+				finder = "files",
+				format = "file",
+				show_empty = true,
+				support_live = true,
+				hidden = true,
+				layout = "select",
+				follow = true,
+				exclude = G.exclude_pattern,
+			})
 		end,
-		layout = "ivy",
-	})
-end, { desc = "Search History" })
+		desc = "Smart Find Files",
+	},
+	{
+		mode = "n",
+		key = "<leader>sb",
+		action = function()
+			Snacks.picker.buffers({
+				on_show = function()
+					vim.cmd.stopinsert()
+				end,
+				finder = "buffers",
+				format = "buffer",
+				hidden = false,
+				unloaded = true,
+				current = true,
+				sort_lastused = true,
+				win = {
+					input = { keys = { ["d"] = "bufdelete" } },
+					list = { keys = { ["d"] = "bufdelete" } },
+				},
+				layout = "ivy",
+			})
+		end,
+		desc = "Buffers",
+	},
+	{
+		mode = "n",
+		key = "<leader>sg",
+		action = function()
+			Snacks.picker.grep({
+				hidden = true,
+				regex = true,
+				live = true,
+				dirs = { vim.fn.getcwd() },
+				args = { "--no-ignore" },
+				finder = "grep",
+				format = "file",
+				show_empty = true,
+				layout = "ivy",
+				follow = true,
+				exclude = G.exclude_pattern,
+			})
+		end,
+		desc = "Grep",
+	},
+	{
+		mode = "n",
+		key = "<leader>sn",
+		action = function()
+			Snacks.picker.notifications({
+				on_show = function()
+					vim.cmd.stopinsert()
+				end,
+				layout = "ivy",
+			})
+		end,
+		desc = "Notification History",
+	},
+	{
+		mode = "n",
+		key = "<leader>sq",
+		action = function()
+			Snacks.picker.qflist({
+				on_show = function()
+					vim.cmd.stopinsert()
+				end,
+				layout = "ivy",
+			})
+		end,
+		desc = "Quickfix List",
+	},
+	{
+		mode = "n",
+		key = '<leader>s"',
+		action = function()
+			Snacks.picker.registers()
+		end,
+		desc = "Registers",
+	},
+	{
+		mode = "n",
+		key = "<leader>s/",
+		action = function()
+			Snacks.picker.search_history({
+				on_show = function()
+					vim.cmd.stopinsert()
+				end,
+				layout = "ivy",
+			})
+		end,
+		desc = "Search History",
+	},
+	{
+		mode = "n",
+		key = "<leader>sC",
+		action = function()
+			Snacks.picker.colorschemes()
+		end,
+		desc = "Colorschemes",
+	},
+}
 
-map("n", "<leader>sC", function()
-	Snacks.picker.colorschemes()
-end, { desc = "Colorschemes" })
+for _, map in ipairs(mappings) do
+	vim.keymap.set(map.mode, map.key, map.action, { desc = map.desc })
+end
 
 return {
 	enabled = true,
