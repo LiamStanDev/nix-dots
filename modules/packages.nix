@@ -34,6 +34,7 @@
       cmake
       ninja
       rustup
+      lldb
       go
       uv
       python313

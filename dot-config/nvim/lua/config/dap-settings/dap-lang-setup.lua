@@ -3,13 +3,56 @@ local utils = require("utils.dap")
 
 dap.configurations.rust = {
 	{
-		name = "LLDB: Launch",
+		name = "Rust Debug",
 		type = "codelldb",
 		request = "launch",
 		program = utils.get_rust_bin,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
 		args = {},
+		env = function()
+			local variables = {}
+			local path_var = (vim.fn.has("win32") == 1) and "PATH"
+				or (vim.fn.has("mac") == 1) and "DYLD_LIBRARY_PATH"
+				or "LD_LIBRARY_PATH"
+
+			local rust_lib_path = vim.fn.trim(vim.fn.system("rustc --print target-libdir"))
+			if rust_lib_path == "" then
+				vim.notify("Failed to retrieve Rust library path", vim.log.levels.ERROR)
+				return nil
+			end
+			local target_path = vim.fn.getcwd() .. "/target/debug/deps"
+
+			-- prepend rust path into $PATH
+			variables[path_var] = rust_lib_path .. ":" .. target_path
+			return variables
+		end,
+		-- This allows the debugger to locate and display Rust standard library source code
+		sourceMap = { ["/rustc/*"] = vim.fn.expand("$RUST_SRC_PATH") },
+		-- Because lldb is primarily designed for C/C++ debugging, it may not be able to interpret Rust types and data structures correctly.
+		initCommands = function()
+			-- Get the commands from the Rust installation
+			local rustc_sysroot = vim.fn.trim(vim.fn.system("rustc --print sysroot"))
+			if rustc_sysroot == "" then
+				vim.notify("Failed to retrieve Rust sysroot", vim.log.levels.ERROR)
+				return {}
+			end
+			-- script provides custom logic to interpret and display Rust types and data structures correctly
+			local script = rustc_sysroot .. "/lib/rustlib/etc/lldb_lookup.py"
+			-- contains a set of predefined LLDB commands
+			local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
+
+			local cmds = { 'command script import "' .. script .. '"' }
+			local file = io.open(commands_file, "r")
+			if file then
+				for line in file:lines() do
+					table.insert(cmds, line)
+				end
+				file:close()
+			end
+
+			return cmds
+		end,
 	},
 }
 
