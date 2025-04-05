@@ -23,72 +23,77 @@ return function()
 					fmt = function()
 						return ""
 					end,
-					separator = { left = "", right = " " },
-					padding = { left = 1, right = 1 },
+					separator = {
+						left = "",
+						-- right = " "
+					},
+					padding = {
+						left = 1,
+						right = 2,
+					},
 				},
 			},
 			lualine_b = {
-				components.spaces,
 				{
 					"filetype",
 					icon_only = true,
 					colored = true,
-					padding = -1,
+					padding = { left = 2, right = -1 },
 					color = { bg = palette.mantle, fg = palette.text },
-					separator = { left = "", right = "" },
 				},
 				{
 					"filename",
 					file_status = true,
-					padding = 0,
+					padding = { right = 2 },
 					-- show directory name
-					path = 1,
+					-- path = 1,
 					separator = { left = "", right = "" },
-					symbols = {
-						modified = "",
-						readonly = "",
-					},
+					symbols = { modified = "", readonly = "" },
 					color = { bg = palette.mantle, fg = palette.text },
 					cond = utils.buffer_not_empty,
 				},
-				components.spaces,
 				{
 					-- python env
 					function()
 						if vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "python" then
 							local venv = os.getenv("CONDA_DEFAULT_ENV") or os.getenv("VIRTUAL_ENV")
 							if venv then
-								local icons = require("nvim-web-devicons")
-								local py_icon, _ = icons.get_icon(".py")
-								return string.format(" " .. py_icon .. " (%s)", utils.env_cleanup(venv))
+								return string.format("(%s)", utils.env_cleanup(venv))
 							end
 						end
 						return ""
 					end,
-					color = { fg = palette.yellow },
-					padding = 1,
+					separator = { right = "" },
+					color = { fg = palette.yellow, bg = palette.mantle },
+					padding = { left = 0, right = 1 },
 				},
 				components.spaces,
 				{
 					"branch",
 					icon = "",
 					separator = { left = "", right = "" },
-					-- padding = 1,
+					padding = 1,
 					color = { bg = palette.mantle, fg = palette.rosewater },
 				},
 				{
 					"diff",
 					colored = true,
-					symbols = {
-						added = " ",
-						modified = " ",
-						removed = " ",
-					},
+					symbols = { added = " ", modified = " ", removed = " " },
 					separator = { left = "", right = "" },
 					color = { bg = palette.mantle },
 				},
 				components.spaces,
 				{
+					"diagnostics",
+					sources = { "nvim_diagnostic" },
+					sections = { "error", "warn", "hint" },
+					symbols = { error = " ", warn = " ", hint = " ", info = " " },
+					colored = true,
+					padding = { left = 1, right = 1 },
+				},
+			},
+			lualine_c = {
+				{ -- center
 					function()
 						return "%="
 					end,
@@ -99,28 +104,10 @@ return function()
 					end,
 					icon = "",
 					padding = { left = 1, right = 1 },
-					-- color = { fg = palette.blue },
+					color = { fg = palette.blue },
 				},
 			},
-			lualine_c = {},
 			lualine_x = {
-				{
-					"diagnostics",
-					sources = { "nvim_diagnostic" },
-					sections = {
-						"error",
-						"warn",
-						"hint",
-					},
-					symbols = {
-						error = " ",
-						warn = " ",
-						hint = " ",
-						info = " ",
-					},
-					colored = true,
-					padding = { left = 1, right = 1 },
-				},
 				{
 					utils.mason_updates() .. "",
 					color = { fg = palette.maroon },
@@ -193,18 +180,32 @@ return function()
 				},
 				{
 					function()
-						return "󱞩"
+						return "󱞩 "
 					end,
-					separator = { left = "", right = "" },
+					separator = {
+						left = "",
+					},
 					color = { bg = "#8FBCBB", fg = "#000000" },
 					padding = 0.3,
 				},
-				components.indent,
 				{
 					function()
-						return ""
+						return "" .. vim.bo.shiftwidth
 					end,
-					separator = { left = "", right = "" },
+					padding = { left = 1, right = 0.5 },
+					separator = {
+						right = "",
+					},
+					color = { bg = palette.mantle, fg = palette.text },
+				},
+				components.spaces,
+				{
+					function()
+						return " "
+					end,
+					separator = {
+						left = "",
+					},
 					color = { bg = "#ECD3A0", fg = "#000000" },
 					padding = 0.3,
 				},
@@ -212,19 +213,30 @@ return function()
 					"filetype",
 					icon_only = false,
 					colored = true,
-					padding = 1,
+					padding = { left = 1, right = 0.5 },
+					separator = {
+						right = "",
+					},
+					color = { bg = palette.mantle, fg = palette.text },
 				},
+				components.spaces,
 				{
 					function()
-						return "  "
+						return " "
 					end,
-					separator = { left = "", right = "" },
+					separator = {
+						left = "",
+					},
 					color = { bg = "#86AAEC", fg = "#000000" },
 					padding = 0.3,
 				},
 				{
 					"progress",
-					padding = { left = 1, right = 1 },
+					separator = {
+						right = "",
+					},
+					color = { bg = palette.mantle, fg = palette.text },
+					padding = { left = 1, right = 0.5 },
 				},
 			},
 			lualine_y = {},

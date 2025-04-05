@@ -8,11 +8,5 @@ local component = {
 		end,
 		padding = 0.3,
 	},
-
-	indent = {
-		function()
-			return "" .. vim.bo.shiftwidth
-		end,
-	},
 }
 return component
