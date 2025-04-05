@@ -1,3 +1,4 @@
+local palette = require("core.palette")
 return {
 	signs = true, -- show icons in the signs column
 	sign_priority = 8, -- sign priority
@@ -28,11 +29,11 @@ return {
 		after = "", -- only hightlight keyword
 	},
 	colors = {
-		error = { "DiagnosticError", "ErrorMsg", "#F28FAD" },
-		warning = { "DiagnosticWarn", "WarningMsg", "#FAE3B0" },
-		info = { "DiagnosticInfo", "#96CDFB" },
-		hint = { "DiagnosticHint", "#9399b2" },
-		default = { "Identifier", "#DDB6F2" },
-		test = { "Identifier", "#F5C2E7" },
+		error = { "DiagnosticError", "ErrorMsg", palette.red },
+		warning = { "DiagnosticWarn", "WarningMsg", palette.yellow },
+		info = { "DiagnosticInfo", palette.lavender },
+		hint = { "DiagnosticHint", palette.lavender },
+		default = { "Identifier", palette.mauve },
+		test = { "Identifier", palette.flamingo },
 	},
 }
