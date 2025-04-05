@@ -33,8 +33,8 @@ local keymaps = {
 	{ mode = "n", key = "<M-.>", action = "<CMD>vertical resize +10<CR>", desc = "Decrease Width" },
 
 	-- Buffer split
-	{ mode = "n", key = "<leader>bl", action = "<CMD>vsplit | wincmd p | enew | wincmd l<CR>", desc = "Split left" },
-	{ mode = "n", key = "<leader>bj", action = "<CMD>split | wincmd p | enew | wincmd j<CR>", desc = "Split down" },
+	{ mode = "n", key = "<leader>bl", action = "<CMD>vsplit | wincmd p | b# | wincmd l<CR>", desc = "Split left" },
+	{ mode = "n", key = "<leader>bj", action = "<CMD>split | wincmd p | b# | wincmd j<CR>", desc = "Split down" },
 
 	-- Cursor History Navigation
 	{ mode = "n", key = "<A-l>", action = "<C-i>", desc = "Next location" },

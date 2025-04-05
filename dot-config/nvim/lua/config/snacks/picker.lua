@@ -1,7 +1,8 @@
 local G = require("core")
+local utils = require("utils.picker")
 
 vim.api.nvim_create_user_command("ShowTasks", function()
-	require("utils.picker").open_task_menu()
+	utils.open_task_menu()
 end, { nargs = 0 })
 
 -- NOTE: layout has following options: vertical, ivy, ivy_split,
@@ -175,9 +176,13 @@ for _, map in ipairs(mappings) do
 	vim.keymap.set(map.mode, map.key, map.action, { desc = map.desc })
 end
 
+-- setup my custom ui select
+utils.setup_ui_select()
+
 return {
 	enabled = true,
 	prompt = "   ",
+	ui_select = false,
 	layout = { cycle = true, preset = "ivy" },
 	win = {
 		input = {

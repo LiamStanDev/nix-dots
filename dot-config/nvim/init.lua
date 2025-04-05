@@ -94,7 +94,7 @@ G.dap_servers = {
 -- -----------------------------------------------------
 -- set color theme here
 G.colorscheme = "catppuccin"
-G.quit_bad_habit = true
+G.quit_bad_habit = false
 
 -- border style
 G.cmp_window_border = "single" -- none, single, rounded
@@ -113,7 +113,6 @@ G.exclude_pattern = {
 	"build",
 	"out",
 	"*.swp",
-	"*.swo",
 	"*.log",
 	".cache",
 	"tmp",
@@ -135,8 +134,6 @@ G.exclude_pattern = {
 	"*.pyd",
 	".pytest_cache",
 	".coverage",
-	"*.egg-info",
-	".tox",
 
 	-- Rust
 	"Cargo.lock",
@@ -159,17 +156,6 @@ G.exclude_pattern = {
 	"vendor",
 	"go.sum",
 	"*.test",
-
-	-- Java/Kotlin
-	"*.class",
-	"*.jar",
-	".gradle",
-	".mvn",
-	"target",
-
-	-- Miscellaneous
-	"Thumbs.db",
-	".next",
 }
 -- setup all plugin
 G.setup()

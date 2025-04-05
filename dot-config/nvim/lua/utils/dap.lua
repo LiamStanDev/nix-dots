@@ -3,7 +3,7 @@ local M = {}
 M.get_cs_dll = function()
 	vim.fn.jobstart("dotnet build")
 	return coroutine.create(function(dap_run_co)
-		local items = vim.fn.globpath(vim.fn.getcwd(), "**/bin/Debug/**/*.dll", 0, 1)
+		local items = vim.fn.globpath(vim.fn.getcwd(), "**/bin/Debug/**/*.dll", false, true)
 		local opts = {
 			format_item = function(path)
 				return vim.fn.fnamemodify(path, ":t")
@@ -27,18 +27,31 @@ M.get_file = function()
 		default = vim.fn.getcwd() .. "/",
 		completion = "file",
 	})
+	local dap = require("dap")
 	return (path and path ~= "") and path or dap.ABORT
 end
 
 M.get_rust_bin = function()
 	vim.fn.jobstart("cargo build")
 	return coroutine.create(function(dap_run_co)
-		local items = vim.fn.globpath(vim.fn.getcwd(), "**/target/debug/*", 0, 1)
+		local paths = vim.fn.globpath(vim.fn.getcwd(), "**/target/debug/*", false, true)
+
+		local executables = {}
+		for _, path in ipairs(paths) do
+			local stat = vim.loop.fs_stat(path)
+			-- Check if file exists, is a regular file, and has executable permissions
+			if stat and stat.type == "file" and bit.band(stat.mode, 73) > 0 then
+				table.insert(executables, path)
+			end
+		end
+
 		local opts = {
+			prompt = "Select Rust executable:",
 			format_item = function(path)
 				return vim.fn.fnamemodify(path, ":t")
 			end,
 		}
+
 		local function cont(choice)
 			if choice == nil then
 				return nil
@@ -46,7 +59,8 @@ M.get_rust_bin = function()
 				coroutine.resume(dap_run_co, choice)
 			end
 		end
-		vim.ui.select(items, opts, cont)
+
+		vim.ui.select(executables, opts, cont)
 	end)
 end
 
