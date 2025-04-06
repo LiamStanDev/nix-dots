@@ -14,9 +14,9 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
     --stylua: ignore start
-		map("n", "gd", function() Snacks.picker.lsp_definitions({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to Definition" })
-		map("n", "gr", function() Snacks.picker.lsp_references({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
-		map("n", "gi", function() Snacks.picker.lsp_implementations({ on_show = function() vim.cmd.stopinsert() end, layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+		map("n", "gd", function() Snacks.picker.lsp_definitions({ layout = "ivy", }) end, { desc = "Go to Definition" })
+		map("n", "gr", function() Snacks.picker.lsp_references({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+		map("n", "gi", function() Snacks.picker.lsp_implementations({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
 		map("n", "go", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
 		map("n", "gn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
 		map("n", "ga", function() vim.lsp.buf.code_action() end, { desc = "Code Action" })

@@ -26,7 +26,8 @@ return {
     -- stylua: ignore
     keys = {
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
-      { "<leader>dr", function() require("dap").continue({ before = get_args }) end, desc = "Run with Args" },
+      -- { "<leader>dr", function() require("dap").continue({ before = get_args }) end, desc = "Run with Args" },
+      { "<leader>dr", function() require("dap").continue() end, desc = "Run with Args" },
       { "<leader>dc", function() require("dap").continue() end, desc = "Run/Continue" },
       { "<leader>dC", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
       { "<leader>ds", function() require("dap").step_into() end, desc = "Step Into" },
@@ -63,8 +64,9 @@ return {
 				return vim.json.decode(json.json_strip_comments(str))
 			end
 
-			require("config.dap-settings.dap-adaptor-setup")
-			require("config.dap-settings.dap-lang-setup")
+			require("config.dap").setup()
+			-- require("config.dap.dap-adaptor-setup")
+			-- require("config.dap.dap-lang-setup")
 		end,
 	},
 

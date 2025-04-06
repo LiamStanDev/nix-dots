@@ -9,7 +9,7 @@ return function()
 	local blink = require("blink.cmp")
 	blink.setup({
 		enabled = is_cmp_buffer,
-		signature = { enabled = true }, -- this is show when insert but use noice.nvim not.
+		-- signature = { enabled = true }, -- this is show when insert but use noice.nvim not.
 		completion = {
 			keyword = { range = "full" },
 			accept = { auto_brackets = { enabled = true } },
@@ -58,7 +58,7 @@ return function()
 				elseif cmp_dap.is_dap_buffer() then
 					return { "dap", "snippets", "buffer" }
 				else
-					return { "copilot", "lazydev", "lsp", "path", "snippets", "buffer" }
+					return { "copilot", "lsp", "lazydev", "path", "snippets", "buffer" }
 				end
 			end,
 			providers = {
@@ -85,7 +85,7 @@ return function()
 			["<C-p>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-b>"] = { "scroll_documentation_up", "fallback" },
 			["<C-f>"] = { "scroll_documentation_down", "fallback" },
-			["<C-n>"] = { "show_signature", "hide_signature", "fallback" },
+			-- ["<C-n>"] = { "show_signature", "hide_signature", "fallback" },
 
 			["<Tab>"] = {
 				function(cmp)

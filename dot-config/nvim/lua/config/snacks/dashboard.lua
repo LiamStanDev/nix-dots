@@ -1,4 +1,5 @@
 local use_pokemon = vim.fn.executable("pokemon-colorscripts") == 1
+local G = require("core")
 
 local sections = {}
 
@@ -63,18 +64,57 @@ return {
 	enabled = true,
 	preset = {
 		keys = {
-            -- stylua: ignore start
-			{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files({ hidden = true })" },
-            -- { icon = " ", key = "e", desc = "Explorer", action = ":lua Snacks.picker.explorer({ hidden = true, ignored = true })" },
-            { icon = " ", key = "e", desc = "Explorer", action = "<CMD>Yazi<CR>" },
+			{
+				icon = " ",
+				key = "f",
+				desc = "Find File",
+				action = function()
+					Snacks.picker.files({
+						focus = "input",
+						finder = "files",
+						format = "file",
+						show_empty = true,
+						support_live = true,
+						hidden = true,
+						layout = "select",
+						follow = true,
+						exclude = G.exclude_pattern,
+					})
+				end,
+			},
+			{ icon = " ", key = "e", desc = "Explorer", action = "<CMD>Yazi<CR>" },
 			{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-			{ icon = " ", key = "g", desc = "Grep", action = ":lua Snacks.picker.grep({ hidden = true })" },
+			{
+				icon = " ",
+				key = "g",
+				desc = "Grep",
+				action = function()
+					Snacks.picker.grep({
+						focus = "input",
+						hidden = true,
+						regex = true,
+						live = true,
+						dirs = { vim.fn.getcwd() },
+						args = { "--no-ignore" },
+						finder = "grep",
+						format = "file",
+						show_empty = true,
+						layout = "ivy",
+						follow = true,
+						exclude = G.exclude_pattern,
+					})
+				end,
+			},
 			{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-			{ icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})", },
+			{
+				icon = " ",
+				key = "c",
+				desc = "Config",
+				action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+			},
 			{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
 			{ icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
 			{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
-			-- stylua: ignore end
 		},
 		header = [[
 ⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

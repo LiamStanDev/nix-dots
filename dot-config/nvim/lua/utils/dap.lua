@@ -1,99 +1,34 @@
 local M = {}
 
-M.get_cs_dll = function()
-	vim.fn.jobstart("dotnet build")
-	return coroutine.create(function(dap_run_co)
-		local items = vim.fn.globpath(vim.fn.getcwd(), "**/bin/Debug/**/*.dll", false, true)
-		local opts = {
-			format_item = function(path)
-				return vim.fn.fnamemodify(path, ":t")
-			end,
-		}
-		local function cont(choice)
-			if choice == nil then
-				return nil
-			else
-				coroutine.resume(dap_run_co, choice)
-			end
-		end
-
-		vim.ui.select(items, opts, cont)
-	end)
+-- 系統路徑分隔符
+function M.get_sep()
+	return package.config:sub(1, 1)
 end
 
-M.get_file = function()
-	local path = vim.fn.input({
-		prompt = "Path to executable: ",
-		default = vim.fn.getcwd() .. "/",
-		completion = "file",
-	})
+function M.get_mason_adaptor_path()
+	return vim.fn.stdpath("data") .. "/mason/bin/"
+end
+
+-- 獲取命令行參數
+function M.read_args()
+	local args_str = vim.fn.input("Arguments: ")
+	if args_str == "" then
+		return {}
+	end
+	return vim.split(args_str, " ", { trimempty = true })
+end
+
+-- 讀取用戶手動輸入的目標
+function M.read_target()
+	local sep = package.config:sub(1, 1) -- 系統路徑分隔符
+	local cwd = string.format("%s%s", vim.fn.getcwd(), sep)
+
+	local path = vim.fn.input("Path to executable: ", cwd, "file")
+	if path == "" then
+		return nil
+	end
 	local dap = require("dap")
-	return (path and path ~= "") and path or dap.ABORT
+	return vim.fn.input("Path to executable: ", cwd, "file") or dap.ABORT
 end
-
-M.get_rust_bin = function()
-	vim.fn.jobstart("cargo build")
-	return coroutine.create(function(dap_run_co)
-		local paths = vim.fn.globpath(vim.fn.getcwd(), "**/target/debug/*", false, true)
-
-		local executables = {}
-		for _, path in ipairs(paths) do
-			local stat = vim.loop.fs_stat(path)
-			-- Check if file exists, is a regular file, and has executable permissions
-			if stat and stat.type == "file" and bit.band(stat.mode, 73) > 0 then
-				table.insert(executables, path)
-			end
-		end
-
-		local opts = {
-			prompt = "Select Rust executable:",
-			format_item = function(path)
-				return vim.fn.fnamemodify(path, ":t")
-			end,
-		}
-
-		local function cont(choice)
-			if choice == nil then
-				return nil
-			else
-				coroutine.resume(dap_run_co, choice)
-			end
-		end
-
-		vim.ui.select(executables, opts, cont)
-	end)
-end
-
--- M.get_port = function()
--- 	return coroutine.create(function(dap_run_co)
--- 		local cmd = "ss -tln"
--- 		-- open read mode
--- 		local handle = io.popen(cmd, "r")
--- 		local running_ports = {}
---
--- 		for line in handle:lines() do
--- 			local port = string.match(line, ":(%d+)")
--- 			if port then
--- 				table.insert(running_ports, tonumber(port))
--- 			end
--- 		end
---
--- 		handle:close()
---
--- 		local opts = {
--- 			prompt = "Select a running port:",
--- 		}
---
--- 		local function cont(choice)
--- 			if choice == nil then
--- 				return nil
--- 			else
--- 				coroutine.resume(dap_run_co, choice)
--- 			end
--- 		end
---
--- 		vim.ui.select(running_ports, opts, cont)
--- 	end)
--- end
 
 return M

@@ -10,14 +10,14 @@ end, { nargs = 0 })
 
 local mappings = {
 	-- Explorer
-	{
-		mode = "n",
-		key = "<leader>e",
-		action = function()
-			Snacks.picker.explorer({ hidden = true, ignored = true })
-		end,
-		desc = "Explorer",
-	},
+	-- {
+	-- 	mode = "n",
+	-- 	key = "<leader>e",
+	-- 	action = function()
+	-- 		Snacks.picker.explorer({ hidden = true, ignored = true })
+	-- 	end,
+	-- 	desc = "Explorer",
+	-- },
 
 	-- Task Runner
 	{ mode = { "n", "i", "v", "t" }, key = "<A-]>", action = "<CMD>ShowTasks<CR>" },
@@ -60,6 +60,7 @@ local mappings = {
 		key = "<leader>p",
 		action = function()
 			Snacks.picker.files({
+				focus = "input",
 				finder = "files",
 				format = "file",
 				show_empty = true,
@@ -77,9 +78,6 @@ local mappings = {
 		key = "<leader>sb",
 		action = function()
 			Snacks.picker.buffers({
-				on_show = function()
-					vim.cmd.stopinsert()
-				end,
 				finder = "buffers",
 				format = "buffer",
 				hidden = false,
@@ -100,6 +98,7 @@ local mappings = {
 		key = "<leader>sg",
 		action = function()
 			Snacks.picker.grep({
+				focus = "input",
 				hidden = true,
 				regex = true,
 				live = true,
@@ -120,9 +119,6 @@ local mappings = {
 		key = "<leader>sn",
 		action = function()
 			Snacks.picker.notifications({
-				on_show = function()
-					vim.cmd.stopinsert()
-				end,
 				layout = "ivy",
 			})
 		end,
@@ -133,9 +129,6 @@ local mappings = {
 		key = "<leader>sq",
 		action = function()
 			Snacks.picker.qflist({
-				on_show = function()
-					vim.cmd.stopinsert()
-				end,
 				layout = "ivy",
 			})
 		end,
@@ -154,9 +147,6 @@ local mappings = {
 		key = "<leader>s/",
 		action = function()
 			Snacks.picker.search_history({
-				on_show = function()
-					vim.cmd.stopinsert()
-				end,
 				layout = "ivy",
 			})
 		end,
@@ -177,12 +167,13 @@ for _, map in ipairs(mappings) do
 end
 
 -- setup my custom ui select
-utils.setup_ui_select()
+-- utils.setup_ui_select()
 
 return {
 	enabled = true,
 	prompt = "   ",
-	ui_select = false,
+	focus = "list",
+	ui_select = true,
 	layout = { cycle = true, preset = "ivy" },
 	win = {
 		input = {
