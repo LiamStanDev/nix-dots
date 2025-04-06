@@ -59,4 +59,36 @@ function M.open_task_menu()
 	end)
 end
 
+-- 同步版本的 vim.ui.select，使用協程實現等待用戶選擇
+-- @param items 選項列表
+-- @param opts 配置選項，與 vim.ui.select 相同
+-- @return 用戶選擇的項目或 nil（如果取消）
+function M.select_sync(items, opts)
+	if #items == 1 then
+		return items[1]
+	end
+
+	-- 檢查當前是否已經在協程中運行
+	local co = coroutine.running()
+	if not co then
+		-- 如果不在協程中，創建一個新協程執行
+		local selected
+		co = coroutine.create(function()
+			selected = M.select_sync(items, opts)
+		end)
+		coroutine.resume(co)
+		return selected
+	end
+
+	-- 在協程中，等待選擇完成
+	vim.ui.select(items, opts, function(choice)
+		vim.schedule(function()
+			coroutine.resume(co, choice)
+		end)
+	end)
+
+	-- 暫停協程等待選擇
+	return coroutine.yield()
+end
+
 return M

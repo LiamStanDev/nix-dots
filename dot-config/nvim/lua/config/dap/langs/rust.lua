@@ -16,53 +16,37 @@ local function analyze_compiler_target(input)
 	return nil
 end
 
+local function compiler_error(input)
+	local _, json = pcall(vim.fn.json_decode, input)
+
+	if type(json) == "table" and json.reason == "compiler-message" then
+		return json.message.rendered
+	end
+
+	return nil
+end
+
 -- 取得所有可執行檔路徑
 -- selection (bins, tests): cargo build --bins, or cargo build --tests
-local function list_targets(selection, callback)
+local function list_targets(selection)
 	local arg = string.format("--%s", selection or "bins")
 
 	-- cargo build 命令
 	local cmd = { "cargo", "build", arg, "--quiet", "--message-format", "json" }
 
-	-- 使用 jobstart 異步執行 cmd
-	local stdout_data = {}
-	local job_id = vim.fn.jobstart(cmd, {
-		-- 接收標準輸出
-		on_stdout = function(_, data)
-			if data then
-				-- 每一行都會是一個描述編譯 artifact 的 JSON
-				vim.list_extend(stdout_data, data)
-			end
-		end,
-		on_exit = function(_, code)
-			-- 錯誤碼
-			if code ~= 0 then
-				vim.schedule(function()
-					vim.notify("Cargo build failed", vim.log.levels.ERROR)
-				end)
-				callback(nil)
-				return
-			end
+	local out = vim.fn.systemlist(cmd)
 
-			local targets = {} -- 紀錄可執行目標
-			-- 將每一個 artifact 的 JSON 給 compiler_target 解析
-			for _, line in ipairs(stdout_data) do
-				if line ~= "" then
-					local target = analyze_compiler_target(line)
-					if target then
-						table.insert(targets, target)
-					end
-				end
-			end
-
-			callback(targets)
-		end,
-	})
-
-	if job_id <= 0 then
-		vim.notify("Failed to start cargo build", vim.log.levels.ERROR)
-		callback(nil)
+	if vim.v.shell_error ~= 0 then
+		local errors = vim.tbl_map(compiler_error, out)
+		vim.notify(table.concat(errors, "\n"), vim.log.levels.ERROR)
+		return nil
 	end
+
+	local function filter(e)
+		return e ~= nil
+	end
+
+	return vim.tbl_filter(filter, vim.tbl_map(analyze_compiler_target, out))
 end
 
 local function select_target_async(selection)
@@ -104,6 +88,33 @@ local function select_target_async(selection)
 	end)
 end
 
+local function select_target(selection)
+	local targets = list_targets(selection)
+
+	if targets == nil then
+		return nil
+	end
+
+	if #targets == 0 then
+		return utils.read_target()
+	end
+
+	if #targets == 1 then
+		return targets[1]
+	end
+
+	-- 若有多個 binaries 跳出選單
+	local opts = {
+		prompt = "Select target executable:",
+		format_item = function(path)
+			local parts = vim.split(path, utils.get_sep(), { trimempty = true })
+			return parts[#parts]
+		end,
+	}
+
+	return require("utils.picker").select_sync(targets, opts)
+end
+
 -- 從當前行找出 #[test] 函數名稱，用於單獨測試 debug
 local function select_test()
 	local line = vim.api.nvim_get_current_line()
@@ -117,7 +128,7 @@ local default = {
 	cwd = "${workspaceFolder}",
 	stopOnEntry = false,
 	program = function()
-		return select_target_async("bins")
+		return select_target("bins")
 	end,
 	env = function()
 		local variables = {}
