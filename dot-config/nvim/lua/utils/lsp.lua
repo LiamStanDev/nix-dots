@@ -62,6 +62,16 @@ function M.get_service_identifiers(config)
 	return packages
 end
 
+function M.get_client(name)
+	local clients = vim.lsp.get_clients()
+	for _, client in ipairs(clients) do
+		if client.name == name then
+			return client
+		end
+	end
+	return nil
+end
+
 --- Mapping of LSP server names to their corresponding package names.
 M.lspconfig_to_package = {
 	["angularls"] = "angular-language-server",

@@ -55,49 +55,6 @@ local function list_targets(selection)
 	return vim.tbl_filter(filter, vim.tbl_map(analyze_compiler_target, out))
 end
 
---- Asynchronously selects a target executable using a coroutine.
--- @param selection The type of targets to list ("bins" or "tests").
--- @return A coroutine that resolves to the selected target path.
-local function select_target_async(selection)
-	return coroutine.create(function(dap_run_co)
-		list_targets(selection, function(targets)
-			-- If no targets are found, prompt for manual input.
-			if not targets or #targets == 0 then
-				vim.schedule(function()
-					local path = utils.read_target()
-					coroutine.resume(dap_run_co, path)
-				end)
-				return
-			end
-
-			-- If only one target is found, select it automatically.
-			if #targets == 1 then
-				coroutine.resume(dap_run_co, targets[1])
-				return
-			end
-
-			-- If multiple targets are found, show a selection menu.
-			vim.schedule(function()
-				local opts = {
-					prompt = "Select target executable:",
-					format_item = function(path)
-						local parts = vim.split(path, utils.get_sep(), { trimempty = true })
-						return parts[#parts]
-					end,
-				}
-
-				vim.ui.select(targets, opts, function(choice)
-					if choice then
-						coroutine.resume(dap_run_co, choice)
-					else
-						return
-					end
-				end)
-			end)
-		end)
-	end)
-end
-
 --- Synchronously selects a target executable.
 -- @param selection The type of targets to list ("bins" or "tests").
 -- @return The selected target path or nil if no target is selected.
@@ -147,9 +104,7 @@ local default = {
 	end,
 	env = function()
 		local variables = {}
-		local path_var = (vim.fn.has("win32") == 1) and "PATH"
-			or (vim.fn.has("mac") == 1) and "DYLD_LIBRARY_PATH"
-			or "LD_LIBRARY_PATH"
+		local path_var = (vim.fn.has("mac") == 1) and "DYLD_LIBRARY_PATH" or "LD_LIBRARY_PATH"
 
 		local rust_lib_path = vim.fn.trim(vim.fn.system("rustc --print target-libdir"))
 		if rust_lib_path == "" then
@@ -198,14 +153,14 @@ dap.configurations.rust = {
 	vim.tbl_extend("force", default, {
 		name = "Debug tests",
 		program = function()
-			return select_target_async("tests")
+			return select_target("tests")
 		end,
 		args = { "--test-threads=1" },
 	}),
 	vim.tbl_extend("force", default, {
 		name = "Debug tests (+args)",
 		program = function()
-			return select_target_async("tests")
+			return select_target("tests")
 		end,
 		args = function()
 			return vim.list_extend(utils.read_args(), { "--test-threads=1" })
@@ -214,7 +169,7 @@ dap.configurations.rust = {
 	vim.tbl_extend("force", default, {
 		name = "Debug test (cursor)",
 		program = function()
-			return select_target_async("tests")
+			return select_target("tests")
 		end,
 		args = function()
 			local test = select_test()
@@ -222,5 +177,5 @@ dap.configurations.rust = {
 			return vim.list_extend(args, { "--test-threads=1" })
 		end,
 	}),
-	vim.tbl_extend("force", default, { name = "Attach debugger", request = "attach", program = select_target_async }),
+	vim.tbl_extend("force", default, { name = "Attach debugger", request = "attach", program = select_target }),
 }

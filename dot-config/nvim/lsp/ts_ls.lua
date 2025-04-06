@@ -1,11 +1,10 @@
 return {
 	cmd = { "typescript-language-server", "--stdio" },
 	root_markers = {
-		"CMakePresets.json",
-		"CTestConfig.cmake",
+		"tsconfig.json",
+		"jsconfig.json",
+		"package.json",
 		".git",
-		"build",
-		"cmake",
 	},
 	filetypes = {
 		"javascript",
@@ -14,12 +13,6 @@ return {
 		"typescript",
 		"typescriptreact",
 		"typescript.tsx",
-	},
-	root_markers = {
-		"tsconfig.json",
-		"jsconfig.json",
-		"package.json",
-		".git",
 	},
 	settings = {
 		typescript = {

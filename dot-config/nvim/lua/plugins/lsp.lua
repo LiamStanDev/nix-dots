@@ -82,7 +82,7 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("mason").setup({
-				PATH = "prepend", -- not working when nix "prepend", "append","skip"
+				PATH = "prepend", -- "prepend", "append", "skip"
 				pip = {
 					upgrade_pip = true,
 				},
