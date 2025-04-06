@@ -27,7 +27,6 @@ return {
 				library = { vim.env.VIMRUNTIME },
 				checkThirdParty = false,
 			},
-			-- TODO: inlay hint
 			hint = { enable = true },
 		},
 	},
