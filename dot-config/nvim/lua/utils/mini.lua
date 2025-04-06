@@ -1,5 +1,15 @@
 local M = {}
+
 -- ref: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/mini.lua
+--- Sets up custom behavior for the `mini.pairs` plugin.
+-- This function modifies the behavior of the `mini.pairs.open` function to handle
+-- specific cases such as markdown code blocks, skipping certain characters, and
+-- unbalanced pairs based on the provided options.
+-- @param opts A table of options to customize the behavior:
+--   - `markdown` (boolean): Enable special handling for markdown code blocks.
+--   - `skip_next` (string): A pattern to skip certain characters after the cursor.
+--   - `skip_ts` (table): A list of Tree-sitter captures to skip.
+--   - `skip_unbalanced` (boolean): Skip unbalanced pairs.
 function M.pair(opts)
 	local pairs = require("mini.pairs")
 	pairs.setup(opts)

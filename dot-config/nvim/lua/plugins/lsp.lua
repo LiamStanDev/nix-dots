@@ -113,27 +113,6 @@ return {
 			},
 		},
 	},
-	-- { -- Main LSP configuration
-	-- 	"neovim/nvim-lspconfig",
-	-- 	event = { "BufReadPre", "BufNewFile" },
-	-- 	dependencies = {
-	-- 		-- {
-	-- 		-- 	"glepnir/lspsaga.nvim",
-	-- 		-- 	event = "LspAttach",
-	-- 		-- 	dependencies = { "nvim-tree/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
-	-- 		-- 	opts = require("settings.lspsaga"),
-	-- 		-- },
-	-- 		{
-	-- 			"folke/trouble.nvim",
-	-- 			dependencies = {
-	-- 				{ "nvim-tree/nvim-web-devicons" },
-	-- 			},
-	-- 			cmd = { "Trouble", "TroubleToggle" },
-	-- 			opts = {},
-	-- 		},
-	-- 	},
-	-- 	config = require("settings.lspconfig"),
-	-- },
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },

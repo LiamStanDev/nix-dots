@@ -1,7 +1,9 @@
 local dap = require("dap")
 local utils = require("utils.dap")
 
--- 根據 cargo 的 JSON 輸出，解析出真正的可執行檔
+--- Parses the JSON output from Cargo to extract the executable path.
+-- @param input The JSON string output from Cargo.
+-- @return The path to the executable if found, otherwise nil.
 local function analyze_compiler_target(input)
 	local _, json = pcall(vim.fn.json_decode, input)
 
@@ -16,6 +18,9 @@ local function analyze_compiler_target(input)
 	return nil
 end
 
+--- Extracts and returns compiler error messages from Cargo JSON output.
+-- @param input The JSON string output from Cargo.
+-- @return The rendered error message if found, otherwise nil.
 local function compiler_error(input)
 	local _, json = pcall(vim.fn.json_decode, input)
 
@@ -26,12 +31,13 @@ local function compiler_error(input)
 	return nil
 end
 
--- 取得所有可執行檔路徑
--- selection (bins, tests): cargo build --bins, or cargo build --tests
+--- Lists all executable targets (binaries or tests) by running Cargo build.
+-- @param selection The type of targets to list ("bins" or "tests").
+-- @return A list of executable paths or nil if an error occurs.
 local function list_targets(selection)
 	local arg = string.format("--%s", selection or "bins")
 
-	-- cargo build 命令
+	-- Cargo build command
 	local cmd = { "cargo", "build", arg, "--quiet", "--message-format", "json" }
 
 	local out = vim.fn.systemlist(cmd)
@@ -49,10 +55,13 @@ local function list_targets(selection)
 	return vim.tbl_filter(filter, vim.tbl_map(analyze_compiler_target, out))
 end
 
+--- Asynchronously selects a target executable using a coroutine.
+-- @param selection The type of targets to list ("bins" or "tests").
+-- @return A coroutine that resolves to the selected target path.
 local function select_target_async(selection)
 	return coroutine.create(function(dap_run_co)
 		list_targets(selection, function(targets)
-			-- 找不到就跳出 input 手動輸入
+			-- If no targets are found, prompt for manual input.
 			if not targets or #targets == 0 then
 				vim.schedule(function()
 					local path = utils.read_target()
@@ -61,12 +70,13 @@ local function select_target_async(selection)
 				return
 			end
 
+			-- If only one target is found, select it automatically.
 			if #targets == 1 then
 				coroutine.resume(dap_run_co, targets[1])
 				return
 			end
 
-			-- 若有多個 binaries 跳出選單
+			-- If multiple targets are found, show a selection menu.
 			vim.schedule(function()
 				local opts = {
 					prompt = "Select target executable:",
@@ -88,6 +98,9 @@ local function select_target_async(selection)
 	end)
 end
 
+--- Synchronously selects a target executable.
+-- @param selection The type of targets to list ("bins" or "tests").
+-- @return The selected target path or nil if no target is selected.
 local function select_target(selection)
 	local targets = list_targets(selection)
 
@@ -103,9 +116,9 @@ local function select_target(selection)
 		return targets[1]
 	end
 
-	-- 若有多個 binaries 跳出選單
+	-- If multiple targets are found, show a selection menu.
 	local opts = {
-		prompt = "Select target executable:",
+		prompt = "Select a target:",
 		format_item = function(path)
 			local parts = vim.split(path, utils.get_sep(), { trimempty = true })
 			return parts[#parts]
@@ -115,13 +128,15 @@ local function select_target(selection)
 	return require("utils.picker").select_sync(targets, opts)
 end
 
--- 從當前行找出 #[test] 函數名稱，用於單獨測試 debug
+--- Extracts the test function name from the current line.
+-- @return The test function name if found, otherwise nil.
 local function select_test()
 	local line = vim.api.nvim_get_current_line()
 	local test_match = string.match(line, "fn%s+([%w_]+).*#%[test%]")
 	return test_match
 end
 
+-- Default DAP configuration for Rust debugging.
 local default = {
 	type = "codelldb",
 	request = "launch",
@@ -143,23 +158,23 @@ local default = {
 		end
 		local target_path = vim.fn.getcwd() .. "/target/debug/deps"
 
-		-- prepend rust path into $PATH
+		-- Prepend Rust path into $PATH.
 		variables[path_var] = rust_lib_path .. ":" .. target_path
 		return variables
 	end,
-	-- This allows the debugger to locate and display Rust standard library source code
+	-- This allows the debugger to locate and display Rust standard library source code.
 	sourceMap = { ["/rustc/*"] = vim.fn.expand("$RUST_SRC_PATH") },
-	-- Because lldb is primarily designed for C/C++ debugging, it may not be able to interpret Rust types and data structures correctly.
+	-- Initializes LLDB with Rust-specific commands for better debugging.
 	initCommands = function()
-		-- Get the commands from the Rust installation
+		-- Get the commands from the Rust installation.
 		local rustc_sysroot = vim.fn.trim(vim.fn.system("rustc --print sysroot"))
 		if rustc_sysroot == "" then
 			vim.notify("Failed to retrieve Rust sysroot", vim.log.levels.ERROR)
 			return {}
 		end
-		-- script provides custom logic to interpret and display Rust types and data structures correctly
+		-- Script provides custom logic to interpret and display Rust types and data structures correctly.
 		local script = rustc_sysroot .. "/lib/rustlib/etc/lldb_lookup.py"
-		-- contains a set of predefined LLDB commands
+		-- Contains a set of predefined LLDB commands.
 		local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
 
 		local cmds = { 'command script import "' .. script .. '"' }
@@ -175,6 +190,7 @@ local default = {
 	end,
 }
 
+-- DAP configurations for Rust debugging.
 dap.configurations.rust = {
 	vim.tbl_extend("force", default, { name = "Debug" }),
 	vim.tbl_extend("force", default, { name = "Debug (+args)", args = utils.read_args }),

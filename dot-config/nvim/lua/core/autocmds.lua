@@ -1,12 +1,17 @@
+--- Creates a new autocommand group with the given name.
+-- @param name The name of the autocommand group.
+-- @return The created autocommand group.
 local function augroup(name)
 	return vim.api.nvim_create_augroup("liamvim_" .. name, { clear = true })
 end
 
--- set conf as file type conf
+-- Set `.conf` files as filetype `conf`.
 vim.api.nvim_command("autocmd BufNewFile,BufRead *.conf setfiletype conf")
+
+-- Set `justfile` as filetype `make`.
 vim.api.nvim_command("autocmd BufNewFile,BufRead justfile setfiletype make")
 
--- Highlight on yank
+-- Highlight text on yank.
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
 	callback = function()
@@ -14,7 +19,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- resize splits if window got resized
+-- Automatically resize splits when the window is resized.
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	group = augroup("resize_splits"),
 	callback = function()
@@ -24,7 +29,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	end,
 })
 
--- wrap and check for spell in text filetypes
+-- Enable wrapping and spell checking for specific text filetypes.
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("wrap_spell"),
 	pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },

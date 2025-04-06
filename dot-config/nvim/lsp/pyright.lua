@@ -1,4 +1,6 @@
 return {
+	-- NOTE: if you want to use vevn package, please install
+	-- pyright in current activated vevn
 	cmd = { "pyright-langserver", "--stdio" },
 	root_markers = {
 		"pyproject.toml",

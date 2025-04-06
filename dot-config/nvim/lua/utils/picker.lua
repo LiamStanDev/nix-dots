@@ -1,5 +1,7 @@
 local M = {}
 
+--- Detects the type of project based on the presence of specific files or the filetype.
+-- @return A string representing the project type (e.g., "cpp_cmake", "python", "rust"), or nil if no type is detected.
 local function detect_project_type()
 	local filetype = vim.bo.filetype
 	if vim.fn.filereadable("CMakeLists.txt") == 1 then
@@ -30,9 +32,10 @@ local function detect_project_type()
 	end
 end
 
+--- Opens a task selection menu based on the detected project type.
+-- Uses `vim.ui.select` to display available tasks and executes the selected task in a terminal.
 function M.open_task_menu()
 	local project_type = detect_project_type() or ""
-	-- vim.notify("Project type: " .. project_type)
 	local tasks = require("tasks")[project_type] or {}
 	if #tasks == 0 then
 		vim.notify("No tasks available for project type: " .. project_type, vim.log.levels.WARN)
@@ -44,7 +47,7 @@ function M.open_task_menu()
 		table.insert(entries, { label = task.label, command = task.command })
 	end
 
-	-- use vim.ui.select
+	-- Use `vim.ui.select` to display the task menu.
 	vim.ui.select(entries, {
 		prompt = "Select Task",
 		format_item = function(item)
@@ -59,19 +62,20 @@ function M.open_task_menu()
 	end)
 end
 
--- 同步版本的 vim.ui.select，使用協程實現等待用戶選擇
--- @param items 選項列表
--- @param opts 配置選項，與 vim.ui.select 相同
--- @return 用戶選擇的項目或 nil（如果取消）
+--- Synchronous version of `vim.ui.select` using coroutines.
+-- Waits for the user to make a selection and returns the selected item.
+-- @param items A list of items to display in the selection menu.
+-- @param opts Configuration options for `vim.ui.select`.
+-- @return The selected item, or nil if the selection is canceled.
 function M.select_sync(items, opts)
 	if #items == 1 then
 		return items[1]
 	end
 
-	-- 檢查當前是否已經在協程中運行
+	-- Check if already running in a coroutine.
 	local co = coroutine.running()
 	if not co then
-		-- 如果不在協程中，創建一個新協程執行
+		-- If not in a coroutine, create one and execute.
 		local selected
 		co = coroutine.create(function()
 			selected = M.select_sync(items, opts)
@@ -80,14 +84,14 @@ function M.select_sync(items, opts)
 		return selected
 	end
 
-	-- 在協程中，等待選擇完成
+	-- In a coroutine, wait for the selection to complete.
 	vim.ui.select(items, opts, function(choice)
 		vim.schedule(function()
 			coroutine.resume(co, choice)
 		end)
 	end)
 
-	-- 暫停協程等待選擇
+	-- Pause the coroutine until a selection is made.
 	return coroutine.yield()
 end
 

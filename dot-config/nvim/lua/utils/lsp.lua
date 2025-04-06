@@ -1,11 +1,18 @@
 local M = {}
 
+--- Appends all elements from the second list to the first list.
+-- @param list1 The first list to which elements will be appended.
+-- @param list2 The second list whose elements will be appended to the first list.
 function M.append_lists(list1, list2)
 	for _, value in ipairs(list2) do
 		table.insert(list1, value)
 	end
 end
 
+--- Retrieves a list of unique service identifiers based on the provided configuration.
+-- This includes LSP servers, formatters, linters, and DAP servers.
+-- @param config A table containing configuration for LSP servers, formatters, linters, and DAP servers.
+-- @return A list of unique service identifiers.
 function M.get_service_identifiers(config)
 	local utils = require("utils.lsp")
 	local packages = {}
@@ -55,6 +62,7 @@ function M.get_service_identifiers(config)
 	return packages
 end
 
+--- Mapping of LSP server names to their corresponding package names.
 M.lspconfig_to_package = {
 	["angularls"] = "angular-language-server",
 	["ansiblels"] = "ansible-language-server",
@@ -276,6 +284,8 @@ M.lspconfig_to_package = {
 	["zk"] = "zk",
 	["zls"] = "zls",
 }
+
+--- Mapping of formatter names to their corresponding package names.
 M.conform_to_package = {
 	-- alejandra
 	["asmfmt"] = "asmfmt",
@@ -408,6 +418,8 @@ M.conform_to_package = {
 	-- zigfmt
 	["zprint"] = "zprint",
 }
+
+--- Mapping of linter names to their corresponding package names.
 M.nvimlint_to_pakcage = {
 	["actionlint"] = "actionlint",
 	["ansible_lint"] = "ansible-lint",
@@ -466,6 +478,8 @@ M.nvimlint_to_pakcage = {
 	["write_good"] = "write-good",
 	["yamllint"] = "yamllint",
 }
+
+--- Mapping of DAP server names to their corresponding package names.
 M.dap_to_package = {
 	["python"] = "debugpy",
 	["cppdbg"] = "cpptools",
