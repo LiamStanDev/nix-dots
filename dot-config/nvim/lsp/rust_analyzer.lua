@@ -7,28 +7,18 @@ local function build_capabilities()
 
 	-- Enable experimental features for the Rust Analyzer.
 	capabilities.experimental = {
-		hoverActions = true, -- Enable hover actions for better code insights.
+		-- hoverActions = true, -- Enable hover actions for better code insights.
 		colorDiagnosticOutput = true, -- Enable colorized diagnostic output.
 		hoverRange = true, -- Enable hover range support.
 		serverStatusNotification = true, -- Enable server status notifications.
 		snippetTextEdit = true, -- Enable snippet text edits.
-		codeActionGroup = true, -- Enable grouped code actions.
+		-- codeActionGroup = true, -- Enable grouped code actions.
 		ssr = true, -- Enable structural search and replace.
 	}
 
 	-- enable auto-import
 	capabilities.textDocument.completion.completionItem.resolveSupport = {
 		properties = { "documentation", "detail", "additionalTextEdits" },
-	}
-
-	capabilities.experimental.commands = {
-		commands = {
-			"rust-analyzer.runSingle", -- Run a single test or binary.
-			"rust-analyzer.showReferences", -- Show references for a symbol.
-			"rust-analyzer.gotoLocation", -- Go to a specific location.
-			"editor.action.triggerParameterHints", -- Trigger parameter hints.
-			"rust-analyzer.debugSingle",
-		},
 	}
 
 	return capabilities
@@ -46,7 +36,7 @@ return {
 	capabilities = build_capabilities(),
 	filetypes = { "rust" },
 	settings = {
-		-- ref: https://raw.githubusercontent.com/rust-analyzer/rust-analyzer/master/editors/code/package.json
+		-- ref: https://rust-analyzer.github.io/book/configuration.html
 		["rust-analyzer"] = {
 			check = {
 				enabled = true,
