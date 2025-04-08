@@ -43,6 +43,8 @@ G.lsp_servers = {
 	"cmake", -- CMake
 	"clangd", -- C/C++
 	"nil_ls", -- Nix
+	"dockerls", -- Dockerfile
+	"docker_compose_language_service", -- Docker Compose
 }
 
 -- Formatters for code formatting.

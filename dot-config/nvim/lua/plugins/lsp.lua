@@ -1,18 +1,21 @@
 local G = require("core")
-local map = vim.keymap.set
 
 vim.lsp.enable(G.lsp_servers)
 
-local function client_supports_method(client, method, bufnr)
-	if vim.fn.has("nvim-0.11") == 1 then
-		return client:supports_method(method, bufnr)
-	else
-		return client.supports_method(method, { bufnr = bufnr })
-	end
-end
+vim.lsp.config("*", {
+	capabilities = {
+		textDocument = {
+			semanticTokens = {
+				multilineTokenSupport = true,
+			},
+		},
+	},
+	root_markers = { ".git" },
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
+		local map = vim.keymap.set
     --stylua: ignore start
 		map("n", "gd", function() Snacks.picker.lsp_definitions({ layout = "ivy", }) end, { desc = "Go to Definition" })
 		map("n", "gr", function() Snacks.picker.lsp_references({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
@@ -31,10 +34,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		--stylua: ignore end
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
-		if
-			client
-			and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
-		then
+		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = event.buf,
 				callback = vim.lsp.buf.document_highlight,

@@ -82,7 +82,7 @@ return {
 					})
 				end,
 			},
-			{ icon = " ", key = "e", desc = "Explorer", action = "<CMD>Yazi<CR>" },
+			{ icon = "󰥨 ", key = "e", desc = "Explorer", action = "<CMD>Yazi<CR>" },
 			{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 			{
 				icon = " ",
