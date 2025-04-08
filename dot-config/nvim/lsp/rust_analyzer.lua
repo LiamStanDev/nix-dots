@@ -1,9 +1,9 @@
 local ra = require("utils.rust_analyzer")
-local utils = require("lsp.utils")
 
 local function build_capabilities()
 	-- Initialize LSP client capabilities.
-	local capabilities = utils.build_default_capabilities()
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 	-- Extend capabilities with additional LSP features from the `blink.cmp` plugin.
 	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
