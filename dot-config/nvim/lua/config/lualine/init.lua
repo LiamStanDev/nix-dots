@@ -45,8 +45,7 @@ return function()
 					"filename",
 					file_status = true,
 					padding = { right = 2 },
-					-- show directory name
-					-- path = 1,
+					-- path = 1, -- show directory name
 					separator = { left = "", right = "" },
 					symbols = { modified = "", readonly = "" },
 					color = { bg = palette.mantle, fg = palette.text },

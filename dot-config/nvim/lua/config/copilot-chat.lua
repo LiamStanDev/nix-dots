@@ -5,16 +5,18 @@ return function()
 			width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
 			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
 		},
-
+		model = "o3-mini",
 		sticky = {
 			"#files",
-			"$claude-3.7-sonnet-thought",
+			-- "$o1",
 		},
 
 		-- for render markdown
 		highlight_headers = false,
 		separator = "---",
 		error_header = "> [!ERROR] Error",
+
+		-- log_level = "debug",
 	})
 
 	-- copilot chat
