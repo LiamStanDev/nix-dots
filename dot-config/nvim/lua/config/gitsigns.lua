@@ -1,6 +1,6 @@
 return function()
-	local gitsigns = require("gitsigns")
-	gitsigns.setup({
+	local gs = require("gitsigns")
+	gs.setup({
 		signs = {
 			add = { text = "+" },
 			change = { text = "~" },
@@ -20,23 +20,17 @@ return function()
 
 	local map = vim.keymap.set
 
-	map("n", "gj", function()
-		gitsigns.nav_hunk("next")
-	end, { desc = "Jump to next git change" })
-	map("n", "gk", function()
-		gitsigns.nav_hunk("prev")
-	end, { desc = "Jump to previous git [c]hange" })
 
-	-- normal mode
-	map({ "n", "v" }, "<leader>gs", gitsigns.stage_hunk, { desc = "Git stage hunk" })
-	map({ "n", "v" }, "<leader>gr", gitsigns.reset_hunk, { desc = "Git reset hunk" })
-	map({ "n", "v" }, "<leader>gu", gitsigns.stage_hunk, { desc = "Git undo hunk" })
-	map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "Git stage buffer" })
-	map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "git reset buffer" })
-	map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "git preview hunk" })
-	map("n", "<leader>gL", gitsigns.blame_line, { desc = "Git blame line" })
-	map("n", "<leader>gd", gitsigns.diffthis, { desc = "Git diff against index" })
-	map("n", "<leader>gD", function()
-		gitsigns.diffthis("@")
-	end, { desc = "Git diff against last commit" })
+	-- stylua: ignore start
+	map("n", "]h", function() gs.nav_hunk("last") end, { desc = "Last Hunk" })
+	map("n", "[h", function() gs.nav_hunk("first") end,{ desc = "First Hunk" })
+	map({ "n", "v" }, "<leader>ghs", gs.stage_hunk, { desc = "Git stage hunk" })
+	map({ "n", "v" }, "<leader>ghr", gs.reset_hunk, { desc = "Git reset hunk" })
+	map("n", "<leader>ghS", gs.stage_buffer, { desc = "Git stage buffer" })
+	map("n", "<leader>ghR", gs.reset_buffer, { desc = "git reset buffer" })
+  map("n", "<leader>ghl", function() gs.blame_line({ full = true }) end, { desc = "Git blame line" })
+  map("n", "<leader>ghb", function() gs.blame() end, { desc = "Git blame buffer" })
+	map("n", "<leader>ghp", gs.preview_hunk, { desc = "git preview hunk" })
+	map("n", "<leader>ghd", function() gs.diffthis("~") end, { desc = "Git diff against last commit" })
+	-- stylua: ignore end
 end

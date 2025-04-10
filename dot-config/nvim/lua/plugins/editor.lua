@@ -6,23 +6,65 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		version = false, -- last release
 		build = ":TSUpdate",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				highlight = { enable = true },
-				additional_vim_regex_highlighting = false, -- true will slow down editor.
-				indent = { enable = true }, -- can use `=` operator
-				ensure_installed = G.code_hl_servers,
-				auto_install = true,
-			})
+		event = { "VeryLazy" },
+		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+		keys = {
+			{ "<c-space>", desc = "Increment Selection" },
+			{ "<bs>", desc = "Decrement Selection", mode = "x" },
+		},
+		init = function()
+			require("nvim-treesitter.query_predicates")
+		end,
+		opts = {
+			highlight = { enable = true },
+			additional_vim_regex_highlighting = false, -- true will slow down editor.
+			indent = { enable = true }, -- can use `=` operator
+			ensure_installed = G.code_hl_servers,
+			auto_install = true,
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<A-i>",
+					node_incremental = "<A-i>",
+					scope_incremental = false,
+					node_decremental = "<A-d>",
+				},
+			},
+			textobjects = {
+				move = {
+					enable = true,
+					goto_next_start = {
+						["]f"] = "@function.outer",
+						["]c"] = "@class.outer",
+						["]a"] = "@parameter.inner",
+					},
+					goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
+					goto_previous_start = {
+						["[f"] = "@function.outer",
+						["[c"] = "@class.outer",
+						["[a"] = "@parameter.inner",
+					},
+					goto_previous_end = {
+						["[F"] = "@function.outer",
+						["[C"] = "@class.outer",
+						["[A"] = "@parameter.inner",
+					},
+				},
+			},
+		},
+		config = function(_, opts)
+			require("nvim-treesitter.configs").setup(opts)
 		end,
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-context", -- pin function signature on top
-			event = { "BufReadPost", "BufNewFile" },
-			opts = {
-				-- I just want to show the function signature
-				max_lines = 4, -- =0 means no limit
-				trim_scope = "inner",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			{
+				"nvim-treesitter/nvim-treesitter-context", -- pin function signature on top
+				event = { "BufReadPost", "BufNewFile" },
+				opts = {
+					-- I just want to show the function signature
+					max_lines = 4, -- =0 means no limit
+					trim_scope = "inner",
+				},
 			},
 		},
 	},
@@ -142,9 +184,9 @@ return {
 	-- Keymap hint
 	{
 		"folke/which-key.nvim",
-		event = "VimEnter", -- Sets the loading event to 'VimEnter'
+		event = "VeryLazy",
 		opts = {
-			delay = 300,
+			-- delay = 300,
 			icons = {
 				breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 				separator = "  ", -- symbol used between a key and it's label
@@ -166,9 +208,29 @@ return {
 			spec = {
 				{ "<leader>s", group = "Search" },
 				{ "<leader>a", group = "AI" },
-				{ "<leader>b", group = "Buffer" },
 				{ "<leader>g", group = "Git", mode = { "n", "v" } },
+				{ "<leader>gh", group = "Git Hunk" },
 				{ "<leader>d", group = "Debug", mode = "n" },
+				{ "[", group = "prev" },
+				{ "]", group = "next" },
+				{ "g", group = "goto" },
+				{ "gs", group = "surround" },
+				{ "z", group = "fold" },
+				{
+					"<leader>b",
+					group = "Buffer",
+					expand = function()
+						return require("which-key.extras").expand.buf()
+					end,
+				},
+				{
+					"<leader>w",
+					group = "Windows",
+					proxy = "<c-w>",
+					expand = function()
+						return require("which-key.extras").expand.win()
+					end,
+				},
 			},
 		},
 	},
@@ -318,6 +380,7 @@ return {
 	-- quit bad vim habit
 	{
 		"m4xshen/hardtime.nvim",
+		event = "VeryLazy",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		opts = {
 			enabled = G.quit_bad_habit,
@@ -328,6 +391,7 @@ return {
 
 	{
 		"otavioschwanck/arrow.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			{ "nvim-tree/nvim-web-devicons" },
 		},
