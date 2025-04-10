@@ -94,7 +94,15 @@ in
       gdm = "git diff master";
       gd = "git diff";
       gs = "git status --short --branch --renames";
+
+      # Docker
+      # Print Docker containers in a compact table; ID is shortened, STATUS shows only the first word.
+      dps = ''
+        printf 'ID\tNAMES\tSTATUS\tPORTS\tSIZE\n'
+        docker ps -a --size --format "{{printf \"%.6s\" .ID}}\t{{.Names}}\t{{index (split .Status \" \") 0}}\t{{.Ports}}\t{{.Size}}" | column -t
+      '';
     };
+
     shellAliases = {
       mkdir = "mkdir -p";
     };
