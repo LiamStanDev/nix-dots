@@ -72,6 +72,24 @@ function M.get_client(name)
 	return nil
 end
 
+function M.build_default_capacities()
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+	-- nvim ufo
+	capabilities.textDocument.foldingRange = {
+		dynamicRegistration = false,
+		lineFoldingOnly = true,
+	}
+
+	-- lsp quick start
+	capabilities.textDocument = {
+		semanticTokens = {
+			multilineTokenSupport = true,
+		},
+	}
+	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+end
+
 --- Mapping of LSP server names to their corresponding package names.
 M.lspconfig_to_package = {
 	["angularls"] = "angular-language-server",

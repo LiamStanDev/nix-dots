@@ -1,15 +1,10 @@
 local G = require("core")
+local utils = require("utils.lsp")
 
 vim.lsp.enable(G.lsp_servers)
 
 vim.lsp.config("*", {
-	capabilities = {
-		textDocument = {
-			semanticTokens = {
-				multilineTokenSupport = true,
-			},
-		},
-	},
+	capabilities = utils.build_default_capacities(),
 	root_markers = { ".git" },
 })
 
@@ -17,19 +12,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local map = vim.keymap.set
     --stylua: ignore start
-		map("n", "gd", function() Snacks.picker.lsp_definitions({ layout = "ivy", }) end, { desc = "Go to Definition" })
-		map("n", "gr", function() Snacks.picker.lsp_references({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
-		map("n", "gi", function() Snacks.picker.lsp_implementations({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
-		map("n", "go", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
-		map("n", "gn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
-		map("n", "ga", function() vim.lsp.buf.code_action() end, { desc = "Code Action" })
-		map("n", "gw", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Show Workspace Diagnostics" })
+		map("n", "grd", function() Snacks.picker.lsp_definitions({ layout = "ivy", }) end, { desc = "Go to Definition" })
+		map("n", "grr", function() Snacks.picker.lsp_references({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+		map("n", "gri", function() Snacks.picker.lsp_implementations({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+		map("n", "gro", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
+		map("n", "grn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
+		map("n", "gra", function() vim.lsp.buf.code_action() end, { desc = "Code Action" })
+		map("n", "grw", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Show Workspace Diagnostics" })
 		map("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover Documentation" })
-		map("n", "gk", function() vim.diagnostic.open_float() end, { desc = "Previous Diagnostic" })
-    map("n", "gK", function() local new_config = not vim.diagnostic.config().virtual_lines vim.diagnostic.config({ virtual_lines = new_config }) end, { desc = "Toggle diagnostic virtual_lines" })
-		map("n", "gI", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hint" })
-		map("n", "gH", function() vim.cmd("checkhealth vim.lsp") end, { desc = "Toggle Inlay Hint" })
-		map("n", "gR", function() vim.lsp.stop_client(vim.lsp.get_clients()) vim.defer_fn(function() vim.cmd("edit") end, 2000) end, { desc = "Lsp Restart" })
+		map("n", "grk", function() vim.diagnostic.open_float() end, { desc = "Previous Diagnostic" })
+    map("n", "grK", function() local new_config = not vim.diagnostic.config().virtual_lines vim.diagnostic.config({ virtual_lines = new_config }) end, { desc = "Toggle diagnostic virtual_lines" })
+		map("n", "grI", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hint" })
+		map("n", "grH", function() vim.cmd("checkhealth vim.lsp") end, { desc = "Toggle Inlay Hint" })
+		map("n", "grR", function() vim.lsp.stop_client(vim.lsp.get_clients()) vim.defer_fn(function() vim.cmd("edit") end, 2000) end, { desc = "Lsp Restart" })
 		-- ctrl + s is default to vim.lsp.buf.signature_help()
 		--stylua: ignore end
 
@@ -100,6 +95,10 @@ return {
 				end,
 			},
 		},
+		keys = {
+			{ "<leader>um", "<CMD>Mason<CR>", desc = "Mason" },
+			{ "<leader>uu", "<CMD>MasonToolsUpdate<CR>", desc = "Mason Tools Update" },
+		},
 	},
 
 	-- LSP plugins
@@ -159,5 +158,25 @@ return {
 				callback = M.debounce(100, require("lint").try_lint),
 			})
 		end,
+	},
+
+	-- rust cargo
+	{
+		"Saecki/crates.nvim",
+		tag = "stable",
+		event = { "BufRead Cargo.toml" },
+		opts = {
+			completion = {
+				crates = {
+					enabled = true,
+				},
+			},
+			lsp = {
+				enabled = true,
+				actions = true,
+				completion = true,
+				hover = true,
+			},
+		},
 	},
 }

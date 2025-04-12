@@ -1,11 +1,7 @@
 local ra = require("utils.rust_analyzer")
 
 local function build_capabilities()
-	-- Initialize LSP client capabilities.
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-	-- Extend capabilities with additional LSP features from the `blink.cmp` plugin.
-	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 	-- Enable experimental features for the Rust Analyzer.
 	capabilities.experimental = {
@@ -61,6 +57,11 @@ return {
 			},
 			procMacro = {
 				enable = true, -- Enable procedural macros.
+				ignored = {
+					["async-trait"] = { "async_trait" },
+					["napi-derive"] = { "napi" },
+					["async-recursion"] = { "async_recursion" },
+				},
 			},
 			imports = {
 				granularity = {
@@ -68,14 +69,19 @@ return {
 				},
 				prefix = "self", -- Use `self` as the import prefix.
 			},
-		},
-	},
-	commands = {
-		CargoReload = {
-			function()
-				ra.reload_workspace()
-			end,
-			description = "Reload current cargo workspace",
+			files = {
+				excludeDirs = {
+					".direnv",
+					".git",
+					".github",
+					".gitlab",
+					"bin",
+					"node_modules",
+					"target",
+					"venv",
+					".venv",
+				},
+			},
 		},
 	},
 }

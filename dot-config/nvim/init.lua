@@ -9,7 +9,7 @@ local G = require("core")
 -- These servers are used for syntax highlighting and parsing.
 G.code_hl_servers = {
 	"regex", -- Regular expressions
-	"json", -- JSON
+	"json5", -- JSON
 	"javascript", -- JavaScript
 	"tsx", -- TypeScript JSX
 	"html", -- HTML
@@ -28,6 +28,7 @@ G.code_hl_servers = {
 	"sql", -- SQL
 	"just", -- Justfiles
 	"asm", -- Assembly
+	"nix", -- Nix
 }
 
 -- LSP servers for auto-completion.

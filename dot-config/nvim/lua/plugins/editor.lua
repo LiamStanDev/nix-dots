@@ -210,6 +210,8 @@ return {
 				{ "<leader>a", group = "AI" },
 				{ "<leader>g", group = "Git", mode = { "n", "v" } },
 				{ "<leader>gh", group = "Git Hunk" },
+				{ "<leader>u", group = "UI" },
+				{ "<leader>ul", "<CMD>Lazy<CR>", desc = "Lazy" },
 				{ "<leader>d", group = "Debug", mode = "n" },
 				{ "[", group = "prev" },
 				{ "]", group = "next" },
@@ -342,12 +344,19 @@ return {
 	},
 
 	{
-		-- sa: surround add
-		-- sd: surround delete
-		-- sr: surround replace
 		"echasnovski/mini.surround",
 		version = "*",
-		config = true,
+		opts = {
+			mappings = {
+				add = "gsa", -- Add surrounding in Normal and Visual modes
+				delete = "gsd", -- Delete surrounding
+				find = "gsf", -- Find surrounding (to the right)
+				find_left = "gsF", -- Find surrounding (to the left)
+				highlight = "gsh", -- Highlight surrounding
+				replace = "gsr", -- Replace surrounding
+				update_n_lines = "gsn", -- Update `n_lines`
+			},
+		},
 	},
 
 	-- Todo
@@ -399,6 +408,23 @@ return {
 			show_icons = true,
 			leader_key = ";", -- Recommended to be a single key
 			buffer_leader_key = "m", -- Per Buffer Mappings
+		},
+	},
+
+	{
+		"folke/edgy.nvim",
+		event = "VeryLazy",
+		opts = require("config.edgy"),
+		keys = {
+			{
+				"<leader>ue",
+				function()
+					require("edgy").toggle()
+				end,
+				desc = "Edgy Toggle",
+			},
+    -- stylua: ignore
+    { "<leader>uE", function() require("edgy").select() end, desc = "Edgy Select Window" },
 		},
 	},
 }

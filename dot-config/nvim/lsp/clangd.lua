@@ -9,12 +9,12 @@ return {
 		"--header-insertion-decorators", -- show header insert in completion
 		"--function-arg-placeholders",
 		"--fallback-style=Google",
-		"--offset-encoding=utf-8",
+		"--offset-encoding=utf-16",
 	},
 	init_options = {
 		fallbackFlags = { "--std=c++2b" },
 	},
-	offset_encofing = "utf-8",
+	offset_encofing = "utf-16",
 	root_markers = {
 		".clangd",
 		".clang-tidy",

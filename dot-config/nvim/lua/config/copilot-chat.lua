@@ -1,4 +1,15 @@
 return function()
+	local user = vim.env.USER or "User"
+	user = user:sub(1, 1):upper() .. user:sub(2)
+
+	vim.api.nvim_create_autocmd("BufEnter", {
+		pattern = "copilot-chat",
+		callback = function()
+			vim.opt_local.relativenumber = false
+			vim.opt_local.number = false
+		end,
+	})
+
 	require("CopilotChat").setup({
 		window = {
 			layout = "horizontal", -- 'vertical', 'horizontal', 'float', 'replace'
@@ -8,28 +19,73 @@ return function()
 		model = "o3-mini",
 		sticky = {
 			"#files",
-			-- "$o1",
 		},
+
+		show_help = false,
+		-- auto_insert_mode = true,
+		insert_at_end = true,
+		highlight_selection = true,
 
 		-- for render markdown
 		highlight_headers = false,
-		separator = "---",
-		error_header = "> [!ERROR] Error",
+		separator = "",
+		error_header = "> [!ERROR] Error ",
+		question_header = "#   " .. user .. " ",
+		answer_header = "#   Copilot ",
 
 		-- log_level = "debug",
+
+		prompts = {
+			Explain = {
+				prompt = "Write an explanation for the selected code as paragraphs of text.",
+				system_prompt = "COPILOT_EXPLAIN",
+			},
+			Review = {
+				prompt = "Review the selected code.",
+				system_prompt = "COPILOT_REVIEW",
+			},
+			Fix = {
+				prompt = "There is a problem in this code. Identify the issues and rewrite the code with fixes. Explain what was wrong and how your changes address the problems.",
+			},
+			Optimize = {
+				prompt = "Optimize the selected code to improve performance and readability. Explain your optimization strategy and the benefits of your changes.",
+			},
+			Docs = {
+				prompt = "Please add documentation comments to the selected code.",
+			},
+			Tests = {
+				prompt = "Please generate tests for my code.",
+			},
+			Commit = {
+				prompt = "Write commit message for the change with commitizen convention. Keep the title under 50 characters and wrap message at 72 characters. Format as a gitcommit code block.",
+				context = "git:staged",
+			},
+		},
 	})
 
 	-- copilot chat
 	local map = vim.keymap.set
-	map({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle copilot chat" })
+	map({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
+	map({ "n", "v", "t" }, "<leader>aa", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
+	map({ "n", "v" }, "<leader>ax", function()
+		return require("CopilotChat").reset()
+	end, { desc = "Clear" })
+	map({ "n", "v" }, "<leader>aq", function()
+		vim.ui.input({
+			prompt = "Quick Chat: ",
+		}, function(input)
+			if input ~= "" then
+				require("CopilotChat").ask(input)
+			end
+		end)
+	end, { desc = "Quick Chet" })
+
+	map({ "n", "v" }, "<leader>ap", function()
+		require("CopilotChat").select_prompt()
+	end, { desc = "Prompt Actions" })
+
+	map({ "n", "v" }, "<leader>am", "<CMD>CopilotChatModels<CR>", { desc = "Choose Models" })
+
 	map({ "n", "v" }, "<leader>ad", "<CMD>Copilot disable<CR>", { desc = "Copilot Disable" })
 	map({ "n", "v" }, "<leader>ae", "<CMD>Copilot enable<CR>", { desc = "Copilot Enable" })
-	map({ "n", "v" }, "<leader>aa", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
-	map({ "n", "v" }, "<leader>ae", "<CMD>CopilotChatExplain<CR>", { desc = "Explain this" })
-	map({ "n", "v" }, "<leader>ar", "<CMD>CopilotChatReview<CR>", { desc = "Review this" })
-	map({ "n", "v" }, "<leader>af", "<CMD>CopilotChatFix<CR>", { desc = "Fix this" })
-	map({ "n", "v" }, "<leader>ao", "<CMD>CopilotChatOptimize<CR>", { desc = "Optimize this" })
-	map({ "n", "v" }, "<leader>ad", "<CMD>CopilotChatDocs<CR>", { desc = "Generate docs" })
-	map({ "n", "v" }, "<leader>at", "<CMD>CopilotChatTests<CR>", { desc = "Generate tests" })
-	map({ "n", "v" }, "<leader>aF", "<CMD>CopilotChatFixDiagnostic<CR>", { desc = "Fix diagnostic" })
 end

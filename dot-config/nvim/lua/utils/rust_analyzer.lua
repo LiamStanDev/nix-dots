@@ -4,7 +4,6 @@ local M = {}
 local utils = require("utils.lsp")
 
 function M.reload_workspace()
-	vim.notify("Reloading Cargo Workspace")
 	local client = utils.get_client("rust_analyzer")
 	if client == nil then
 		vim.notify("No rust-analyzer client found", vim.log.levels.WARN)

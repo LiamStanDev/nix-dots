@@ -9,16 +9,6 @@ end, { nargs = 0 })
 -- dropdown, select, default, sidebar, vscode.
 
 local mappings = {
-	-- Explorer
-	-- {
-	-- 	mode = "n",
-	-- 	key = "<leader>e",
-	-- 	action = function()
-	-- 		Snacks.picker.explorer({ hidden = true, ignored = true })
-	-- 	end,
-	-- 	desc = "Explorer",
-	-- },
-
 	-- Task Runner
 	{ mode = { "n", "i", "v", "t" }, key = "<A-]>", action = "<CMD>ShowTasks<CR>" },
 
