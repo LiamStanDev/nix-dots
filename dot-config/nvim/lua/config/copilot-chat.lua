@@ -22,8 +22,7 @@ return function()
 		},
 
 		show_help = false,
-		-- auto_insert_mode = true,
-		insert_at_end = true,
+		auto_insert_mode = true,
 		highlight_selection = true,
 
 		-- for render markdown

@@ -210,38 +210,41 @@ return {
 			},
 
 			disable = {
-				buftypes = {},
-				filetypes = { "TelescopePrompt" },
+				ft = { "lazy", "mason", "terminal", "snacks_terminal", "snacks_picker_input", "snacks_picker_list" },
+				bt = {},
 			},
 
 			-- Document existing key chains
 			spec = {
-				{ "<leader>s", group = "Search" },
-				{ "<leader>a", group = "AI" },
-				{ "<leader>g", group = "Git", mode = { "n", "v" } },
-				{ "<leader>gh", group = "Git Hunk" },
-				{ "<leader>u", group = "UI" },
-				{ "<leader>ul", "<CMD>Lazy<CR>", desc = "Lazy" },
-				{ "<leader>d", group = "Debug", mode = "n" },
-				{ "[", group = "prev" },
-				{ "]", group = "next" },
-				{ "g", group = "goto" },
-				{ "gs", group = "surround" },
-				{ "z", group = "fold" },
 				{
-					"<leader>b",
-					group = "Buffer",
-					expand = function()
-						return require("which-key.extras").expand.buf()
-					end,
-				},
-				{
-					"<leader>w",
-					group = "Windows",
-					proxy = "<c-w>",
-					expand = function()
-						return require("which-key.extras").expand.win()
-					end,
+					mode = { "n", "v" },
+					{ "<leader>s", group = "Search" },
+					{ "<leader>a", group = "AI" },
+					{ "<leader>g", group = "Git", mode = { "n", "v" } },
+					{ "<leader>gh", group = "Git Hunk" },
+					{ "<leader>u", group = "UI" },
+					{ "<leader>ul", "<CMD>Lazy<CR>", desc = "Lazy" },
+					{ "<leader>d", group = "Debug", mode = "n" },
+					{ "[", group = "prev" },
+					{ "]", group = "next" },
+					{ "g", group = "goto" },
+					{ "gs", group = "surround" },
+					{ "z", group = "fold" },
+					{
+						"<leader>b",
+						group = "Buffer",
+						expand = function()
+							return require("which-key.extras").expand.buf()
+						end,
+					},
+					{
+						"<leader>w",
+						group = "Windows",
+						proxy = "<c-w>",
+						expand = function()
+							return require("which-key.extras").expand.win()
+						end,
+					},
 				},
 			},
 		},
