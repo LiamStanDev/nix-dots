@@ -143,7 +143,9 @@ return {
 			},
 		},
 		cmd = "Trouble",
-		keys = {},
+		keys = {
+			{ "<leader>st", "<CMD>Trouble todo win.position=bottom<CR>", desc = "Todo" },
+		},
 	},
 
 	-- input and select ui

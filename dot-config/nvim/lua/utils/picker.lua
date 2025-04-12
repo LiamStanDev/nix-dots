@@ -95,4 +95,39 @@ function M.select_sync(items, opts)
 	return coroutine.yield()
 end
 
+function M.load_saved_chat()
+	local history_dir = vim.fn.stdpath("data") .. "/copilotchat_history"
+	local files = {}
+	local scan = vim.loop.fs_scandir(history_dir)
+	if not scan then
+		vim.notify("No saved chat history found in " .. history_dir)
+		return
+	end
+	while true do
+		local name, type = vim.loop.fs_scandir_next(scan)
+		if not name then
+			break
+		end
+		if type == "file" then
+			local file_path = history_dir .. "/" .. name
+			local stat = vim.loop.fs_stat(file_path)
+			if stat then
+				table.insert(files, { name = name, path = file_path, mtime = stat.mtime.sec })
+			end
+		end
+	end
+	table.sort(files, function(a, b)
+		return a.mtime > b.mtime
+	end)
+	local choices = {}
+	for _, file in ipairs(files) do
+		table.insert(choices, file.name)
+	end
+	vim.ui.select(choices, { prompt = "Select chat to load:" }, function(choice)
+		if choice then
+			vim.cmd("CopilotChatLoad " .. choice)
+		end
+	end)
+end
+
 return M

@@ -150,6 +150,38 @@ local mappings = {
 		end,
 		desc = "Colorschemes",
 	},
+	{
+		mode = "n",
+		key = "<leader>sh",
+		action = function()
+			Snacks.picker.help()
+		end,
+		desc = "Help Pages",
+	},
+	{
+		mode = "n",
+		key = "<leader>sk",
+		action = function()
+			Snacks.picker.keymaps()
+		end,
+		desc = "Keymaps",
+	},
+	{
+		mode = "n",
+		key = "<leader>sp",
+		action = function()
+			Snacks.picker.lazy()
+		end,
+		desc = "Search for Plugin Spec",
+	},
+	{
+		mode = "n",
+		key = "<leader>sm",
+		action = function()
+			Snacks.picker.man()
+		end,
+		desc = "Man Pages",
+	},
 }
 
 for _, map in ipairs(mappings) do

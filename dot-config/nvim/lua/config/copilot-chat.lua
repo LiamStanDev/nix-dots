@@ -62,11 +62,11 @@ return function()
 		},
 	})
 
+	local picker = require("utils.picker")
 	-- copilot chat
 	local map = vim.keymap.set
 	map({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
-	-- NOTE: dont remap to term mode, it will cause term space key lagging
-	map({ "n", "v" }, "<leader>aa", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
+	map({ "n", "v" }, "<leader>aa", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" }) -- NOTE: dont remap to term mode, it will cause term space key lagging
 	map({ "n", "v" }, "<leader>ax", function()
 		return require("CopilotChat").reset()
 	end, { desc = "Clear" })
@@ -80,9 +80,14 @@ return function()
 		end)
 	end, { desc = "Quick Chet" })
 
-	map({ "n", "v" }, "<leader>ap", function()
-		require("CopilotChat").select_prompt()
-	end, { desc = "Prompt Actions" })
+	map({ "n", "v" }, "<leader>ap", "<CMD>CopilotChatPrompts<CR>", { desc = "Prompt Actions" })
+	map({ "n", "i" }, "<leader>as", "<CMD>CopilotChatStop<CR>", { desc = "Stop Current Chat" })
+	map({ "n", "i" }, "<leader>aS", function()
+		vim.cmd("CopilotChatSave " .. vim.fn.strftime("%Y-%m-%d-%H:%M:%S"))
+	end, { desc = "Save Chat" })
+	map({ "n", "i" }, "<leader>aL", function()
+		picker.load_saved_chat()
+	end, { desc = "Load Chat" })
 
 	map({ "n", "v" }, "<leader>am", "<CMD>CopilotChatModels<CR>", { desc = "Choose Models" })
 

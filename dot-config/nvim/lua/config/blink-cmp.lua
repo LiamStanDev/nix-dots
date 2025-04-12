@@ -57,6 +57,8 @@ return function()
 					return { "dadbod", "snippets", "buffer" }
 				elseif cmp_dap.is_dap_buffer() then
 					return { "dap", "snippets", "buffer" }
+				elseif vim.bo.filetype == "copilot-chat" then
+					return { "copilot", "buffer" }
 				else
 					return { "copilot", "lsp", "lazydev", "path", "snippets", "buffer" }
 				end
