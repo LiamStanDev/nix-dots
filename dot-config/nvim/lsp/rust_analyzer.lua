@@ -1,27 +1,5 @@
 local ra = require("utils.rust_analyzer")
 
-local function build_capabilities()
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-	-- Enable experimental features for the Rust Analyzer.
-	capabilities.experimental = {
-		-- hoverActions = true, -- Enable hover actions for better code insights.
-		colorDiagnosticOutput = true, -- Enable colorized diagnostic output.
-		hoverRange = true, -- Enable hover range support.
-		serverStatusNotification = true, -- Enable server status notifications.
-		snippetTextEdit = true, -- Enable snippet text edits.
-		-- codeActionGroup = true, -- Enable grouped code actions.
-		ssr = true, -- Enable structural search and replace.
-	}
-
-	-- enable auto-import
-	capabilities.textDocument.completion.completionItem.resolveSupport = {
-		properties = { "documentation", "detail", "additionalTextEdits" },
-	}
-
-	return capabilities
-end
-
 return {
 	cmd = { "rust-analyzer" },
 	root_markers = {
@@ -31,7 +9,26 @@ return {
 		"compile_commands.json",
 		"compile_flags.txt",
 	},
-	capabilities = build_capabilities(),
+	capabilities = {
+		experimental = {
+			-- hoverActions = true, -- Enable hover actions for better code insights.
+			colorDiagnosticOutput = true, -- Enable colorized diagnostic output.
+			hoverRange = true, -- Enable hover range support.
+			serverStatusNotification = true, -- Enable server status notifications.
+			snippetTextEdit = true, -- Enable snippet text edits.
+			-- codeActionGroup = true, -- Enable grouped code actions.
+			ssr = true, -- Enable structural search and replace.
+		},
+		textDocument = {
+			completion = {
+				completionItem = {
+					resolveSupport = {
+						properties = { "documentation", "detail", "additionalTextEdits" },
+					},
+				},
+			},
+		},
+	},
 	filetypes = { "rust" },
 	settings = {
 		-- ref: https://rust-analyzer.github.io/book/configuration.html

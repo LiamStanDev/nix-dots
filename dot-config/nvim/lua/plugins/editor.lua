@@ -196,6 +196,7 @@ return {
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
+			preset = "helix",
 			-- delay = 300,
 			icons = {
 				breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -210,7 +211,7 @@ return {
 			},
 
 			disable = {
-				ft = { "lazy", "mason", "terminal", "snacks_terminal", "snacks_picker_input", "snacks_picker_list" },
+				ft = { "terminal", "snacks_terminal", "snacks_picker_input", "snacks_picker_list" },
 				bt = {},
 			},
 
@@ -222,7 +223,9 @@ return {
 					{ "<leader>a", group = "AI" },
 					{ "<leader>g", group = "Git", mode = { "n", "v" } },
 					{ "<leader>gh", group = "Git Hunk" },
-					{ "<leader>u", group = "UI" },
+					{ "<leader>gr", group = "Lsp" },
+					{ "<leader>gs", group = "Surround" },
+					{ "<leader>u", group = "Management" },
 					{ "<leader>ul", "<CMD>Lazy<CR>", desc = "Lazy" },
 					{ "<leader>d", group = "Debug", mode = "n" },
 					{ "[", group = "prev" },

@@ -25,7 +25,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "grI", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hint" })
 		map("n", "grH", function() vim.cmd("checkhealth vim.lsp") end, { desc = "Toggle Inlay Hint" })
 		map("n", "grR", function() vim.lsp.stop_client(vim.lsp.get_clients()) vim.defer_fn(function() vim.cmd("edit") end, 2000) end, { desc = "Lsp Restart" })
-		-- ctrl + s is default to vim.lsp.buf.signature_help()
+    -- ctrl + s is default to vim.lsp.buf.signature_help()
+    map({"n", "v", "i"}, "<C-s>", function() vim.lsp.buf.signature_help() end, { desc = "Show Signature"})
+
+    -- remove default
+    vim.bo[event.buf].formatexpr = nil
+    vim.bo[event.buf].omnifunc = nil
+		-- vim.keymap.del("n", "gO", { buffer = event.buf }) -- NOTE: can't unmap
 		--stylua: ignore end
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)

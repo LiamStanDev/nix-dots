@@ -94,7 +94,7 @@ G.dap_servers = {
 -- -----------------------------------------------------
 
 -- Set the color theme.
-G.colorscheme = "catppuccin"
+G.colorscheme = "catppuccin" -- gruvbox
 
 -- Disable the quit confirmation dialog.
 G.quit_bad_habit = false
