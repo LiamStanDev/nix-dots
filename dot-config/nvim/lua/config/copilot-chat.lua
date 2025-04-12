@@ -65,7 +65,8 @@ return function()
 	-- copilot chat
 	local map = vim.keymap.set
 	map({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
-	map({ "n", "v", "t" }, "<leader>aa", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
+	-- NOTE: dont remap to term mode, it will cause term space key lagging
+	map({ "n", "v" }, "<leader>aa", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
 	map({ "n", "v" }, "<leader>ax", function()
 		return require("CopilotChat").reset()
 	end, { desc = "Clear" })

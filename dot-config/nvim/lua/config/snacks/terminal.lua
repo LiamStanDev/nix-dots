@@ -1,3 +1,7 @@
+-- NOTE: If you encounter any terminal space key lagging, please
+-- checkt `:verbose inoremap <space>`, `:verbose vnpremap <space>`
+-- and `:verbose tnoremap <space>`.
+
 local map = vim.keymap.set
 
 local function show_term(id)
