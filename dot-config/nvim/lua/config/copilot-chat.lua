@@ -12,8 +12,8 @@ return function()
 
 	require("CopilotChat").setup({
 		window = {
-			layout = "horizontal", -- 'vertical', 'horizontal', 'float', 'replace'
-			width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
+			layout = "vertical", -- 'vertical', 'horizontal', 'float', 'replace'
+			width = 0.35, -- fractional width of parent, or absolute width in columns when > 1
 			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
 		},
 		model = "o3-mini",
@@ -86,6 +86,6 @@ return function()
 
 	map({ "n", "v" }, "<leader>am", "<CMD>CopilotChatModels<CR>", { desc = "Choose Models" })
 
-	map({ "n", "v" }, "<leader>ad", "<CMD>Copilot disable<CR>", { desc = "Copilot Disable" })
 	map({ "n", "v" }, "<leader>ae", "<CMD>Copilot enable<CR>", { desc = "Copilot Enable" })
+	map({ "n", "v" }, "<leader>ad", "<CMD>Copilot disable<CR>", { desc = "Copilot Disable" })
 end

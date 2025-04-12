@@ -27,10 +27,10 @@ local keymaps = {
 	{ mode = "n", key = "<S-h>", action = "<CMD>bprev<CR>", desc = "Move to the start of the line" },
 
 	-- Resize with arrows
-	{ mode = "n", key = "<M-->", action = "<CMD>resize -10<CR>", desc = "Increase Hight" },
-	{ mode = "n", key = "<M-=>", action = "<CMD>resize +10<CR>", desc = "Decrease Hight" },
-	{ mode = "n", key = "<M-,>", action = "<CMD>vertical resize -10<CR>", desc = "Increase Width" },
-	{ mode = "n", key = "<M-.>", action = "<CMD>vertical resize +10<CR>", desc = "Decrease Width" },
+	{ mode = { "n", "v", "t" }, key = "<M-->", action = "<CMD>resize -5<CR>", desc = "Increase Hight" },
+	{ mode = { "n", "v", "t" }, key = "<M-=>", action = "<CMD>resize +5<CR>", desc = "Decrease Hight" },
+	{ mode = { "n", "v", "t" }, key = "<M-,>", action = "<CMD>vertical resize -10<CR>", desc = "Increase Width" },
+	{ mode = { "n", "v", "t" }, key = "<M-.>", action = "<CMD>vertical resize +10<CR>", desc = "Decrease Width" },
 
 	-- Buffer split
 	{ mode = "n", key = "<leader>bl", action = "<CMD>vsplit | wincmd p | b# | wincmd l<CR>", desc = "Split left" },

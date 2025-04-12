@@ -1,23 +1,20 @@
 local map = vim.keymap.set
-map({ "n", "v", "i", "t" }, "<A-`>", function()
-	Snacks.terminal(nil, { env = { id = 0 }, win = { position = "bottom" } })
-end, { desc = "Terminal" })
 
-map({ "n", "v", "i", "t" }, "<A-1>", function()
-	Snacks.terminal(nil, { env = { id = 1 }, win = { position = "bottom" } })
-end, { desc = "Terminal" })
+local function show_term(id)
+	Snacks.terminal(
+		nil,
+		{ env = { id = id }, win = { wo = { winbar = "Term: " .. id }, height = 0.3, position = "bottom" } }
+	)
+end
 
-map({ "n", "v", "i", "t" }, "<A-2>", function()
-	Snacks.terminal(nil, { env = { id = 2 }, win = { position = "bottom" } })
-end, { desc = "Terminal" })
+local modes = { "n", "v", "i", "t" }
+local keys = { ["<A-`>"] = 0, ["<A-1>"] = 1, ["<A-2>"] = 2, ["<A-3>"] = 3, ["<A-4>"] = 4 }
 
-map({ "n", "v", "i", "t" }, "<A-3>", function()
-	Snacks.terminal(nil, { env = { id = 3 }, win = { position = "bottom" } })
-end, { desc = "Terminal" })
-
-map({ "n", "v", "i", "t" }, "<A-4>", function()
-	Snacks.terminal(nil, { env = { id = 4 }, win = { position = "bottom" } })
-end, { desc = "Terminal" })
+for key, id in pairs(keys) do
+	map(modes, key, function()
+		show_term(id)
+	end, { desc = "Terminal" })
+end
 
 local function term_nav(dir)
 	---@param self snacks.terminal

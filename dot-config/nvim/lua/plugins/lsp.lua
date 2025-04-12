@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "gro", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
 		map("n", "grn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
 		map("n", "gra", function() vim.lsp.buf.code_action() end, { desc = "Code Action" })
-		map("n", "grw", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Show Workspace Diagnostics" })
+		map("n", "grw", "<CMD>Trouble diagnostics toggle win.position=bottom<CR>", { desc = "Show Workspace Diagnostics" })
 		map("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover Documentation" })
 		map("n", "grk", function() vim.diagnostic.open_float() end, { desc = "Previous Diagnostic" })
     map("n", "grK", function() local new_config = not vim.diagnostic.config().virtual_lines vim.diagnostic.config({ virtual_lines = new_config }) end, { desc = "Toggle diagnostic virtual_lines" })

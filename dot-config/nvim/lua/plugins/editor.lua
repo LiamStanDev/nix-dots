@@ -121,19 +121,29 @@ return {
 			"rcarriga/cmp-dap",
 		},
 	},
+
 	{
 		"folke/trouble.nvim",
-		dependencies = {
-			{ "nvim-tree/nvim-web-devicons" },
-		},
-		cmd = { "Trouble", "TroubleToggle" },
 		opts = {
+			warn_no_results = false,
+			open_no_results = true,
 			focus = true,
+			win = {
+				position = "left",
+			},
+			preview = {
+				type = "float",
+				relative = "editor",
+				border = "rounded",
+				title = "Preview",
+				title_pos = "center",
+				position = { 0, -2 },
+				size = { width = 0.3, height = 0.3 },
+				zindex = 200,
+			},
 		},
-        --stylua: ignore
-		keys = {
-			{ "<leader>st", "<CMD>Trouble todo toggle<CR>", desc = "Todo" },
-		},
+		cmd = "Trouble",
+		keys = {},
 	},
 
 	-- input and select ui
@@ -411,20 +421,20 @@ return {
 		},
 	},
 
-	{
-		"folke/edgy.nvim",
-		event = "VeryLazy",
-		opts = require("config.edgy"),
-		keys = {
-			{
-				"<leader>ue",
-				function()
-					require("edgy").toggle()
-				end,
-				desc = "Edgy Toggle",
-			},
-    -- stylua: ignore
-    { "<leader>uE", function() require("edgy").select() end, desc = "Edgy Select Window" },
-		},
-	},
+	-- {
+	-- 	"folke/edgy.nvim",
+	-- 	event = "VeryLazy",
+	-- 	opts = require("config.edgy"),
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>ue",
+	-- 			function()
+	-- 				require("edgy").toggle()
+	-- 			end,
+	-- 			desc = "Edgy Toggle",
+	-- 		},
+	--    -- stylua: ignore
+	--    { "<leader>uE", function() require("edgy").select() end, desc = "Edgy Select Window" },
+	-- 	},
+	-- },
 }
