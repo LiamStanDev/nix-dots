@@ -226,7 +226,6 @@ return {
 					{ "<leader>g", group = "Git", mode = { "n", "v" } },
 					{ "<leader>gh", group = "Git Hunk" },
 					{ "<leader>gr", group = "Lsp" },
-					{ "<leader>gs", group = "Surround" },
 					{ "<leader>u", group = "Management" },
 					{ "<leader>ul", "<CMD>Lazy<CR>", desc = "Lazy" },
 					{ "<leader>d", group = "Debug", mode = "n" },

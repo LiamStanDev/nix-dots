@@ -43,6 +43,18 @@ local mappings = {
 		end,
 		desc = "Git Stash",
 	},
+	{
+		mode = "n",
+		key = "<leader>gs",
+		action = function()
+			Snacks.picker.git_status({
+				finder = "git_status",
+				format = "git_status",
+				preview = "git_status",
+			})
+		end,
+		desc = "Git Status",
+	},
 
 	-- Search
 	{
