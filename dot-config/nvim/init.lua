@@ -102,6 +102,7 @@ G.quit_bad_habit = false
 -- Set border styles for UI components.
 G.cmp_window_border = "single" -- Options: none, single, rounded
 G.which_key_window_border = "single" -- Options: none, single, double, shadow
+G.terminal_border = "single" -- Options: rounded, single, double, solid, shadow
 
 -- Exclude patterns for search.
 -- These patterns define files and directories to ignore during search operations.

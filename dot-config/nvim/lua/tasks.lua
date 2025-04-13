@@ -28,8 +28,8 @@ return {
 		{ label = "Run", command = "cmake --build build --target run" },
 	},
 	cpp = {
+		{ label = "Run Single File", command = cpp_build_single_file() .. " &&./a.out" },
 		{ label = "Build Single File", command = cpp_build_single_file() },
-		{ label = "Run Single File", command = cpp_build_single_file() .. " && /tmp/a.out" },
 		{ label = "Clang Format Init", command = "clang-format --style=Google -dump-config > .clang-format" },
 	},
 	python = {

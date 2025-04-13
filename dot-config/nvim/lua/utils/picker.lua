@@ -57,7 +57,26 @@ function M.open_task_menu()
 		if selected then
 			local user_cmd = vim.fn.input("command: ", selected.command)
 			local dir = vim.fn.getcwd()
-			Snacks.terminal.open(user_cmd, { cwd = dir, auto_close = false })
+			Snacks.terminal.open(user_cmd, {
+				cwd = dir,
+				auto_close = false,
+				win = {
+					on_win = function(self)
+						local footer_msg = ""
+						if self.cmd then
+							if type(self.cmd) == "table" then
+								footer_msg = "Running command: " .. table.concat(self.cmd, " ")
+							else
+								footer_msg = "Running command: " .. tostring(self.cmd)
+							end
+						end
+						vim.api.nvim_win_set_config(
+							self.win,
+							{ title = "Task Runner", title_pos = "center", footer = footer_msg }
+						)
+					end,
+				},
+			})
 		end
 	end)
 end

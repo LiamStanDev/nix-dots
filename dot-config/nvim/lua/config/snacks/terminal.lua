@@ -2,23 +2,19 @@
 -- checkt `:verbose inoremap <space>`, `:verbose vnpremap <space>`
 -- and `:verbose tnoremap <space>`.
 
+local G = require("core")
 local map = vim.keymap.set
 
-local function show_term(id)
-	Snacks.terminal(
-		nil,
-		{ env = { id = id }, win = { wo = { winbar = "Term: " .. id }, height = 0.3, position = "bottom" } }
-	)
-end
-
-local modes = { "n", "v", "i", "t" }
-local keys = { ["<A-`>"] = 0, ["<A-1>"] = 1, ["<A-2>"] = 2, ["<A-3>"] = 3, ["<A-4>"] = 4 }
-
-for key, id in pairs(keys) do
-	map(modes, key, function()
-		show_term(id)
-	end, { desc = "Terminal" })
-end
+-- Usage: toggle term with id is 8 for example
+-- press 8 and then presss `<A-`>`
+map({ "n", "v", "i", "t" }, "<A-`>", function()
+	Snacks.terminal.toggle(nil, {
+		win = {
+			height = 0.3,
+			position = "bottom",
+		},
+	})
+end, { desc = "Terminal" })
 
 local function term_nav(dir)
 	---@param self snacks.terminal
@@ -35,5 +31,18 @@ return {
 			nav_h = { "<C-h>", term_nav("h"), desc = "Go to Left Window", expr = true, mode = "t" },
 			nav_l = { "<C-l>", term_nav("l"), desc = "Go to Right Window", expr = true, mode = "t" },
 		},
+		border = G.terminal_border,
+		bo = { filetype = "snacks_terminal" },
+		on_win = function(self)
+			local footer_msg = ""
+			if self.cmd then
+				if type(self.cmd) == "table" then
+					footer_msg = "Running command: " .. table.concat(self.cmd, " ")
+				else
+					footer_msg = "Running command: " .. tostring(self.cmd)
+				end
+			end
+			vim.api.nvim_win_set_config(self.win, { title = footer_msg })
+		end,
 	},
 }
