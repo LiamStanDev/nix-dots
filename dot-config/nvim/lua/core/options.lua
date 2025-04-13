@@ -52,7 +52,6 @@ local options = {
 	updatetime = 100,
 	redrawtime = 1500,
 	showmode = false, -- dont show mode since we use statusline
-	virtualedit = "block", -- Allow cursor to move where there is no text in visual block mode
 	inccommand = "split", -- preview substitutions live
 	grepprg = "rg --vimgrep",
 	spelllang = { "en" },
@@ -74,3 +73,6 @@ local options = {
 for option, val in pairs(options) do
 	vim.opt[option] = val
 end
+
+-- diable intro text
+vim.opt.shortmess:append("I")
