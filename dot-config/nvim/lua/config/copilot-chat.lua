@@ -22,7 +22,7 @@ return function()
 		},
 
 		show_help = false,
-		auto_insert_mode = true,
+		auto_insert_mode = false,
 		highlight_selection = true,
 
 		-- for render markdown
