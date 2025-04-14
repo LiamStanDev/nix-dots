@@ -27,6 +27,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "grR", function() vim.lsp.stop_client(vim.lsp.get_clients()) vim.defer_fn(function() vim.cmd("edit") end, 2000) end, { desc = "Lsp Restart" })
     -- ctrl + s is default to vim.lsp.buf.signature_help()
     map({"n", "v", "i"}, "<C-s>", function() vim.lsp.buf.signature_help() end, { desc = "Show Signature"})
+    map("n", "[d", function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic" })
+    map("n", "]d", function() vim.diagnostic.goto_next() end, { desc = "Go to next diagnostic" })
 
     -- remove default
     vim.bo[event.buf].formatexpr = nil
