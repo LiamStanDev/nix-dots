@@ -10,12 +10,15 @@
       trashy
       neovim
       delta
+      bat
+      ripgrep
       cacert # for $SSL_CERT_FILE not found error
       wget
       perf-tools # perf
       sysstat # iostat and pidstat
       ripgrep
       fd
+      chafa # terminal image previewer
       lazygit
       lazydocker
       htop

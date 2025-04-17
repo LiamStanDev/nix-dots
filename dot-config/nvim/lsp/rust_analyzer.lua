@@ -15,7 +15,7 @@ return {
 			colorDiagnosticOutput = true, -- Enable colorized diagnostic output.
 			hoverRange = true, -- Enable hover range support.
 			serverStatusNotification = true, -- Enable server status notifications.
-			snippetTextEdit = true, -- Enable snippet text edits.
+			-- snippetTextEdit = true, -- Enable snippet text edits.
 			-- codeActionGroup = true, -- Enable grouped code actions.
 			ssr = true, -- Enable structural search and replace.
 		},

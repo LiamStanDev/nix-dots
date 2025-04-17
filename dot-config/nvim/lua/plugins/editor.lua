@@ -159,7 +159,8 @@ return {
 			explorer = { enabled = false },
 			indent = { enabled = true },
 			input = { enabled = true },
-			picker = require("config.snacks.picker"),
+			-- picker = require("config.snacks.picker"),
+			picker = { enabled = false },
 			notifier = require("config.snacks.notifier"),
 			quickfile = { enabled = true },
 			scope = { enabled = true },
@@ -181,6 +182,14 @@ return {
 			},
 		},
 		dependencies = {},
+	},
+
+	{
+		"ibhagwan/fzf-lua",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("config.fzf-lua")
+		end,
 	},
 
 	-- Neovim notifications, LSP progress messages and input ui
@@ -228,6 +237,7 @@ return {
 					{ "<leader>gr", group = "Lsp" },
 					{ "<leader>u", group = "Management" },
 					{ "<leader>ul", "<CMD>Lazy<CR>", desc = "Lazy" },
+					{ "<leader>uL", "<CMD>Leet<CR>", desc = "Leetcode" },
 					{ "<leader>d", group = "Debug", mode = "n" },
 					{ "[", group = "prev" },
 					{ "]", group = "next" },
@@ -241,14 +251,14 @@ return {
 							return require("which-key.extras").expand.buf()
 						end,
 					},
-					{
-						"<leader>w",
-						group = "Windows",
-						proxy = "<c-w>",
-						expand = function()
-							return require("which-key.extras").expand.win()
-						end,
-					},
+					-- {
+					-- 	"<leader>w",
+					-- 	group = "Windows",
+					-- 	proxy = "<c-w>",
+					-- 	expand = function()
+					-- 		return require("which-key.extras").expand.win()
+					-- 	end,
+					-- },
 				},
 			},
 		},
@@ -428,20 +438,25 @@ return {
 		},
 	},
 
-	-- {
-	-- 	"folke/edgy.nvim",
-	-- 	event = "VeryLazy",
-	-- 	opts = require("config.edgy"),
-	-- 	keys = {
-	-- 		{
-	-- 			"<leader>ue",
-	-- 			function()
-	-- 				require("edgy").toggle()
-	-- 			end,
-	-- 			desc = "Edgy Toggle",
-	-- 		},
-	--    -- stylua: ignore
-	--    { "<leader>uE", function() require("edgy").select() end, desc = "Edgy Select Window" },
-	-- 	},
-	-- },
+	-- leetcode problem
+	{
+		"kawre/leetcode.nvim",
+		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
+		dependencies = {
+			"ibhagwan/fzf-lua",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+		opts = {
+			keys = {
+				toggle = { "q" },
+				confirm = { "<CR>" },
+
+				reset_testcases = "r",
+				use_testcase = "U",
+				focus_testcases = "H",
+				focus_result = "L",
+			},
+		},
+	},
 }

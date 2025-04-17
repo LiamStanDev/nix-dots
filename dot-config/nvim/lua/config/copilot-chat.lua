@@ -16,7 +16,8 @@ return function()
 			width = 0.35, -- fractional width of parent, or absolute width in columns when > 1
 			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
 		},
-		model = "o3-mini",
+		-- model = "o3-mini",
+		model = "claude-3.5-sonnet",
 		sticky = {
 			"#files",
 		},

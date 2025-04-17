@@ -4,10 +4,9 @@
 
 local G = require("core")
 local map = vim.keymap.set
-
 -- Usage: toggle term with id is 8 for example
 -- press 8 and then presss `<A-`>`
-map({ "n", "v", "i", "t" }, "<A-`>", function()
+map({ "n", "v", "i", "t" }, "<M-`>", function()
 	Snacks.terminal.toggle(nil, {
 		win = {
 			height = 0.3,
@@ -15,6 +14,26 @@ map({ "n", "v", "i", "t" }, "<A-`>", function()
 		},
 	})
 end, { desc = "Terminal" })
+
+for i = 1, 9 do
+	map({ "n", "t" }, string.format("<M-%d>", i), function()
+		-- -- Construct the exact key sequence: "<i><C-/>"
+		-- local replace = vim.api.nvim_replace_termcodes
+		-- local seq = tostring(i) .. replace("<M-`>", true, true, true)
+		-- -- Feed it with 'm' so that <C-/> is remapped to your toggle
+		-- vim.api.nvim_feedkeys(seq, "m", false)
+		Snacks.terminal.toggle(nil, {
+			env = { id = tostring(i) }, -- Convert i to string to fix type error
+			win = {
+				height = 0.3,
+				position = "bottom",
+				wo = {
+					winbar = string.format("term: %d", i),
+				},
+			},
+		})
+	end, { desc = string.format("Toggle terminal %d", i) })
+end
 
 local function term_nav(dir)
 	---@param self snacks.terminal

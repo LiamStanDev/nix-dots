@@ -17,7 +17,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "gi", function() Snacks.picker.lsp_implementations({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
 		map("n", "gO", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
 		map("n", "gn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
-		map("n", "ga", function() vim.lsp.buf.code_action() end, { desc = "Code Action" })
+		map("n", "ga", function()  
+      require("fzf-lua").lsp_code_actions({
+        winopts = {
+          relative = "cursor",
+          height = 0.3,
+          width = 0.5,
+        },
+      })
+    end, { desc = "Code Action" })
 		map("n", "gw", "<CMD>Trouble diagnostics toggle win.position=bottom<CR>", { desc = "Show Workspace Diagnostics" })
 		map("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover Documentation" })
 		map("n", "gk", function() vim.diagnostic.open_float() end, { desc = "Show Diagnostic" })
