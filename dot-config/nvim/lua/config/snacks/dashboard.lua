@@ -69,16 +69,11 @@ return {
 				key = "f",
 				desc = "Find File",
 				action = function()
-					Snacks.picker.files({
-						focus = "input",
-						finder = "files",
-						format = "file",
-						show_empty = true,
-						support_live = true,
-						hidden = true,
-						layout = "select",
-						follow = true,
-						exclude = G.exclude_pattern,
+					require("fzf-lua").files({
+						winopts = {
+							preview = { hidden = true },
+							height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
+						},
 					})
 				end,
 			},
@@ -89,20 +84,7 @@ return {
 				key = "g",
 				desc = "Grep",
 				action = function()
-					Snacks.picker.grep({
-						focus = "input",
-						hidden = true,
-						regex = true,
-						live = true,
-						dirs = { vim.fn.getcwd() },
-						args = { "--no-ignore" },
-						finder = "grep",
-						format = "file",
-						show_empty = true,
-						layout = "ivy",
-						follow = true,
-						exclude = G.exclude_pattern,
-					})
+					require("fzf-lua").live_grep()
 				end,
 			},
 			{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },

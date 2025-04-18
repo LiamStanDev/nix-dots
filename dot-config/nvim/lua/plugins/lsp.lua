@@ -10,23 +10,20 @@ vim.lsp.config("*", {
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
+		local fzf = require("fzf-lua")
 		local map = vim.keymap.set
     --stylua: ignore start
-		map("n", "gd", function() Snacks.picker.lsp_definitions({ layout = "ivy", }) end, { desc = "Go to Definition" })
-		map("n", "gr", function() Snacks.picker.lsp_references({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
-		map("n", "gi", function() Snacks.picker.lsp_implementations({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+		-- map("n", "gd", function() Snacks.picker.lsp_definitions({ layout = "ivy", }) end, { desc = "Go to Definition" })
+		-- map("n", "gr", function() Snacks.picker.lsp_references({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+		-- map("n", "gi", function() Snacks.picker.lsp_implementations({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
+		map("n", "gd", function() fzf.lsp_definitions({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Go to Definition" })
+		map("n", "gr", function() fzf.lsp_references({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Go to References" })
+		map("n", "gi", function() fzf.lsp_implementations({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Go to Implementations" })
+		map("n", "gf", function() fzf.lsp_finder({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Lsp Finder" })
 		map("n", "gO", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
 		map("n", "gn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
-		map("n", "ga", function()  
-      require("fzf-lua").lsp_code_actions({
-        winopts = {
-          relative = "cursor",
-          height = 0.3,
-          width = 0.5,
-        },
-      })
-    end, { desc = "Code Action" })
-		map("n", "gw", "<CMD>Trouble diagnostics toggle win.position=bottom<CR>", { desc = "Show Workspace Diagnostics" })
+		map("n", "ga", function()  fzf.lsp_code_actions({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Code Action" })
+		map("n", "gw", function() fzf.diagnostics_workspace({ winopts = { relative = "cursor", height = 0.3} }) end, { desc = "Show Workspace Diagnostics" })
 		map("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover Documentation" })
 		map("n", "gk", function() vim.diagnostic.open_float() end, { desc = "Show Diagnostic" })
     map("n", "gK", function() local new_config = not vim.diagnostic.config().virtual_lines vim.diagnostic.config({ virtual_lines = new_config }) end, { desc = "Toggle diagnostic virtual_lines" })
