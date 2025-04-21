@@ -69,12 +69,7 @@ return {
 				key = "f",
 				desc = "Find File",
 				action = function()
-					require("fzf-lua").files({
-						winopts = {
-							preview = { hidden = true },
-							height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
-						},
-					})
+					require("fzf-lua").files()
 				end,
 			},
 			{ icon = "󰥨 ", key = "e", desc = "Explorer", action = "<CMD>Yazi<CR>" },

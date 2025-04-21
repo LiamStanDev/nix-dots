@@ -12,34 +12,78 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local fzf = require("fzf-lua")
 		local map = vim.keymap.set
-    --stylua: ignore start
 		-- map("n", "gd", function() Snacks.picker.lsp_definitions({ layout = "ivy", }) end, { desc = "Go to Definition" })
 		-- map("n", "gr", function() Snacks.picker.lsp_references({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
 		-- map("n", "gi", function() Snacks.picker.lsp_implementations({ layout = "ivy", }) end, { desc = "Go to References" }) -- map("n", "gr", "<CMD>Trouble lsp_references toggle<CR>", { desc = "Go to References" })
-		map("n", "gd", function() fzf.lsp_definitions({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Go to Definition" })
-		map("n", "gr", function() fzf.lsp_references({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Go to References" })
-		map("n", "gi", function() fzf.lsp_implementations({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Go to Implementations" })
-		map("n", "gf", function() fzf.lsp_finder({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Lsp Finder" })
+		map("n", "gd", function()
+			fzf.lsp_definitions({ winopts = { relative = "cursor", height = 0.3, width = 0.6 } })
+		end, { desc = "Go to Definition" })
+		map("n", "gr", function()
+			fzf.lsp_references({ winopts = { relative = "cursor", height = 0.3, width = 0.6 } })
+		end, { desc = "Go to References" })
+		map("n", "gi", function()
+			fzf.lsp_implementations({ winopts = { relative = "cursor", height = 0.3, width = 0.6 } })
+		end, { desc = "Go to Implementations" })
+		map("n", "gf", function()
+			fzf.lsp_finder({ winopts = { relative = "cursor", height = 0.3, width = 0.6 } })
+		end, { desc = "Lsp Finder" })
 		map("n", "gO", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
-		map("n", "gn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
-		map("n", "ga", function()  fzf.lsp_code_actions({ winopts = { relative = "cursor", height = 0.3, width = 0.5 } }) end, { desc = "Code Action" })
-		map("n", "gw", function() fzf.diagnostics_workspace({ winopts = { relative = "cursor", height = 0.3} }) end, { desc = "Show Workspace Diagnostics" })
-		map("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover Documentation" })
-		map("n", "gk", function() vim.diagnostic.open_float() end, { desc = "Show Diagnostic" })
-    map("n", "gK", function() local new_config = not vim.diagnostic.config().virtual_lines vim.diagnostic.config({ virtual_lines = new_config }) end, { desc = "Toggle diagnostic virtual_lines" })
-		map("n", "gI", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hint" })
-		map("n", "gH", function() vim.cmd("checkhealth vim.lsp") end, { desc = "Toggle Inlay Hint" })
-		map("n", "gR", function() vim.lsp.stop_client(vim.lsp.get_clients()) vim.defer_fn(function() vim.cmd("edit") end, 2000) end, { desc = "Lsp Restart" })
-    -- ctrl + s is default to vim.lsp.buf.signature_help()
-    map({"n", "v", "i"}, "<C-s>", function() vim.lsp.buf.signature_help() end, { desc = "Show Signature"})
-    map("n", "[d", function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic" })
-    map("n", "]d", function() vim.diagnostic.goto_next() end, { desc = "Go to next diagnostic" })
+		map("n", "gn", function()
+			vim.lsp.buf.rename()
+		end, { desc = "Rename" })
+		map("n", "ga", function()
+			fzf.lsp_code_actions({
+				winopts = {
+					relative = "cursor",
+					width = 0.45,
+					height = 0.6,
+					preview = {
+						vertical = "up:65%",
+						layout = "vertical",
+					},
+				},
+			})
+		end, { desc = "Code Action" })
+		map("n", "gw", function()
+			fzf.diagnostics_workspace()
+		end, { desc = "Show Workspace Diagnostics" })
+		map("n", "K", function()
+			vim.lsp.buf.hover()
+		end, { desc = "Hover Documentation" })
+		map("n", "gk", function()
+			vim.diagnostic.open_float()
+		end, { desc = "Show Diagnostic" })
+		map("n", "gK", function()
+			local new_config = not vim.diagnostic.config().virtual_lines
+			vim.diagnostic.config({ virtual_lines = new_config })
+		end, { desc = "Toggle diagnostic virtual_lines" })
+		map("n", "gI", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, { desc = "Toggle Inlay Hint" })
+		map("n", "gH", function()
+			vim.cmd("checkhealth vim.lsp")
+		end, { desc = "Toggle Inlay Hint" })
+		map("n", "gR", function()
+			vim.lsp.stop_client(vim.lsp.get_clients())
+			vim.defer_fn(function()
+				vim.cmd("edit")
+			end, 2000)
+		end, { desc = "Lsp Restart" })
+		-- ctrl + s is default to vim.lsp.buf.signature_help()
+		map({ "n", "v", "i" }, "<C-s>", function()
+			vim.lsp.buf.signature_help()
+		end, { desc = "Show Signature" })
+		map("n", "[d", function()
+			vim.diagnostic.goto_prev()
+		end, { desc = "Go to previous diagnostic" })
+		map("n", "]d", function()
+			vim.diagnostic.goto_next()
+		end, { desc = "Go to next diagnostic" })
 
-    -- remove default
-    vim.bo[event.buf].formatexpr = nil
-    vim.bo[event.buf].omnifunc = nil
+		-- remove default
+		vim.bo[event.buf].formatexpr = nil
+		vim.bo[event.buf].omnifunc = nil
 		-- vim.keymap.del("n", "gO", { buffer = event.buf }) -- NOTE: can't unmap
-		--stylua: ignore end
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then

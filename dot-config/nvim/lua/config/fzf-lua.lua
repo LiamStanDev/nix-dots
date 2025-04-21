@@ -57,6 +57,7 @@ fzf.register_ui_select(function(fzf_opts, items)
 end)
 
 fzf.setup({
+	{ "fzf-native" },
 	fzf_colors = true,
 	fzf_opts = {
 		["--no-scrollbar"] = true,
@@ -66,6 +67,8 @@ fzf.setup({
 		preview = {
 			border = G.picker_border,
 			scrollchars = { "┃", "" },
+			vertical = "down:65%",
+			layout = "vertical",
 		},
 		width = 0.8,
 		height = 0.8,
@@ -75,21 +78,6 @@ fzf.setup({
 	files = {
 		previewer = "bat",
 		cwd_prompt = false,
-		actions = {
-			["alt-i"] = { actions.toggle_ignore },
-			["alt-h"] = { actions.toggle_hidden },
-		},
-	},
-	grep = {
-		actions = {
-			["alt-i"] = { actions.toggle_ignore },
-			["alt-h"] = { actions.toggle_hidden },
-		},
-	},
-	lsp = {
-		code_actions = {
-			previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
-		},
 	},
 	actions = {
 		["enter"] = actions.file_edit_or_qf,
