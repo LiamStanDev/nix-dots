@@ -14,7 +14,7 @@ return {
 	init_options = {
 		fallbackFlags = { "--std=c++2b" },
 	},
-	offset_encofing = "utf-16",
+	offsetEncoding = { "utf-8", "utf-16" },
 	root_markers = {
 		".clangd",
 		".clang-tidy",

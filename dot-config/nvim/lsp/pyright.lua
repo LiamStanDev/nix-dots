@@ -22,7 +22,6 @@ return {
 					variableTypes = true,
 					functionReturnTypes = true,
 				},
-				logLevel = "Information",
 				autoImportCompletions = true,
 				useLibraryCodeForTypes = true,
 			},
