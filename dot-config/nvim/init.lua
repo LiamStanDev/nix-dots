@@ -83,18 +83,7 @@ G.picker_border = "single" -- Options: rounded, single, double, solid, shadow
 -- These patterns define files and directories to ignore during search operations.
 -- stylua: ignore
 G.exclude_pattern = {
-	-- General
-	".git", ".DS_Store", ".idea", ".vscode", ".history", ".github", "dist", "build", "out", "*.swp", "*.log", ".cache", "tmp", "*.bckp",
-	-- Node/JS
-	"node_modules", "package-lock.json", "yarn.lock", ".npm",
-	-- Python
-	"__pycache__", ".venv", "venv", "env", "*.pyc", "*.pyo", "*.pyd", ".pytest_cache", ".coverage",
-	-- Rust
-	"Cargo.lock", "target", "*.rs.bk", ".cargo",
-	-- C/C++
-	"*.o", "*.a", "*.so", "*.dll", "*.exe", "*.obj", "CMakeFiles", "CMakeCache.txt", "compile_commands.json",
-	-- Go
-	"vendor", "go.sum", "*.test",
+	".git", "node_modules"
 }
 
 -- Initialize and set up all plugins.

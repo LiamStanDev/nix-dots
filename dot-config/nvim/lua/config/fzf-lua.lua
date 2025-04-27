@@ -56,6 +56,11 @@ fzf.register_ui_select(function(fzf_opts, items)
 	}
 end)
 
+local fd_excludes = {}
+for _, pat in ipairs(G.exclude_pattern) do
+	table.insert(fd_excludes, string.format("--exclude %s", pat))
+end
+
 fzf.setup({
 	{ "fzf-native" },
 	fzf_colors = true,
@@ -76,6 +81,7 @@ fzf.setup({
 		col = 0.5,
 	},
 	files = {
+		fd_opts = [[--color=never --hidden --type f --type l ]] .. table.concat(fd_excludes, " "),
 		previewer = "bat",
 		cwd_prompt = false,
 	},
