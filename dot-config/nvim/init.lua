@@ -7,50 +7,25 @@ local G = require("core")
 
 -- Tree-sitter code highlight servers.
 -- These servers are used for syntax highlighting and parsing.
+-- stylua: ignore
 G.code_hl_servers = {
-	"regex", -- Regular expressions
-	"json5", -- JSON
-	"javascript", -- JavaScript
-	"tsx", -- TypeScript JSX
-	"html", -- HTML
-	"css", -- CSS
-	"markdown", -- Markdown
-	"markdown_inline", -- Inline Markdown
-	"bash", -- Bash scripts
-	"lua", -- Lua
-	"vim", -- Vimscript
-	"dockerfile", -- Dockerfile
-	"gitignore", -- Gitignore files
-	"cpp", -- C++
-	"make", -- Makefiles
-	"cmake", -- CMake
-	"rust", -- Rust
-	"sql", -- SQL
-	"just", -- Justfiles
-	"asm", -- Assembly
-	"nix", -- Nix
+	"regex", "json5", "javascript", "tsx", "html", "css", "markdown", "markdown_inline",
+	"bash", "lua", "vim", "dockerfile", "gitignore", "cpp", "make", "cmake", "rust",
+	"sql", "just", "asm", "nix"
 }
 
 -- LSP servers for auto-completion.
 -- These servers provide language-specific features like code completion, linting, and more.
 -- See https://github.com/williamboman/mason-lspconfig.nvim for details.
+-- stylua: ignore
 G.lsp_servers = {
-	"lua_ls", -- Lua
-	"pyright", -- Python
-	"bashls", -- Bash
-	"ts_ls", -- TypeScript
-	"taplo", -- TOML
-	"rust_analyzer", -- Rust
-	"cmake", -- CMake
-	"clangd", -- C/C++
-	"nil_ls", -- Nix
-	"dockerls", -- Dockerfile
-	"docker_compose_language_service", -- Docker Compose
+	"lua_ls", "pyright", "bashls", "ts_ls", "taplo", "rust_analyzer", "cmake",
+	"clangd", "nil_ls", "dockerls", "docker_compose_language_service"
 }
 
 -- Formatters for code formatting.
 -- See: https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
--- stylua: ignore start
+-- stylua: ignore
 G.formatters = {
 	lua = { "stylua" }, -- Lua formatter
 	python = { "ruff_format" }, -- Python formatter
@@ -69,10 +44,10 @@ G.formatters = {
 	sql = { "sqlfmt" }, -- SQL
 	nix = { "nixpkgs_fmt" }, -- Nix
 }
--- stylua: ignore end
 
 -- Linters for code linting.
 -- See: https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters
+-- stylua: ignore
 G.linters = {
 	javascript = { "eslint_d" }, -- JavaScript linter
 	javascriptreact = { "eslint_d" }, -- React linter
@@ -83,10 +58,9 @@ G.linters = {
 
 -- Debugger servers for debugging support.
 -- See: https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
+-- stylua: ignore
 G.dap_servers = {
-	"python", -- Python debugger
-	"cppdbg", -- C++ debugger
-	"codelldb", -- Rust debugger
+	"python", "cppdbg", "codelldb",
 }
 
 -- -----------------------------------------------------
@@ -107,7 +81,7 @@ G.picker_border = "single" -- Options: rounded, single, double, solid, shadow
 
 -- Exclude patterns for search.
 -- These patterns define files and directories to ignore during search operations.
--- stylua: ignore start
+-- stylua: ignore
 G.exclude_pattern = {
 	-- General
 	".git", ".DS_Store", ".idea", ".vscode", ".history", ".github", "dist", "build", "out", "*.swp", "*.log", ".cache", "tmp", "*.bckp",
@@ -122,7 +96,6 @@ G.exclude_pattern = {
 	-- Go
 	"vendor", "go.sum", "*.test",
 }
--- stylua: ignore end
 
 -- Initialize and set up all plugins.
 G.setup()
