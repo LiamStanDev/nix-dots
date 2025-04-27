@@ -122,32 +122,6 @@ return {
 		},
 	},
 
-	{
-		"folke/trouble.nvim",
-		opts = {
-			warn_no_results = false,
-			open_no_results = true,
-			focus = true,
-			win = {
-				position = "left",
-			},
-			preview = {
-				type = "float",
-				relative = "editor",
-				border = "rounded",
-				title = "Preview",
-				title_pos = "center",
-				position = { 0, -2 },
-				size = { width = 0.3, height = 0.3 },
-				zindex = 200,
-			},
-		},
-		cmd = "Trouble",
-		keys = {
-			{ "<leader>st", "<CMD>Trouble todo win.position=bottom<CR>", desc = "Todo" },
-		},
-	},
-
 	-- input and select ui
 	{
 		"folke/snacks.nvim",
@@ -251,14 +225,10 @@ return {
 							return require("which-key.extras").expand.buf()
 						end,
 					},
-					-- {
-					-- 	"<leader>w",
-					-- 	group = "Windows",
-					-- 	proxy = "<c-w>",
-					-- 	expand = function()
-					-- 		return require("which-key.extras").expand.win()
-					-- 	end,
-					-- },
+					{
+						"<leader>b",
+						group = "Leet",
+					},
 				},
 			},
 		},
@@ -346,23 +316,10 @@ return {
 				end,
 			})
 		end,
+    -- stylua: ignore
 		keys = {
-			{
-				"zR",
-				mode = "n",
-				function()
-					require("ufo").openAllFolds()
-				end,
-				desc = "Open all folds",
-			},
-			{
-				"zM",
-				mode = "n",
-				function()
-					require("ufo").closeAllFolds()
-				end,
-				desc = "Close all folds",
-			},
+			{ "zR", mode = "n", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
+			{ "zM", mode = "n", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
 		},
 		event = { "BufReadPost" },
 		dependencies = {
@@ -391,6 +348,11 @@ return {
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = require("config.todo-comment"),
+    -- stylua: ignore
+    keys = {
+      { "<leader>st", function() require("todo-comments.fzf").todo() end, desc = "Todo" },
+      { "<leader>sT", function () require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
+    },
 	},
 
 	-- Text Color
@@ -438,7 +400,7 @@ return {
 		},
 	},
 
-	-- leetcode problem
+	-- leetcode problems
 	{
 		"kawre/leetcode.nvim",
 		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
@@ -447,11 +409,11 @@ return {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 		},
+		cmd = "Leet",
 		opts = {
 			keys = {
 				toggle = { "q" },
 				confirm = { "<CR>" },
-
 				reset_testcases = "r",
 				use_testcase = "U",
 				focus_testcases = "H",

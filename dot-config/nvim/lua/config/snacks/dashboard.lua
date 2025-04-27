@@ -63,25 +63,12 @@ table.insert(sections, {
 return {
 	enabled = true,
 	preset = {
+    -- stylua: ignore
 		keys = {
-			{
-				icon = " ",
-				key = "f",
-				desc = "Find File",
-				action = function()
-					require("fzf-lua").files()
-				end,
-			},
+			{ icon = " ", key = "f", desc = "Find File", action = function() require("fzf-lua").files() end },
 			{ icon = "󰥨 ", key = "e", desc = "Explorer", action = "<CMD>Yazi<CR>" },
 			{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-			{
-				icon = " ",
-				key = "g",
-				desc = "Grep",
-				action = function()
-					require("fzf-lua").live_grep()
-				end,
-			},
+			{ icon = " ", key = "g", desc = "Grep", action = function() require("fzf-lua").live_grep() end },
 			{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
 			{
 				icon = " ",

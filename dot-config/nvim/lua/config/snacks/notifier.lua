@@ -42,6 +42,10 @@ vim.api.nvim_create_autocmd("LspProgress", {
 	end,
 })
 
+local map = vim.keymap.set
+-- stylua: ignore
+map({ "n" }, "<leader>sn", function() Snacks.notifier.show_history() end, { desc = "Notifications" })
+
 return {
 	enabled = true,
 	level = vim.log.levels.TRACE,
