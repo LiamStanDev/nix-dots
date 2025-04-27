@@ -7,7 +7,7 @@ local function cpp_build_single_file()
 end
 
 local function run_python_file()
-	local command = "python "
+	local command = "uv run "
 	command = command .. vim.api.nvim_buf_get_name(0)
 	return command
 end
@@ -34,7 +34,9 @@ return {
 	},
 	python = {
 		{ label = "Run Script", command = run_python_file() },
-		{ label = "Run Tests", command = "pytest" },
+		{ label = "Run Tests", command = "uvx pytest" },
+		{ label = "Init Project", command = "uv init" },
+		{ label = "Sync", command = "uv sync" },
 	},
 	rust = {
 		{ label = "Check", command = "cargo check" },
