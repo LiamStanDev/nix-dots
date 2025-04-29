@@ -42,5 +42,6 @@
       uv
       python313
       nodejs_22
+      bun
     ];
 }
