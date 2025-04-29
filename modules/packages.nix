@@ -37,6 +37,7 @@
       cmake
       ninja
       rustup
+      bun
       lldb
       go
       uv

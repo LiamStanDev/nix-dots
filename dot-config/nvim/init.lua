@@ -49,10 +49,10 @@ G.formatters = {
 -- See: https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters
 -- stylua: ignore
 G.linters = {
-	javascript = { "eslint_d" }, -- JavaScript linter
-	javascriptreact = { "eslint_d" }, -- React linter
-	typescript = { "eslint_d" }, -- TypeScript linter
-	typescriptreact = { "eslint_d" }, -- React TypeScript linter
+	-- javascript = { "eslint_d" }, -- JavaScript linter
+	-- javascriptreact = { "eslint_d" }, -- React linter
+	-- typescript = { "eslint_d" }, -- TypeScript linter
+	-- typescriptreact = { "eslint_d" }, -- React TypeScript linter
 	python = { "ruff" }, -- Python linter
 }
 
