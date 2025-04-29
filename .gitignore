@@ -66,3 +66,4 @@ fish/.config/fish/completions
 Code/.config/Code/User/snippets/editorconfig.code-snippets
 Code/User/snippets/editorconfig.code-snippets
 generation
+dot-config/zsh/.zcompdump

@@ -3,49 +3,43 @@ alias grep='grep --color=auto'
 
 # ls
 if command -v eza &>/dev/null; then
-    alias ls="eza"
-    alias l="eza -l"
-    alias la="eza -la"
-    alias lt="eza --tree"
+  alias ls="eza"
+  alias ll="eza -l"
+  alias la="eza -la"
+  alias lt="eza --tree"
+  alias lR="eza -lR"
 else
-    echo "eza not exist"
-    alias l="ls -l"
-    alias la="ls -la"
+  echo "eza not exist"
+  alias l="ls -l"
+  alias la="ls -la"
 fi
+
+alias rm="trash"
+alias sys="systemctl"
+alias mkdir="mkdir -p"
 
 alias fd="fdfind"
 
 # vim and neovim
 alias v="vim"
-alias nv="nvim"
 alias n="nvim"
-
-# tmux
-alias t="tmux"
-alias tn="tmux new -s"
-alias td="tmux detach"
-alias ta="tmux attach -t"
-alias tk="tmux kill-session -t"
+alias nv="nvim"
 
 # lazy
 alias lzg="lazygit"
 alias lzd="lazydocker"
 
-# python
-alias p='python3'
-alias pm='python3 -m'
-
 # git
-alias gl='git log --oneline --graph'
-alias glm='git log master --oneline --graph'
-alias gt='git stash'
-alias gtp='git stash pop'
-alias gp='git pull'
-alias gP='git push'
-alias gc='git commit -m'
+alias gl='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
 alias gC='git commit'
-alias gs='git switch'
+alias gP='git publish'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gca='git commit -am'
 alias gd='git diff'
 alias gdm='git diff master'
-alias ga='git add .'
-alias gs='git status'
+alias gl='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
+alias gp='git pull'
+alias gs='git status --short --branch --renames'
+alias gt='git stash'
+alias gtp='git stash pop'
