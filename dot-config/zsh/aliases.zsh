@@ -18,7 +18,7 @@ alias rm="trash"
 alias sys="systemctl"
 alias mkdir="mkdir -p"
 
-alias fd="fdfind"
+# alias fd="fdfind"
 
 # vim and neovim
 alias v="vim"

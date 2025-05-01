@@ -3,27 +3,38 @@ fpath=(~/.config/zsh/completions $fpath)
 autoload -Uz compinit
 compinit
 
-source ~/.zplug/init.zsh
+# zinit setup
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # plugins
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zdharma/fast-syntax-highlighting"
-zplug "hlissner/zsh-autopair", defer:2
-zplug "jeffreytse/zsh-vi-mode"
-zplug "Aloxaf/fzf-tab"
+zi light "zsh-users/zsh-completions"
+zi light "zsh-users/zsh-history-substring-search"
+zi light "zsh-users/zsh-autosuggestions"
+zi light "zdharma/fast-syntax-highlighting"
+zi light "hlissner/zsh-autopair"
+zi light "jeffreytse/zsh-vi-mode"
+zi light "Aloxaf/fzf-tab"
+zi ice as"completion"
+zi snippet OMZP::docker/completions/_docker
+zi ice as"completion"
+zi snippet OMZP::docker-compose/_docker-compose
+zi ice as"completion"
+zi snippet https://raw.githubusercontent.com/sharkdp/fd/master/contrib/completion/_fd
+zi ice mv"bun.zsh -> _bun" as"completion"
+zi snippet https://raw.githubusercontent.com/oven-sh/bun/main/completions/bun.zsh
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo
-    zplug install
-  fi
-fi
 
-zplug load # --verbose
+# static config
+source "$HOME/.config/zsh/exports.zsh"
+source "$HOME/.config/zsh/aliases.zsh"
+source "$HOME/.config/zsh/functions.zsh"
 
-source "$HOME/.config/zsh/exec.zsh"
+# exec
+eval "$(fzf --zsh)"
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
