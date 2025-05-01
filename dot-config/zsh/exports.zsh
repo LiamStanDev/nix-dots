@@ -20,6 +20,10 @@ HISTFILE=~/.cache/.zsh_history
 # system
 PATH="/usr/bin:/usr/sbin:/usr/libexec:$PATH"
 
+# nodejs
+export PNPM_HOME="$HOME/.pnpm"
+PATH="$PNPM_HOME:$PATH"
+
 # usr
 PATH="$HOME/.local/bin:$PATH"
 

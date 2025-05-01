@@ -29,6 +29,9 @@ alias nv="nvim"
 alias lzg="lazygit"
 alias lzd="lazydocker"
 
+# nodejs
+alias pn="pnpm"
+
 # git
 alias gl='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
 alias gC='git commit'
