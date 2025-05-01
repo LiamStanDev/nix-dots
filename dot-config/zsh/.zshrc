@@ -1,3 +1,6 @@
+# environment vrariables
+source "$HOME/.config/zsh/exports.zsh"
+
 # enable completion
 fpath=(~/.config/zsh/completions $fpath)
 autoload -Uz compinit
@@ -28,9 +31,7 @@ zi snippet https://raw.githubusercontent.com/sharkdp/fd/master/contrib/completio
 zi ice mv"bun.zsh -> _bun" as"completion"
 zi snippet https://raw.githubusercontent.com/oven-sh/bun/main/completions/bun.zsh
 
-
 # static config
-source "$HOME/.config/zsh/exports.zsh"
 source "$HOME/.config/zsh/aliases.zsh"
 source "$HOME/.config/zsh/functions.zsh"
 

@@ -10,7 +10,7 @@ if command -v eza &>/dev/null; then
   alias lR="eza -lR"
 else
   echo "eza not exist"
-  alias l="ls -l"
+  alias ll="ls -l"
   alias la="ls -la"
 fi
 
