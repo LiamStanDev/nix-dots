@@ -37,12 +37,12 @@
       cmake
       ninja
       rustup
+      nodejs_22
       bun
+      pnpm
       lldb
       go
       uv
       python313
-      nodejs_22
-      bun
     ];
 }

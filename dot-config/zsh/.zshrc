@@ -1,32 +1,29 @@
+# enable completion
+fpath=(~/.config/zsh/completions $fpath)
 autoload -Uz compinit
 compinit
 
-
-### Added by Zinit's installer
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
+source ~/.zplug/init.zsh
 
 # plugins
-zinit light "zdharma-continuum/fast-syntax-highlighting"
-zinit light "zsh-users/zsh-autosuggestions"
-zinit light "zsh-users/zsh-completions"
-zinit light "zsh-users/zsh-history-substring-search"
-zinit light "hlissner/zsh-autopair"
-zinit light "zap-zsh/vim"
-zinit light "zap-zsh/supercharge"
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zdharma/fast-syntax-highlighting"
+zplug "hlissner/zsh-autopair", defer:2
+zplug "jeffreytse/zsh-vi-mode"
+zplug "Aloxaf/fzf-tab"
 
-source $HOME/.config/zsh/exec.zsh
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo
+    zplug install
+  fi
+fi
+
+zplug load # --verbose
+
+source "$HOME/.config/zsh/exec.zsh"
