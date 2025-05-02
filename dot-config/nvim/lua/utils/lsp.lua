@@ -1,29 +1,34 @@
 local M = {}
 
+--- Escape wildcard characters in a path for safe globbing.
+-- @param path string: The path to escape.
+-- @return string: The escaped path.
 local function escape_wildcards(path)
 	return path:gsub("([%[%]%?%*])", "\\%1")
 end
 
---- Appends all elements from the second list to the first list.
--- @param list1 The first list to which elements will be appended.
--- @param list2 The second list whose elements will be appended to the first list.
+--- Append all elements from list2 to list1.
+-- @param list1 table: The list to append to.
+-- @param list2 table: The list whose elements will be appended.
 function M.append_lists(list1, list2)
 	for _, value in ipairs(list2) do
 		table.insert(list1, value)
 	end
 end
 
+--- Flatten a nested table to a single-level table.
+-- @param t table: The table to flatten.
+-- @return table: The flattened table.
 function M.tbl_flatten(t)
 	-- math.huge is used to flatten all levels of the table
 	return vim.iter(t):flatten(math.huge):totable()
 end
 
---- Creates a root directory detection function that looks for files matching the given patterns.
---- @param ... string[] Pattern(s) to search for (e.g. '.git', 'Cargo.toml')
---- @return function # Returns a function that takes a start path and returns the matched root path
+--- Create a root directory detection function that looks for files matching the given patterns.
+-- @param ... string: Pattern(s) to search for (e.g. '.git', 'Cargo.toml')
+-- @return function: Returns a function that takes a start path and returns the matched root path.
 function M.root_pattern(...)
 	local patterns = M.tbl_flatten({ ... })
-
 	return function(startpath)
 		startpath = M.strip_archive_subpath(startpath)
 		for _, pattern in ipairs(patterns) do
@@ -34,7 +39,6 @@ function M.root_pattern(...)
 					end
 				end
 			end)
-
 			if match ~= nil then
 				return match
 			end
@@ -42,10 +46,10 @@ function M.root_pattern(...)
 	end
 end
 
---- Retrieves a list of unique service identifiers based on the provided configuration.
+--- Get a list of unique service identifiers from the config.
 -- This includes LSP servers, formatters, linters, and DAP servers.
--- @param config A table containing configuration for LSP servers, formatters, linters, and DAP servers.
--- @return A list of unique service identifiers.
+-- @param config table: Configuration for LSP servers, formatters, linters, and DAP servers.
+-- @return table: List of unique service identifiers.
 function M.get_service_identifiers(config)
 	local utils = require("utils.lsp")
 	local packages = {}
@@ -76,7 +80,7 @@ function M.get_service_identifiers(config)
 	-- Add linting services
 	for _, servers in pairs(config.linters) do
 		for _, server in ipairs(servers) do
-			local pkg = utils.nvimlint_to_pakcage[server]
+			local pkg = utils.nvimlint_to_package[server]
 			if pkg and not packages_seen[pkg] then
 				table.insert(packages, pkg)
 				packages_seen[pkg] = true
@@ -95,24 +99,34 @@ function M.get_service_identifiers(config)
 	return packages
 end
 
-function M.build_default_capacities()
+--- Build default LSP client capabilities for enhanced language features.
+-- @return table: The capabilities table.
+function M.build_default_capabilities()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-	-- nvim ufo
+	-- Enable foldingRange for nvim-ufo
 	capabilities.textDocument.foldingRange = {
 		dynamicRegistration = false,
 		lineFoldingOnly = true,
 	}
 
-	-- lsp quick start
-	capabilities.textDocument = {
-		semanticTokens = {
-			multilineTokenSupport = true,
-		},
+	-- Enable semanticTokens support
+	capabilities.textDocument.semanticTokens = {
+		multilineTokenSupport = true,
 	}
-	capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+
+	-- Merge with cmp capabilities if available
+	local ok, cmp = pcall(require, "blink.cmp")
+	if ok and cmp.get_lsp_capabilities then
+		capabilities = cmp.get_lsp_capabilities(capabilities)
+	end
+
+	return capabilities
 end
 
+--- Remove archive subpaths from a path (e.g., for zip/tar files).
+-- @param path string: The path to clean.
+-- @return string: The cleaned path.
 function M.strip_archive_subpath(path)
 	-- Matches regex from zip.vim / tar.vim
 	path = vim.fn.substitute(path, "zipfile://\\(.\\{-}\\)::[^\\\\].*$", "\\1", "")
@@ -120,6 +134,10 @@ function M.strip_archive_subpath(path)
 	return path
 end
 
+--- Search ancestor directories for a condition.
+-- @param startpath string: The starting path.
+-- @param func function: The function to call on each ancestor.
+-- @return string|nil: The matching ancestor path, or nil if not found.
 function M.search_ancestors(startpath, func)
 	if nvim_eleven then
 		validate("func", func, "function")
@@ -134,7 +152,6 @@ function M.search_ancestors(startpath, func)
 		if guard == 0 then
 			return
 		end
-
 		if func(path) then
 			return path
 		end
