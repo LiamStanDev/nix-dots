@@ -516,7 +516,7 @@ M.conform_to_package = {
 }
 
 --- Mapping of linter names to their corresponding package names.
-M.nvimlint_to_pakcage = {
+M.nvimlint_to_package = {
 	["actionlint"] = "actionlint",
 	["ansible_lint"] = "ansible-lint",
 	["buf_lint"] = "buf",

@@ -1,3 +1,14 @@
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias c='clear'
+
+alias reload="source ~/.config/zsh/.zshrc"
+
+alias poweroff='systemctl poweroff'
+alias reboot='systemctl reboot'
+
 # Colorize grep output
 alias grep='grep --color=auto'
 
