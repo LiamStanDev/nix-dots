@@ -8,6 +8,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # enable completion
+autoload -Uz compinit
 zi light "zsh-users/zsh-completions"
 zi ice as"completion"
 zi snippet OMZP::docker/completions/_docker
@@ -18,7 +19,6 @@ zi snippet https://raw.githubusercontent.com/sharkdp/fd/master/contrib/completio
 zi ice mv"bun.zsh -> _bun" as"completion"
 zi snippet https://raw.githubusercontent.com/oven-sh/bun/main/completions/bun.zsh
 fpath=(~/.config/zsh/completions $fpath)
-autoload -Uz compinit
 compinit
 
 # plugins
