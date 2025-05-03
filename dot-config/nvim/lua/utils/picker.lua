@@ -21,12 +21,19 @@ local function detect_project_type()
 		or vim.fn.filereadable("src/lib.rs") == 1
 	then
 		return "rust"
-	elseif vim.fn.filereadable("package.json") == 1 then
-		return "javascript"
 	elseif vim.fn.filereadable("go.mod") == 1 or filetype == "go" then
 		return "go"
 	elseif vim.fn.filereadable("pom.xml") == 1 or vim.fn.filereadable("build.gradle") == 1 or filetype == "java" then
 		return "java"
+	elseif
+		vim.fn.filereadable("package.json") == 1
+		or vim.fn.filereadable("tsconfig.json") == 1
+		or filetype == "javascript"
+		or filetype == "typescript"
+		or filetype == "javascriptreact"
+		or filetype == "typescriptreact"
+	then
+		return "js"
 	else
 		return nil
 	end

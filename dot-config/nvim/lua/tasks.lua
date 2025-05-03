@@ -12,6 +12,12 @@ local function run_python_file()
 	return command
 end
 
+local function run_by_node()
+	local command = "node "
+	command = command .. vim.api.nvim_buf_get_name(0)
+	return command
+end
+
 return {
 	cpp_cmake = {
 		{
@@ -43,5 +49,8 @@ return {
 		{ label = "Build", command = "cargo build" },
 		{ label = "Run", command = "cargo run" },
 		{ label = "Test", command = "cargo test" },
+	},
+	js = {
+		{ label = "Run(node)", command = run_by_node() },
 	},
 }

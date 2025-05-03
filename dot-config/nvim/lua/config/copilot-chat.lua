@@ -17,7 +17,7 @@ return function()
 			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
 		},
 		-- model = "o3-mini",
-		model = "claude-3.5-sonnet",
+		model = "claude-3.7-sonnet",
 		sticky = {
 			"#files",
 		},
