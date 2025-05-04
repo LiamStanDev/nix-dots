@@ -3,11 +3,11 @@
 {
   home.packages = with pkgs;
     [
+      # Don't install trash-cli in nixpkgs (completion not work)
       nix-output-monitor
       zsh
       babelfish # translate bash to fish
       openssh
-      trashy
       neovim
       delta
       bat
@@ -44,5 +44,6 @@
       go
       uv
       python313
+      pipx
     ];
 }

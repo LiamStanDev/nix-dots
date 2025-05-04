@@ -3,10 +3,12 @@
 {
   imports = [
     ./bash.nix
-    ./fish.nix
+    ./zsh.nix
+    # ./fish.nix
   ];
 
   programs = {
+    eza.enable = true;
     zoxide.enable = true;
     fzf.enable = true;
     starship = {
@@ -21,6 +23,7 @@
       enable = true;
       enableFishIntegration = true;
       enableBashIntegration = true;
+      enableZshIntegration = true;
       shellWrapperName = "y";
     };
     direnv = {
