@@ -62,7 +62,6 @@
       "..." = "cd ../..";
       "...." = "cd ../../..";
       rm = "echo \"This is not the command you are looking for.\"; false";
-      t = "trash-put";
       sys = "systemctl";
       mkdir = "mkdir -p";
       c = "clear";
@@ -78,6 +77,9 @@
       la = "eza -la";
       lt = "eza --tree";
       lR = "eza -lR";
+
+      # trash-cli
+      t = "trash-put";
 
       # vim and neovim
       v = "vim";
