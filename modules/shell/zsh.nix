@@ -20,15 +20,18 @@
           source "''${ZINIT_HOME}/zinit.zsh"
         '';
         beforeCompInit = lib.mkOrder 550 ''
+          # completions
           zi light "zsh-users/zsh-completions"
         '';
         content = lib.mkOrder 1000 ''
+          # plugins
           zi light "zsh-users/zsh-history-substring-search"
           zi light "zsh-users/zsh-autosuggestions"
           zi light "zdharma/fast-syntax-highlighting"
           zi light "hlissner/zsh-autopair"
           zi light "jeffreytse/zsh-vi-mode"
           zi light "Aloxaf/fzf-tab"
+
           # nodejs
           export PNPM_HOME="$HOME/.pnpm"
           PATH="$PNPM_HOME:$PATH"
@@ -37,7 +40,8 @@
           PATH="$HOME/.local/bin:$PATH"
           
           # rust
-          PATH="$HOME/.cargo/bin:$PATH"
+          export RUSTPATH="$HOME/.cargo/bin"
+          PATH="$RUSTPATH:$PATH"
 
           function fix_corrupt() {
               if [ -f $HOME/.zsh_history ]; then

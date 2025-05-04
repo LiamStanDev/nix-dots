@@ -50,7 +50,7 @@ return function()
 			completion = { menu = { auto_show = true } },
 		},
 		sources = {
-			default = function(_)
+			default = function()
 				local cmp_dap = require("cmp_dap")
 				local sql_filetypes = { mysql = true, sql = true }
 				if sql_filetypes[vim.bo.filetype] ~= nil then
