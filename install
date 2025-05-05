@@ -1,28 +1,28 @@
 #!/bin/bash
 
 if ! make link; then
-    echo "❌ make link failed!"
-    exit 1
+  echo "❌ make link failed!"
+  exit 1
 fi
 
 # Install Nix
 if command -v nix-env >/dev/null 2>&1; then
-    echo "✅ Nix is already installed"
+  echo "✅ Nix is already installed"
 else
-    echo "📦 Installing Nix..."
-    if ! sh <(curl -L https://nixos.org/nix/install) --no-daemon; then
-        echo "❌ Nix installation failed!"
-        exit 1
-    fi
-    echo "✅ Nix Installed!"
+  echo "📦 Installing Nix..."
+  if ! sh <(curl -L https://nixos.org/nix/install) --no-daemon; then
+    echo "❌ Nix installation failed!"
+    exit 1
+  fi
+  echo "✅ Nix Installed!"
 fi
 
 # Source Nix profile
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 else
-    echo "❌ Nix profile not found. Installation may have failed."
-    exit 1
+  echo "❌ Nix profile not found. Installation may have failed."
+  exit 1
 fi
 
 # Configure Nix
@@ -36,4 +36,4 @@ nix-channel --add https://github.com/nix-community/home-manager/archive/master.t
 nix-channel --update
 nix-shell '<home-manager>' -A install
 # home-manager switch --flake .#profile --verbose -b bckp
-echo "🎉 Installation Complete! You can use $(shell chsh -s /bin/fish)."
+echo "🎉 Installation Complete! You can use $(shell chsh -s /bin/zsh)."
