@@ -1,4 +1,5 @@
-local use_pokemon = vim.fn.executable("pokemon-colorscripts") == 1
+-- local use_pokemon = vim.fn.executable("pokemon-colorscripts") == 1
+local use_pokemon = false
 local G = require("core")
 
 local sections = {}

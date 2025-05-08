@@ -10,6 +10,7 @@
       openssh
       neovim
       delta
+      unzip
       bat
       ripgrep
       cacert # for $SSL_CERT_FILE not found error
