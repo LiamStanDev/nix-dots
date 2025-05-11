@@ -42,29 +42,27 @@ end
 
 M.mason_updates = function()
 	local registry = require("mason-registry")
-	local installed_packages = registry.get_installed_package_names()
-	local upgrades_available = false
-	local packages_outdated = 0
-	function myCallback(success, result_or_err)
-		if success then
-			upgrades_available = true
-			packages_outdated = packages_outdated + 1
+	-- get a list of all installed package names
+	local installed = registry.get_installed_package_names()
+	local outdated_count = 0
+
+	for _, name in ipairs(installed) do
+		local pkg = registry.get_package(name)
+		if pkg then
+			-- synchronous call to get the latest available version
+			local latest = pkg:get_latest_version()
+			-- installed version is on pkg.version
+			local current = pkg.version
+			if current ~= latest then
+				outdated_count = outdated_count + 1
+			end
 		end
 	end
 
-	for _, pkg in pairs(installed_packages) do
-		local p = registry.get_package(pkg)
-		if p then
-			p:check_new_version(myCallback)
-		end
-	end
-
-	if upgrades_available then
-		return packages_outdated
-	else
-		return 0
-	end
+	-- return number of packages that can be upgraded (0 if none)
+	return outdated_count
 end
+
 local copilot_status = function()
 	local status_c, client = pcall(require, "copilot.client")
 	local status_a, api = pcall(require, "copilot.api")
