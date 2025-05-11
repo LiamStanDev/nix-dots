@@ -335,6 +335,7 @@ M.lspconfig_to_package = {
 	["spectral"] = "spectral-language-server",
 	["sqlls"] = "sqlls",
 	["sqls"] = "sqls",
+	["postgres_lsp"] = "postgrestools",
 	["standardrb"] = "standardrb",
 	["starlark_rust"] = "starlark-rust",
 	["starpls"] = "starpls",

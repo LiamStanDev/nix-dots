@@ -39,6 +39,7 @@
           
           # usr
           PATH="$HOME/.local/bin:$PATH"
+          PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
           
           # rust
           export RUSTPATH="$HOME/.cargo/bin"

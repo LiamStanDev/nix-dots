@@ -34,7 +34,8 @@ G.code_hl_servers = {
 -- stylua: ignore
 G.lsp_servers = {
   "lua_ls", "pyright", "bashls", "ts_ls", "taplo", "rust_analyzer", "cmake",
-  "clangd", "nil_ls", "dockerls", "docker_compose_language_service", "jsonls", "html"
+  "clangd", "nil_ls", "dockerls", "docker_compose_language_service", "jsonls",
+  "html", "postgres_lsp"
 }
 
 --[[ Formatters for code formatting

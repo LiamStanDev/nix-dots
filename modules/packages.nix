@@ -45,5 +45,6 @@
       uv
       python313
       pipx
+      kubectl
     ];
 }
