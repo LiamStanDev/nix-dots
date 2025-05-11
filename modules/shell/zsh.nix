@@ -21,6 +21,7 @@
         '';
         beforeCompInit = lib.mkOrder 550 ''
           # completions
+          FPATH="$HOME/.zfunc:$FPATH"
           zi light "zsh-users/zsh-completions"
         '';
         content = lib.mkOrder 1000 ''

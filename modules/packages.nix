@@ -37,7 +37,6 @@
       clang
       cmake
       ninja
-      rustup
       nodejs_22
       bun
       pnpm
