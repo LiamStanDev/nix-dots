@@ -39,6 +39,7 @@
       ninja
       nodejs_22
       bun
+      deno
       pnpm
       lldb
       go
