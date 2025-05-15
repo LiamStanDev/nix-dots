@@ -103,11 +103,6 @@ return {
 				-- extraArgs = { "--no-deps" }, -- Only check/analyze your project's own code
 			},
 			checkOnSave = true,
-			diagnostics = {
-				experimental = {
-					enable = true, -- Enable experimental diagnostics.
-				},
-			},
 			cargo = {
 				allTargets = false, -- Do not check all targets by default.
 				features = "all", -- Enable all features.
