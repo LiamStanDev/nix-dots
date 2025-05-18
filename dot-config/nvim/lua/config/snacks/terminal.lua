@@ -6,14 +6,14 @@ local G = require("core")
 local map = vim.keymap.set
 -- Usage: toggle term with id is 8 for example
 -- press 8 and then presss `<A-`>`
-map({ "n", "v", "i", "t" }, "<M-`>", function()
-	Snacks.terminal.toggle(nil, {
-		win = {
-			height = 0.3,
-			position = "bottom",
-		},
-	})
-end, { desc = "Terminal" })
+-- map({ "n", "v", "i", "t" }, "<M-`>", function()
+-- 	Snacks.terminal.toggle(nil, {
+-- 		win = {
+-- 			height = 0.3,
+-- 			position = "bottom",
+-- 		},
+-- 	})
+-- end, { desc = "Terminal" })
 
 for i = 1, 9 do
 	map({ "n", "t" }, string.format("<M-%d>", i), function()

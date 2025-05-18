@@ -377,16 +377,16 @@ return {
 	},
 
 	-- quit bad vim habit
-	{
-		"m4xshen/hardtime.nvim",
-		event = "VeryLazy",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		opts = {
-			enabled = G.quit_bad_habit,
-			max_count = 4,
-			disable_mouse = false,
-		},
-	},
+	-- {
+	-- 	"m4xshen/hardtime.nvim",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = { "MunifTanjim/nui.nvim" },
+	-- 	opts = {
+	-- 		enabled = G.quit_bad_habit,
+	-- 		max_count = 4,
+	-- 		disable_mouse = false,
+	-- 	},
+	-- },
 
 	{
 		"otavioschwanck/arrow.nvim",
