@@ -12,6 +12,9 @@
       delta
       unzip
       bat
+      zellij # rust replacement of tmux
+      bottom # rust replacement of top
+      tealdeer # rust replacement of tldr
       ripgrep
       cacert # for $SSL_CERT_FILE not found error
       wget
