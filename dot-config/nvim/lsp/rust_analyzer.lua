@@ -117,6 +117,9 @@ return {
 					["napi-derive"] = { "napi" },
 					["async-recursion"] = { "async_recursion" },
 				},
+				attributes = {
+					enable = { "*" },
+				},
 			},
 			imports = {
 				granularity = {
