@@ -16,10 +16,13 @@ return function()
 			width = 0.35, -- fractional width of parent, or absolute width in columns when > 1
 			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
 		},
-		-- model = "o3-mini",
-		model = "claude-3.7-sonnet",
+
+		model = "gpt-4.1", -- stable
+		-- model = "claude-3.7-sonnet", -- unstable
+
+		-- see: https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file#contexts
 		sticky = {
-			"#files",
+			"#buffer", -- current buffer content
 		},
 
 		show_help = false,
@@ -66,7 +69,7 @@ return function()
 	local picker = require("utils.picker")
 	-- copilot chat
 	local map = vim.keymap.set
-	map({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
+	map({ "n", "i", "v", "t" }, "<A-/>", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })
 	map({ "n", "v" }, "<leader>aa", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" }) -- NOTE: dont remap to term mode, it will cause term space key lagging
 	map({ "n", "v" }, "<leader>ax", function()
 		return require("CopilotChat").reset()
