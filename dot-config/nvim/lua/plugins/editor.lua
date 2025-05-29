@@ -214,6 +214,7 @@ return {
 					{ "<leader>ul", "<CMD>Lazy<CR>", desc = "Lazy" },
 					{ "<leader>uL", "<CMD>Leet<CR>", desc = "Leetcode" },
 					{ "<leader>d", group = "Debug", mode = "n" },
+					{ "<leader>x", group = "Trouble", mode = "n" },
 					{ "[", group = "prev" },
 					{ "]", group = "next" },
 					{ "g", group = "goto" },

@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gr", function() fzf.lsp_references({ winopts = { relative = "cursor", height = 0.3, width = 0.6 } }) end, { desc = "Go to References" })
     map("n", "gi", function() fzf.lsp_implementations({ winopts = { relative = "cursor", height = 0.3, width = 0.6 } }) end, { desc = "Go to Implementations" })
     map("n", "gf", function() fzf.lsp_finder({ winopts = { relative = "cursor", height = 0.3, width = 0.6 } }) end, { desc = "Lsp Finder" })
-    map("n", "gO", "<CMD>Trouble symbols toggle win.position=right<CR>", { desc = "Outline Symbols" })
+    map("n", "gO", "<CMD>Trouble symbols toggle pinned=true win.relative=win win.position=right<CR>", { desc = "Outline Symbols" })
     map("n", "gn", function() vim.lsp.buf.rename() end, { desc = "Rename" })
     map("n", "ga", function() fzf.lsp_code_actions({ winopts = { relative = "cursor", width = 0.45, height = 0.6, preview = { vertical = "up:65%", layout = "vertical", }, }, }) end, { desc = "Code Action" })
     map("n", "gw", function() fzf.diagnostics_workspace() end, { desc = "Show Workspace Diagnostics" })
@@ -50,8 +50,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.bo[event.buf].omnifunc = nil
 		-- vim.keymap.del("n", "gO", { buffer = event.buf }) -- NOTE: can't unmap
 
-		-- Enable documentHighlight if supported by the LSP client
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		local bufnr = event.buf
+
+		-- Enable documentHighlight if supported by the LSP client
 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 				buffer = event.buf,
@@ -139,6 +141,7 @@ return {
 			},
 		},
 	},
+
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
@@ -203,6 +206,47 @@ return {
 				actions = true,
 				completion = true,
 				hover = true,
+			},
+		},
+	},
+
+	-- workspace diagnostics / symbols
+	{
+		"folke/trouble.nvim",
+		cmd = { "Trouble" },
+		config = require("config.trouble"),
+		keys = {
+			{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+			{ "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+			{ "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+			{ "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+			{
+				"[q",
+				function()
+					if require("trouble").is_open() then
+						require("trouble").prev({ skip_groups = true, jump = true })
+					else
+						local ok, err = pcall(vim.cmd.cprev)
+						if not ok then
+							vim.notify(err, vim.log.levels.ERROR)
+						end
+					end
+				end,
+				desc = "Previous Trouble/Quickfix Item",
+			},
+			{
+				"]q",
+				function()
+					if require("trouble").is_open() then
+						require("trouble").next({ skip_groups = true, jump = true })
+					else
+						local ok, err = pcall(vim.cmd.cnext)
+						if not ok then
+							vim.notify(err, vim.log.levels.ERROR)
+						end
+					end
+				end,
+				desc = "Next Trouble/Quickfix Item",
 			},
 		},
 	},

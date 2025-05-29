@@ -16,7 +16,7 @@ keybinds clear-defaults=true {
         // bind "Ctrl t" { SwitchToMode "tab"; }
         // bind "Ctrl m" { SwitchToMode "move"; }
         // bind "Ctrl r" { SwitchToMode "resize"; }
-        bind "Ctrl s" { SwitchToMode "scroll"; }
+        // bind "Ctrl s" { SwitchToMode "scroll"; }
     }
 
     pane {
