@@ -1,12 +1,16 @@
 local wezterm = require("wezterm")
 
 local fonts = {
-	"Comic Mono",
+	-- "Comic Mono",
+	{
+		family = "JetBrains Mono",
+		harfbuzz_features = { "calt=0", "clig=0", "liga=0" }, -- no ligature
+	},
 	"CaskaydiaCove Nerd Font",
 	"Yozai",
 }
 
-local font_size = 14
+local font_size = 13
 
 return {
 	font = wezterm.font_with_fallback(fonts),

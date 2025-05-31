@@ -50,5 +50,9 @@
       python313
       pipx
       kubectl
+
+      # fonts
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.jetbrains-mono
     ];
 }

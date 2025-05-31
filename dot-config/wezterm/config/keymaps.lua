@@ -15,31 +15,40 @@ local keys = {
    { key = 'v',     mods = 'CTRL|SHIFT',  action = act.PasteFrom('Clipboard') },
 
    -- panes
-   { key = 'k',     mods = 'CTRL|ALT',    action = act.ActivatePaneDirection('Up') },
-   { key = 'j',     mods = 'CTRL|ALT',    action = act.ActivatePaneDirection('Down') },
-   { key = 'h',     mods = 'CTRL|ALT',    action = act.ActivatePaneDirection('Left') },
-   { key = 'l',     mods = 'CTRL|ALT',    action = act.ActivatePaneDirection('Right') },
+   -- { key = 'k',     mods = 'CTRL|ALT',    action = act.ActivatePaneDirection('Up') },
+   -- { key = 'j',     mods = 'CTRL|ALT',    action = act.ActivatePaneDirection('Down') },
+   -- { key = 'h',     mods = 'CTRL|ALT',    action = act.ActivatePaneDirection('Left') },
+   -- { key = 'l',     mods = 'CTRL|ALT',    action = act.ActivatePaneDirection('Right') },
 
-   { key = [[\]],   mods = 'CTRL|ALT',      action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-   { key = [[-]],   mods = 'CTRL|ALT',      action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+   -- { key = [[\]],   mods = 'CTRL|ALT',      action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+   -- { key = [[-]],   mods = 'CTRL|ALT',      action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
 
    -- { key = 'k',     mods = 'LEADER',      action = act.AdjustPaneSize({ "Up", 5 }) },
    -- { key = 'j',     mods = 'LEADER',      action = act.AdjustPaneSize({ "Down", 5 }) },
    -- { key = 'h',     mods = 'LEADER',      action = act.AdjustPaneSize({ "Left", 15 }) },
    -- { key = 'l',     mods = 'LEADER',      action = act.AdjustPaneSize({ "Right", 15 }) },
 
-   { key = 's',     mods = 'CTRL|ALT',      action = act.PaneSelect({ alphabet = "1234567890", mode = "SwapWithActiveKeepFocus" }) },
-   { key = 'm',     mods = 'CTRL|ALT',      action = act.TogglePaneZoomState },
-   { key = 'x',     mods = 'CTRL|ALT',      action = act.CloseCurrentPane({ confirm = false }) },
+   -- { key = 's',     mods = 'CTRL|ALT',      action = act.PaneSelect({ alphabet = "1234567890", mode = "SwapWithActiveKeepFocus" }) },
+   -- { key = 'f',     mods = 'CTRL|ALT',      action = act.TogglePaneZoomState },
+   -- { key = 'x',     mods = 'CTRL|ALT',      action = act.CloseCurrentPane({ confirm = false }) },
 
    -- tab
-   { key = 't',     mods = 'CTRL|ALT',      action = act.SpawnTab('CurrentPaneDomain') },
-   { key = 'w',     mods = 'CTRL|ALT',      action = act.CloseCurrentTab({ confirm = false }) },
+   -- { key = 't',     mods = 'CTRL|ALT',      action = act.SpawnTab('CurrentPaneDomain') },
+   -- { key = 'x',     mods = 'CTRL|ALT',      action = act.CloseCurrentTab({ confirm = false }) },
 
-   { key = '[',     mods = 'CTRL|ALT',      action = act.ActivateTabRelative(-1) },
-   { key = ']',     mods = 'CTRL|ALT',      action = act.ActivateTabRelative(1) },
-   { key = '{',     mods = 'CTRL|ALT|SHIFT',      action = act.MoveTabRelative(-1) },
-   { key = '}',     mods = 'CTRL|ALT|SHIFT',      action = act.MoveTabRelative(1) },
+   -- { key = '[',     mods = 'CTRL|ALT',      action = act.ActivateTabRelative(-1) },
+   -- { key = ']',     mods = 'CTRL|ALT',      action = act.ActivateTabRelative(1) },
+   -- { key = '{',     mods = 'CTRL|ALT|SHIFT',      action = act.MoveTabRelative(-1) },
+   -- { key = '}',     mods = 'CTRL|ALT|SHIFT',      action = act.MoveTabRelative(1) },
+
+
+   { key = 't',     mods = 'LEADER',      action = act.SpawnTab('CurrentPaneDomain') },
+   { key = 'x',     mods = 'LEADER',      action = act.CloseCurrentTab({ confirm = false }) },
+
+   { key = '[',     mods = 'LEADER',      action = act.ActivateTabRelative(-1) },
+   { key = ']',     mods = 'LEADER',      action = act.ActivateTabRelative(1) },
+   { key = '{',     mods = 'LEADER|SHIFT',      action = act.MoveTabRelative(-1) },
+   { key = '}',     mods = 'LEADER|SHIFT',      action = act.MoveTabRelative(1) },
 
 
    -- resizes fonts
@@ -53,15 +62,15 @@ local keys = {
       }),
    },
    -- resize panes
-   {
-      key = 'p',
-      mods = 'LEADER',
-      action = act.ActivateKeyTable({
-         name = 'resize_pane',
-         one_shot = false,
-         timemout_miliseconds = 1000,
-      }),
-   },
+   -- {
+   --    key = 'p',
+   --    mods = 'LEADER',
+   --    action = act.ActivateKeyTable({
+   --       name = 'resize_pane',
+   --       one_shot = false,
+   --       timemout_miliseconds = 1000,
+   --    }),
+   -- },
 
 }
 

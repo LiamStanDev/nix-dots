@@ -8,8 +8,8 @@ return {
 	-- ref: https://wezfurlong.org/wezterm/config/lua/WslDomain.html
 	wsl_domains = {
 		{
-			name = "WSL:Ubuntu",
-			distribution = "Ubuntu",
+			name = "WSL:Arch",
+			distribution = "Arch",
 			username = "liam",
 			default_cwd = "~",
 		},

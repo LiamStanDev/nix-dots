@@ -2,7 +2,7 @@ local colors = require("colors.colorscheme")
 
 return {
 	term = "xterm-256color",
-	-- enable_wayland = true,
+	enable_wayland = true,
 
 	-- gpu (vm can't use webgpu)
 	front_end = "OpenGL", -- WebGpu, OpenGL (Support transparent background in windows), Software

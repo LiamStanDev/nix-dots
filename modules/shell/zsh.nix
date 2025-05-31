@@ -33,6 +33,13 @@
           zi light "jeffreytse/zsh-vi-mode"
           zi light "Aloxaf/fzf-tab"
 
+          # environment
+          export EDITOR=nvim
+          if [[ "$DESKTOP_SESSION" == "niri" ]]; then
+              # vscode for wayland
+              alias code="code --password-store=gnome-libsecret --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime"
+          fi
+
           # nodejs
           export PNPM_HOME="$HOME/.pnpm"
           PATH="$PNPM_HOME:$PATH"
@@ -40,21 +47,14 @@
           # usr
           PATH="$HOME/.local/bin:$PATH"
           PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
+          # go
+          PATH=$HOME/go/bin:$PATH
           
           # rust
           export RUSTPATH="$HOME/.cargo/bin"
           PATH="$RUSTPATH:$PATH"
 
-          function fix_corrupt() {
-              if [ -f $HOME/.zsh_history ]; then
-                  mv $HOME/.zsh_history $HOME/.zsh_history_bad
-                  strings $HOME/.zsh_history_bad >$HOME/.zsh_history
-                  fc -R $HOME/.zsh_history
-                  if [ -f $HOME/.zsh_history_bad ]; then
-                      rm $HOME/.zsh_history_bad
-                  fi
-              fi
-          }
         '';
         afterContent = lib.mkOrder 1000 "";
       in

@@ -32,13 +32,25 @@ end
 
 -- platform specific
 if platform.is_win then
-	options.default_prog = { "wsl", "~" }
+	options.default_prog = { "wsl", "~", "--exec", "zsh", "-c", "zellij" }
 	table.insert(options.launch_menu, {
 		label = create_label("=== Windows Terminals ===", catppuccin.yellow),
 	})
 	table.insert(options.launch_menu, {
+		label = create_label("Fedora", catppuccin.yellow),
+		args = { "wsl", "~", "-d", "Fedora" },
+	})
+	table.insert(options.launch_menu, {
+		label = create_label("Debian", catppuccin.yellow),
+		args = { "wsl", "~", "-d", "Debian" },
+	})
+	table.insert(options.launch_menu, {
+		label = create_label("Arch", catppuccin.yellow),
+		args = { "wsl", "~", "-d", "Arch" },
+	})
+	table.insert(options.launch_menu, {
 		label = create_label("Ubuntu", catppuccin.yellow),
-		args = { "wsl", "~" },
+		args = { "wsl", "~", "-d", "Ubuntu" },
 	})
 	table.insert(options.launch_menu, {
 		label = create_label("PowerShell Core", catppuccin.yellow),
@@ -70,7 +82,7 @@ elseif platform.is_mac then
 		args = { "zsh", "-l" },
 	})
 elseif platform.is_linux then
-	options.default_prog = { "zsh" }
+	options.default_prog = { "zsh", "-c", "zellij"  }
 	table.insert(options.launch_menu, {
 		label = create_label("=== Linux Terminals ===", catppuccin.yellow),
 	})
