@@ -1,0 +1,316 @@
+spawn-at-startup "~/.config/niri/scripts/theme.sh" // see: https://github.com/YaLTeR/niri/wiki/Xwayland#using-xwayland-satellite
+spawn-at-startup "xwayland-satellite" // see: https://github.com/YaLTeR/niri/wiki/Xwayland#using-xwayland-satellite
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+environment {
+    DISPLAY ":0" // xwayland. see: https://github.com/YaLTeR/niri/wiki/Xwayland#using-xwayland-satellite
+
+    GDK_BACKEND "wayland"
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt5ct"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    CLUTTER_BACKEND "wayland"
+
+    // Electron
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+
+    //GTK_IM_MODULE "wayland"
+    // QT_IM_MODULE "fcitx"
+    // XMODIFIERS "@im=fcitx" // for XWayland
+    // GLFW_IM_MODULE "ibus" // for kitty terminal
+    // QT_IM_MODULES "wayland;fcitx;ibus"
+
+    GTK_IM_MODULE "ibus"
+    QT_IM_MODULE "ibus"
+    INPUT_METHOD "ibus"
+    XMODIFIERS "@im=ibus" // for XWayland
+    SDL_IM_MODULE "ibus" // for SDL library gaming
+}
+
+
+binds {
+    // ------------------------------------------------------------
+    // ---------------------- System ------------------------------
+    // ------------------------------------------------------------
+    Mod+Shift+Slash                                 { show-hotkey-overlay; }
+    Mod+Q                                           { close-window; }
+    Mod+O repeat=false                              { toggle-overview; }
+    Mod+Shift+P                                     { power-off-monitors; }
+    Mod+Shift+Q                                     { spawn "wlogout"; }
+
+    // screen shot
+    Mod+S                                           { screenshot; }
+    Mod+Shift+S                                     { screenshot-screen; }
+    Print                                           { screenshot; }
+    Ctrl+Print                                      { screenshot-screen; }
+    Alt+Print                                       { screenshot-window; }
+
+    // ------------------------------------------------------------
+    // -------------------- Launch App ----------------------------
+    // ------------------------------------------------------------
+    Mod+Return                                      { spawn "wezterm"; }
+    Mod+Space                                       { spawn "fuzzel"; }
+    Super+Alt+L                                     { spawn "swaylock"; }
+    Mod+B                                           { spawn "google-chrome"; }
+    Mod+E                                           { spawn "nautilus"; }
+    Mod+N                                           { spawn "~/.config/niri/scripts/notify-focused-window.sh"; }
+
+    // ------------------------------------------------------------
+    // -------------------- Window Management ---------------------
+    // ------------------------------------------------------------
+    // column
+    Mod+H                                           { focus-column-left; }
+    Mod+J                                           { focus-window-down; }
+    Mod+K                                           { focus-window-up; }
+    Mod+L                                           { focus-column-right; }
+    Mod+Shift+H                                     { move-column-left; }
+    Mod+Shift+J                                     { move-window-down; }
+    Mod+Shift+K                                     { move-window-up; }
+    Mod+Shift+L                                     { move-column-right; }
+    Mod+BracketLeft                                 { consume-or-expel-window-left; }
+    Mod+BracketRight                                { consume-or-expel-window-right; }
+    Mod+R                                           { switch-preset-column-width; }
+    Mod+M                                           { maximize-column; }
+    Mod+Ctrl+M                                      { fullscreen-window; }
+    Mod+C                                           { center-column; }
+    Mod+F                                           { toggle-window-floating; }
+    Mod+Minus                                       { set-column-width "-10%"; }
+    Mod+Equal                                       { set-column-width "+10%"; }
+    Mod+Shift+Minus                                 { set-window-height "-10%"; }
+    Mod+Shift+Equal                                 { set-window-height "+10%"; }
+
+    // workspace
+    Mod+1                                           { focus-workspace 1; }
+    Mod+2                                           { focus-workspace 2; }
+    Mod+3                                           { focus-workspace 3; }
+    Mod+4                                           { focus-workspace 4; }
+    Mod+5                                           { focus-workspace 5; }
+    Mod+6                                           { focus-workspace 6; }
+    Mod+7                                           { focus-workspace 7; }
+    Mod+8                                           { focus-workspace 8; }
+    Mod+9                                           { focus-workspace 9; }
+    Mod+Shift+1                                     { move-column-to-workspace 1; }
+    Mod+Shift+2                                     { move-column-to-workspace 2; }
+    Mod+Shift+3                                     { move-column-to-workspace 3; }
+    Mod+Shift+4                                     { move-column-to-workspace 4; }
+    Mod+Shift+5                                     { move-column-to-workspace 5; }
+    Mod+Shift+6                                     { move-column-to-workspace 6; }
+    Mod+Shift+7                                     { move-column-to-workspace 7; }
+    Mod+Shift+8                                     { move-column-to-workspace 8; }
+    Mod+Shift+9                                     { move-column-to-workspace 9; }
+    Mod+Tab                                         { focus-workspace-previous; }
+
+    // monitor
+    Mod+Left                                        { focus-monitor-left; }
+    Mod+Down                                        { focus-monitor-down; }
+    Mod+Up                                          { focus-monitor-up; }
+    Mod+Right                                       { focus-monitor-right; }
+    Mod+Shift+Left                                  { move-column-to-monitor-left; }
+    Mod+Shift+Down                                  { move-column-to-monitor-down; }
+    Mod+Shift+Up                                    { move-column-to-monitor-up; }
+    Mod+Shift+Right                                 { move-column-to-monitor-right; }
+
+    // ------------------------------------------------------------
+    // ---------------------------- Misc --------------------------
+    // ------------------------------------------------------------
+    XF86AudioRaiseVolume     allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    XF86AudioLowerVolume     allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioMute            allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    Mod+WheelScrollDown      cooldown-ms=150        { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150        { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150        { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150        { move-column-to-workspace-up; }
+    Mod+Shift+WheelScrollDown                       { focus-column-right; }
+    Mod+Shift+WheelScrollUp                         { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown                  { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp                    { move-column-left; }
+}
+
+
+input {
+    keyboard {
+        xkb {
+            // see xkeyboard-config(7).
+            layout "us"
+            options "caps:escape"
+        }
+
+        numlock // Enable numlock on startup, omitting this setting disables it.
+    }
+
+    touchpad {
+        // off
+        tap // tap to click
+        dwt // disable when typing
+        natural-scroll
+        accel-speed 0.6
+        scroll-method "two-finger"
+        scroll-factor 0.2
+        // disabled-on-external-mouse
+    }
+
+    mouse {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "no-scroll"
+    }
+}
+
+// You can configure outputs by their name, which you can find
+// by running `niri msg outputs` while inside a niri instance.
+// The built-in laptop monitor is usually called "eDP-1".
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+// Remember to uncomment the node by removing "/-"!
+/-output "eDP-1" {
+    // Uncomment this line to disable this output.
+    // off
+
+    // Resolution and, optionally, refresh rate of the output.
+    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
+    // If the refresh rate is omitted, niri will pick the highest refresh rate
+    // for the resolution.
+    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
+    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
+    mode "1920x1080@120.030"
+
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    scale 2
+
+    // Transform allows to rotate the output counter-clockwise, valid values are:
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+
+    // Position of the output in the global coordinate space.
+    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
+    // The cursor can only move between directly adjacent outputs.
+    // Output scale and rotation has to be taken into account for positioning:
+    // outputs are sized in logical, or scaled, pixels.
+    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
+    // so to put another output directly adjacent to it on the right, set its x to 1920.
+    // If the position is unset or results in an overlap, the output is instead placed
+    // automatically.
+    position x=1280 y=0
+}
+
+layout {
+    // Set gaps around windows in logical pixels.
+    gaps 10
+    // background-color "#003300"
+    center-focused-column "never"
+    always-center-single-column
+
+    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.8
+    }
+
+    default-column-width { proportion 0.66667; }
+
+    focus-ring {
+        // off
+        width 2
+        active-color "#ffc87f"
+        // inactive-color "#505050"
+        // active-color "#74c7ec"
+        // catppuccin-mocha Surface2
+        inactive-color "#585b70"
+    }
+
+    // You can also add a border. It's similar to the focus ring, but always visible.
+    border {
+        off
+        // width 2
+        // active-gradient from="#f38ba8" to="#f9e2af" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#585b70" to="#7f849c" angle=45 relative-to="workspace-view"
+    }
+}
+
+// ring/border without backgroud color
+prefer-no-csd
+
+animations {
+    // off
+
+    slowdown 1.7
+
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+
+    window-open {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    config-notification-open-close {
+        spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+    }
+}
+
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Round corner
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// Floating window
+window-rule {
+    match app-id="Alacritty"
+    match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
+    open-floating true
+    default-floating-position x=0 y=0 relative-to="top-right"
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+    min-width 600
+    max-width 600
+    min-height 500
+    max-height 500
+}

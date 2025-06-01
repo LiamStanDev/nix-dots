@@ -1,0 +1,13 @@
+#!/bin/bash
+LOCKER="/usr/bin/swaylock"
+
+case $1 in
+    suspend)
+        $LOCKER
+        sleep 1
+        systemctl suspend
+        ;;
+    *)
+        $LOCKER
+        ;;
+esac

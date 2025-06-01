@@ -69,3 +69,4 @@ generation
 dot-config/zsh/.zcompdump
 dot-config/zsh/.config/zsh/.zcompdump
 dot-config/zsh/.config/zsh/.zsh_history
+dot-desktop/fcitx5/conf/cached_layouts

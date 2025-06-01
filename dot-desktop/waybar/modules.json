@@ -1,0 +1,153 @@
+{
+  "mpris": {
+    "interval": 1,
+    "tooltip": true,
+    "tooltip-format": "{dynamic}",
+    "format": "  {player} ({status})",
+    "format-stopped": " Not Playing"
+  },
+  "mpris#2": {
+    "format": "",
+    "format-disconnected": "",
+    "format-paused": "",
+    "format-stopped": "",
+    "on-click": "playerctl previous"
+  },
+  "mpris#3": {
+    "format": "{status_icon}",
+    "format-paused": "{status_icon}",
+    "format-stopped": "",
+    "status-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "on-click": "playerctl play-pause"
+  },
+  "mpris#4": {
+    "format": "",
+    "format-disconnected": "",
+    "format-paused": "",
+    "format-stopped": "",
+    "on-click": "playerctl next"
+  },
+  "custom/idle_inhibitor": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/toggle-swayidle.sh --status",
+    "interval": 3,
+    "on-click": "~/.config/waybar/scripts/toggle-swayidle.sh"
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "clock": {
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#bb9af7'><b>{}</b></span>", // Purple
+        "days": "<span color='#7aa2f7'><b>{}</b></span>", // Blue
+        "weeks": "<span color='#9ece6a'><b>W{}</b></span>", // Green
+        "weekdays": "<span color='#e0af68'><b>{}</b></span>", // Yellow
+        "today": "<span background='#2ac3de' color='#1a1b26'><b><u>{}</u></b></span>" // Cyan background with dark text
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    },
+    "format": "{:%a %d %b | %I:%M %p}",
+    "format-alt": "  {:%Y-%m-%d  %H:%M:%S}",
+    "interval": 1
+  },
+
+  "custom/system": {
+    "format": "",
+    "tooltip": false
+  },
+  "cpu": {
+    "format": " {usage: >3}%",
+    "on-click": "alacritty -e btm"
+  },
+  "memory": {
+    "format": " {: >3}%",
+    "on-click": "alacritty -e btm"
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "  {temperatureC}°C"
+  },
+  "disk": {
+    "format": " {percentage_used}% ",
+    "path": "/"
+  },
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "not-memory",
+      "transition-left-to-right": false
+    },
+    "modules": ["custom/system", "disk", "cpu", "memory"]
+  },
+  "backlight": {
+    "format": "{icon} {percent: >3}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "scroll-step": 5
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity: >3}%",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-alt": "{icon}  {time}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+    "format": "⚠  Disabled",
+    "format-wifi": "  {essid}",
+    "format-ethernet": "  Wired",
+    "format-disconnected": "⚠  Disconnected",
+    "tooltip-format": " {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+    "tooltip-format-disconnected": "⚠  Disconnected",
+    "on-click": "pkill alacritty || alacritty -e nmtui"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume: >3}%",
+    "format-bluetooth": "{icon} {volume: >3}%",
+    "format-muted": " muted",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click": "pkill pavucontrol || pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout -p layer-shell",
+    "tooltip": false
+  },
+  "custom/launcher": {
+    "format": "",
+    "on-click": "pkill fuzzel || fuzzel",
+    "tooltip": false
+  }
+}
