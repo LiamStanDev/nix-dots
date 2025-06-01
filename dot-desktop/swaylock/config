@@ -1,4 +1,5 @@
-color=1e1e2eff
+#color=1e1e2eff
+image="$HOME/Pictures/Wallpapers/night.jpg"
 font=JetBrainsMono Nerd Font
 indicator-radius=200
 indicator-thickness=20
