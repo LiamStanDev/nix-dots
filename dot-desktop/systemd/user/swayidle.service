@@ -6,6 +6,6 @@ Requisite=graphical-session.target
 [Service]
 ExecStart=/usr/bin/swayidle -w \
   timeout 601 'niri msg action power-off-monitors' \
-  timeout 600 '/usr/bin/swaylock -f --config /home/liam/.config/swaylock/config' \
-  before-sleep '/usr/bin/swaylock -f --config /home/liam/.config/swaylock/config'
+  timeout 600 '/usr/bin/swaylock -f --config %h/.config/swaylock/config' \
+  before-sleep '/usr/bin/swaylock -f --config %h/.config/swaylock/config'
 Restart=on-failure

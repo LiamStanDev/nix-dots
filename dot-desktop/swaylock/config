@@ -1,31 +1,24 @@
 color=1e1e2eff
-
-indicator
-indicator-radius=120
-indicator-thickness=10
-indicator-caps-lock
-
-text-color=f5e0dcff
-key-hl-color=f5e0dcff
-bs-hl-color=f38ba8ff
-
-ring-color=89b4faff              # idle (blue)
-ring-ver-color=a6e3a1ff          # verifying (green)
-ring-wrong-color=f38ba8ff        # wrong password (red)
-ring-caps-lock-color=fab387ff    # caps lock active
-
-inside-color=1e1e2eff
-inside-ver-color=313244ff
-inside-wrong-color=1e1e2eff
-inside-clear-color=1e1e2eff
-inside-caps-lock-color=1e1e2eff
-
-line-color=89b4faff
-line-ver-color=a6e3a1ff
-line-wrong-color=f38ba8ff
-line-caps-lock-color=fab387ff
-
-separator-color=1e1e2eff
-
 font=JetBrainsMono Nerd Font
-font-size=14
+indicator-radius=200
+indicator-thickness=20
+line-color=1f1d2e
+ring-color=191724
+inside-color=1f1d2e
+key-hl-color=eb6f92
+separator-color=00000000
+text-color=e0def4
+text-caps-lock-color=""
+line-ver-color=eb6f92
+ring-ver-color=eb6f92
+inside-ver-color=1f1d2e
+text-ver-color=e0def4
+ring-wrong-color=31748f
+text-wrong-color=31748f
+inside-wrong-color=1f1d2e
+inside-clear-color=1f1d2e
+text-clear-color=e0def4
+ring-clear-color=9ccfd8
+line-clear-color=1f1d2e
+line-wrong-color=1f1d2e
+bs-hl-color=31748f

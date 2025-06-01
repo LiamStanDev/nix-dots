@@ -36,10 +36,11 @@
       speedtest-cli
       stow
       fastfetch
-      (hiPrio gcc) # set high priority because of clang
-      clang
-      cmake
-      ninja
+      # WARN: don't add c/c++ build tool here. The build path is wierd.
+      # (hiPrio gcc) # set high priority because of clang
+      # clang
+      # cmake
+      # ninja
       nodejs_22
       bun
       deno
@@ -58,5 +59,9 @@
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
       roboto
+
+      # desktop environment
+      # wezterm # WARN: don't use it. use system provide version.
+      # swaylock-effects # WARN: can't access PAM
     ];
 }
