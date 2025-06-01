@@ -47,12 +47,16 @@
       lldb
       go
       uv
-      python313
-      pipx
       kubectl
 
       # fonts
       nerd-fonts.caskaydia-mono
       nerd-fonts.jetbrains-mono
+      fira-sans
+      font-awesome
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-color-emoji
+      roboto
     ];
 }

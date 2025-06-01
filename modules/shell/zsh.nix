@@ -34,10 +34,13 @@
           zi light "Aloxaf/fzf-tab"
 
           # environment
-          export EDITOR=nvim
+          export EDITOR=nvim visudo
+          export VISUAL=nvim visudo
+          export SUDO_EDITOR=nvim
+          export BROWSER=google-chrome
           if [[ "$DESKTOP_SESSION" == "niri" ]]; then
               # vscode for wayland
-              alias code="code --password-store=gnome-libsecret --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime"
+              alias code="code --ozone-platform-hint=auto --enable-wayland-ime --wayland-text-input-version=3"
           fi
 
           # nodejs
@@ -83,6 +86,9 @@
       la = "eza -la";
       lt = "eza --tree";
       lR = "eza -lR";
+
+      # cd
+      cd = "z";
 
       # trash-cli
       t = "trash-put";
