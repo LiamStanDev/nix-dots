@@ -73,11 +73,11 @@
   },
   "cpu": {
     "format": " {usage: >3}%",
-    "on-click": "alacritty -e btm"
+    "on-click": "pkill alacritty || alacritty -e btm"
   },
   "memory": {
     "format": " {: >3}%",
-    "on-click": "alacritty -e btm"
+    "on-click": "pkill alacritty || alacritty -e btm"
   },
   "temperature": {
     "critical-threshold": 80,
