@@ -1,6 +1,12 @@
 { pkgs, ... }:
 {
-  nixpkgs.config.allowUnfree = true;
+  documentation.man.enable = true;
+  documentation.info.enable = true;
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
+  };
 
   environment.systemPackages = with pkgs; [
     # Desktop apps
@@ -48,7 +54,6 @@
     fastfetch
     ntfs3g
     brightnessctl
-    swww
     openssl
     bluez
     bluez-tools
@@ -61,7 +66,6 @@
     btop
     duf
     dust
-    eza
     fd
     ripgrep
     stow
@@ -85,7 +89,7 @@
     pulseaudio
     pamixer
 
-    # GPU stuff 
+    # GPU stuff
     # amdvlk
     # rocm-opencl-icd
     # glaxnimate
@@ -104,8 +108,6 @@
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-
     nerd-fonts.caskaydia-mono
     nerd-fonts.caskaydia-cove
     nerd-fonts.jetbrains-mono

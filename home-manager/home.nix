@@ -6,19 +6,13 @@
 
 
   imports = [
-    ./modules/packages.nix
-    ./modules/shell
-    ./modules/git.nix
-    ./modules/ssh.nix
+    ./packages.nix
+    # ./modules
   ];
 
   home.sessionVariables = {
     SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
     TERM = "xterm-256color";
-    LANG = "en_US.UTF-8";
-    LC_ALL = "en_US.UTF-8";
-    EDITOR = "nvim";
-    VISUAL = "nvim";
     XDG_CONFIG_HOME = "$HOME/.config";
     XDG_CACHE_HOME = "$HOME/.cache";
     XDG_DATA_HOME = "$HOME/.local/share";

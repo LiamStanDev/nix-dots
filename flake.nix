@@ -30,7 +30,7 @@
       # Nixos
       nixosConfigurations.${host} = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-stable inputs system;
+          inherit pkgs-stable inputs system ;
         };
         modules = [
           ./nixos/configuration.nix

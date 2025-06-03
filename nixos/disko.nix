@@ -10,7 +10,7 @@
           partitions = {
             # EFI system partition
             ESP = {
-              size = "500M";
+              size = "512M";
               type = "EF00"; # UEFI
               content = {
                 type = "filesystem";
@@ -29,9 +29,22 @@
             root = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "btrfs";
-                mountpoint = "/";
+                type = "btrfs";
+                extraArgs = [ "-f" ];
+                subvolumes = {
+                  "@root" = {
+                    mountpoint = "/";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+                  "@home" = {
+                    mountpoint = "/home";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+                  "@var" = {
+                    mountpoint = "/var";
+                    mountOptions = [ "compress=zstd:1" ];
+                  };
+                };
               };
             };
           };

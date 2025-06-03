@@ -19,5 +19,10 @@
       lazydocker
       direnv
       httpie
+      starship
+      eza
+      fzf
+      yazi
+      zoxide
     ];
 }
