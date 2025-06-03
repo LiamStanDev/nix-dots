@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   catppuccin-fish = pkgs.fetchFromGitHub {

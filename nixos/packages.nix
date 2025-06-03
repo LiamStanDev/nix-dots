@@ -1,0 +1,120 @@
+{ pkgs, ... }:
+{
+  nixpkgs.config.allowUnfree = true;
+
+  environment.systemPackages = with pkgs; [
+    # Desktop apps
+    google-chrome
+    telegram-desktop
+    alacritty
+    wezterm
+    obs-studio
+    rofi
+    discord
+    obsidian
+    pgadmin4
+    spotify
+    postman
+    bitwarden-desktop
+    vscode
+    libvirt
+
+    # Develpment tool
+    nix-output-monitor
+    gcc
+    clang
+    gdb
+    lldb
+    ninja
+    cmake
+    nodejs
+    pnpm
+    deno
+    bun
+    python
+    uv
+    go
+    rustup
+    docker
+    kubectl
+    qemu_full
+    qemu-user
+    qemu-utils
+
+    # CLI utils
+    fastfetch
+    wget
+    git
+    fastfetch
+    ntfs3g
+    brightnessctl
+    swww
+    openssl
+    bluez
+    bluez-tools
+    vim
+    perf-tools # perf
+    sysstat # iostat and pidstat
+    htop
+    netcat
+    speedtest-cli
+    btop
+    duf
+    dust
+    eza
+    fd
+    ripgrep
+    stow
+
+    # Shells
+    bash
+    zsh
+
+    # Fonts
+    nerd-fonts.caskaydia-mono
+    nerd-fonts.jetbrains-mono
+    fira-sans
+    font-awesome
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
+    roboto
+
+    # Sound
+    pipewire
+    pulseaudio
+    pamixer
+
+    # GPU stuff 
+    # amdvlk
+    # rocm-opencl-icd
+    # glaxnimate
+
+    # Wayland
+    xwayland
+    wl-clipboard
+    cliphist
+
+    # Hyperland
+    swaylock-effects
+    hyprland
+    hyprland-protocols
+    seatd
+    waybar
+  ];
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+
+    nerd-fonts.caskaydia-mono
+    nerd-fonts.caskaydia-cove
+    nerd-fonts.jetbrains-mono
+    fira-sans
+    font-awesome
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
+    roboto
+  ];
+}

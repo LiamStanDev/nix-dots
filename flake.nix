@@ -1,14 +1,9 @@
 {
-  description = "Home Manager configuration";
+  description = "My Nixos Configuration";
 
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -18,25 +13,37 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... } @ inputs:
     let
       system = "x86_64-linux";
+      pkgs-stable = import nixpkgs-stable
+        {
+          inherit system;
+          config.allowUnfree = true;
+        };
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
+
+      host = "laptop";
+      profile = "profile";
     in
     {
-      homeConfigurations."profile" = home-manager.lib.homeManagerConfiguration {
+      # Nixos
+      nixosConfigurations.${host} = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit pkgs-stable inputs system;
+        };
+        modules = [
+          ./nixos/configuration.nix
+        ];
+      };
+
+      # Home manager
+      homeConfigurations.${profile} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-
-        modules = [ ./home.nix ];
+        modules = [ ./home-manager/home.nix ];
       };
 
-      homeConfigurations."profile-stable" = inputs.home-manager-stable.lib.homeManagerConfiguration {
-        pkgs = pkgs-stable;
-        modules = [ ./home.nix ];
-      };
-
-      apps.${system}.switch = {
+      apps.${system}.switch-home = {
         type = "app";
         program =
           let
@@ -50,7 +57,7 @@
 
                 # Set backup environment variable with timestamp
                 export HOME_MANAGER_BACKUP_EXT="bckp-$TIMESTAMP"
-                nom build --verbose --keep-going --out-link generation ${self}#homeConfigurations.profile.activationPackage
+                nom build --verbose --keep-going --out-link generation ${self}#homeConfigurations.${profile}.activationPackage
 
                 # Activate
                 ./generation/activate
