@@ -7,7 +7,7 @@
 
   imports = [
     ./packages.nix
-    # ./modules
+    ./modules
   ];
 
   home.sessionVariables = {
