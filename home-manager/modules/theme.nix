@@ -2,28 +2,57 @@
 
 {
   # see: https://discourse.nixos.org/t/struggling-to-configure-gtk-qt-theme-on-laptop/42268/4
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   package = pkgs.bibata-cursors;
+  #   name = "Bibata-Modern-Classic";
+  #   size = 16;
+  # };
+
+
   home.pointerCursor = {
     gtk.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
+    name = "Catppuccin-Macchiato-Dark-Cursors";
+    package = pkgs.catppuccin-cursors.macchiatoDark;
     size = 16;
   };
 
   gtk = {
     enable = true;
     theme = {
-      name = "Adwaita-dark"; # or "Catppuccin-Mocha", "Nordic", etc.
-      package = pkgs.gnome-themes-extra;
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "blue" ];
+        size = "standard";
+        variant = "macchiato";
+      };
     };
-
     iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "macchiato";
+        accent = "blue";
+      };
+    };
+    cursorTheme = {
+      name = "Catppuccin-Macchiato-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.macchiatoDark;
+    };
+    gtk3 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+  };
+
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      color-scheme = "prefer-dark";
     };
 
-    font = {
-      name = "Sans";
-      size = 11;
+    # For Gnome shell
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
     };
   };
 

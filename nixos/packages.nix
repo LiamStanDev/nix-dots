@@ -104,13 +104,10 @@
     waybar
     hyprpicker
     mako
-    polkit_gnome
+    lxqt.lxqt-policykit
     wlogout
     swww
     rofi-wayland
-
-
-
   ];
 
   fonts.packages = with pkgs; [

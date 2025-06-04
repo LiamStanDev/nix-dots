@@ -25,9 +25,17 @@
       yazi
       zoxide
       trash-cli
-      kdePackages.qt6ct
 
       # libs
       python313
+
+      # theme
+      (catppuccin-kvantum.override {
+        accent = "blue";
+        variant = "macchiato";
+      })
+      libsForQt5.qtstyleplugin-kvantum
+      libsForQt5.qt5ct
+      papirus-folders
     ];
 }
