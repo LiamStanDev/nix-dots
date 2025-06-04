@@ -24,5 +24,10 @@
       fzf
       yazi
       zoxide
+      trash-cli
+      kdePackages.qt6ct
+
+      # libs
+      python313
     ];
 }

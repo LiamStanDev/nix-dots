@@ -25,6 +25,7 @@
     XDG_MUSIC_DIR = "$HOME/Music";
     XDG_PICTURES_DIR = "$HOME/Pictures";
     XDG_VIDEOS_DIR = "$HOME/Videos";
+    NIXOS_OZONE_WL = "1"; # hint Electron apps to use Wayland
   };
 
   # Let Home Manager install and manage itself.

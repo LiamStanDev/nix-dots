@@ -5,7 +5,7 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
+    permittedInsecurePackages = [ "python-2.7.18.8" "electron-25.9.0" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -18,7 +18,7 @@
     rofi
     discord
     obsidian
-    pgadmin4
+    pgadmin4-desktopmode
     spotify
     postman
     bitwarden-desktop
@@ -29,6 +29,7 @@
     nix-output-monitor
     gcc
     clang
+    gnumake
     gdb
     lldb
     ninja
@@ -69,20 +70,16 @@
     fd
     ripgrep
     stow
+    playerctl
+
+    # network
+    iptables
+    iptables-nftables-compat
+    nftables
 
     # Shells
     bash
     zsh
-
-    # Fonts
-    nerd-fonts.caskaydia-mono
-    nerd-fonts.jetbrains-mono
-    fira-sans
-    font-awesome
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-    roboto
 
     # Sound
     pipewire
@@ -105,12 +102,22 @@
     hyprland-protocols
     seatd
     waybar
+    hyprpicker
+    mako
+    polkit_gnome
+    wlogout
+    swww
+    rofi-wayland
+
+
+
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.caskaydia-mono
     nerd-fonts.caskaydia-cove
     nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
     fira-sans
     font-awesome
     noto-fonts

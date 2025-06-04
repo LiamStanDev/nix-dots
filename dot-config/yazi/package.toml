@@ -14,11 +14,6 @@ rev = "2730199"
 hash = "7918aab6a71caf31b58411f789195677"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:git"
-rev = "2730199"
-hash = "e0d2c8d7e7afe5b82270367098d1a821"
-
-[[plugin.deps]]
 use = "llanosrocas/yaziline"
 rev = "e06c47f"
 hash = "7df84299e89ffefd4686d1e20a295c8a"

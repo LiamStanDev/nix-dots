@@ -1,7 +1,7 @@
 {
   imports = [
     ./bootloader.nix
-    ./cpu.nix
+    ./battery.nix
     ./disk.nix
     ./ram.nix
     ./env.nix
@@ -10,5 +10,6 @@
     ./network.nix
     ./bluetooth.nix
     ./dm.nix
+    ./input.nix
   ];
 }

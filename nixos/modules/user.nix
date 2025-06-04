@@ -6,7 +6,14 @@
 
     users.liam = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "input" "networkmanager" "libvirtd" ];
+      extraGroups = [ "wheel" "input" "video" "networkmanager" "libvirtd" "liam" ];
+    };
+
+
+    groups = {
+      docker = {
+        members = [ "liam" ];
+      };
     };
   };
 }
