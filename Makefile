@@ -56,3 +56,13 @@ unlink-minimal:
 status:
 	@echo "📊 Current Configuration Status:"
 	@home-manager packages
+
+
+.PHONY: install
+install:
+	@./scripts/install
+
+
+.PHONY: uninstall
+uninstall:
+	@./scripts/uninstall

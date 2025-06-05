@@ -19,7 +19,6 @@
   "modules-right": [
     "backlight",
     "pulseaudio",
-
     "temperature",
     "group/hardware",
     "battery",
