@@ -1,18 +1,25 @@
 .PHONY: upgrade
 upgrade:
-	@echo "🔄 Home updating..."
+	@echo "🔄 Full upgrading..."
+	@git add .
+	@sudo nixos-rebuild switch --flake .#laptop --verbose
+	@home-manager switch --flake .#profile --verbose -b bckp
+
+.PHONY: hmupgrade
+hmupgrade:
+	@echo "🔄 Home upgrading..."
 	@git add .
 	@home-manager switch --flake .#profile --verbose -b bckp
 
 .PHONY: sysupgrade
 sysupgrade:
-	@echo "🔄 System updating..."
+	@echo "🔄 System upgrading..."
 	@git add .
 	@sudo nixos-rebuild switch --flake .#laptop --verbose
 
 .PHONY: update
 update:
-	@echo "🔄 Home updating..."
+	@echo "🔄 Flake updating..."
 	@git add .
 	@nix flake update
 

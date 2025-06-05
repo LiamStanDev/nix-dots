@@ -72,8 +72,9 @@
     ripgrep
     stow
     playerctl
+    pamixer
 
-    # network
+    # Network
     iptables
     iptables-nftables-compat
     nftables
@@ -98,25 +99,25 @@
     cliphist
 
     # Hyperland
-    swaylock-effects
+    seatd
     hyprland
     hyprland-protocols
-    seatd
-    waybar
     hyprpicker
+    hypridle
+    gnome-keyring
+    fcitx5
+    udiskie
+    networkmanagerapplet
+    swaylock-effects
+    waybar
     polkit_gnome
     mako
     wlogout
     swww
     rofi-wayland
-    swayidle
   ];
 
   fonts.packages = with pkgs; [
-    nerd-fonts.caskaydia-mono
-    nerd-fonts.caskaydia-cove
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka
     fira-sans
     font-awesome
     noto-fonts

@@ -25,6 +25,8 @@
       yazi
       zoxide
       trash-cli
+      jq
+
 
       # libs
       python313

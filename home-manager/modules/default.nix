@@ -1,9 +1,10 @@
 {
   imports = [
     ./shell
+    ./systemd.nix
     ./git.nix
     ./ssh.nix
-    ./dm/hyprland.nix
+    ./hypr
     ./theme.nix
   ];
 }

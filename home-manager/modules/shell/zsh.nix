@@ -33,27 +33,17 @@
           zi light "jeffreytse/zsh-vi-mode"
           zi light "Aloxaf/fzf-tab"
 
-          # environment
-          export EDITOR=nvim visudo
-          export VISUAL=nvim visudo
-          export SUDO_EDITOR=nvim
-          export BROWSER=google-chrome
-          if [[ "$DESKTOP_SESSION" == "niri" ]]; then
-              # vscode for wayland
-              alias code="code --ozone-platform-hint=auto --enable-wayland-ime --wayland-text-input-version=3"
-          fi
-
           # nodejs
           export PNPM_HOME="$HOME/.pnpm"
           PATH="$PNPM_HOME:$PATH"
-          
+
           # usr
           PATH="$HOME/.local/bin:$PATH"
           PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
           # go
           PATH=$HOME/go/bin:$PATH
-          
+
           # rust
           export RUSTPATH="$HOME/.cargo/bin"
           PATH="$RUSTPATH:$PATH"
