@@ -42,9 +42,9 @@
   },
   "custom/idle_inhibitor": {
     "format": "{}",
-    "exec": "~/.config/waybar/scripts/toggle-swayidle.sh --status",
+    "exec": "~/.config/waybar/scripts/toggle-idle.sh --status",
     "interval": 3,
-    "on-click": "~/.config/waybar/scripts/toggle-swayidle.sh"
+    "on-click": "~/.config/waybar/scripts/toggle-idle.sh"
   },
   "tray": {
     "spacing": 10

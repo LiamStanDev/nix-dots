@@ -97,6 +97,7 @@
     xwayland
     wl-clipboard
     cliphist
+    libnotify # notify-send
 
     # Hyperland
     seatd
@@ -112,7 +113,6 @@
     waybar
     polkit_gnome
     mako
-    wlogout
     swww
     rofi-wayland
   ];

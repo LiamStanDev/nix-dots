@@ -20,23 +20,23 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      name = "Catppuccin-Frappe-Standard-Blue-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard";
-        variant = "macchiato";
+        variant = "frappe";
       };
     };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "macchiato";
+        flavor = "frappe";
         accent = "blue";
       };
     };
     cursorTheme = {
-      name = "Catppuccin-Macchiato-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.macchiatoDark;
+      name = "Catppuccin-Frappe-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.frappeDark;
     };
     gtk3 = {
       extraConfig.gtk-application-prefer-dark-theme = true;
@@ -46,13 +46,13 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      gtk-theme = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      gtk-theme = "Catppuccin-Frappe-Standard-Blue-Dark";
       color-scheme = "prefer-dark";
     };
 
     # For Gnome shell
     "org/gnome/shell/extensions/user-theme" = {
-      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      name = "Catppuccin-Frappe-Standard-Blue-Dark";
     };
   };
 

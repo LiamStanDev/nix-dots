@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -18,25 +18,36 @@
         "XDG_SCREENSHOTS_DIR,~/Pictures/screens"
 
         # Toolkit Backend
-        "GDK_BACKEND,wayland"
-        "QT_QPA_PLATFORM,wayland"
-        "QT_QPA_PLATFORMTHEME,qt6ct" # qt5ct
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "GDK_BACKEND,wayland,x11,*"
+        "QT_QPA_PLATFORM,wayland;xcb"
         "CLUTTER_BACKEND,wayland"
+        "SDL_VIDEODRIVER,wayland"
+
+        # Qt variables
+        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+
+        # Nvidia
+        # "GBM_BACKEND,nvidia-drm"
+        # "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        # "LIBVA_DRIVER_NAME,nvidia"
 
         # key env
         "AVA_AWT_WM_NONREPARENTING,wayland"
         "WLR_NO_HARDWARE_CURSORS,1"
-        "SDL_VIDEODRIVER,wayland"
         "NO_AT_BRIDGE,1"
 
-        # Fcitx5
+        # Fcitx5 variables
         # "GTK_IM_MODULE,fcitx" # no need
         "QT_IM_MODULES,wayland;fcitx;ibus"
         "XMODIFIERS,@im=fcitx" # for XWayland
         "SDL_IM_MODULE,fcitx" # for SDL library gaming
         "GLFW_IM_MODULE,ibus" # for kitty terminal
+
+        # Theming variables
+        "GTK_THEME,${config.gtk.theme.name}"
+        "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
       ];
 
 
