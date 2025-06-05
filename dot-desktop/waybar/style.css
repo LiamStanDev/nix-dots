@@ -44,7 +44,7 @@ window#waybar {
   opacity: 1;
   border-radius: 10px;
   margin: 8px 0px 8px 8px;
-  padding: 3px 4px;
+  padding: 4px 3px;
 }
 
 #workspaces button {
@@ -54,7 +54,7 @@ window#waybar {
   border: 0px;
   color: #B8C2EC;
   transition: all 0.3s ease-in-out;
-  opacity: 0.4;
+  opacity: 1;
 }
 
 #workspaces button.active {
@@ -68,17 +68,13 @@ window#waybar {
 #workspaces button {
   color: @base;
   border-radius: 50%;
-  /* background-color: @base; */
   margin: 0px 0px;
-  padding: 4 6 2 0;
 }
 
 #workspaces button:hover {
   color: @mauve;
   box-shadow: none;
-  /* Remove predefined box-shadow */
   text-shadow: none;
-  /* Remove predefined text-shadow */
   border: 0px;
   background: none;
 }
@@ -87,8 +83,6 @@ window#waybar {
   color: @mauve;
   background-color: @base;
 }
-
-
 
 
 #mode {
