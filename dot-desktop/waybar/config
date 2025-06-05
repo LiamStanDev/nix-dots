@@ -6,7 +6,7 @@
 
   "modules-left": [
     "custom/launcher",
-    "niri/workspaces",
+    "hyprland/workspaces",
     "tray",
     "mpris#2",
     "mpris#3",

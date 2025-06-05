@@ -1,4 +1,14 @@
 {
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "󰮯",
+      "default": ""
+    },
+    "persistent_workspaces": {
+      "*": 5
+    }
+  },
   "mpris": {
     "interval": 1,
     "tooltip": true,
@@ -73,11 +83,11 @@
   },
   "cpu": {
     "format": " {usage: >3}%",
-    "on-click": "pkill alacritty || alacritty -e btm"
+    "on-click": "pkill kitty || kitty -e btm"
   },
   "memory": {
     "format": " {: >3}%",
-    "on-click": "pkill alacritty || alacritty -e btm"
+    "on-click": "pkill kitty || kitty -e btm"
   },
   "temperature": {
     "critical-threshold": 80,
@@ -121,7 +131,7 @@
     "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
     "tooltip-format-disconnected": "⚠  Disconnected",
-    "on-click": "pkill alacritty || alacritty -e nmtui"
+    "on-click": "pkill kitty || kitty -e nmtui"
   },
   "pulseaudio": {
     "format": "{icon} {volume: >3}%",

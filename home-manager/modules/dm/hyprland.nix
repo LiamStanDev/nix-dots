@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -31,7 +32,7 @@
         "NO_AT_BRIDGE,1"
 
         # Fcitx5
-        "GTK_IM_MODULE,fcitx"
+        # "GTK_IM_MODULE,fcitx" # no need
         "QT_IM_MODULES,wayland;fcitx;ibus"
         "XMODIFIERS,@im=fcitx" # for XWayland
         "SDL_IM_MODULE,fcitx" # for SDL library gaming
@@ -41,7 +42,8 @@
 
       exec-once = [
         "lxqt-policykit-agent"
-        "swww init"
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+        "swww-daemon"
         "swww img ~/Pictures/Wallpapers/waves.jpg"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"

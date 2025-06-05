@@ -5,7 +5,8 @@
     ./disk.nix
     ./ram.nix
     ./env.nix
-    ./user.nix
+    ./virtualization.nix
+    ./users.nix
     ./sound.nix
     ./network.nix
     ./bluetooth.nix

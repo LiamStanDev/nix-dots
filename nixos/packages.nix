@@ -12,8 +12,8 @@
     # Desktop apps
     google-chrome
     telegram-desktop
-    alacritty
     wezterm
+    kitty
     obs-studio
     rofi
     discord
@@ -24,6 +24,7 @@
     bitwarden-desktop
     vscode
     libvirt
+    pavucontrol
 
     # Develpment tool
     nix-output-monitor
@@ -103,11 +104,12 @@
     seatd
     waybar
     hyprpicker
+    polkit_gnome
     mako
-    lxqt.lxqt-policykit
     wlogout
     swww
     rofi-wayland
+    swayidle
   ];
 
   fonts.packages = with pkgs; [
