@@ -23,6 +23,11 @@
         };
       pkgs = nixpkgs.legacyPackages.${system};
 
+
+      switch = import ./switch.nix {
+        inherit pkgs system self host profile;
+      };
+
       host = "laptop";
       profile = "profile";
     in
@@ -30,7 +35,7 @@
       # Nixos
       nixosConfigurations.${host} = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-stable inputs system ;
+          inherit pkgs-stable inputs system;
         };
         modules = [
           ./nixos/configuration.nix
@@ -43,31 +48,6 @@
         modules = [ ./home-manager/home.nix ];
       };
 
-      apps.${system}.switch-home = {
-        type = "app";
-        program =
-          let
-            switch-home = pkgs.writeShellApplication {
-              name = "switch-home";
-              text = ''
-                set -e
-
-                # Generate timestamp for backup
-                TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
-
-                # Set backup environment variable with timestamp
-                export HOME_MANAGER_BACKUP_EXT="bckp-$TIMESTAMP"
-                nom build --verbose --keep-going --out-link generation ${self}#homeConfigurations.${profile}.activationPackage
-
-                # Activate
-                ./generation/activate
-
-                echo "Activated successfully. Backups (if any) created with extension .$HOME_MANAGER_BACKUP_EXT"
-              '';
-              runtimeInputs = [ pkgs.nix-output-monitor ];
-            };
-          in
-          "${switch-home}/bin/switch-home";
-      };
+      apps.${system} = switch;
     };
 }
