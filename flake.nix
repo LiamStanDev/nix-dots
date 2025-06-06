@@ -24,7 +24,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
 
 
-      switch = import ./switch.nix {
+      apps = import ./apps.nix {
         inherit pkgs system self host profile;
       };
 
@@ -48,6 +48,6 @@
         modules = [ ./home-manager/home.nix ];
       };
 
-      apps.${system} = switch;
+      apps.${system} = apps;
     };
 }

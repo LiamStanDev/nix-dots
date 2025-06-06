@@ -1,75 +1,8 @@
-zsh/.config/zsh/.zcompdump
-zsh/.config/zsh/.zsh_history
-tmux/.config/tmux/plugins
-btop/.config/btop/btop.log
-fonts/.local/share/fonts/Geist.Mono
-fonts/.local/share/fonts/otf/sofiapro
-fonts/.local/share/fonts/ttf/Lucida Grande
-fonts/.local/share/fonts/ttf/MesloLG
-fonts/.local/share/fonts/ttf/Roboto
-fonts/.local/share/fonts/JetBrains Mono Regular Nerd Font Complete.ttf
-rofi/.config/rofi/bak
-Code/.config/Code/Cache/Cache_Data
-Code/.config/Code/CachedExtensionVSIXs
-Code/.config/Code/CachedProfilesData/__default__profile__
-Code/.config/Code/Code Cache
-Code/.config/Code/Crashpad
-Code/.config/Code/DawnCache
-Code/.config/Code/Dictionaries
-Code/.config/Code/GPUCache
-Code/.config/Code/Local Storage/leveldb
-Code/.config/Code/Service Worker
-Code/.config/Code/Session Storage
-Code/.config/Code/Shared Dictionary
-Code/.config/Code/User/profiles/6b040d54
-Code/.config/Code/User/globalStorage
-Code/.config/Code/User/History
-Code/.config/Code/User/sync
-Code/.config/Code/User/workspaceStorage
-Code/.config/Code/WebStorage
-Code/.config/Code/databases
-Code/.config/Code/logs
-Code/.config/Code/Cookies
-Code/.config/Code/Cookies-journal
-Code/.config/Code/Network Persistent State
-Code/.config/Code/Preferences
-Code/.config/Code/SharedStorage
-Code/.config/Code/TransportSecurity
-Code/.config/Code/Trust Tokens
-Code/.config/Code/Trust Tokens-journal
-Code/.config/Code/languagepacks.json
-Code/.config/Code/machineid
-Code/.config/Code/Backups
 lazygit/.config/lazygit/state.yml
-nvim/.config/nvim/lazy-lock.json
-nvim/.config/nvim/lazy-lock.json
-nvim/.config/nvim/lazy-lock.json
 zsh/.config/zsh/.zcompcache
-Code/.config/Code/CachedConfigurations
-Code/.config/Code/Backups
-Code/.config/Code/code.lock
-Code/.config/Code/.org.chromium.Chromium.19Wfia
-Code/.config/Code/CachedData
 hypr/.config/hypr/conf/monitor.conf
 zsh/.config/zsh/.gdb_history
-Code/.config/Code/.org.chromium.Chromium.9lwotU
-Code/.config/Code/.org.chromium.Chromium.LxiCEX
-Code/.config/Code/DawnGraphiteCache
-Code/.config/Code/DawnWebGPUCache
-Code/.config/Code/.org.chromium.Chromium.MgTGl9
-Code/.config/Code/.org.chromium.Chromium.Sc3aXy
-Code/.config/Code/.org.chromium.Chromium.n8mA3Y
-fish/.config/fish/conf.d
-fish/.config/fish/functions
-fish/.config/fish/themes
-fish/.config/fish/completions
-Code/.config/Code/User/snippets/editorconfig.code-snippets
-Code/User/snippets/editorconfig.code-snippets
-generation
 dot-config/zsh/.zcompdump
 dot-config/zsh/.config/zsh/.zcompdump
 dot-config/zsh/.config/zsh/.zsh_history
-dot-desktop/fcitx5/conf/cached_layouts
-dot-desktop/systemd/user/tray.target
-dot-desktop/systemd/user/hyprland-session.target
 .vscode

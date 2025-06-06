@@ -27,19 +27,26 @@
         variant = "frappe";
       };
     };
+    # iconTheme = {
+    #   name = "Papirus-Dark";
+    #   package = pkgs.catppuccin-papirus-folders.override {
+    #     flavor = "frappe";
+    #     accent = "blue";
+    #   };
+    # };
+
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "frappe";
-        accent = "blue";
-      };
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
     };
-    cursorTheme = {
-      name = "Catppuccin-Frappe-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.frappeDark;
-    };
-    gtk3 = {
-      extraConfig.gtk-application-prefer-dark-theme = true;
+
+    # cursorTheme = {
+    #   name = "Catppuccin-Frappe-Dark-Cursors";
+    #   package = pkgs.catppuccin-cursors.frappeDark;
+    # };
+    font = {
+      name = "Sans";
+      size = 11;
     };
   };
 

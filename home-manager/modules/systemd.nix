@@ -1,13 +1,16 @@
 { pkgs, ... }:
 {
   systemd.user.services = {
+
     fcitx5 = {
       Unit = {
         Description = "Fcitx Service";
       };
 
       Service = {
-        ExecStart = "${pkgs.fcitx5}/bin/fcitx5";
+        # Why ${pkgs.fcitx5}/bin/fcitx5?
+        # see: https://nixos.wiki/wiki/Fcitx5#Troubleshooting#Add-ons%20Not%20Detected
+        ExecStart = "fcitx5 -d -r";
         Restart = "on-failure";
       };
     };

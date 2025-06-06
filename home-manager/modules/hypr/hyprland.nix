@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
+
 {
   wayland.windowManager.hyprland = {
+
+
     enable = true;
     xwayland.enable = true;
     systemd.variables = [ "--all" ]; # add $PATH to systemd
@@ -45,9 +48,9 @@
         "SDL_IM_MODULE,fcitx" # for SDL library gaming
         "GLFW_IM_MODULE,ibus" # for kitty terminal
 
-        # Theming variables
-        "GTK_THEME,${config.gtk.theme.name}"
-        "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
+        # Theming variables (TODO: check whether they're needed)
+        # "GTK_THEME,${config.gtk.theme.name}"
+        # "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
       ];
 
 
@@ -71,6 +74,7 @@
         "$mainMod, Q, killactive,"
         "$mainMod, SPACE, exec, pkill rofi || exec ~/.config/rofi/scripts/launcher_t6"
         "$mainMod SHIFT, Q, exec, pkill rofi || exec ~/.config/rofi/scripts/powermenu_t3"
+
 
         # Screenshot
         "$mainMod, S, exec, grim -g \"$(slurp)\" - | wl-copy"
@@ -151,6 +155,10 @@
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+      ];
+
+      windowrule = [
+        "pseudo, class:fcitx, title:fcitx"
       ];
 
 

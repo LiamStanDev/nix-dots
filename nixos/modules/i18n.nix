@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+
+  i18n.defaultLocale = "en_US.UTF-8"; # 'i18n' means internationalisation
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;
