@@ -10,7 +10,7 @@
         efiSupport = true;
         useOSProber = true;
         device = "nodev";
-        # theme = "${pkgs.catppuccin-grub}/share/grub/themes/frappe";
+        theme = "${(pkgs.catppuccin-grub.override { flavor = "frappe"; })}";
       };
     };
 

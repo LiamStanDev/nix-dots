@@ -117,6 +117,8 @@
     mako
     swww
     rofi-wayland
+    grim
+    slurp
   ];
 
   fonts.packages = with pkgs; [

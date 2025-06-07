@@ -1,5 +1,17 @@
 { config, pkgs, ... }:
 
+let
+  monitor-width = "1920";
+  monitor-height = "1080";
+
+  screenshot = pkgs.writeShellScriptBin "screenshot-selection" ''
+    grim -g "$(slurp)" - | wl-copy
+  '';
+
+  screenshotSave = pkgs.writeShellScriptBin "screenshot-selection-save" ''
+    grim -g "$(slurp)" ~/Pictures/screenshot/screenshot-$(date +%s).png
+  '';
+in
 {
   wayland.windowManager.hyprland = {
 
@@ -7,11 +19,12 @@
     enable = true;
     xwayland.enable = true;
     systemd.variables = [ "--all" ]; # add $PATH to systemd
+    systemd.enable = true; # enable hyprland-session.target
 
     settings = {
       "$mainMod" = "SUPER";
 
-      monitor = ",1920x1080@90,auto,1";
+      monitor = ",${monitor-width}x${monitor-height}@60,auto,1";
 
       env = [
         # XDG Specifications
@@ -42,7 +55,7 @@
         "NO_AT_BRIDGE,1"
 
         # Fcitx5 variables
-        # "GTK_IM_MODULE,fcitx" # no need
+        #"GTK_IM_MODULE,fcitx" # no need
         "QT_IM_MODULES,wayland;fcitx;ibus"
         "XMODIFIERS,@im=fcitx" # for XWayland
         "SDL_IM_MODULE,fcitx" # for SDL library gaming
@@ -60,12 +73,13 @@
         "swww img ~/Pictures/Wallpapers/waves.jpg"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "systemctl --user start waybar.service"
-        "systemctl --user start nm-applet.service"
-        "systemctl --user start blueman-applet.service"
-        "systemctl --user start udiskie.service"
-        "systemctl --user start mako.service"
-        "systemctl --user start fcitx5.service"
+        "systemctl --user restart waybar.service"
+        "systemctl --user restart nm-applet.service"
+        "systemctl --user restart blueman-applet.service"
+        "systemctl --user restart udiskie.service"
+        "systemctl --user restart mako.service"
+        # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
+        "fcitx5 -r"
       ];
 
 
@@ -139,6 +153,8 @@
         # "$mainMod, N, exec, swaync-client -t"
         # "$mainMod, V, exec, source ~/.config/hypr/scripts/cliphist.sh"
         "$mainMod, P, exec, hyprpicker -a"
+        "$mainMod, S, exec, ${screenshot}/bin/screenshot-selection"
+        "$mainMod SHIFT, S, exec, ${screenshotSave}/bin/screenshot-selection-save"
       ];
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -157,8 +173,29 @@
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       ];
 
+      # see: https://wiki.hyprland.org/Configuring/Window-Rules/#static-rules
       windowrule = [
+        # window type
         "pseudo, class:fcitx, title:fcitx"
+        "float, class:kitty, title:kitty"
+        "float, class:kitty, title:btop"
+        "float, class:kitty, title:nmtui"
+        "float, class:org.pulseaudio.pavucontrol"
+
+        # size
+        "size 600 500, class:kitty, title:kitty"
+        "size 600 500, class:kitty, title:btop"
+        "size 600 500, class:kitty, title:nmtui"
+        "size 600 500, class:org.pulseaudio.pavucontrol"
+
+        # move
+        "move 1320 50, class:kitty, title:kitty"
+        "move 1320 50, class:kitty, title:btop"
+        "move 1320 50, class:kitty, title:nmtui"
+        "move 1320 50, class:org.pulseaudio.pavucontrol"
+
+        # effect
+        "noblur, class:google-chrome"
       ];
 
 

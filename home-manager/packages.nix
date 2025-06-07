@@ -27,7 +27,6 @@
       trash-cli
       jq
 
-
       # libs
       python313
 
@@ -39,5 +38,6 @@
       libsForQt5.qtstyleplugin-kvantum
       libsForQt5.qt5ct
       papirus-folders
+
     ];
 }

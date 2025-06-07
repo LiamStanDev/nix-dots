@@ -1,19 +1,6 @@
-{ pkgs, pkgs-stable, ... }:
+{ pkgs, ... }:
 {
   systemd.user.services = {
-
-    fcitx5 = {
-      Unit = {
-        Description = "Fcitx5 Service";
-        After = [ "graphical-session.target" ];
-      };
-
-      Service = {
-        ExecStart = "${pkgs-stable.fcitx5}/bin/fcitx5 -r";
-        Restart = "on-failure";
-      };
-    };
-
 
     udiskie = {
       Unit = {

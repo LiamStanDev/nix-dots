@@ -1,4 +1,4 @@
-{ pkgs-stable, ... }:
+{ pkgs, ... }:
 
 {
   i18n.inputMethod = {
@@ -6,24 +6,14 @@
     enable = true;
     fcitx5 = {
       waylandFrontend = true;
-      addons = with pkgs-stable; [
+      addons = with pkgs; [
         fcitx5-gtk
         kdePackages.fcitx5-qt
         fcitx5-chinese-addons
-        fcitx5-rime
+        fcitx5-table-extra
+        fcitx5-chewing
+        libsForQt5.fcitx5-configtool
       ];
-
-      settings.globalOptions = {
-        Hotkey = {
-          EnumerateWithTriggerKeys = true;
-          AltTriggerKeys = "";
-          EnumerateForwardKeys = "";
-          EnumerateBackwardKeys = "";
-          EnumerateSkipFirst = "";
-          EnumerateGroupForwardKeys = "";
-          EnumerateGroupBackwardKeys = "";
-        };
-      };
     };
   };
 }
