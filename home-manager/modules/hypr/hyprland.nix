@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  monitor-width = "1920";
-  monitor-height = "1080";
+  monitor = "eDP-1,1920x1080@60,0x1080,1";
+  monitor-ext1 = "HDMI-A-1,2560x1440@120,0x0,1";
 
   screenshot = pkgs.writeShellScriptBin "screenshot-selection" ''
     grim -g "$(slurp)" - | wl-copy
@@ -15,7 +15,6 @@ in
 {
   wayland.windowManager.hyprland = {
 
-
     enable = true;
     xwayland.enable = true;
     systemd.variables = [ "--all" ]; # add $PATH to systemd
@@ -24,7 +23,10 @@ in
     settings = {
       "$mainMod" = "SUPER";
 
-      monitor = ",${monitor-width}x${monitor-height}@60,auto,1";
+      monitor = [
+        "${monitor}"
+        "${monitor-ext1}"
+      ];
 
       env = [
         # XDG Specifications
@@ -61,11 +63,10 @@ in
         "SDL_IM_MODULE,fcitx" # for SDL library gaming
         "GLFW_IM_MODULE,ibus" # for kitty terminal
 
-        # Theming variables (TODO: check whether they're needed)
-        # "GTK_THEME,${config.gtk.theme.name}"
-        # "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
+        # Theming variables
+        "GTK_THEME,${config.gtk.theme.name}"
+        "XCURSOR_THEME,${config.gtk.cursorTheme.name}"
       ];
-
 
       exec-once = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
@@ -173,31 +174,6 @@ in
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       ];
 
-      # see: https://wiki.hyprland.org/Configuring/Window-Rules/#static-rules
-      windowrule = [
-        # window type
-        "pseudo, class:fcitx, title:fcitx"
-        "float, class:kitty, title:kitty"
-        "float, class:kitty, title:btop"
-        "float, class:kitty, title:nmtui"
-        "float, class:org.pulseaudio.pavucontrol"
-
-        # size
-        "size 600 500, class:kitty, title:kitty"
-        "size 600 500, class:kitty, title:btop"
-        "size 600 500, class:kitty, title:nmtui"
-        "size 600 500, class:org.pulseaudio.pavucontrol"
-
-        # move
-        "move 1320 50, class:kitty, title:kitty"
-        "move 1320 50, class:kitty, title:btop"
-        "move 1320 50, class:kitty, title:nmtui"
-        "move 1320 50, class:org.pulseaudio.pavucontrol"
-
-        # effect
-        "noblur, class:google-chrome"
-      ];
-
 
       debug = {
         disable_logs = false;
@@ -292,6 +268,31 @@ in
         render_ahead_of_time = false;
         disable_hyprland_logo = true;
       };
+
+      # see: https://wiki.hyprland.org/Configuring/Window-Rules/#static-rules
+      windowrule = [
+        # window type
+        "pseudo, class:fcitx, title:fcitx"
+        "float, class:kitty, title:kitty"
+        "float, class:kitty, title:btop"
+        "float, class:kitty, title:nmtui"
+        "float, class:org.pulseaudio.pavucontrol"
+
+        # size
+        "size 600 500, class:kitty, title:kitty"
+        "size 600 500, class:kitty, title:btop"
+        "size 600 500, class:kitty, title:nmtui"
+        "size 600 500, class:org.pulseaudio.pavucontrol"
+
+        # move
+        "move 1320 50, class:kitty, title:kitty"
+        "move 1320 50, class:kitty, title:btop"
+        "move 1320 50, class:kitty, title:nmtui"
+        "move 1320 50, class:org.pulseaudio.pavucontrol"
+
+        # effect
+        "opacity 1.0, class:google-chrome"
+      ];
     };
   };
 }
