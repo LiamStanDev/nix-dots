@@ -2,7 +2,7 @@
   description = "My Nixos Configuration";
 
   inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -35,7 +35,7 @@
       # Nixos
       nixosConfigurations.${host} = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-stable inputs system;
+          inherit pkgs-stable inputs system host profile;
         };
         modules = [
           ./nixos/configuration.nix
@@ -45,6 +45,10 @@
       # Home manager
       homeConfigurations.${profile} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+
+        extraSpecialArgs = {
+          inherit pkgs-stable inputs system host profile;
+        };
         modules = [ ./home-manager/home.nix ];
       };
 

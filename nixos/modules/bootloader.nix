@@ -1,3 +1,6 @@
+{ pkgs, ... }:
+
+
 {
   boot = {
     loader = {
@@ -7,12 +10,17 @@
         efiSupport = true;
         useOSProber = true;
         device = "nodev";
+        # theme = "${pkgs.catppuccin-grub}/share/grub/themes/frappe";
       };
     };
 
     plymouth = {
       enable = true;
-      theme = "bgrt";
+      theme = "catppuccin-frappe";
+
+      themePackages = with pkgs; [
+        (catppuccin-plymouth.override { variant = "frappe"; })
+      ];
     };
 
     kernelParams = [ "quiet" "splash" "loglevel=3" ];

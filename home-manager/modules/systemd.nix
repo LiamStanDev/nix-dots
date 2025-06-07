@@ -1,16 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-stable, ... }:
 {
   systemd.user.services = {
 
     fcitx5 = {
       Unit = {
-        Description = "Fcitx Service";
+        Description = "Fcitx5 Service";
+        After = [ "graphical-session.target" ];
       };
 
       Service = {
-        # Why ${pkgs.fcitx5}/bin/fcitx5?
-        # see: https://nixos.wiki/wiki/Fcitx5#Troubleshooting#Add-ons%20Not%20Detected
-        ExecStart = "fcitx5 -d -r";
+        ExecStart = "${pkgs-stable.fcitx5}/bin/fcitx5 -r";
         Restart = "on-failure";
       };
     };
@@ -19,6 +18,8 @@
     udiskie = {
       Unit = {
         Description = "Udiskie Service";
+
+        After = [ "graphical-session.target" ];
       };
 
       Service = {
@@ -31,6 +32,7 @@
     waybar = {
       Unit = {
         Description = "Waybar Service";
+        After = [ "graphical-session.target" ];
       };
 
       Service = {
@@ -43,6 +45,7 @@
     blueman-applet = {
       Unit = {
         Description = "Bluenman Applet Service";
+        After = [ "graphical-session.target" ];
       };
 
       Service = {
@@ -55,6 +58,7 @@
     nm-applet = {
       Unit = {
         Description = "Network Manager Applet Service";
+        After = [ "graphical-session.target" ];
       };
 
       Service = {
@@ -67,6 +71,7 @@
     mako = {
       Unit = {
         Description = "Mako Service";
+        After = [ "graphical-session.target" ];
       };
 
       Service = {

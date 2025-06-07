@@ -90,8 +90,10 @@
     "on-click": "pkill kitty || kitty -e btm"
   },
   "temperature": {
+    "thermal-zone": 12,
     "critical-threshold": 80,
-    "format": "  {temperatureC}°C"
+    "format": "  {temperatureC}°C",
+    "format-critical": "{temperatureC}°C "
   },
   "disk": {
     "format": " {percentage_used}% ",

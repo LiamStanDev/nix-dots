@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-stable, ... }:
 {
   documentation.man.enable = true;
   documentation.info.enable = true;
@@ -9,6 +9,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # Boot
+    catppuccin-grub
+
     # Desktop apps
     google-chrome
     telegram-desktop
@@ -106,7 +109,6 @@
     hyprpicker
     hypridle
     gnome-keyring
-    fcitx5
     udiskie
     networkmanagerapplet
     swaylock-effects

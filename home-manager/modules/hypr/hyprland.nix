@@ -61,11 +61,11 @@
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "systemctl --user start waybar.service"
-        "systemctl --user start fcitx5.service"
         "systemctl --user start nm-applet.service"
         "systemctl --user start blueman-applet.service"
         "systemctl --user start udiskie.service"
         "systemctl --user start mako.service"
+        "systemctl --user start fcitx5.service"
       ];
 
 
