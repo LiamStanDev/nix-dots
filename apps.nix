@@ -10,13 +10,10 @@
           text = ''
             set -eu
 
-            timestamp="$(date +%Y-%m-%d-%H-%M-%S)"
-            export NIXOS_BACKUP_EXT="bckp-$timestamp"
-
             nom build --verbose --keep-going --out-link /tmp/generation-os "${self}#nixosConfigurations.${host}.config.system.build.toplevel"
-            sudo /tmp/generation-os/bin/switch-to-configuration switch
+            /tmp/generation-os/bin/switch-to-configuration switch
 
-            echo "NixOS switched successfully. Backups (if any) created with extension .$NIXOS_BACKUP_EXT"
+            echo "NixOS switched successfully."
           '';
           runtimeInputs = [ pkgs.nix-output-monitor pkgs.nix ];
         };

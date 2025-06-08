@@ -2,20 +2,20 @@
 upgrade:
 	@echo "🔄 Full upgrading..."
 	@git add .
-	@nix run .#switch-os # nixos-rebuild switch --flake .#laptop --verbose
+	@sudo nix run .#switch-os # nixos-rebuild switch --flake .#laptop --verbose
 	@nix run .#switch-home  # home-manager switch --flake .#profile --verbose -b bckp
 
 .PHONY: hmupgrade
 hmupgrade:
 	@echo "🔄 Home upgrading..."
 	@git add .
-	@nix run .#switch-home # home-manager switch --flake .#profile --verbose -b bckp
+	@home-manager switch --flake .#profile --verbose -b bckp
 
 .PHONY: sysupgrade
 sysupgrade:
 	@echo "🔄 System upgrading..."
 	@git add .
-	@nix run .#switch-os # sudo nixos-rebuild switch --flake .#laptop --verbose
+	@sudo nixos-rebuild switch --flake .#laptop --verbose
 
 .PHONY: update
 update:

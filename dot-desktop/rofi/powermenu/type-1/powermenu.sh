@@ -14,7 +14,7 @@ dir="$HOME/.config/rofi/powermenu/type-1"
 theme='style-1'
 
 # CMDs
-uptime="$(uptime -p | sed -e 's/up //g')"
+uptime="$(uptime)"
 host=$(hostname)
 
 # Options
@@ -66,19 +66,11 @@ run_cmd() {
     elif [[ $1 == '--reboot' ]]; then
       systemctl reboot
     elif [[ $1 == '--suspend' ]]; then
-      mpc -q pause
-      amixer set Master mute
+      playerctl pause
+      pamixer --mute
       systemctl suspend
     elif [[ $1 == '--logout' ]]; then
-      if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
-        openbox --exit
-      elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
-        bspc quit
-      elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
-        i3-msg exit
-      elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
-        qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-      fi
+      hyprctl dispatch exit
     fi
   else
     exit 0
@@ -95,11 +87,7 @@ $reboot)
   run_cmd --reboot
   ;;
 $lock)
-  if [[ -x '/usr/bin/betterlockscreen' ]]; then
-    betterlockscreen -l
-  elif [[ -x '/usr/bin/i3lock' ]]; then
-    i3lock
-  fi
+  swaylock
   ;;
 $suspend)
   run_cmd --suspend
