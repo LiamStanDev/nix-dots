@@ -1,12 +1,17 @@
 # My Linux Dotfiles 👑
 
-This is my configuaration in linux and macOS for daily usage.
+This repository contains my personal NixOS and Home-Manager configurations, managed centrally using [Nix Flake](https://nixos.wiki/wiki/Flakes). It provides modular, version-controlled management for system, desktop, application, and user-level settings.
 
-- **Operating System 💻**: Fedora
-- **Window Manager 🪟**: Gnome with Forge, Hyprland, Niri
-- **Shell 🌟**: Zsh with Zap and Starship
-- **Terminal**: Wezterm
-- **Git TUI ☑️**: Lazygit
-- **Docker TUI ☑️**: Lazydocker
-- **File Manager 💼**: nautilus
-- **Editor 📰**: Neovim, Vscode
+---
+
+## Directory Structure
+
+- `flake.nix`: Flake entry point, defines NixOS and Home-Manager inputs and outputs.
+- `hosts/`: Per-host NixOS configurations (e.g., `vivo`).
+- `system/`: System-level NixOS modules (hardware, network, services, etc.).
+- `home/`: Home-Manager user-level modules and settings.
+- `pkgs/`: Custom Nix packages or scripts (e.g., the `switch` tool).
+- `dot-desktop/`: Desktop application configs (rofi, kitty, wezterm, waybar, etc.).
+- `dot-config/`: Application config files (nvim, yazi, btop, lazygit, etc.).
+- `scripts/`: Helper scripts for installation and removal.
+

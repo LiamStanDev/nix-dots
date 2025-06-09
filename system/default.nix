@@ -21,6 +21,7 @@ let
     desktop ++ [
       ./hardware/battery.nix
       ./hardware/bluetooth.nix
+      ./packages.nix
     ];
 
 in

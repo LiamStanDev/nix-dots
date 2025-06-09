@@ -9,7 +9,7 @@
         text = ''
           set -eu
 
-          nom build --verbose --keep-going --out-link /tmp/generation-os "${self}#nixosConfigurations.${host}.config.system.build.toplevel"
+          nom build --verbose --keep-going --out-link /tmp/generation "${self}#nixosConfigurations.${host}.config.system.build.toplevel"
           /tmp/generation/bin/switch-to-configuration switch
 
           echo "NixOS switched successfully."
