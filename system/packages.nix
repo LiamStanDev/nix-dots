@@ -71,14 +71,4 @@
     hyprland
     hyprland-protocols
   ];
-
-  fonts.packages = with pkgs; [
-    fira-sans
-    font-awesome
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-    roboto
-  ];
 }

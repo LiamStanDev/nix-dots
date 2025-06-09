@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-
   home.packages = with pkgs;
     [
       # Desktop applications
@@ -55,6 +53,7 @@
       lazydocker # simple terminal UI for docker
       direnv # environment variable manager
       starship # minimal, fast shell prompt
+      zoxide # smarter cd command
 
       # Hyprland & Wayland user tools
       hyprpicker

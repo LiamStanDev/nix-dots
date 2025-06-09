@@ -4,14 +4,7 @@
   boot = {
     bootspec.enable = true;
 
-    # initial ramdisk
-    initrd = {
-      systemd.enable = true;
-      supportedFilesystems = [ "btrfs" ];
-    };
-    initrd.kernelModules = [ "i915" ];
-
-    # use latest kernel
+    # Kernel version
     kernelPackages = pkgs.linuxPackages_latest;
 
     kernelParams = [
@@ -20,9 +13,8 @@
       "rd.udev.log_level=3" # ramdisk udev log level
       "splash" # show animation on boot
     ];
-    kernelModules = [ ];
 
-    # bootloader
+    # Bootloader
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {
@@ -34,7 +26,7 @@
       };
     };
 
-    # boot animation
+    # Boot animation
     plymouth = {
       enable = true;
       theme = "catppuccin-frappe";

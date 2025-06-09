@@ -1,13 +1,9 @@
-{ self
-, inputs
-
-, ...
-}: {
+{
   imports = [
     ./packages.nix
     ./modules
-    inputs.nix-index-db.hmModules.nix-index
   ];
+
 
   home = {
     username = "liam";
@@ -17,10 +13,10 @@
 
 
   home.sessionVariables = {
+    EDITOR = "nvim";
     TERM = "xterm-256color";
     NIXOS_OZONE_WL = "1"; # hint Electron apps to use Wayland
   };
-
 
 
   # disable manuals as nmd fails to build often
