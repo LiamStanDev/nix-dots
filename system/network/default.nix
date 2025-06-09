@@ -1,9 +1,4 @@
 { pkgs, ... }: {
-  imports = [
-    ./avahi.nix
-    ./spotify.nix
-  ];
-
   networking = {
     nameservers = [
       "9.9.9.9#dns.quad9.net" # much safer and privacy-focused DNS

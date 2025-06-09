@@ -2,20 +2,8 @@
 upgrade:
 	@echo "🔄 Full upgrading..."
 	@git add .
-	@sudo nix run .#switch-os # nixos-rebuild switch --flake .#laptop --verbose
-	@nix run .#switch-home  # home-manager switch --flake .#profile --verbose -b bckp
+	@sudo nix run .#switch 
 
-.PHONY: hmupgrade
-hmupgrade:
-	@echo "🔄 Home upgrading..."
-	@git add .
-	@home-manager switch --flake .#profile --verbose -b bckp
-
-.PHONY: sysupgrade
-sysupgrade:
-	@echo "🔄 System upgrading..."
-	@git add .
-	@sudo nixos-rebuild switch --flake .#laptop --verbose
 
 .PHONY: update
 update:
@@ -59,16 +47,10 @@ unlink-minimal:
 	@cd dot-config && make unlink
 	@echo "✅ Config files unliked successfully"
 
-.PHONY: status
-status:
-	@echo "📊 Current Configuration Status:"
-	@home-manager packages
-
 
 .PHONY: install
 install:
 	@./scripts/install
-
 
 .PHONY: uninstall
 uninstall:
