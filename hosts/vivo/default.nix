@@ -1,8 +1,6 @@
 {self, ...}: let
-  # Path to the system module directory
-  mod = "${self}/system";
   # Import the 'laptop' module from the system directory
-  inherit (import mod) laptop;
+  inherit (import ../../system) laptop;
 in {
   # Import base laptop modules and additional configuration files
   imports =
@@ -11,10 +9,10 @@ in {
       ./hardware-configuration.nix
       # ./disko.nix
 
-      "${mod}/network"
-      "${mod}/network/avahi.nix"
-      # "${mod}/network/iptables.nix"
-      "${mod}/network/spotify.nix"
+      ../../system/network
+      ../../system/network/avahi.nix
+      # ../../system/network/iptables.nix
+      ../../system/network/spotify.nix
     ];
 
   # Set the hostname for this machine

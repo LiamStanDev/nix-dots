@@ -6,6 +6,7 @@
     userEmail = "geffc1454@gmail.com";
     delta.enable = true;
     ignores = [".DS_Store"];
+
     extraConfig = {
       init.defaultBranch = "main";
       core = {

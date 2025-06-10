@@ -36,7 +36,7 @@
 
         # usr
         PATH="$HOME/.local/bin:$PATH"
-        PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+        # PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
         # go
         PATH=$HOME/go/bin:$PATH
@@ -44,7 +44,6 @@
         # rust
         export RUSTPATH="$HOME/.cargo/bin"
         PATH="$RUSTPATH:$PATH"
-
       '';
       afterContent = lib.mkOrder 1000 "";
     in
@@ -109,4 +108,11 @@
       gtp = "git stash pop";
     };
   };
+
+  programs.eza.enableZshIntegration = true;
+  programs.zoxide.enableZshIntegration = true;
+  programs.fzf.enableZshIntegration = true;
+  programs.direnv.enableZshIntegration = true;
+  programs.zellij.enableZshIntegration = true;
+  programs.yazi.enableZshIntegration = true;
 }

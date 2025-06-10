@@ -65,16 +65,7 @@ in {
       ];
 
       exec-once = [
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-        "swww-daemon"
-        "swww img ~/Pictures/Wallpapers/waves.jpg"
-        "wl-paste --type text --watch cliphist store"
-        "wl-paste --type image --watch cliphist store"
-        "systemctl --user restart waybar.service"
-        "systemctl --user restart nm-applet.service"
-        "systemctl --user restart blueman-applet.service"
-        "systemctl --user restart udiskie.service"
-        "systemctl --user restart mako.service"
+        "${pkgs.swww}/bin/swww img ${(import ../../specializations.nix).wallpaper}"
         # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
         "fcitx5 -r"
       ];
@@ -82,8 +73,8 @@ in {
       bind = [
         # System
         "$mainMod, Q, killactive,"
-        "$mainMod, SPACE, exec, pkill rofi || exec ~/.config/rofi/scripts/launcher_t6"
-        "$mainMod SHIFT, Q, exec, pkill rofi || exec ~/.config/rofi/scripts/powermenu_t3"
+        "$mainMod, SPACE, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/launcher_t6"
+        "$mainMod SHIFT, Q, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/powermenu_t3"
 
         # Screenshot
         "$mainMod, S, exec, grim -g \"$(slurp)\" - | wl-copy"
@@ -141,12 +132,12 @@ in {
         "$mainMod, mouse_up, workspace, e-1"
 
         # Launch apps
-        "$mainMod, RETURN, exec, [float;tile] wezterm start --always-new-process"
-        "$mainMod, E, exec, nautilus"
+        "$mainMod, RETURN, exec, [float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"
+        "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
         "$mainMod, B, exec, google-chrome-stable"
         # "$mainMod, N, exec, swaync-client -t"
         # "$mainMod, V, exec, source ~/.config/hypr/scripts/cliphist.sh"
-        "$mainMod, P, exec, hyprpicker -a"
+        "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
         "$mainMod, S, exec, ${screenshot}/bin/screenshot-selection"
         "$mainMod SHIFT, S, exec, ${screenshotSave}/bin/screenshot-selection-save"
       ];

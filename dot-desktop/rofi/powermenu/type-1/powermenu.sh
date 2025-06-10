@@ -87,7 +87,7 @@ $reboot)
   run_cmd --reboot
   ;;
 $lock)
-  swaylock
+  hyprlock
   ;;
 $suspend)
   run_cmd --suspend

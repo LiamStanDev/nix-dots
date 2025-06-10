@@ -14,6 +14,7 @@ let
       ./services/fwupd.nix
       ./services/psd.nix
       ./services/pipewire.nix
+      ./services/auto-mount.nix
 
       ./desktop/dm.nix
       ./desktop/fonts.nix
@@ -24,7 +25,6 @@ let
     ++ [
       ./hardware/battery.nix
       ./hardware/bluetooth.nix
-      ./packages.nix
     ];
 in {
   inherit minimal desktop laptop;

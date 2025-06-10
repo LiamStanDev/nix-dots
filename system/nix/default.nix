@@ -13,6 +13,9 @@
   # we need git for flakes
   environment.systemPackages = [pkgs.git];
 
+  # Run unpatched dynamic binaries on NixOS
+  programs.nix-ld.enable = true;
+
   nix = let
     flakeInputs = lib.filterAttrs (_: v: lib.isType "flake" v) inputs;
   in {

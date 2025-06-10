@@ -4,13 +4,12 @@
   ...
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
-  inherit (inputs.nix-index-database.nixosModules) nix-index-db;
-  specialArgs = {inherit self inputs;};
+  inherit (inputs) nix-index-database;
 in {
   vivo = nixosSystem {
-    inherit specialArgs;
+    specialArgs = {inherit self inputs;};
     modules = [
-      nix-index-db.nix-index
+      nix-index-database.nixosModules.nix-index
       ./vivo
       ../system/home-manager.nix
       {

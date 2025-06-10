@@ -3,7 +3,7 @@
 
   services.hypridle.settings = {
     general = {
-      lock_cmd = "swaylock";
+      lock_cmd = "hyprlock";
       after_sleep_cmd = "hyprctl dispatch dpms on";
       ignore_dbus_inhibit = false;
     };
@@ -11,7 +11,7 @@
     listener = [
       {
         timeout = 180;
-        on-timeout = "swaylock";
+        on-timeout = "hyprlock";
       }
       {
         timeout = 240;

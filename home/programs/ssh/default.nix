@@ -1,5 +1,7 @@
 {
   programs.ssh = {
+    enable = true;
+
     matchBlocks = {
       doge = {
         hostname = "125.229.2.203";

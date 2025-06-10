@@ -107,17 +107,17 @@ return function()
 				},
 			},
 			lualine_x = {
-				{
-					utils.mason_updates() .. "",
-					color = { fg = palette.maroon },
-					cond = function()
-						return utils.mason_updates() > 0
-					end,
-					icon = "",
-					on_click = function()
-						vim.cmd("Mason")
-					end,
-				},
+				-- {
+				-- 	utils.mason_updates() .. "",
+				-- 	color = { fg = palette.maroon },
+				-- 	cond = function()
+				-- 		return utils.mason_updates() > 0
+				-- 	end,
+				-- 	icon = "",
+				-- 	on_click = function()
+				-- 		vim.cmd("Mason")
+				-- 	end,
+				-- },
 				{
 					require("lazy.status").updates,
 					cond = require("lazy.status").has_updates,

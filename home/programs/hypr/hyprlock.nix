@@ -1,4 +1,4 @@
-{config, ...}: {
+{
   programs.hyprlock = {
     enable = true;
 
@@ -18,7 +18,7 @@
       background = [
         {
           monitor = "";
-          path = config.theme.wallpaper;
+          path = (import ../../specializations.nix).lockscreen;
         }
       ];
 

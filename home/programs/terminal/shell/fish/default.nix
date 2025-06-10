@@ -105,4 +105,6 @@ in {
     };
   };
   programs.fzf.enableFishIntegration = false;
+  programs.direnv.enableFishIntegration = true;
+  programs.direnv.config.direnv_fish_mode = "eval_on_arrow";
 }
