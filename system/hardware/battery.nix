@@ -6,7 +6,7 @@
   services.logind.powerKey = "suspend";
 
   services.power-profiles-daemon.enable = false; # conflict with auto-cpufreq
-  services.auto-cpufreq.enable = true; # energy save(auto) for laptop 
+  services.auto-cpufreq.enable = true; # energy save(auto) for laptop
   services.auto-cpufreq.settings = {
     battery = {
       governor = "powersave";

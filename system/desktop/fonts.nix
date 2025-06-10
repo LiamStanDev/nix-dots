@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
       # icon fonts
@@ -13,7 +13,7 @@
       noto-fonts-cjk-serif
       noto-fonts-emoji
       roboto
-      (google-fonts.override { fonts = [ "Inter" ]; })
+      (google-fonts.override {fonts = ["Inter"];})
 
       # monospace fonts
       jetbrains-mono
@@ -28,10 +28,10 @@
 
     # user defined fonts
     fontconfig.defaultFonts = {
-      serif = [ "Libertinus Serif" "Noto Serif CJK SC" ];
-      sansSerif = [ "Inter" "Noto Sans CJK SC" ];
-      monospace = [ "JetBrains Mono Nerd Font" ];
-      emoji = [ "Noto Color Emoji" ];
+      serif = ["Libertinus Serif" "Noto Serif CJK SC"];
+      sansSerif = ["Inter" "Noto Sans CJK SC"];
+      monospace = ["JetBrains Mono Nerd Font"];
+      emoji = ["Noto Color Emoji"];
     };
   };
 }

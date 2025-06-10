@@ -60,7 +60,7 @@ G.formatters = {
   cpp = { "clang_format" }, -- C++
   cmake = { "gersemi" }, -- CMake
   sql = { "sqlfmt" }, -- SQL
-  nix = { "nixpkgs_fmt" }, -- Nix
+  nix = { "alejandra" }, -- Nix other options: nixpkg_fmt
 }
 
 --[[ Linters for code linting

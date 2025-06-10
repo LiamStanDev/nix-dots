@@ -5,7 +5,7 @@
     userName = "Liam";
     userEmail = "geffc1454@gmail.com";
     delta.enable = true;
-    ignores = [ ".DS_Store" ];
+    ignores = [".DS_Store"];
     extraConfig = {
       init.defaultBranch = "main";
       core = {
@@ -34,6 +34,5 @@
       # the upstream branch
       publish = "!git push -u origin $(git branch-name)";
     };
-
   };
 }

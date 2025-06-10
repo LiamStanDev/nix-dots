@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   imports = [
     ./boot.nix
     ./security.nix

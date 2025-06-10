@@ -1,12 +1,10 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   systemd.user.services = {
-
     udiskie = {
       Unit = {
         Description = "Udiskie Service";
 
-        After = [ "graphical-session.target" ];
+        After = ["graphical-session.target"];
       };
 
       Service = {
@@ -15,11 +13,10 @@
       };
     };
 
-
     waybar = {
       Unit = {
         Description = "Waybar Service";
-        After = [ "graphical-session.target" ];
+        After = ["graphical-session.target"];
       };
 
       Service = {
@@ -28,11 +25,10 @@
       };
     };
 
-
     blueman-applet = {
       Unit = {
         Description = "Bluenman Applet Service";
-        After = [ "graphical-session.target" ];
+        After = ["graphical-session.target"];
       };
 
       Service = {
@@ -41,11 +37,10 @@
       };
     };
 
-
     nm-applet = {
       Unit = {
         Description = "Network Manager Applet Service";
-        After = [ "graphical-session.target" ];
+        After = ["graphical-session.target"];
       };
 
       Service = {
@@ -54,11 +49,10 @@
       };
     };
 
-
     mako = {
       Unit = {
         Description = "Mako Service";
-        After = [ "graphical-session.target" ];
+        After = ["graphical-session.target"];
       };
 
       Service = {

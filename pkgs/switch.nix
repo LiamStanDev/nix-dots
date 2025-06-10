@@ -1,21 +1,21 @@
-{ self, pkgs, host }:
-
 {
+  self,
+  pkgs,
+  host,
+}: {
   type = "app";
-  program =
-    let
-      switch = pkgs.writeShellApplication {
-        name = "switch";
-        text = ''
-          set -eu
+  program = let
+    switch = pkgs.writeShellApplication {
+      name = "switch";
+      text = ''
+        set -eu
 
-          nom build --verbose --keep-going --out-link /tmp/generation "${self}#nixosConfigurations.${host}.config.system.build.toplevel"
-          /tmp/generation/bin/switch-to-configuration switch
+        nom build --verbose --keep-going --out-link /tmp/generation "${self}#nixosConfigurations.${host}.config.system.build.toplevel"
+        /tmp/generation/bin/switch-to-configuration switch
 
-          echo "NixOS switched successfully."
-        '';
-        runtimeInputs = [ pkgs.nix-output-monitor ];
-      };
-    in
-    "${switch}/bin/switch";
+        echo "NixOS switched successfully."
+      '';
+      runtimeInputs = [pkgs.nix-output-monitor];
+    };
+  in "${switch}/bin/switch";
 }

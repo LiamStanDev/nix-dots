@@ -1,23 +1,19 @@
 {
   imports = [
-    ./packages.nix
-    ./modules
+    ./programs
   ];
-
 
   home = {
     username = "liam";
     homeDirectory = "/home/liam";
-    extraOutputsToInstall = [ "doc" "devdoc" ];
+    extraOutputsToInstall = ["doc" "devdoc"];
   };
-
 
   home.sessionVariables = {
     EDITOR = "nvim";
     TERM = "xterm-256color";
     NIXOS_OZONE_WL = "1"; # hint Electron apps to use Wayland
   };
-
 
   # disable manuals as nmd fails to build often
   manual = {

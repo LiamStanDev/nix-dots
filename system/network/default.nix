@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   networking = {
     nameservers = [
       "9.9.9.9#dns.quad9.net" # much safer and privacy-focused DNS
@@ -27,5 +27,10 @@
     };
   };
 
-  systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+  systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
+
+  environment.systemPackages = with pkgs; [
+    iptables-nftables-compat # Compatibility with nftables
+    nftables # Modern firewall system
+  ];
 }

@@ -1,6 +1,8 @@
-{ pkgs, config, ... }:
-
 {
+  pkgs,
+  config,
+  ...
+}: {
   boot = {
     bootspec.enable = true;
 
@@ -22,7 +24,7 @@
         efiSupport = true;
         useOSProber = true;
         device = "nodev";
-        theme = "${(pkgs.catppuccin-grub.override { flavor = "frappe"; })}";
+        theme = "${(pkgs.catppuccin-grub.override {flavor = "frappe";})}";
       };
     };
 
@@ -32,10 +34,12 @@
       theme = "catppuccin-frappe";
 
       themePackages = with pkgs; [
-        (catppuccin-plymouth.override { variant = "frappe"; })
+        (catppuccin-plymouth.override {variant = "frappe";})
       ];
     };
   };
 
-  environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
+  environment.systemPackages = [
+    config.boot.kernelPackages.cpupower
+  ];
 }

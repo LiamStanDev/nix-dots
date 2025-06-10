@@ -1,15 +1,11 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   catppuccin-fish = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "fish";
     rev = "6a85af2ff722ad0f9fbc8424ea0a5c454661dfed"; # commit hash or tag
     hash = "sha256-Oc0emnIUI4LV7QJLs4B2/FQtCFewRFVp7EDv8GawFsA=";
   };
-in
-{
-
+in {
   xdg.configFile."fish/themes/Catppuccin Frappe.theme".source = "${catppuccin-fish}/themes/Catppuccin Frappe.theme";
   programs.fish = {
     enable = true;
@@ -110,4 +106,3 @@ in
   };
   programs.fzf.enableFishIntegration = false;
 }
-

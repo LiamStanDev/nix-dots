@@ -1,3 +1,9 @@
+.PHONY: check
+check:
+	@echo "🔄 Flake check..."
+	@git add .
+	@nix flake check
+
 .PHONY: upgrade
 upgrade:
 	@echo "🔄 Full upgrading..."

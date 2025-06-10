@@ -1,30 +1,27 @@
-{ pkgs, ... }:
-
-let
-
+{pkgs, ...}: let
   monitors = [
     # display name, resolution, position, scale
     "eDP-1, 1920x1080, 0x0, 1"
     "HDMI-A-1, 2560x1440, 0x-1440, 1"
   ];
-  screenshot = pkgs.writeShellScriptBin
+  screenshot =
+    pkgs.writeShellScriptBin
     "screenshot-selection"
     ''
       grim -g "$(slurp)" - | wl-copy
     '';
 
-  screenshotSave = pkgs.writeShellScriptBin
+  screenshotSave =
+    pkgs.writeShellScriptBin
     "screenshot-selection-save"
     ''
       grim -g "$(slurp)" ~/Pictures/screenshot/screenshot-$(date +%s).png
     '';
-in
-{
+in {
   wayland.windowManager.hyprland = {
-
     enable = true;
     xwayland.enable = true;
-    systemd.variables = [ "--all" ]; # add $PATH to systemd
+    systemd.variables = ["--all"]; # add $PATH to systemd
     systemd.enable = true; # enable hyprland-session.target
 
     settings = {
@@ -82,13 +79,11 @@ in
         "fcitx5 -r"
       ];
 
-
       bind = [
         # System
         "$mainMod, Q, killactive,"
         "$mainMod, SPACE, exec, pkill rofi || exec ~/.config/rofi/scripts/launcher_t6"
         "$mainMod SHIFT, Q, exec, pkill rofi || exec ~/.config/rofi/scripts/powermenu_t3"
-
 
         # Screenshot
         "$mainMod, S, exec, grim -g \"$(slurp)\" - | wl-copy"
@@ -117,7 +112,6 @@ in
         "$mainMod CTRL, l, resizeactive, 80 0"
         "$mainMod CTRL, k, resizeactive, 0 -40"
         "$mainMod CTRL, j, resizeactive, 0 40"
-
 
         # Workspace switching
         "$mainMod SHIFT, TAB, workspace, m+1"
@@ -173,7 +167,6 @@ in
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       ];
 
-
       debug = {
         disable_logs = false;
         enable_stdout_logs = true;
@@ -196,7 +189,6 @@ in
           tap_button_map = "lrmr";
         };
 
-
         repeat_rate = 50;
         repeat_delay = 200;
         sensitivity = 0.5;
@@ -210,7 +202,6 @@ in
         workspace_swipe_distance = 600;
         workspace_swipe_forever = true;
       };
-
 
       general = {
         gaps_in = 5;
@@ -295,4 +286,3 @@ in
     };
   };
 }
-

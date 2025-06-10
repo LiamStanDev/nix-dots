@@ -1,10 +1,11 @@
-{ self, pkgs, ... }:
-
-let
-  sddm-sugar-dark = pkgs.libsForQt5.callPackage "${self}/pkgs/sddm-sugar-dark.nix" { };
-in
 {
-  environment.systemPackages = [ sddm-sugar-dark ];
+  self,
+  pkgs,
+  ...
+}: let
+  sddm-sugar-dark = pkgs.libsForQt5.callPackage "${self}/pkgs/sddm-sugar-dark.nix" {};
+in {
+  environment.systemPackages = [sddm-sugar-dark];
 
   # GDM (may crash when using hyprland)
   # services.desktopManager.plasma6.enable = true;
@@ -26,4 +27,3 @@ in
   programs.hyprland.enable = true;
   services.displayManager.defaultSession = "hyprland";
 }
-

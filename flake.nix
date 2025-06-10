@@ -8,24 +8,30 @@
     # Home Manager input
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Nix index
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@ inputs:
-    let
-      # System type and host name
-      system = "x86_64-linux";
-      host = "vivo";
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    # System type and host name
+    system = "x86_64-linux";
+    host = "vivo";
 
-      pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    # Import NixOS configurations from the hosts directory
+    nixosConfigurations = import ./hosts {inherit self inputs;};
 
-    in
-    {
-      # Import NixOS configurations from the hosts directory
-      nixosConfigurations = import ./hosts { inherit self inputs; };
-
-      # Custom switch as replacement of 'nixos-rebuild switch'
-      apps.${system}.switch = import ./pkgs/switch.nix {
-        inherit self pkgs host;
-      };
+    # Custom switch as replacement of 'nixos-rebuild switch'
+    apps.${system}.switch = import ./pkgs/switch.nix {
+      inherit self pkgs host;
     };
+  };
 }

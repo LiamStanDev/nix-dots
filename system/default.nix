@@ -5,26 +5,27 @@ let
     ./network
   ];
 
-  desktop = minimal ++ [
-    ./hardware/graphics.nix
+  desktop =
+    minimal
+    ++ [
+      ./hardware/graphics.nix
 
-    ./services/dubs.nix
-    ./services/fwupd.nix
-    ./services/psd.nix
-    ./services/pipewire.nix
+      ./services/dubs.nix
+      ./services/fwupd.nix
+      ./services/psd.nix
+      ./services/pipewire.nix
 
-    ./desktop/dm.nix
-    ./desktop/fonts.nix
-  ];
+      ./desktop/dm.nix
+      ./desktop/fonts.nix
+    ];
 
   laptop =
-    desktop ++ [
+    desktop
+    ++ [
       ./hardware/battery.nix
       ./hardware/bluetooth.nix
       ./packages.nix
     ];
-
-in
-{
+in {
   inherit minimal desktop laptop;
 }
