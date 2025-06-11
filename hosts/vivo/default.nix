@@ -1,6 +1,6 @@
 {self, ...}: let
   # Import the 'laptop' module from the system directory
-  inherit (import ../../system) laptop;
+  inherit (import "${self}/system") laptop;
 in {
   # Import base laptop modules and additional configuration files
   imports =
@@ -9,10 +9,10 @@ in {
       ./hardware-configuration.nix
       # ./disko.nix
 
-      ../../system/network
-      ../../system/network/avahi.nix
-      # ../../system/network/iptables.nix
-      ../../system/network/spotify.nix
+      "${self}/system/network"
+      "${self}/system/network/avahi.nix"
+      "${self}/system/network/spotify.nix"
+      "${self}/system/virt"
     ];
 
   # Set the hostname for this machine
@@ -20,10 +20,7 @@ in {
 
   # Boot configuration
   # initial ramdisk settings
-  boot.initrd = {
-    systemd. enable = true;
-    supportedFilesystems = ["btrfs"];
-  };
+  boot.initrd.supportedFilesystems = ["btrfs"];
   boot.initrd.kernelModules = ["i915"];
   boot.kernelModules = ["kvm-intel"];
 

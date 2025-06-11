@@ -14,7 +14,9 @@
     bitwarden-desktop # Password manager
     pavucontrol # PulseAudio volume control GUI
     nautilus # GNOME file manager
-    virt-manager # Virtual machine GUI frontend
     discord # Online text and voice chat
+    gedit # text editor GUI for Gnome
+    coolercontrol.coolercontrol-gui # fancontrol GUI
+    coolercontrol.coolercontrol-ui-data # fancontrol UI data
   ];
 }

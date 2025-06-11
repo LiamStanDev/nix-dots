@@ -4,6 +4,10 @@
     ./hyprland.nix
     ./hypridle.nix
     ./hyprlock.nix
+
+    # other packages
+    ../mako
+    ../waybar
   ];
 
   home.sessionVariables = {
@@ -19,18 +23,11 @@
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 
-  # Waybar
-  programs.waybar.enable = true;
-  programs.waybar.systemd.enable = true;
-
   # Blueman Applet
   services.blueman-applet.enable = true;
 
   # Network Manager Applet
   services.network-manager-applet.enable = true;
-
-  # Mako
-  services.mako.enable = true;
 
   # Auto mount
   services.udiskie.enable = true;
@@ -50,17 +47,15 @@
   services.gnome-keyring.enable = true;
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.hyprland-protocols];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   home.packages = with pkgs; [
     seatd # Seat management daemon
     hyprpicker # Color picker
-    hypridle # Idle manager for Hyprland
     rofi-wayland # Application launcher
     grim # Screenshot tool
     slurp # Select area for grim
     libnotify # Notification support (notify-deamon needs)
     wl-clipboard # Clipboard support
-    xwayland # X11 compatibility layer for Wayland
   ];
 }

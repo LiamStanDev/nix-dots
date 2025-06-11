@@ -11,6 +11,7 @@ let
       ./hardware/graphics.nix
       ./hardware/sound.nix
       ./hardware/auto-mount.nix
+      ./hardware/fancontrol.nix
 
       ./services/dubs.nix
       ./services/fwupd.nix

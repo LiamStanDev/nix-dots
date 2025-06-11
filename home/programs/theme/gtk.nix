@@ -15,4 +15,16 @@
   gtk.font.name = "Inter";
   gtk.font.package = pkgs.google-fonts.override {fonts = ["Inter"];};
   gtk.font.size = 9;
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "adw-gtk3-dark";
+      color-scheme = "prefer-dark";
+    };
+
+    # For Gnome shell
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+    };
+  };
 }

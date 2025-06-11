@@ -11,10 +11,15 @@
 
     kernelParams = [
       "quiet"
-      "loglevel=3"
-      "rd.udev.log_level=3" # ramdisk udev log level
       "splash" # show animation on boot
+      "logo.nologo" # don't show nix logo
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3" # ramdisk udev log level
+      "udev.log_priority=3"
     ];
+
+    # initial ramdisk settings
+    initrd.systemd. enable = true;
 
     # Bootloader
     loader = {

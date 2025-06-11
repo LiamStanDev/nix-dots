@@ -16,6 +16,11 @@
   programs.fzf.enable = true;
   programs.direnv.enable = true;
 
+  home.sessionVariables = {
+    # Prevent direnv show lots of logs
+    DIRENV_LOG_FORMAT = "";
+  };
+
   home.packages = with pkgs; [
     fastfetch # System info fetcher (like neofetch)
     ntfs3g # NTFS filesystem support

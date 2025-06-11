@@ -10,29 +10,17 @@
     "desc:Samsung Display Corp. 0x4161, 1920x1080, 0x0, 1"
 
     # home monitor
-    # "HDMI-A-1, 2560x1440, 0x-1440, 1"
+    "desc:ASUSTek COMPUTER INC VG27A N8LMQS004677, 2560x1440, 0x-1440, 1"
 
     # work monitor
     "desc:Acer Technologies Acer V246HL LXMTT0104229, 1920x1080, 1920x0, 1"
   ];
 
   # Screenshot
-  screenshot =
-    pkgs.writeShellScriptBin
-    "screenshot-selection"
-    ''
-      grim -g "$(slurp)" - | wl-copy
-    '';
-
-  screenshotSave =
-    pkgs.writeShellScriptBin
-    "screenshot-selection-save"
-    ''
-      grim -g "$(slurp)" ~/Pictures/screenshot/screenshot-$(date +%s).png
-    '';
+  screenshot = import "${self}/pkgs/screenshot.nix" {inherit pkgs;};
 in {
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = true; # also enable hyprland-protocols
     xwayland.enable = true;
     systemd.variables = ["--all"]; # add $PATH to systemd
     systemd.enable = true; # enable hyprland-session.target
@@ -48,12 +36,6 @@ in {
         "XDG_SESSION_DESKTOP,Hyprland"
         # "XDG_SCREENSHOTS_DIR,~/Pictures/screens"
 
-        # Toolkit Backend
-        # "GDK_BACKEND,wayland,x11,*"
-        # "QT_QPA_PLATFORM,wayland;xcb"
-        # "CLUTTER_BACKEND,wayland"
-        # "SDL_VIDEODRIVER,wayland"
-
         # Qt variables
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -62,10 +44,6 @@ in {
         # "GBM_BACKEND,nvidia-drm"
         # "__GLX_VENDOR_LIBRARY_NAME,nvidia"
         # "LIBVA_DRIVER_NAME,nvidia"
-
-        # key env
-        # "AVA_AWT_WM_NONREPARENTING,wayland"
-        # "NO_AT_BRIDGE,1"
 
         # Fcitx5 variables
         #"GTK_IM_MODULE,fcitx" # no need
@@ -146,11 +124,9 @@ in {
         "$mainMod, RETURN, exec, [float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"
         "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
         "$mainMod, B, exec, google-chrome-stable"
-        # "$mainMod, N, exec, swaync-client -t"
-        # "$mainMod, V, exec, source ~/.config/hypr/scripts/cliphist.sh"
         "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
-        "$mainMod, S, exec, ${screenshot}/bin/screenshot-selection"
-        "$mainMod SHIFT, S, exec, ${screenshotSave}/bin/screenshot-selection-save"
+        "$mainMod, S, exec, ${screenshot.program}"
+        "$mainMod SHIFT, S, exec, ${screenshot.program} --save"
       ];
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -211,8 +187,6 @@ in {
         no_border_on_floating = true;
         border_size = 2;
         "col.active_border" = "0xFFFFC87F";
-        # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        # "col.inactive_border" = "rgba(595959aa)";
         layout = "dwindle";
       };
 
@@ -263,12 +237,16 @@ in {
 
       # see: https://wiki.hyprland.org/Configuring/Window-Rules/#static-rules
       windowrule = [
+        # float by default
+        "float, class:.*"
+
         # window type
         "pseudo, class:fcitx, title:fcitx"
-        "float, class:kitty, title:kitty"
-        "float, class:kitty, title:btop"
-        "float, class:kitty, title:nmtui"
-        "float, class:org.pulseaudio.pavucontrol"
+        "tile, class:code" # vscode
+        "tile, class:org.wezfurlong.wezterm"
+        "tile, class:google-chrome"
+        "tile, class:obsidian"
+        "fullscreen, title:^.* on QEMU/KVM$"
 
         # size
         "size 600 500, class:kitty, title:kitty"

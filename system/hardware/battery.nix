@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   # battery information
   services.upower.enable = true;
 
@@ -18,6 +18,11 @@
     };
   };
 
+  # Battery
   # thermal management
   services.thermald.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    lm_sensors
+  ];
 }

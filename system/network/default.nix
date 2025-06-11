@@ -10,8 +10,8 @@
     wifi.powersave = true;
   };
 
-  networking.firewall.enable = true;
-  networking.nftables.enable = true; # defualt use iptables
+  networking.firewall.enable = false;
+  networking.nftables.enable = false; # defualt use iptables
   networking.firewall.allowedTCPPorts = [80 443];
 
   services = {
@@ -31,6 +31,12 @@
   };
 
   systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
+
+  # Disable ipv6 to fix libvirtd NAT inactive problem
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.disable_ipv6" = "1";
+    "net.ipv6.conf.default.disable_ipv6" = "1";
+  };
 
   environment.systemPackages = with pkgs; [
     iptables-nftables-compat # Compatibility with nftables

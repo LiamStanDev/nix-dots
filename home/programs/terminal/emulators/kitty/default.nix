@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
     font = {
@@ -24,6 +24,10 @@
       background_opacity = "0.8";
     };
 
-    theme = "Catppuccin-Frappe";
+    themeFile = "Catppuccin-Frappe";
   };
+
+  home.packages = with pkgs; [
+    kitty-themes
+  ];
 }
