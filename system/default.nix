@@ -9,12 +9,12 @@ let
     minimal
     ++ [
       ./hardware/graphics.nix
+      ./hardware/sound.nix
+      ./hardware/auto-mount.nix
 
       ./services/dubs.nix
       ./services/fwupd.nix
       ./services/psd.nix
-      ./services/pipewire.nix
-      ./services/auto-mount.nix
 
       ./desktop/dm.nix
       ./desktop/fonts.nix

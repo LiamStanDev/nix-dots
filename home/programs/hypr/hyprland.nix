@@ -1,9 +1,18 @@
 {pkgs, ...}: let
   monitors = [
     # display name, resolution, position, scale
-    "eDP-1, 1920x1080, 0x0, 1"
-    "HDMI-A-1, 2560x1440, 0x-1440, 1"
+
+    # builtin monitor
+    "desc:Samsung Display Corp. 0x4161, 1920x1080, 0x0, 1"
+
+    # home monitor
+    # "HDMI-A-1, 2560x1440, 0x-1440, 1"
+
+    # work monitor
+    "desc:Acer Technologies Acer V246HL LXMTT0104229, 1920x1080, 1920x0, 1"
   ];
+
+  # Screenshot
   screenshot =
     pkgs.writeShellScriptBin
     "screenshot-selection"
@@ -32,15 +41,14 @@ in {
       env = [
         # XDG Specifications
         "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
-        "XDG_SCREENSHOTS_DIR,~/Pictures/screens"
+        # "XDG_SCREENSHOTS_DIR,~/Pictures/screens"
 
         # Toolkit Backend
-        "GDK_BACKEND,wayland,x11,*"
-        "QT_QPA_PLATFORM,wayland;xcb"
-        "CLUTTER_BACKEND,wayland"
-        "SDL_VIDEODRIVER,wayland"
+        # "GDK_BACKEND,wayland,x11,*"
+        # "QT_QPA_PLATFORM,wayland;xcb"
+        # "CLUTTER_BACKEND,wayland"
+        # "SDL_VIDEODRIVER,wayland"
 
         # Qt variables
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
@@ -52,9 +60,8 @@ in {
         # "LIBVA_DRIVER_NAME,nvidia"
 
         # key env
-        "AVA_AWT_WM_NONREPARENTING,wayland"
-        "WLR_NO_HARDWARE_CURSORS,1"
-        "NO_AT_BRIDGE,1"
+        # "AVA_AWT_WM_NONREPARENTING,wayland"
+        # "NO_AT_BRIDGE,1"
 
         # Fcitx5 variables
         #"GTK_IM_MODULE,fcitx" # no need

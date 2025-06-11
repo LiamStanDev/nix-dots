@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   # graphics drivers / HW accel
   hardware.graphics = {
-    enable = true;
+    enable = true; # include openGL
 
     extraPackages = with pkgs; [
       libva
