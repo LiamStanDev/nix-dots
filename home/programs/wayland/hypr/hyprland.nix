@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  self,
+  pkgs,
+  ...
+}: let
   monitors = [
     # display name, resolution, position, scale
 
@@ -72,7 +76,7 @@ in {
       ];
 
       exec-once = [
-        "${pkgs.swww}/bin/swww img ${(import ../../specializations.nix).wallpaper}"
+        "${pkgs.swww}/bin/swww img ${(import "${self}/home/specializations.nix").wallpaper}"
         # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
         "fcitx5 -r"
       ];

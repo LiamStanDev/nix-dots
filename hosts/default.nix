@@ -14,7 +14,7 @@ in {
       ../system/home-manager.nix
       {
         home-manager.users.liam = ../home;
-        home-manager.extraSpecialArgs = {inherit inputs;};
+        home-manager.extraSpecialArgs = {inherit self inputs;};
       }
     ];
   };

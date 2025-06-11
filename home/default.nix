@@ -4,13 +4,14 @@
     ./programs/cli
     ./programs/dev
     ./programs/app
-    ./programs/terminal/shell
-    ./programs/terminal/emulators
     ./programs/virt
-    ./programs/hypr
     ./programs/theme
     ./programs/git
     ./programs/ssh
+    ./programs/terminal/shell
+    ./programs/terminal/emulators
+
+    ./programs/wayland/hypr
 
     ./programs/im.nix
   ];

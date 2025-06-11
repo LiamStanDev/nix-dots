@@ -32,7 +32,7 @@
   # Mako
   services.mako.enable = true;
 
-  # Udiskie
+  # Auto mount
   services.udiskie.enable = true;
   services.udiskie.tray = "always";
 
@@ -46,25 +46,19 @@
   # Wallpaper deamon
   services.swww.enable = true;
 
+  # Keyring
+  services.gnome-keyring.enable = true;
+
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [];
+  xdg.portal.extraPortals = [pkgs.hyprland-protocols];
 
   home.packages = with pkgs; [
-    hyprland-protocols # Hyprland-specific protocols
     seatd # Seat management daemon
     hyprpicker # Color picker
     hypridle # Idle manager for Hyprland
-    gnome-keyring # Keyring daemon
-    polkit_gnome # Polkit agent for authentication
-    udiskie # Automounter for udisks
-    networkmanagerapplet # NetworkManager GUI applet
-    waybar # Status bar for Wayland
-    mako # Notification daemon
-    swww # Wallpaper daemon
     rofi-wayland # Application launcher
     grim # Screenshot tool
     slurp # Select area for grim
-    swaylock-effects # Lock screen with effects
     libnotify # Notification support (notify-deamon needs)
     wl-clipboard # Clipboard support
     xwayland # X11 compatibility layer for Wayland

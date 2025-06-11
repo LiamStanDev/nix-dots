@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   programs.hyprlock = {
     enable = true;
 
@@ -18,7 +18,7 @@
       background = [
         {
           monitor = "";
-          path = (import ../../specializations.nix).lockscreen;
+          path = (import "${self}/home/specializations.nix").lockscreen;
         }
       ];
 
