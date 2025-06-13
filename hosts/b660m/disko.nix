@@ -8,14 +8,15 @@
         content = {
           type = "gpt";
           partitions = {
+            # EFI system partition
             ESP = {
               size = "512M";
-              type = "EF00";
+              type = "EF00"; # UEFI
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
             swap = {
@@ -52,48 +53,44 @@
         };
       };
     };
-    
 
     mdadm.md0 = {
       type = "mdadm";
       level = 0;
       content = {
-	    type = "gpt";
-	    partitions = {
-	      primary = {
-	        size = "100%";
-	        content = {
-	        type = "btrfs";
-            extraArgs = [ "-f" ];
-            mountpoint = "/";
-            subvolumes = {
-              "@root" = {
-                mountpoint = "/";
-                mountOptions = [ "compress=zstd" "noatime" "ssd" "discard=async" "space_cache" ];
+        type = "gpt";
+        partitions = {
+          primary = {
+            size = "100%";
+            content = {
+              type = "btrfs";
+              extraArgs = ["-f"];
+              subvolumes = {
+                "@root" = {
+                  mountpoint = "/";
+                  mountOptions = ["compress=zstd" "noatime" "ssd" "discard=async" "space_cache"];
+                };
+                "@home" = {
+                  mountpoint = "/home";
+                  mountOptions = ["compress=zstd:1" "noatime" "ssd" "discard=async" "space_cache"];
+                };
+                "@nix" = {
+                  mountpoint = "/nix";
+                  mountOptions = ["compress=zstd" "noatime" "ssd" "discard=async" "space_cache"];
+                };
+                "@var" = {
+                  mountpoint = "/var";
+                  mountOptions = ["compress=zstd:1" "noatime" "autodefrag" "ssd" "discard=async" "space_cache"];
+                };
+                "@tmp" = {
+                  mountpoint = "/tmp";
+                  mountOptions = ["noatime" "nosuid" "nodev" "ssd" "noexec" "discard=async" "space_cache"];
+                };
               };
-              "@home" = {
-                mountpoint = "/home";
-                mountOptions = [ "compress=zstd:1" "noatime" "ssd" "discard=async" "space_cache" ];
-              };
-              "@nix" = {
-                mountpoint = "/nix";
-                mountOptions = [ "compress=zstd" "noatime" "ssd" "discard=async" "space_cache" ];
-              };
-              "@var" = {
-                mountpoint = "/var";
-                mountOptions = [ "compress=zstd:1" "noatime" "autodefreag" "ssd" "discard=async" "space_cache" ];
-              };
-              "@tmp" = {
-                mountpoint = "/tmp";
-                mountOptions = [ "noatime" "nosuid" "nodev" "ssd" "noexec" "discard=async" "space_cache" ];
-              };
-	        };
-	        };
-	      };
-	    };
+            };
+          };
+        };
       };
     };
   };
 }
-
-
