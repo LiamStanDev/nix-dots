@@ -14,6 +14,7 @@
     bitwarden-desktop # Password manager
     pavucontrol # PulseAudio volume control GUI
     nautilus # GNOME file manager
+    file-roller # GNOME compression manager (GUI)
     discord # Online text and voice chat
     gedit # text editor GUI for Gnome
     coolercontrol.coolercontrol-gui # fancontrol GUI

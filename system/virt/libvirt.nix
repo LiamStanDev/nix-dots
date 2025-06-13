@@ -18,4 +18,6 @@
       vhostUserPackages = [pkgs.virtiofsd];
     };
   };
+
+  virtualisation.spiceUSBRedirection.enable = true;
 }

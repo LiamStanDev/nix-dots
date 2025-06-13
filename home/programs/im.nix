@@ -10,6 +10,7 @@
         fcitx5-chinese-addons
         fcitx5-table-extra
         fcitx5-chewing
+        fcitx5-rime
         libsForQt5.fcitx5-configtool
       ];
     };

@@ -18,6 +18,7 @@
 
   # Screenshot
   screenshot = import "${self}/pkgs/screenshot.nix" {inherit pkgs;};
+  swayosd = import "${self}/pkgs/swayosd-hyprland.nix" {inherit pkgs;};
 in {
   wayland.windowManager.hyprland = {
     enable = true; # also enable hyprland-protocols
@@ -53,16 +54,25 @@ in {
         "GLFW_IM_MODULE,ibus" # for kitty terminal
       ];
 
+      # Execute only when launch
       exec-once = [
         "${pkgs.swww}/bin/swww img ${(import "${self}/home/specializations.nix").wallpaper}"
         # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
         "fcitx5 -r"
       ];
 
+      # Execute every reload
+      exec = [
+        "${pkgs.swww}/bin/swww img ${(import "${self}/home/specializations.nix").wallpaper}"
+        # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
+        "fcitx5 -r"
+        "systemctl --user restart waybar.service"
+      ];
+
       bind = [
         # System
         "$mainMod, Q, killactive,"
-        "$mainMod, SPACE, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/launcher_t6"
+        "$mainMod, R, exec, hyprctl reload,"
         "$mainMod SHIFT, Q, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/powermenu_t3"
 
         # Screenshot
@@ -122,7 +132,9 @@ in {
 
         # Launch apps
         "$mainMod, RETURN, exec, [float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"
+        "$mainMod, SPACE, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/launcher_t6"
         "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
+        "$mainMod, T, exec, pkill kitty || ${pkgs.kitty}/bin/kitty -e btm"
         "$mainMod, B, exec, google-chrome-stable"
         "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
         "$mainMod, S, exec, ${screenshot.program}"

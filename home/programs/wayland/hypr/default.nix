@@ -1,5 +1,9 @@
 # ──────── 🪟 Wayland / Hyprland ────────
-{pkgs, ...}: {
+{
+  self,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hyprland.nix
     ./hypridle.nix
@@ -8,6 +12,7 @@
     # other packages
     ../mako
     ../waybar
+    ../swayosd
   ];
 
   home.sessionVariables = {

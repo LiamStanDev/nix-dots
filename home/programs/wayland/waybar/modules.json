@@ -1,4 +1,9 @@
 {
+  "custom/launcher": {
+    "format": "",
+    "on-click": "pkill rofi || exec ~/.config/rofi/scripts/launcher_t6",
+    "tooltip": false
+  },
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
@@ -154,12 +159,7 @@
   },
   "custom/power": {
     "format": "⏻",
-    "on-click": "wlogout -p layer-shell",
-    "tooltip": false
-  },
-  "custom/launcher": {
-    "format": "",
-    "on-click": "pkill fuzzel || fuzzel",
+    "on-click": "pkill rofi || exec ~/.config/rofi/scripts/powermenu_t3",
     "tooltip": false
   }
 }
