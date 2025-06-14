@@ -45,3 +45,5 @@ exit
 # 4. Reboot
 reboot
 ```
+
+> Note: Use label instead of UUID for disko setup. label is way easier
