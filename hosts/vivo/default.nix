@@ -1,18 +1,39 @@
-{self, ...}: let
+{
+  self,
+  inputs,
+  host,
+  ...
+}: let
   # Import the 'laptop' module from the system directory
   inherit (import "${self}/system") laptop;
+
+  monitors = [
+    # builtin monitor
+    "desc:Samsung Display Corp. 0x4161, 1920x1080, 0x0, 1"
+    # home monitor
+    "desc:ASUSTek COMPUTER INC VG27A N8LMQS004677, 2560x1440, 0x-1440, 1"
+    # work monitor
+    "desc:Acer Technologies Acer V246HL LXMTT0104229, 1920x1080, 1920x0, 1"
+  ];
 in {
   # Import base laptop modules and additional configuration files
   imports =
     laptop
     ++ [
-      # ./disko.nix
+      # Hardware
       ./hardware-configuration.nix
 
+      # System
       "${self}/system/network"
       "${self}/system/network/avahi.nix"
       "${self}/system/network/spotify.nix"
       "${self}/system/virt"
+
+      # Home manager
+      {
+        home-manager.users.liam = "${self}/home/profiles/${host}.nix";
+        home-manager.extraSpecialArgs = {inherit self host inputs monitors;};
+      }
     ];
 
   # Set the hostname for this machine

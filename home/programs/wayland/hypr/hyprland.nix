@@ -1,22 +1,9 @@
 {
   self,
   pkgs,
+  monitors,
   ...
 }: let
-  monitors = [
-    # display name, resolution, position, scale
-
-    # builtin monitor
-    "desc:Samsung Display Corp. 0x4161, 1920x1080, 0x0, 1"
-
-    # home monitor
-    "desc:ASUSTek COMPUTER INC VG27A N8LMQS004677, 2560x1440, 0x0, 1"
-    "desc:LG Electronics LG HDR 4K 0x000641E,3840x2160,2560x0,1.5"
-
-    # work monitor
-    "desc:Acer Technologies Acer V246HL LXMTT0104229, 1920x1080, 1920x0, 1"
-  ];
-
   # Screenshot
   screenshot = import "${self}/pkgs/screenshot.nix" {inherit pkgs;};
   # swayosd = import "${self}/pkgs/swayosd-hyprland.nix" {inherit pkgs;};
