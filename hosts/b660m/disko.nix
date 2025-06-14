@@ -1,17 +1,16 @@
-# nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko.nix
 {
   disko.devices = {
     disk = {
-      disk0 = {
+      nvme0n1 = {
         type = "disk";
         device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
-            # EFI system partition
             ESP = {
+              label = "boot";
               size = "512M";
-              type = "EF00"; # UEFI
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -20,23 +19,21 @@
               };
             };
             swap = {
-              size = "8G";
+              size = "16G";
+              label = "swap";
               content = {
                 type = "swap";
-                resumeDevice = true;
+                resumeDevice = true; # allow hibernation
               };
             };
             raid = {
               size = "100%";
-              content = {
-                type = "mdraid";
-                name = "md0";
-              };
+              label = "raid0";
             };
           };
         };
       };
-      disk1 = {
+      nvme1n1 = {
         type = "disk";
         device = "/dev/nvme1n1";
         content = {
@@ -44,47 +41,39 @@
           partitions = {
             raid = {
               size = "100%";
+              label = "raid1";
               content = {
-                type = "mdraid";
-                name = "md0";
-              };
-            };
-          };
-        };
-      };
-    };
-
-    mdadm.md0 = {
-      type = "mdadm";
-      level = 0;
-      content = {
-        type = "gpt";
-        partitions = {
-          primary = {
-            size = "100%";
-            content = {
-              type = "btrfs";
-              extraArgs = ["-f"];
-              subvolumes = {
-                "@root" = {
-                  mountpoint = "/";
-                  mountOptions = ["compress=zstd" "noatime" "ssd"];
-                };
-                "@home" = {
-                  mountpoint = "/home";
-                  mountOptions = ["compress=zstd:1" "noatime" "ssd"];
-                };
-                "@nix" = {
-                  mountpoint = "/nix";
-                  mountOptions = ["compress=zstd" "noatime" "ssd"];
-                };
-                "@var" = {
-                  mountpoint = "/var";
-                  mountOptions = ["compress=zstd:1" "noatime" "ssd"];
-                };
-                "@tmp" = {
-                  mountpoint = "/tmp";
-                  mountOptions = ["noatime" "ssd" "noexec"];
+                type = "btrfs";
+                extraArgs = [
+                  "-d"
+                  "raid0"
+                  "/dev/disk/by-partlabel/raid0"
+                  "/dev/disk/by-partlabel/raid1"
+                  "-L"
+                  "nixos"
+                  "-f"
+                ];
+                subvolumes = {
+                  "/root" = {
+                    mountpoint = "/";
+                    mountOptions = ["subvol=root" "compress=zstd" "noatime" "ssd"];
+                  };
+                  "/home" = {
+                    mountpoint = "/home";
+                    mountOptions = ["subvol=home" "compress=zstd" "noatime" "ssd"];
+                  };
+                  "/nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = ["subvol=nix" "compress=zstd:1" "noatime" "ssd"];
+                  };
+                  "/log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = ["subvol=log" "compress=zstd" "noatime" "ssd"];
+                  };
+                  "/persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = ["subvol=persist" "compress=zstd" "noatime" "ssd"];
+                  };
                 };
               };
             };
