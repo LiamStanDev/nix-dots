@@ -15,3 +15,30 @@ This repository contains my personal NixOS and Home-Manager configurations, mana
 - `dot-config/`: Application config files (nvim, yazi, btop, lazygit, etc.).
 - `scripts/`: Helper scripts for installation and removal.
 
+
+
+## Installation Guide
+
+```bash
+# 1. Get this nix configuration
+git clone https://github.com/LiamStanDev/nix-dots.git
+cd nix-dots/hosts/<your-machine>
+
+# 1. Partitioning
+nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko.nix --yes-wipe-all-disks
+mount | grep /mnt # verify auto mount. (important)
+
+# 2. Editing system
+nixos-generate-config --root /mnt
+vim /mnt/etc/nixos/configuration.nix
+
+# 3. (IMPORTANT) Verify/Modify hardware-config.nix
+blkid # or lsblk -f
+vim /mnt/etc/nixos/hardware-configuration.nix
+
+# 3. Install NixOS
+nixos-install
+
+# 4. Reboot
+reboot
+```
