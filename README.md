@@ -23,7 +23,6 @@ This repository contains my personal NixOS and Home-Manager configurations, mana
 sudo -i
 
 # 1. Get this nix configuration
-git clone https://github.com/LiamStanDev/nix-dots.git
 cd nix-dots/hosts/<your-machine>
 
 # 1. Partitioning
@@ -36,10 +35,13 @@ vim /mnt/etc/nixos/configuration.nix
 
 # 3. Install NixOS
 nixos-install
-# Optional: Only when you add your won disko.nix
-cp ./disko.nix /mnt/etc/nixos/disko.nix
+
+# 4. Copy hardware-configuration.nix file
 nixos-enter --root /mnt # enter your brand-new os
 passwd <user>  # change user password
+cd /home/<user>
+git clone https://github.com/LiamStanDev/nix-dots.git
+cp /ect/nixos/hardware-configuration.nix /home/<user>/nix-dots/hosts/<host>
 exit 
 
 # 4. Reboot
