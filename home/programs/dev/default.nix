@@ -18,7 +18,7 @@
     go # Go programming language
     nodejs # JavaScript runtime
     pnpm # Fast, disk space-efficient JS package manager
-    deno # Secure JS/TS runtime
+    # deno # Secure JS/TS runtime
     bun # All-in-one JS runtime/toolkit
     python313 # Python 3.13 interpreter
     uv # Python package manager (ultrafast pip)

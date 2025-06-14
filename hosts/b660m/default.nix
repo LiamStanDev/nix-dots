@@ -40,7 +40,7 @@ in {
   # Boot configuration
   # initial ramdisk settings
   boot.initrd.supportedFilesystems = ["btrfs"];
-  boot.initrd.kernelModules = ["i915" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+  # boot.initrd.kernelModules = ["i915" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
   boot.kernelModules = ["kvm-intel"];
   boot.kernelParams = ["nvidia_drm.modeset=1"];
 
