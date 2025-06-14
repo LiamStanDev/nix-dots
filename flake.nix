@@ -27,17 +27,14 @@
     # System type and host name
     system = "x86_64-linux";
 
-    # Change here!!!
-    host = "vivo";
-
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     # Import NixOS configurations from the hosts directory
-    nixosConfigurations = import ./hosts {inherit self inputs host;};
+    nixosConfigurations = import ./hosts {inherit self inputs;};
 
     # Custom switch as replacement of 'nixos-rebuild switch'
     apps.${system}.switch = import ./pkgs/switch.nix {
-      inherit self pkgs host;
+      inherit self pkgs;
     };
   };
 }

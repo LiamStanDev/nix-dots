@@ -1,7 +1,6 @@
 {
   self,
   pkgs,
-  host,
 }: {
   type = "app";
   program = let
@@ -10,7 +9,14 @@
       text = ''
         set -eu
 
-        nom build --verbose --keep-going --out-link /tmp/generation "${self}#nixosConfigurations.default.config.system.build.toplevel"
+          if [ $# -lt 1 ]; then
+            echo "Usage: $0 <host> [switch-to-configuration args...]"
+            exit 1
+          fi
+
+          HOST="$1"
+          shift
+        nom build --verbose --keep-going --out-link /tmp/generation "${self}#nixosConfigurations.$HOST.config.system.build.toplevel"
         /tmp/generation/bin/switch-to-configuration switch
 
         echo "NixOS switched successfully."
