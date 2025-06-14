@@ -41,7 +41,7 @@ nixos-enter --root /mnt # enter your brand-new os
 passwd <user>  # change user password
 cd /home/<user>
 git clone https://github.com/LiamStanDev/nix-dots.git
-cp /ect/nixos/hardware-configuration.nix /home/<user>/nix-dots/hosts/<host>
+cp /etc/nixos/hardware-configuration.nix /home/<user>/nix-dots/hosts/<host>
 exit 
 
 # 4. Reboot
