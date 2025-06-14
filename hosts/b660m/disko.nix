@@ -68,23 +68,23 @@
               subvolumes = {
                 "@root" = {
                   mountpoint = "/";
-                  mountOptions = ["compress=zstd" "noatime" "ssd" "discard=async" "space_cache"];
+                  mountOptions = ["compress=zstd" "noatime" "ssd"];
                 };
                 "@home" = {
                   mountpoint = "/home";
-                  mountOptions = ["compress=zstd:1" "noatime" "ssd" "discard=async" "space_cache"];
+                  mountOptions = ["compress=zstd:1" "noatime" "ssd"];
                 };
                 "@nix" = {
                   mountpoint = "/nix";
-                  mountOptions = ["compress=zstd" "noatime" "ssd" "discard=async" "space_cache"];
+                  mountOptions = ["compress=zstd" "noatime" "ssd"];
                 };
                 "@var" = {
                   mountpoint = "/var";
-                  mountOptions = ["compress=zstd:1" "noatime" "autodefrag" "ssd" "discard=async" "space_cache"];
+                  mountOptions = ["compress=zstd:1" "noatime" "ssd"];
                 };
                 "@tmp" = {
                   mountpoint = "/tmp";
-                  mountOptions = ["noatime" "nosuid" "nodev" "ssd" "noexec" "discard=async" "space_cache"];
+                  mountOptions = ["noatime" "ssd" "noexec"];
                 };
               };
             };
