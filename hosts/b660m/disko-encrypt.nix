@@ -1,10 +1,4 @@
-let
-  # Common LUKS settings for both disks
-  luksSettings = {
-    allowDiscards = true;
-    keyFile = "/persist/secret.key";
-  };
-in {
+{
   disko.devices = {
     disk = {
       nvme0n1 = {
@@ -32,19 +26,9 @@ in {
                 resumeDevice = true; # allow hibernation
               };
             };
-            luks = {
+            raid = {
               size = "100%";
-              label = "luks";
-              content = {
-                type = "luks";
-                name = "cryptroot0";
-                extraOpenArgs = [
-                  "--allow-discards"
-                  "--perf-no_read_workqueue"
-                  "--perf-no_write_workqueue"
-                ];
-                settings = luksSettings;
-              };
+              label = "raid0";
             };
           };
         };
@@ -55,41 +39,40 @@ in {
         content = {
           type = "gpt";
           partitions = {
-            luks = {
-              size = "100%";
+            raid = {
               content = {
-                type = "luks";
-                name = "cryptroot1";
-                extraOpenArgs = [
-                  "--allow-discards"
-                  "--perf-no_read_workqueue"
-                  "--perf-no_write_workqueue"
+                size = "100%";
+                label = "raid1";
+                type = "btrfs";
+                extraArgs = [
+                  "-d"
+                  "raid0"
+                  "/dev/disk/by-partlabel/root"
+                  "/dev/disk/by-partlabel/root1"
+                  "-L"
+                  "nixos"
+                  "-f"
                 ];
-                settings = luksSettings;
-                content = {
-                  type = "btrfs";
-                  extraArgs = ["-d" "raid0" "/dev/mapper/cryptroot0" "-L" "nixos" "-f"];
-                  subvolumes = {
-                    "/root" = {
-                      mountpoint = "/";
-                      mountOptions = ["subvol=root" "compress=zstd" "noatime" "ssd"];
-                    };
-                    "/home" = {
-                      mountpoint = "/home";
-                      mountOptions = ["subvol=home" "compress=zstd" "noatime" "ssd"];
-                    };
-                    "/nix" = {
-                      mountpoint = "/nix";
-                      mountOptions = ["subvol=nix" "compress=zstd:1" "noatime" "ssd"];
-                    };
-                    "/log" = {
-                      mountpoint = "/var/log";
-                      mountOptions = ["subvol=log" "compress=zstd" "noatime" "ssd"];
-                    };
-                    "/persist" = {
-                      mountpoint = "/persist";
-                      mountOptions = ["subvol=persist" "compress=zstd" "noatime" "ssd"];
-                    };
+                subvolumes = {
+                  "/root" = {
+                    mountpoint = "/";
+                    mountOptions = ["subvol=root" "compress=zstd" "noatime" "ssd"];
+                  };
+                  "/home" = {
+                    mountpoint = "/home";
+                    mountOptions = ["subvol=home" "compress=zstd" "noatime" "ssd"];
+                  };
+                  "/nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = ["subvol=nix" "compress=zstd:1" "noatime" "ssd"];
+                  };
+                  "/log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = ["subvol=log" "compress=zstd" "noatime" "ssd"];
+                  };
+                  "/persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = ["subvol=persist" "compress=zstd" "noatime" "ssd"];
                   };
                 };
               };
@@ -99,8 +82,4 @@ in {
       };
     };
   };
-  fileSystems."/".neededForBoot = true;
-  fileSystems."/boot".neededForBoot = true;
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
 }
