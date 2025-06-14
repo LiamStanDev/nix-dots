@@ -40,15 +40,15 @@
           type = "gpt";
           partitions = {
             raid = {
+              size = "100%";
+              label = "raid1";
               content = {
-                size = "100%";
-                label = "raid1";
                 type = "btrfs";
                 extraArgs = [
                   "-d"
                   "raid0"
-                  "/dev/disk/by-partlabel/root"
-                  "/dev/disk/by-partlabel/root1"
+                  "/dev/disk/by-partlabel/raid0"
+                  "/dev/disk/by-partlabel/raid1"
                   "-L"
                   "nixos"
                   "-f"
