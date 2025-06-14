@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./hyprland.nix
-    ./hypridle.nix
     ./hyprlock.nix
 
     # other packages

@@ -9,6 +9,7 @@
     ../programs/theme
     ../programs/git
     ../programs/ssh
+    ../programs/wayland/hypr/hypridle.nix
     ../programs/terminal/shell
     ../programs/terminal/emulators
 
