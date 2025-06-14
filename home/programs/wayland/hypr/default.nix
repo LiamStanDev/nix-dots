@@ -13,6 +13,7 @@
     ../mako
     ../waybar
     ../swayosd
+    ../rofi
   ];
 
   home.sessionVariables = {

@@ -26,6 +26,8 @@
   } @ inputs: let
     # System type and host name
     system = "x86_64-linux";
+
+    # Change here!!!
     host = "vivo";
 
     pkgs = nixpkgs.legacyPackages.${system};
