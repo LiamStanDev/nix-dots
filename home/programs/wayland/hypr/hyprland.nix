@@ -10,7 +10,8 @@
     "desc:Samsung Display Corp. 0x4161, 1920x1080, 0x0, 1"
 
     # home monitor
-    "desc:ASUSTek COMPUTER INC VG27A N8LMQS004677, 2560x1440, 0x-1440, 1"
+    "desc:ASUSTek COMPUTER INC VG27A N8LMQS004677, 2560x1440, 0x0, 1"
+    "desc:LG Electronics LG HDR 4K 0x000641E,3840x2160,2560x0,1.5"
 
     # work monitor
     "desc:Acer Technologies Acer V246HL LXMTT0104229, 1920x1080, 1920x0, 1"
@@ -18,7 +19,7 @@
 
   # Screenshot
   screenshot = import "${self}/pkgs/screenshot.nix" {inherit pkgs;};
-  swayosd = import "${self}/pkgs/swayosd-hyprland.nix" {inherit pkgs;};
+  # swayosd = import "${self}/pkgs/swayosd-hyprland.nix" {inherit pkgs;};
 in {
   wayland.windowManager.hyprland = {
     enable = true; # also enable hyprland-protocols
@@ -40,11 +41,6 @@ in {
         # Qt variables
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-
-        # Nvidia
-        # "GBM_BACKEND,nvidia-drm"
-        # "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        # "LIBVA_DRIVER_NAME,nvidia"
 
         # Fcitx5 variables
         #"GTK_IM_MODULE,fcitx" # no need

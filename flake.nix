@@ -31,7 +31,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     # Import NixOS configurations from the hosts directory
-    nixosConfigurations = import ./hosts {inherit self inputs;};
+    nixosConfigurations = import ./hosts {inherit self inputs host;};
 
     # Custom switch as replacement of 'nixos-rebuild switch'
     apps.${system}.switch = import ./pkgs/switch.nix {

@@ -1,21 +1,4 @@
-# top level attribute info: https://www.reddit.com/r/NixOS/comments/1i2yf86/attempt_at_explaining_toplevel_attributes_and_how/
 {
-  imports = [
-    ./programs/cli
-    ./programs/dev
-    ./programs/app
-    ./programs/virt
-    ./programs/theme
-    ./programs/git
-    ./programs/ssh
-    ./programs/terminal/shell
-    ./programs/terminal/emulators
-
-    ./programs/wayland/hypr
-
-    ./programs/im.nix
-  ];
-
   home = {
     username = "liam";
     homeDirectory = "/home/liam";

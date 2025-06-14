@@ -1,19 +1,20 @@
 {
   self,
   inputs,
+  host,
   ...
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
   inherit (inputs) nix-index-database;
 in {
-  vivo = nixosSystem {
+  ${host} = nixosSystem {
     specialArgs = {inherit self inputs;};
     modules = [
       nix-index-database.nixosModules.nix-index
-      ./vivo
+      ./${host}
       ../system/home-manager.nix
       {
-        home-manager.users.liam = ../home;
+        home-manager.users.liam = ../home/profiles/${host}.nix;
         home-manager.extraSpecialArgs = {inherit self inputs;};
       }
     ];

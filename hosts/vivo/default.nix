@@ -6,8 +6,8 @@ in {
   imports =
     laptop
     ++ [
-      ./hardware-configuration.nix
       # ./disko.nix
+      ./hardware-configuration.nix
 
       "${self}/system/network"
       "${self}/system/network/avahi.nix"
