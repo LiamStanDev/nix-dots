@@ -27,18 +27,20 @@ git clone https://github.com/LiamStanDev/nix-dots.git
 cd nix-dots/hosts/<your-machine>
 
 # 1. Partitioning
-sudo dd if=/dev/urandom of=/boot/secret.key bs=512 count=1 # generate keyfile
 nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko.nix --yes-wipe-all-disks
 mount | grep /mnt # verify auto mount. (important)
-cp /persist/secret.key /mnt/persist/secret.key
 
 # 2. Editing system
 nixos-generate-config --root /mnt
-cp ./disko.nix /mnt/etc/nixos/disko.nix
 vim /mnt/etc/nixos/configuration.nix
 
 # 3. Install NixOS
 nixos-install
+# Optional: Only when you add your won disko.nix
+cp ./disko.nix /mnt/etc/nixos/disko.nix
+nixos-enter --root /mnt # enter your brand-new os
+passwd <user>  # change user password
+exit 
 
 # 4. Reboot
 reboot
