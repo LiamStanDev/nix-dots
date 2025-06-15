@@ -101,34 +101,34 @@ vim.diagnostic.config({
 
 return {
 	-- Services installer
-	-- {
-	-- 	"williamboman/mason.nvim",
-	-- 	event = "VeryLazy",
-	-- 	config = function()
-	-- 		require("mason").setup({
-	-- 			PATH = "append", -- "prepend", "append", "skip"
-	-- 			pip = {
-	-- 				upgrade_pip = true,
-	-- 			},
-	-- 			max_concurrent_installers = 10,
-	-- 		})
-	-- 	end,
-	-- 	dependencies = {
-	-- 		{
-	-- 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-	-- 			config = function()
-	-- 				local service_identifiers = require("utils.lsp").get_service_identifiers(G)
-	-- 				require("mason-tool-installer").setup({
-	-- 					ensure_installed = service_identifiers,
-	-- 				})
-	-- 			end,
-	-- 		},
-	-- 	},
-	-- 	keys = {
-	-- 		{ "<leader>um", "<CMD>Mason<CR>", desc = "Mason" },
-	-- 		{ "<leader>uu", "<CMD>MasonToolsUpdate<CR>", desc = "Mason Tools Update" },
-	-- 	},
-	-- },
+	{
+		"williamboman/mason.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("mason").setup({
+				PATH = "append", -- "prepend", "append", "skip"
+				pip = {
+					upgrade_pip = true,
+				},
+				max_concurrent_installers = 10,
+			})
+		end,
+		dependencies = {
+			{
+				"WhoIsSethDaniel/mason-tool-installer.nvim",
+				config = function()
+					local service_identifiers = require("utils.lsp").get_service_identifiers(G)
+					require("mason-tool-installer").setup({
+						ensure_installed = service_identifiers,
+					})
+				end,
+			},
+		},
+		keys = {
+			{ "<leader>um", "<CMD>Mason<CR>", desc = "Mason" },
+			{ "<leader>uu", "<CMD>MasonToolsUpdate<CR>", desc = "Mason Tools Update" },
+		},
+	},
 
 	-- LSP plugins
 	{ -- LSP for neovim configuration
