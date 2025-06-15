@@ -7,7 +7,8 @@
   ...
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
-  inherit (inputs) nix-index-database;
+  inherit (inputs) nix-index-database; # nix locate
+  inherit (inputs) sops-nix; # sops
 
   # Get all hosts directory contents
   dirContent = builtins.readDir ./.;
@@ -24,6 +25,12 @@ in
         specialArgs = {inherit self inputs host wheelUser;};
         modules = [
           nix-index-database.nixosModules.nix-index
+          sops-nix.nixosModules.sops
+          {
+            sops.defaultSopsFile = "./secrets/secrets.yaml";
+            sops.defaultSopsFormat = "yaml";
+            sops.age.keyFile = "/home/${wheelUser}/.config/sops/age/keys.txt";
+          }
           ../system/home-manager.nix
           ./${host}
         ];
