@@ -1,0 +1,11 @@
+background-opacity = 0.950000
+confirm-close-surface = false
+font-family = JetBrains Mono
+font-family = CaskaydiaCove Nerd Font
+font-family = Yozai
+font-family = Noto Color Emoji
+font-size = 13
+theme = catppuccin-frappe
+window-decoration = none
+window-padding-x = 10, 10
+window-padding-y = 4, 7
