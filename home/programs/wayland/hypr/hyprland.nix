@@ -114,7 +114,8 @@ in {
         "$mainMod, mouse_up, workspace, e-1"
 
         # Launch apps
-        "$mainMod, RETURN, exec, [float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"
+        # "$mainMod, RETURN, exec, [float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"
+        "$mainMod, RETURN, exec, [tile] ${pkgs.ghostty}/bin/ghostty"
         "$mainMod, SPACE, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/launcher_t6"
         "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
         "$mainMod, T, exec, pkill foot || ${pkgs.foot}/bin/foot --title=btm -e btm"
@@ -238,7 +239,7 @@ in {
         # window type
         "pseudo, class:fcitx, title:fcitx"
         "tile, class:code" # vscode
-        "tile, class:org.wezfurlong.wezterm"
+        # "tile, class:org.wezfurlong.wezterm"
         "tile, class:google-chrome"
         "tile, class:obsidian"
         "fullscreen, title:^.* on QEMU/KVM$"
