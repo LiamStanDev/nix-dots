@@ -13,7 +13,6 @@
     ../waybar
     ../swayosd
     ../rofi
-    ../ags
   ];
 
   home.sessionVariables = {

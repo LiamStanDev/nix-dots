@@ -2,10 +2,10 @@ local colors = require("colors.colorscheme")
 
 return {
 	term = "xterm-256color",
-	enable_wayland = true,
+	enable_wayland = false, -- issue: https://github.com/wezterm/wezterm/issues/5340
 
 	-- gpu (vm can't use webgpu)
-	front_end = "Software", -- WebGpu, OpenGL (Support transparent background in windows), Software
+	front_end = "OpenGL", -- WebGpu, OpenGL (Support transparent background in windows), Software
 	-- prefer_egl = true,
 	webgpu_preferred_adapter = require("utils.gpu").pick_gpu(),
 	webgpu_power_preference = "HighPerformance",
