@@ -1,6 +1,9 @@
+# This file auto-discovers host directories and generates a NixOS system
+# configuration for each, enabling multi-host management from one place.
 {
   self,
   inputs,
+  wheelUser,
   ...
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
@@ -18,7 +21,7 @@ in
   builtins.listToAttrs (map (host: {
       name = host;
       value = nixosSystem {
-        specialArgs = {inherit self inputs host;};
+        specialArgs = {inherit self inputs host wheelUser;};
         modules = [
           nix-index-database.nixosModules.nix-index
           ../system/home-manager.nix

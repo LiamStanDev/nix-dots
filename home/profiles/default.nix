@@ -1,7 +1,7 @@
-{
+{wheelUser, ...}: {
   home = {
-    username = "liam";
-    homeDirectory = "/home/liam";
+    username = wheelUser;
+    homeDirectory = "/home/${wheelUser}";
     extraOutputsToInstall = ["doc" "devdoc"];
   };
 

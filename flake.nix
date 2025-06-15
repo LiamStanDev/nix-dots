@@ -1,5 +1,26 @@
 {
-  description = "Liam's Nixos and Home-Manager Flake";
+  description = "Nixos and Home-Manager Flake";
+
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    # System type and master name
+    system = "x86_64-linux";
+    wheelUser = "liam";
+
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    # Import NixOS configurations from the hosts directory
+    nixosConfigurations = import ./hosts {inherit self inputs wheelUser;};
+
+    # Custom switch as replacement of 'nixos-rebuild switch'
+    apps.${system}.switch = import ./pkgs/switch.nix {
+      inherit self pkgs;
+    };
+  };
 
   inputs = {
     # Nixpkgs input
@@ -22,25 +43,5 @@
     ags.inputs.nixpkgs.follows = "nixpkgs";
     astal.url = "github:aylur/astal";
     astal.inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    # System type and host name
-    system = "x86_64-linux";
-
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    # Import NixOS configurations from the hosts directory
-    nixosConfigurations = import ./hosts {inherit self inputs;};
-
-    # Custom switch as replacement of 'nixos-rebuild switch'
-    apps.${system}.switch = import ./pkgs/switch.nix {
-      inherit self pkgs;
-    };
   };
 }

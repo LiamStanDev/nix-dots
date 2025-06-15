@@ -1,8 +1,8 @@
-{
+{wheelUser, ...}: {
   programs.git = {
     enable = true;
 
-    userName = "Liam";
+    userName = wheelUser;
     userEmail = "geffc1454@gmail.com";
     delta.enable = true;
     ignores = [".DS_Store"];

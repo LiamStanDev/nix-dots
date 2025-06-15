@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  wheelUser,
+  ...
+}: {
   programs.zsh.enable = true;
 
   users = {
     defaultUserShell = pkgs.bash;
 
-    users.liam = {
+    users.${wheelUser} = {
       shell = pkgs.zsh;
       isNormalUser = true;
       extraGroups = [
