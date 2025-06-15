@@ -2,5 +2,6 @@
   imports = [
     ./wezterm
     ./kitty
+    ./foot
   ];
 }

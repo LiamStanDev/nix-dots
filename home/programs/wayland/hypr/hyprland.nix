@@ -117,7 +117,7 @@ in {
         "$mainMod, RETURN, exec, [float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"
         "$mainMod, SPACE, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/launcher_t6"
         "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
-        "$mainMod, T, exec, pkill kitty || ${pkgs.kitty}/bin/kitty -e btm"
+        "$mainMod, T, exec, pkill foot || ${pkgs.foot}/bin/foot --title=btm -e btm"
         "$mainMod, B, exec, google-chrome-stable"
         "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
         "$mainMod, S, exec, ${screenshot.program}"
@@ -244,15 +244,15 @@ in {
         "fullscreen, title:^.* on QEMU/KVM$"
 
         # size
-        "size 600 500, class:kitty, title:kitty"
-        "size 600 500, class:kitty, title:btop"
-        "size 600 500, class:kitty, title:nmtui"
+        "size 600 500, class:foot, title:btop"
+        "size 600 500, class:foot, title:btm"
+        "size 600 500, class:foot, title:nmtui"
         "size 600 500, class:org.pulseaudio.pavucontrol"
 
         # move
-        "move 1320 50, class:kitty, title:kitty"
-        "move 1320 50, class:kitty, title:btop"
-        "move 1320 50, class:kitty, title:nmtui"
+        "move 1320 50, class:foot, title:btop"
+        "move 1320 50, class:foot, title:btm"
+        "move 1320 50, class:foot, title:nmtui"
         "move 1320 50, class:org.pulseaudio.pavucontrol"
 
         # effect
