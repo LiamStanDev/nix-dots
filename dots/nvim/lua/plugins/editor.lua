@@ -69,6 +69,7 @@ return {
 		},
 	},
 
+	-- Autopairs
 	{
 		"echasnovski/mini.pairs",
 		event = "VeryLazy",
@@ -89,6 +90,21 @@ return {
 		config = function(_, opts)
 			require("utils.mini").pair(opts)
 		end,
+	},
+
+	-- Autotags
+	{
+		"windwp/nvim-ts-autotag",
+		opts = {
+			opts = {
+				enable_close = true, -- Auto close tags
+				enable_rename = true, -- Auto rename pairs of tags
+				enable_close_on_slash = false, -- Auto close on trailing </
+			},
+			aliases = {
+				-- ["your language here"] = "html",
+			},
+		},
 	},
 
 	-- Comment
@@ -329,6 +345,7 @@ return {
 		},
 	},
 
+	-- Surround
 	{
 		"echasnovski/mini.surround",
 		version = "*",
@@ -389,6 +406,7 @@ return {
 	-- 	},
 	-- },
 
+	-- Bookmark
 	{
 		"otavioschwanck/arrow.nvim",
 		event = "VeryLazy",

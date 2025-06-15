@@ -10,7 +10,7 @@
 
     # other packages
     ../mako
-    ../swayosd
+    ../ags
   ];
 
   # Env
