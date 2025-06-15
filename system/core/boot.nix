@@ -19,11 +19,13 @@
     ];
 
     # initial ramdisk settings
-    initrd.systemd. enable = true;
+    initrd.systemd.enable = true;
 
     # Bootloader
     loader = {
       efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+      timeout = null;
       grub = {
         enable = true;
         efiSupport = true;
@@ -43,6 +45,12 @@
       ];
     };
   };
+
+  # Filesystem support
+  boot.supportedFilesystems = ["ntfs" "exfat" "ext4" "fat32" "btrfs"];
+  services.devmon.enable = true; # automatic device mounting daemon
+  services.gvfs.enable = true; # userspace virtual filesystem
+  services.udisks2.enable = true; # DBus service that allows applications to query and manipulate storage devices
 
   environment.systemPackages = [
     config.boot.kernelPackages.cpupower

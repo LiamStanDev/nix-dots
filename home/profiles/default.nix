@@ -1,9 +1,14 @@
-{wheelUser, ...}: {
-  home = {
-    username = wheelUser;
-    homeDirectory = "/home/${wheelUser}";
-    extraOutputsToInstall = ["doc" "devdoc"];
-  };
+{
+  pkgs,
+  wheelUser,
+  ...
+}: {
+  home.username = wheelUser;
+  home.homeDirectory =
+    if pkgs.stdenv.isDarwin
+    then "/Users/${wheelUser}"
+    else "/home/${wheelUser}";
+  home.extraOutputsToInstall = ["doc" "devdoc"];
 
   home.sessionVariables = {
     EDITOR = "nvim";

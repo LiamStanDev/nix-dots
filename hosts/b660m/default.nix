@@ -22,7 +22,7 @@ in {
       ./hardware-configuration.nix
 
       # System
-      "${self}/system/hardware/nvidia.nix"
+      "${self}/system/hardware/video/nvidia.nix"
       "${self}/system/network"
       "${self}/system/network/avahi.nix"
       "${self}/system/network/spotify.nix"
@@ -41,9 +41,6 @@ in {
   # Boot configuration
   # initial ramdisk settings
   boot.initrd.supportedFilesystems = ["btrfs"];
-  # boot.initrd.kernelModules = ["i915" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
-  boot.kernelModules = ["kvm-intel"];
-  boot.kernelParams = ["nvidia_drm.modeset=1"];
 
   services = {
     # Enable fstrim service to keep SSDs and NVMe drives healthy
@@ -51,9 +48,12 @@ in {
   };
 
   environment.sessionVariables = {
-    LIBVA_DIRVER_NAME = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
-    LIBVA_DRIVER_NAM = "nvidia";
+    # These are the defaults, and xdg.enable does set them, but due to load
+    # order, they're not set before environment.variables are set, which could
+    # cause race conditions.
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_BIN_HOME = "$HOME/.local/bin";
   };
 }

@@ -68,5 +68,6 @@
     wget # Network downloader
     lazygit # Git TUI
     lazydocker # Docker TUI
+    sops
   ];
 }

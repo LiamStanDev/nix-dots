@@ -3,6 +3,7 @@
   pkgs,
   inputs,
   lib,
+  wheelUser,
   ...
 }: {
   imports = [
@@ -15,6 +16,16 @@
 
   # Run unpatched dynamic binaries on NixOS
   programs.nix-ld.enable = true;
+
+  programs.nh = {
+    enable = true;
+    # Automatic garbage collection
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 7d --keep 5";
+    };
+    flake = "/home/${wheelUser}/nix-dots";
+  };
 
   nix = let
     flakeInputs = lib.filterAttrs (_: v: lib.isType "flake" v) inputs;
@@ -40,12 +51,7 @@
       trusted-users = ["root" "@wheel"];
 
       accept-flake-config = false;
-    };
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
+      warn-dirty = false;
     };
   };
 }

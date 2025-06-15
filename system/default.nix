@@ -8,9 +8,8 @@ let
   desktop =
     minimal
     ++ [
-      ./hardware/graphics.nix
+      ./hardware/video/intel.nix
       ./hardware/sound.nix
-      ./hardware/auto-mount.nix
       ./hardware/fancontrol.nix
 
       ./services/dubs.nix

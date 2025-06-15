@@ -2,6 +2,7 @@
   self,
   inputs,
   host,
+  wheelUser,
   ...
 }: let
   # Import the 'laptop' module from the system directory
@@ -31,8 +32,8 @@ in {
 
       # Home manager
       {
-        home-manager.users.liam = "${self}/home/profiles/${host}.nix";
-        home-manager.extraSpecialArgs = {inherit self host inputs monitors;};
+        home-manager.users.${wheelUser} = "${self}/home/profiles/${host}.nix";
+        home-manager.extraSpecialArgs = {inherit self host inputs monitors wheelUser;};
       }
     ];
 
