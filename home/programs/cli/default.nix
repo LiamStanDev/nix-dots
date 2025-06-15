@@ -1,13 +1,21 @@
 # ──────── 🐧 CLI Utilities ────────
-{pkgs, ...}: {
+{
+  self,
+  pkgs,
+  ...
+}: {
   imports = [
-    ./lazygit
-    ./lazydocker
-    ./zellij
     ./yazi
     ./starship
   ];
 
+  # Env
+  home.sessionVariables = {
+    # Prevent direnv show lots of logs
+    DIRENV_LOG_FORMAT = "";
+  };
+
+  # Programs
   programs.man.enable = true;
   programs.info.enable = true;
   programs.gpg.enable = true;
@@ -15,12 +23,21 @@
   programs.zoxide.enable = true;
   programs.fzf.enable = true;
   programs.direnv.enable = true;
+  programs.zellij.enable = true;
 
-  home.sessionVariables = {
-    # Prevent direnv show lots of logs
-    DIRENV_LOG_FORMAT = "";
+  # Dotfiles
+  home.file = {
+    ".zfunc".source = "${self}/dots/.zfunc";
+    ".local/share/fonts".source = "${self}/dots/fonts";
+    ".config/btop".source = "${self}/dots/btop";
+    ".config/lazygit".source = "${self}/dots/lazygit";
+    ".config/lazydocker".source = "${self}/dots/lazydocker";
+    ".config/nvim".source = "${self}/dots/nvim";
+    ".config/zellij".source = "${self}/dots/zellij";
+    ".config/yazi".source = "${self}/dots/yazi";
   };
 
+  # Packags
   home.packages = with pkgs; [
     fastfetch # System info fetcher (like neofetch)
     ntfs3g # NTFS filesystem support
@@ -49,5 +66,7 @@
     stow # Symlink manager
     unzip # Extract zip files
     wget # Network downloader
+    lazygit # Git TUI
+    lazydocker # Docker TUI
   ];
 }
