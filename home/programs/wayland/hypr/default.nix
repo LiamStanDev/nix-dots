@@ -9,7 +9,7 @@
     ./hyprlock.nix
 
     # other packages
-    ../mako
+    # ../mako
     ../ags
   ];
 

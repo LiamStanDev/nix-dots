@@ -70,6 +70,7 @@ keybinds clear-defaults=true {
         bind "PageDown" { PageScrollDown ; }
         bind "PageUp"   { PageScrollUp ; }
         bind "s"        { SwitchToMode "EnterSearch" ; SearchInput 0 ; }
+        bind "e"        { EditScrollback; SwitchToMode "Normal"; }
     }
 
     search {
