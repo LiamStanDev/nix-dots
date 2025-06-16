@@ -22,6 +22,7 @@ in {
       ./hardware-configuration.nix
 
       # System
+      "${self}/system/hardware/video/intel.nix"
       "${self}/system/hardware/video/nvidia.nix"
       "${self}/system/network"
       "${self}/system/network/avahi.nix"

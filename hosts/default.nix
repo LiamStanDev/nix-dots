@@ -26,11 +26,11 @@ in
         modules = [
           nix-index-database.nixosModules.nix-index
           sops-nix.nixosModules.sops
-          {
-            sops.defaultSopsFile = "./secrets/secrets.yaml";
-            sops.defaultSopsFormat = "yaml";
-            sops.age.keyFile = "/home/${wheelUser}/.config/sops/age/keys.txt";
-          }
+          # {
+          #   sops.defaultSopsFile = "./secrets/secrets.yaml";
+          #   sops.defaultSopsFormat = "yaml";
+          #   sops.age.keyFile = "/home/${wheelUser}/.config/sops/age/keys.txt";
+          # }
           ../system/home-manager.nix
           ./${host}
         ];
