@@ -289,7 +289,7 @@ return {
 			keymaps = {
 				show_help = "<f1>",
 				open_file_in_vertical_split = "<c-v>",
-				open_file_in_horizontal_split = "<c-x>",
+				open_file_in_horizontal_split = "<c-s>",
 				-- open_file_in_tab = "<c-t>",
 				-- grep_in_directory = "<c-s>",
 				-- replace_in_directory = "<c-g>",
