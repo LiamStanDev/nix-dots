@@ -1,8 +1,13 @@
 # ──────── 🖥️ Desktop Applications ────────
 {pkgs, ...}: {
-  programs.wezterm.enable = true;
+  # Streaming
   programs.obs-studio.enable = true;
+
+  # Editor
   programs.vscode.enable = true;
+
+  # Video player
+  programs.mpv.enable = true;
 
   home.packages = with pkgs; [
     google-chrome # Chromium-based web browser
@@ -19,5 +24,8 @@
     gedit # text editor GUI for Gnome
     coolercontrol.coolercontrol-gui # fancontrol GUI
     coolercontrol.coolercontrol-ui-data # fancontrol UI data
+    libsForQt5.okular # PDF reader
+    libsForQt5.gwenview # Image viewer
+    gimp3 # Image editor
   ];
 }
