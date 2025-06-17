@@ -1,4 +1,5 @@
 # ref: https://github.com/Sly-Harvey/NixOS/blob/master/modules/hardware/video/nvidia.nix
+# ref: https://discourse.nixos.org/t/black-screen-after-suspend-hibernate-with-nvidia/54341/22
 {
   config,
   pkgs,
@@ -18,12 +19,8 @@ in {
     __GL_GSYNC_ALLOWED = "1"; # GSync
   };
 
-  # Load nvidia driver for Xorg and Wayland
+  # Load nvidia driver for Xorg and Wayland and setup every thing you need
   services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470", etc.
-  boot.kernelParams = lib.optionals (lib.elem "nvidia" config.services.xserver.videoDrivers) [
-    "nvidia-drm.modeset=1"
-    "nvidia_drm.fbdev=1"
-  ];
 
   hardware.nvidia = {
     open = false;
@@ -38,10 +35,7 @@ in {
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = false;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
 
     # Enable the Nvidia settings menu,

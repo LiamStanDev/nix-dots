@@ -2,6 +2,6 @@
   imports = [
     ./bash
     ./zsh
-    # ./fish.nix
+    ./fish
   ];
 }

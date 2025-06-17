@@ -1,8 +1,11 @@
 {
   pkgs,
+  config,
   lib,
   ...
 }: let
+  cfg = config.emulators.foot;
+
   colors = {
     dark = {
       foreground = "c6d0f5";
@@ -47,40 +50,44 @@
     };
   };
 in {
-  programs.foot = {
-    enable = true;
+  options.emulators.foot.enable = lib.mkEnableOption "Foot terminal emulator";
 
-    settings = {
-      main = {
-        font = "CaskaydiaCove Nerd Font:size=10";
-        horizontal-letter-offset = 0;
-        vertical-letter-offset = 0;
-        pad = "4x4 center";
-        selection-target = "clipboard";
+  config = lib.mkIf cfg.enable {
+    programs.foot = {
+      enable = true;
+
+      settings = {
+        main = {
+          font = "CaskaydiaCove Nerd Font:size=10";
+          horizontal-letter-offset = 0;
+          vertical-letter-offset = 0;
+          pad = "4x4 center";
+          selection-target = "clipboard";
+        };
+
+        bell = {
+          urgent = "yes";
+          notify = "yes";
+        };
+
+        scrollback = {
+          lines = 10000;
+          multiplier = 3;
+          indicator-position = "relative";
+          indicator-format = "line";
+        };
+
+        cursor = {
+          style = "beam";
+          beam-thickness = 1;
+        };
+
+        colors =
+          {
+            alpha = 0.9;
+          }
+          // colors.dark;
       };
-
-      bell = {
-        urgent = "yes";
-        notify = "yes";
-      };
-
-      scrollback = {
-        lines = 10000;
-        multiplier = 3;
-        indicator-position = "relative";
-        indicator-format = "line";
-      };
-
-      cursor = {
-        style = "beam";
-        beam-thickness = 1;
-      };
-
-      colors =
-        {
-          alpha = 0.9;
-        }
-        // colors.dark;
     };
   };
 }
