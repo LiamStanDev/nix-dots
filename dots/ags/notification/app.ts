@@ -1,6 +1,6 @@
 import { App } from "astal/gtk3";
 import style from "./style.scss";
-import NotificationPopups from "./components/NotificationPopups";
+import NotificationPopups from "./widgets/NotificationPopups";
 
 App.start({
   instanceName: "notifications",
