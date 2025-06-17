@@ -47,12 +47,14 @@ G.lsp_servers = {
 G.formatters = {
   lua = { "stylua" }, -- Lua formatter
   python = { "ruff_format" }, -- Python formatter
-  javascript = { "prettierd", "prettier", stop_after_first = true }, -- JavaScript
-  typescript = { "prettierd", "prettier", stop_after_first = true }, -- TypeScript
-  typescriptreact = { "prettierd", "prettier", stop_after_first = true }, -- React
-  html = { "prettierd", "prettier", stop_after_first = true }, -- HTML
-  toml = { "prettierd", "prettier", stop_after_first = true }, -- TOML
-  json = { "prettierd", "prettier", stop_after_first = true }, -- JSON
+  javascript = { "prettierd", "prettier", stop_after_first = true },
+  typescript = { "prettierd", "prettier", stop_after_first = true },
+  typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+  html = { "prettierd", "prettier", stop_after_first = true },
+  toml = { "prettierd", "prettier", stop_after_first = true },
+  json = { "prettierd", "prettier", stop_after_first = true },
+  css = { "prettierd", "prettier", stop_after_first = true },
+  scss = { "prettierd", "prettier", stop_after_first = true },
   bash = { "shfmt" }, -- Bash
   zsh = { "shfmt" }, -- Zsh
   sh = { "shfmt" }, -- Shell

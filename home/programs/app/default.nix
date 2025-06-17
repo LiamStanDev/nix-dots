@@ -9,6 +9,9 @@
   # Video player
   programs.mpv.enable = true;
 
+  # Connect to other devices
+  services.kdeconnect.enable = true;
+
   home.packages = with pkgs; [
     google-chrome # Chromium-based web browser
     telegram-desktop # Messaging app
@@ -25,7 +28,7 @@
     coolercontrol.coolercontrol-gui # fancontrol GUI
     coolercontrol.coolercontrol-ui-data # fancontrol UI data
     libsForQt5.okular # PDF reader
-    libsForQt5.gwenview # Image viewer
     gimp3 # Image editor
+    loupe # Image viewer (GTK)
   ];
 }
