@@ -47,8 +47,7 @@ in {
       "${pkgs.swww}/bin/swww img ${(import "${self}/home/specializations.nix").wallpaper}"
       # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
       "fcitx5 -r"
-      "systemctl --user restart waybar.service"
-      "${pkgs.hyprpanel}/bin/hyprpanel"
+      "hyprpanel -q; hyprpanel"
     ];
 
     bind = [
