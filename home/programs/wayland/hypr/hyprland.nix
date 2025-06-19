@@ -48,6 +48,7 @@ in {
       # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
       "fcitx5 -r"
       "systemctl --user restart waybar.service"
+      "${pkgs.hyprpanel}/bin/hyprpanel"
     ];
 
     bind = [

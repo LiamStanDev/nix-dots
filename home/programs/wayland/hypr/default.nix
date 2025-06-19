@@ -4,6 +4,7 @@
   pkgs,
   config,
   lib,
+  monitors,
   ...
 }: let
   cfg = config.wayland.hypr;
@@ -42,8 +43,8 @@ in {
     # Keyring
     services.gnome-keyring.enable = true;
     # Waybar
-    programs.waybar.enable = true;
-    programs.waybar.systemd.enable = true;
+    # programs.waybar.enable = true;
+    # programs.waybar.systemd.enable = true;
     # XDG
     xdg.portal.enable = true;
     xdg.portal.extraPortals = with pkgs; [xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
@@ -55,8 +56,8 @@ in {
       ".config/waybar".source = "${self}/dots/waybar";
     };
 
-    wayland.windowManager.hyprland = import ./hyprland.nix;
-    programs.hyprlock = import ./hyprlock.nix;
+    wayland.windowManager.hyprland = import ./hyprland.nix {inherit self pkgs monitors;};
+    programs.hyprlock = import ./hyprlock.nix {inherit self;};
 
     # Packags
     home.packages = with pkgs; [
