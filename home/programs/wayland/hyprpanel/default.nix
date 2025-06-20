@@ -42,16 +42,17 @@
     # https://hyprpanel.com/configuration/settings.html
     settings = {
       layout = {
+        # see: https://hyprpanel.com/configuration/modules.html
         "bar.layouts" = {
           "0" = {
-            left = ["dashboard" "workspaces" "windowtitle"];
+            left = ["dashboard" "workspaces" "windowtitle" "cpu" "cputemp" "ram" "cava"];
             middle = ["media"];
-            right = ["volume" "network" "bluetooth" "battery" "systray" "clock" "notifications"];
+            right = ["volume" "network" "bluetooth" "battery" "systray" "clock" "hypridle" "notifications" "power"];
           };
           "1" = {
-            left = ["dashboard" "workspaces" "windowtitle"];
+            left = ["dashboard" "workspaces" "windowtitle" "cpu" "cputemp" "ram" "cava"];
             middle = ["media"];
-            right = ["volume" "clock" "notifications"];
+            right = ["volume" "network" "bluetooth" "battery" "systray" "clock" "hypridle" "notifications" "power"];
           };
           "2" = {
             left = ["dashboard" "workspaces" "windowtitle"];

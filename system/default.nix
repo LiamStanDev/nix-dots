@@ -11,6 +11,7 @@ let
       ./hardware/video/intel.nix
       ./hardware/sound.nix
       ./hardware/fancontrol.nix
+      ./hardware/battery.nix
 
       ./services/dubs.nix
       ./services/fwupd.nix
@@ -23,7 +24,6 @@ let
   laptop =
     desktop
     ++ [
-      ./hardware/battery.nix
       ./hardware/bluetooth.nix
     ];
 in {
