@@ -11,4 +11,6 @@
 
   wayland.hypr.enable = true;
   wayland.hypridle.enable = true;
+
+  sync.enable = true;
 }

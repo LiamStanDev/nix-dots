@@ -26,6 +26,7 @@ in {
 
       # System
       "${self}/system/hardware/video/intel.nix"
+      "${self}/system/network/tailscale.nix"
       "${self}/system/network/avahi.nix"
       "${self}/system/network/spotify.nix"
       "${self}/system/virt"

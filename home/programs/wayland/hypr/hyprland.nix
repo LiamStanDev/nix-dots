@@ -63,14 +63,16 @@ in {
       # Layout
       "$mainMod, M, fullscreen,"
       "$mainMod, F, togglefloating,"
-      "$mainMod CTRL, V, togglesplit,"
+      "$mainMod, V, togglesplit,"
+      "$mainMod, P, pseudo,"
 
       # Move focus
       "$mainMod, h, movefocus, l"
       "$mainMod, l, movefocus, r"
       "$mainMod, k, movefocus, u"
       "$mainMod, j, movefocus, d"
-      "$mainMod, TAB, exec, source ~/.config/hypr/scripts/changefocus.sh"
+      "$mainMod, TAB, cyclenext," # change focus
+      "$mainMod, TAB, bringactivetotop," # and then bring to front
 
       # Move window
       "$mainMod SHIFT, h, movewindow, l"
@@ -118,7 +120,7 @@ in {
       "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
       "$mainMod, T, exec, pkill foot || ${pkgs.foot}/bin/foot --title=btm -e btm"
       "$mainMod, B, exec, google-chrome-stable"
-      "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
+      # "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
       "$mainMod, S, exec, ${screenshot.program}"
       "$mainMod SHIFT, S, exec, ${screenshot.program} --save"
     ];

@@ -9,6 +9,7 @@
     ./ssh
     ./shell
     ./emulators
+    ./sync
 
     ./wayland
 
