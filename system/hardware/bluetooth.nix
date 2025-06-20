@@ -22,5 +22,5 @@
   systemd.user.services.telephony_client.enable = false;
 
   # bluetooth management GUI
-  services.blueman.enable = true;
+  services.blueman.enable = false; # use hyprland bluez instead
 }
