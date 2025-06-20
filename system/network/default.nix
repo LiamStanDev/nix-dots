@@ -19,7 +19,7 @@
       enable = true;
       settings.UseDns = true;
       settings.PermitRootLogin = "no";
-      settings.PasswordAuthentication = false;
+      settings.PasswordAuthentication = true;
       ports = [55022];
     };
 
