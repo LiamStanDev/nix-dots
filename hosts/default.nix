@@ -8,7 +8,6 @@
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
   inherit (inputs) nix-index-database; # nix locate
-  inherit (inputs) sops-nix; # sops
 
   # Get all hosts directory contents
   dirContent = builtins.readDir ./.;

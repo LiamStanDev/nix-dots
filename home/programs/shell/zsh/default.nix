@@ -122,7 +122,6 @@ in {
     programs.zoxide.enableZshIntegration = true;
     programs.fzf.enableZshIntegration = true;
     programs.direnv.enableZshIntegration = true;
-    programs.zellij.enableZshIntegration = true;
     programs.yazi.enableZshIntegration = true;
   };
 }

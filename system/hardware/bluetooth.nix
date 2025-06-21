@@ -8,7 +8,7 @@
       General = {
         Enable = "Source,Sink,Media,Socket";
         Class = "0x000100"; # 0x000100 = Computer
-        ControllerMode = "bredr";
+        ControllerMode = "dual"; # can connect to normal devices and low energy devices (fix mx master not found issue)
         FastConnectable = true;
         JustWorksRepairing = "always";
         Privacy = "device";

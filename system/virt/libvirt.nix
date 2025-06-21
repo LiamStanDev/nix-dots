@@ -9,10 +9,10 @@
       ovmf = {
         enable = true;
         packages = [
-          (pkgs.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          }).fd
+          # (pkgs.OVMF.override {
+          #   secureBoot = true;
+          #   tpmSupport = true;
+          # }).fd
         ];
       };
       vhostUserPackages = [pkgs.virtiofsd];

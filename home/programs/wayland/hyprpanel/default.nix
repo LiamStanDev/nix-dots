@@ -59,8 +59,8 @@
 
       # bar
       bar.launcher.autoDetectIcon = true;
-      bar.workspaces.show_icons = true;
-      bar.clock.format = "%a %b %d  %I:%M %p";
+      bar.workspaces.show_icons = false;
+      bar.clock.format = "%I:%M %p";
 
       # memu
       menus.clock = {
@@ -74,8 +74,16 @@
       menus.dashboard.directories.enabled = false;
       menus.dashboard.stats.enable_gpu = true;
 
+      # notification
+      notifications.position = "top right";
+
       # theme
-      theme.bar.transparent = false;
+      theme.bar.transparent = true;
+      theme.bar.floating = false;
+      theme.bar.location = "top";
+      theme.bar.margin_bottom = "0em";
+      theme.bar.margin_sides = "0.5em";
+      theme.bar.margin_top = "0.5em";
       theme.font = {
         # name = "CaskaydiaCove NF";
         name = "CaskaydiaMono NFM";
