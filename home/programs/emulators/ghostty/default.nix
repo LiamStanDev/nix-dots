@@ -36,7 +36,7 @@ in {
           # "ctrl+alt+d=decrease_font_size"
         ];
 
-        background-opacity = 0.95;
+        background-opacity = 0.8;
         window-padding-x = "10, 10";
         window-padding-y = "4, 7";
         window-decoration = "none";

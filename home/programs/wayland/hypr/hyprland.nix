@@ -190,8 +190,8 @@ in {
       rounding = 0;
 
       # Opacity
-      active_opacity = 0.95;
-      inactive_opacity = 0.95;
+      active_opacity = 1;
+      inactive_opacity = 1;
 
       # blur = {
       #   enabled = true;
@@ -229,6 +229,7 @@ in {
       enable_swallow = true;
       render_ahead_of_time = false;
       disable_hyprland_logo = true;
+      focus_on_activate = true;
     };
 
     # see: https://wiki.hyprland.org/Configuring/Window-Rules/#static-rules

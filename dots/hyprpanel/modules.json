@@ -1,0 +1,12 @@
+{
+  "custom/hypridle": {
+    "label": "{}",
+    "execute": "~/.config/hyprpanel/scripts/toggle-idle.sh --status",
+    "hideOnEmpty": true,
+    "actions": {
+      "onLeftClick": "~/.config/hyprpanel/scripts/toggle-idle.sh"
+    },
+    "interval": 1000
+  }
+}
+

@@ -37,12 +37,6 @@
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Widget
-    # ags.url = "github:aylur/ags";
-    # ags.inputs.nixpkgs.follows = "nixpkgs";
-    # astal.url = "github:aylur/astal";
-    # astal.inputs.nixpkgs.follows = "nixpkgs";
-
     # Hyprpanel
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprpanel.inputs.nixpkgs.follows = "nixpkgs";

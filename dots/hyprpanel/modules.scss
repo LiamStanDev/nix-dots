@@ -1,0 +1,18 @@
+/* ##################################
+ * #    Custom Module Styling       #
+ * ################################## */
+@include styleModule(
+  // class name
+  "cmodule-hypridle",
+  // styling properties
+  (
+      "text-color": #b4befe,
+      "icon-color": #242438,
+      "icon-background": #b4befe,
+      "label-background": #242438,
+      "inner-spacing": 0.5em,
+      "border-enabled": false,
+      "border-color": #b4befe,
+      "icon-size": 1.2em
+    )
+);
