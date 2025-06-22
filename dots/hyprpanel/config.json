@@ -18,7 +18,7 @@
     },
     "clock": {
       "format": "%I:%M %p",
-      "icon": "󰸗",
+      "icon": "",
       "middleClick": "",
       "rightClick": "",
       "scrollDown": "",
@@ -190,7 +190,7 @@
         "updateCommand": ""
       },
       "weather": {
-        "label": true,
+        "label": false,
         "leftClick": "",
         "middleClick": "",
         "rightClick": "",
@@ -396,7 +396,7 @@
     "clock": {
       "time": { "hideSeconds": true, "military": true },
       "weather": {
-        "enabled": true,
+        "enabled": false,
         "interval": 60000,
         "key": "",
         "location": "Los Angeles",
@@ -449,14 +449,14 @@
         "enabled": true,
         "left": {
           "shortcut1": {
-            "command": "microsoft-edge-stable",
-            "icon": "󰇩",
-            "tooltip": "Microsoft Edge"
+            "command": "google-chrome-stable",
+            "icon": "",
+            "tooltip": "Google Chrome"
           },
           "shortcut2": {
-            "command": "spotify-launcher",
-            "icon": "",
-            "tooltip": "Spotify"
+            "command": "virsh --connect qemu:///system start win10; virt-manager --show-domain-console win10 --connect qemu:///system",
+            "icon": "",
+            "tooltip": "Windows 10 VM"
           },
           "shortcut3": {
             "command": "discord",

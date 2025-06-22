@@ -10,5 +10,6 @@
   emulators.foot.enable = true;
 
   wayland.hypr.enable = true;
+  wayland.hypridle.enable = true;
   sync.enable = true;
 }

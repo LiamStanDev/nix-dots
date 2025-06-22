@@ -257,6 +257,9 @@ in {
       "move 1320 50, class:foot, title:nmtui"
       "move 1320 50, class:org.pulseaudio.pavucontrol"
 
+      # workspace
+      "workspace 4, title:^.* on QEMU/KVM$"
+
       # effect
       "opacity 1.0, class:google-chrome"
     ];
