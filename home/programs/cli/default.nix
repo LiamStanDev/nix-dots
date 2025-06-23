@@ -45,6 +45,7 @@
     bluez-tools # CLI utilities for bluez
     perf-tools # Linux perf wrapper scripts
     sysstat # Performance monitoring tools (iostat, etc.)
+    lsof # details about open files
     netcat # Networking utility
     speedtest-cli # Test internet speed
     ripgrep # Fast grep alternative
