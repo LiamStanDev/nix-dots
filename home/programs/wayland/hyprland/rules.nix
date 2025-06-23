@@ -1,0 +1,33 @@
+{
+  # see: https://wiki.hyprland.org/Configuring/Window-Rules/#static-rules
+  windowrule = [
+    # float by default
+    "float, class:.*"
+
+    # window type
+    "pseudo, class:fcitx, title:fcitx"
+    "tile, class:code" # vscode
+    # "tile, class:org.wezfurlong.wezterm"
+    "tile, class:google-chrome"
+    "tile, class:obsidian"
+    "fullscreen, title:^.* on QEMU/KVM$"
+
+    # size
+    "size 600 500, class:foot, title:btop"
+    "size 600 500, class:foot, title:btm"
+    "size 600 500, class:foot, title:nmtui"
+    "size 600 500, class:org.pulseaudio.pavucontrol"
+
+    # move
+    "move 1320 50, class:foot, title:btop"
+    "move 1320 50, class:foot, title:btm"
+    "move 1320 50, class:foot, title:nmtui"
+    "move 1320 50, class:org.pulseaudio.pavucontrol"
+
+    # workspace
+    "workspace 4, title:^.* on QEMU/KVM$"
+
+    # effect
+    "opacity 1.0, class:google-chrome"
+  ];
+}

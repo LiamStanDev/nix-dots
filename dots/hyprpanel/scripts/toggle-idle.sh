@@ -11,10 +11,8 @@ fi
 
 if systemctl --user is-active --quiet hypridle.service; then
   systemctl --user stop hypridle.service
-  notify-send "Idle stop"
   echo ""
 else
   systemctl --user start hypridle.service
-  notify-send "Idle running"
   echo ""
 fi

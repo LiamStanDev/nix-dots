@@ -1,8 +1,9 @@
 {
   imports = [
-    ./hypr
-    ./mako
+    ./hyprland
+    ./hyprlock
     ./hypridle
     ./hyprpanel
+    ./mako
   ];
 }
