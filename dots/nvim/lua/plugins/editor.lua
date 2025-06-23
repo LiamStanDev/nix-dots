@@ -431,6 +431,11 @@ return {
 		},
 		cmd = "Leet",
 		opts = {
+			lang = "python3",
+			storage = {
+				home = "~/workspace/leetcode",
+				cache = vim.fn.stdpath("cache") .. "/leetcode",
+			},
 			keys = {
 				toggle = { "q" },
 				confirm = { "<CR>" },
