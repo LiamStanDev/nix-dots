@@ -17,14 +17,14 @@
 
       background = [
         {
-          monitor = "";
+          # monitor = "";
           path = (import "${self}/home/specializations.nix").lockscreen;
         }
       ];
 
       input-field = [
         {
-          monitor = "eDP-1";
+          # monitor = "eDP-1";
 
           size = "300, 50";
           valign = "bottom";
@@ -53,7 +53,7 @@
 
       label = [
         {
-          monitor = "";
+          # monitor = "";
           text = "$TIME";
           font_size = 150;
           color = "rgb(b6c4ff)";
@@ -69,7 +69,7 @@
           shadow_boost = 0.3;
         }
         {
-          monitor = "";
+          # monitor = "";
           text = "cmd[update:3600000] date +'%a %b %d'";
           font_size = 20;
           color = "rgb(b6c4ff)";
