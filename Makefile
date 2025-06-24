@@ -26,9 +26,7 @@ clean:
 .PHONY: link
 link:
 	@echo "📦 Link Config..."
-	@cd dot-home && make
-	@cd dot-config && make
-	@cd dot-desktop && make
+	@cd dots && make
 	@echo "✅ Config files linked successfully"
 
 .PHONY: unlink

@@ -1,6 +1,8 @@
-{
-  programs.wezterm.enable = true;
-  programs.kitty.enable = true;
-  programs.ghostty.enable = true;
-  programs.foot.enable = true;
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    wezterm
+    kitty
+    ghostty
+    foot
+  ];
 }
