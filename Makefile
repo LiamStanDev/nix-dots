@@ -9,6 +9,7 @@ upgrade:
 	@echo "🔄 Full upgrading..."
 	@git add .
 	@sudo nix run .#switch 
+	@make link
 
 
 .PHONY: update
@@ -33,25 +34,9 @@ link:
 .PHONY: unlink
 unlink:
 	@echo "📦 Unlink Config..."
-	@cd dot-home && make unlink
-	@cd dot-config && make unlink
-	@cd dot-desktop && make unlink
+	@cd dots && make unlink
 	@echo "✅ Config files unliked successfully"
 
-
-.PHONY: link-minimal
-link-minimal:
-	@echo "📦 Link Config..."
-	@cd dot-home && make
-	@cd dot-config && make
-	@echo "✅ Config files linked successfully"
-
-.PHONY: unlink-minimal
-unlink-minimal:
-	@echo "📦 Unlink Config..."
-	@cd dot-home && make unlink
-	@cd dot-config && make unlink
-	@echo "✅ Config files unliked successfully"
 
 
 .PHONY: install

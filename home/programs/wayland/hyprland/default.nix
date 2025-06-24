@@ -2,7 +2,6 @@
 {
   self,
   pkgs,
-  config,
   lib,
   monitors,
   ...
@@ -58,12 +57,6 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = with pkgs; [xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
   xdg.portal.xdgOpenUsePortal = true;
-
-  # Dotfils
-  home.file = {
-    ".config/rofi".source = "${self}/dots/rofi";
-    ".config/waybar".source = "${self}/dots/waybar";
-  };
 
   wayland.windowManager.hyprland = {
     enable = true; # also enable hyprland-protocols

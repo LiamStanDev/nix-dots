@@ -16,6 +16,4 @@
     brightnessctl
     gpustat
   ];
-
-  home.file.".config/hyprpanel".source = "${self}/dots/hyprpanel";
 }

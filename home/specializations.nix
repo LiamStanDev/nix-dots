@@ -14,7 +14,7 @@
   #     inherit url sha256;
   #   };
 
-  wallpaper = ../dots/Wallpapers/Kraken.png;
+  wallpaper = ./wallpapers/Kraken.png;
 
   lockscreen = let
     url = "https://w.wallhaven.cc/full/jx/wallhaven-jx8zyq.png";

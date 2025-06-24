@@ -1,14 +1,5 @@
 # ──────── 🐧 CLI Utilities ────────
-{
-  self,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ./yazi
-    ./starship
-  ];
-
+{pkgs, ...}: {
   # Env
   home.sessionVariables = {
     # Prevent direnv show lots of logs
@@ -24,17 +15,10 @@
   programs.fzf.enable = true;
   programs.direnv.enable = true;
   programs.zellij.enable = true;
-
-  # Dotfiles
-  home.file = {
-    ".zfunc".source = "${self}/dots/.zfunc";
-    ".local/share/fonts".source = "${self}/dots/fonts";
-    ".config/btop".source = "${self}/dots/btop";
-    ".config/lazygit".source = "${self}/dots/lazygit";
-    ".config/lazydocker".source = "${self}/dots/lazydocker";
-    ".config/nvim".source = "${self}/dots/nvim";
-    ".config/zellij".source = "${self}/dots/zellij";
-    ".config/yazi".source = "${self}/dots/yazi";
+  programs.starship.enable = true;
+  programs.yazi = {
+    enable = true;
+    shellWrapperName = "y";
   };
 
   # Packags
