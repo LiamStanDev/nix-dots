@@ -1,5 +1,9 @@
 # ──────── 🐧 CLI Utilities ────────
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   # Env
   home.sessionVariables = {
     # Prevent direnv show lots of logs
@@ -19,6 +23,7 @@
   programs.yazi = {
     enable = true;
     shellWrapperName = "y";
+    package = inputs.yazi.packages.${pkgs.system}.default;
   };
 
   # Packags

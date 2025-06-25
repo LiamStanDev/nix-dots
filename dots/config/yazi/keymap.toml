@@ -376,10 +376,10 @@ on   = [ "c", "a" ]
 run  = "plugin compress"
 desc = "Archive selected files"
 
-[[mgr.prepend_keymap]]
-on   = "/"
-run  = "plugin smart-filter"
-desc = "Smart filter"
+# [[mgr.prepend_keymap]]
+# on   = "/"
+# run  = "plugin smart-filter"
+# desc = "Smart filter"
 
 # NOTE: unbind f to stop showing filter when open
 [[mgr.prepend_keymap]]

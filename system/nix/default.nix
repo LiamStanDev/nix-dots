@@ -15,7 +15,15 @@
   environment.systemPackages = [pkgs.git];
 
   # Run unpatched dynamic binaries on NixOS
+  # see: https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/programs/nix-ld.nix
   programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    alsa-lib # lib for ALSA sound system
+    at-spi2-atk
+    at-spi2-core
+    atk
+    cairo # 2D graphics library
+  ];
 
   programs.nh = {
     enable = true;
