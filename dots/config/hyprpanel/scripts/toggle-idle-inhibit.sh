@@ -9,19 +9,15 @@ function is_inhibit_active() {
 function start_inhibit() {
   systemd-inhibit --what=idle:sleep --why="Manual idle inhibit toggle" \
     bash -c 'while true; do sleep 1000; done' &
-  echo $! >"$PID_FILE"
+  echo $! >"$PID_FILE" # get process id and save to pid file
   notify-send "Idle Inhibit" "☕ Idle inhibit enabled"
 }
 
 function stop_inhibit() {
   if is_inhibit_active; then
-    kill "$(cat "$PID_FILE")" && rm -f "$PID_FILE"
+    kill "$(cat "$PID_FILE")" && rm -f "$PID_FILE" # kill process by pid and remove pid file
     notify-send "Idle Inhibit" "🌙 Idle inhibit disabled"
   fi
-}
-
-function is_inhibit_enabled() {
-  [[ -f "$INHIBIT_PID_FILE" ]] && kill -0 "$(cat "$INHIBIT_PID_FILE")" 2>/dev/null
 }
 
 #   
