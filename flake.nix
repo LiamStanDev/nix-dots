@@ -6,24 +6,16 @@
     nixpkgs,
     ...
   } @ inputs: let
-    # System type and master name
-    system = "x86_64-linux";
     wheelUser = "liam";
   in {
     # Import NixOS configurations from the hosts directory
     nixosConfigurations = import ./hosts {inherit self inputs wheelUser;};
-
-    # Custom switch as replacement of 'nixos-rebuild switch'
-    apps.${system}.switch = import ./pkgs/switch.nix {
-      inherit self;
-      pkgs = nixpkgs.legacyPackages.${system};
-    };
   };
 
   inputs = {
     # Nixpkgs input
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home Manager input
     home-manager.url = "github:nix-community/home-manager";

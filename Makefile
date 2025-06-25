@@ -4,12 +4,12 @@ check:
 	@git add .
 	@nix flake check
 
-.PHONY: upgrade
-upgrade:
-	@echo "🔄 Full upgrading..."
-	@git add .
-	@sudo nix run .#switch 
-	@make link
+# .PHONY: upgrade
+# upgrade:
+# 	@echo "🔄 Full upgrading..."
+# 	@git add .
+# 	@sudo nixos-rebuild switch --flake .#<host> |& nom && make link
+# 	@make link
 
 
 .PHONY: update

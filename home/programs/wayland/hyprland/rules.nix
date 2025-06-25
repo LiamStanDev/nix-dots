@@ -29,5 +29,8 @@
 
     # effect
     "opacity 1.0, class:google-chrome"
+
+    # idle inhibit
+    "idleinhibit fullscreen, class:.*"
   ];
 }

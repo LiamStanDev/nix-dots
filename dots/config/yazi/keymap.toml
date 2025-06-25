@@ -406,3 +406,8 @@ desc = "Paste into the hovered directory or CWD"
 on   = "t"
 run  = "plugin smart-tab"
 desc = "Create a tab and enter the hovered directory"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "m" ]
+run  = "plugin chmod"
+desc = "Chmod on selected files"

@@ -21,6 +21,7 @@ in
   builtins.listToAttrs (map (host: {
       name = host;
       value = nixosSystem {
+        system = "x86_64-linux";
         specialArgs = {inherit self inputs host wheelUser;};
         modules = [
           nix-index-database.nixosModules.nix-index
