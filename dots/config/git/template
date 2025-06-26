@@ -1,0 +1,15 @@
+# <type>(<scope>): <subject>
+#
+# Example:
+# feat(parser): add ability to parse arrays
+#
+# <body>
+# - Use the body to explain what and why, not how.
+# - Wrap lines at 72 characters.
+#
+# <footer>
+# - Reference issues, breaking changes, or co-authors here.
+#
+# Types: feat, fix, docs, style, refactor, perf, test, chore
+#
+# More info: https://www.conventionalcommits.org/

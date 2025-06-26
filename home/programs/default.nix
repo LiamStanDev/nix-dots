@@ -5,7 +5,6 @@
     ./app
     ./virt
     ./theme
-    ./git
     ./ssh
     ./shell
     ./emulators

@@ -6,7 +6,7 @@
   # Screenshot
   screenshot = import "${self}/pkgs/screenshot.nix" {inherit pkgs;};
 in {
-      "$mainMod" = "SUPER";
+  "$mainMod" = "SUPER";
   bind = [
     # System
     "$mainMod, Q, killactive,"
@@ -76,7 +76,8 @@ in {
     "$mainMod, SPACE, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/launcher_t6"
     "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
     "$mainMod, T, exec, pkill foot || ${pkgs.foot}/bin/foot --title=btm -e btm"
-    "$mainMod, B, exec, google-chrome-stable"
+    # "$mainMod, B, exec, google-chrome-stable"
+    "$mainMod, B, exec, zen"
     # "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
     "$mainMod, S, exec, ${screenshot.program}"
     "$mainMod SHIFT, S, exec, ${screenshot.program} --save"

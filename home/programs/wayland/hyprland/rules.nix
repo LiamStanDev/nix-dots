@@ -9,6 +9,8 @@
     "tile, class:code" # vscode
     # "tile, class:org.wezfurlong.wezterm"
     "tile, class:google-chrome"
+    "tile, class:^zen-.*$"
+    "float, class:^zen-.*$, title:Library"
     "tile, class:obsidian"
     "fullscreen, title:^.* on QEMU/KVM$"
 

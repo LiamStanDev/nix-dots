@@ -1,0 +1,77 @@
+[user]
+	email = zhonglin0107@gmail.com
+	name = Liam Lin
+
+[core]
+    compression = 9  # save network bandwidth
+    whitespace = error  # threat incorrect whitespace as errors
+    preloadindex = true  # preload index for faster status
+
+    pager = delta
+
+[advice]
+    addEmptyPathspec = false # don't warn about empty pathspecs
+    pushNonFastForward = false # don't warn about non-fast-forward pushes
+    statusHints = false # don't show hints in git status
+
+[init]
+    defaultBranch = main
+
+[log]
+    abbrevCommit = true  # short commits
+    graphColors = blue,yellow,cyan,magenta,green,red
+
+[status]
+    branch = true
+    short = true
+    showStash = true
+    showUntrackedFiles = all  # show individual untracked files
+
+[diff]
+    context = 3 # lines of context in diffs
+    renames = copies # detect copied files in diffs
+    interHunkContext = 10 # lines of context between hunks
+
+
+[delta]
+    navigate = true # enable navigation in diffs by n and N key
+    dark = true
+    side-by-side = false
+    line-numbers = true
+
+[commit]
+    template = ~/.config/git/template
+    verbose = true  # add more context to commit messages
+
+[push]
+    autoSetupRemote = true  # easier to push new branches
+    default = current  # push only current branch by default
+    followTags = true  # push also tags
+
+[pull]
+    rebase = true
+    default = current
+
+[merge]
+  ff = no
+
+[submodule]
+    fetchJobs = 16
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -taggerdate
+
+
+[color "branch"]
+    current  = magenta
+    local    = default
+    remote   = yellow
+    upstream = green
+    plain    = blue
+
+[interactive]
+    diffFilter = delta --color-only --hyperlinks
+    singleKey = true # use single key for interactive commands

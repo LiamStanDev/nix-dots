@@ -42,6 +42,7 @@
     pamixer # CLI PulseAudio volume controller
     bottom # Modern `top` alternative
     bat # `cat` with syntax highlighting
+    git # Version control system
     delta # Git diff viewer with syntax highlighting
     tealdeer # Fast `tldr` client
     cacert # SSL certificates

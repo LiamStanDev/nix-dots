@@ -66,9 +66,10 @@ in {
         "...." = "cd ../../..";
         rm = "echo \"This is not the command you are looking for.\"; false";
         sys = "systemctl";
-        syss = "systemctl status";
         sysu = "systemctl --user";
-        sysus = "systemctl --user status";
+        sysj = "journalctl --no-pager";
+        cp = "cp --interactive";
+        mv = "mv --interactive";
         mkdir = "mkdir -p";
         c = "clear";
         poweroff = "systemctl poweroff";
@@ -90,10 +91,12 @@ in {
         # trash-cli
         t = "trash-put";
 
-        # vim and neovim
-        v = "vim";
-        n = "nvim";
-        nv = "nvim";
+        # rg
+        rg = "rg --hidden --smart-case --glob='!.git/' --no-search-zip --trim --colors=line:fg:black --colors=line:style:bold --colors=path:fg:magenta --colors=match:style:nobold";
+
+        # edit
+        e = "$EDITOR";
+        E = "sudo -e";
 
         # lazy
         lzg = "lazygit";
@@ -103,18 +106,29 @@ in {
         pn = "pnpm";
 
         # git
-        gl = "git log --graph --decorate --pretty=oneline --abbrev-commit --all";
-        gC = "git commit";
-        gP = "git publish";
-        ga = "git add .";
-        gc = "git commit -m";
-        gca = "git commit -am";
-        gd = "git diff";
-        gdm = "git diff master";
-        gp = "git pull";
-        gs = "git status --short --branch --renames";
+        gl = "git log --graph --all --pretty=format:\"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n\"";
+        gs = "git status --short";
+
+        ga = "git add";
+        gap = "git add --patch";
+
+        gd = "git diff --output-indicator-new=' ' --output-indicator-old=' '";
+        gds = "gd --staged";
+
+        gc = "git commit";
+        gca = "gc --amend --no-edit";
+        gce = "gc --amend";
+
+        gu = "git pull";
+        gp = "git push";
+
         gt = "git stash";
         gtp = "git stash pop";
+
+        # docker
+        dps = "docker ps --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\"";
+        dl = "docker logs --tail=100";
+        dc = "docker compose";
       };
     };
 
