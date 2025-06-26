@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-if [[ -f /sys/class/power_supply/AC/online ]] && [[ "$(cat /sys/class/power_supply/AC/online)" = "0" ]]; then
+if upower -d | grep -q 'online:\s*no'; then
   systemctl suspend || true
 fi
