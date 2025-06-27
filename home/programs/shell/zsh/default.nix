@@ -116,8 +116,8 @@ in {
         gds = "gd --staged";
 
         gc = "git commit";
-        gca = "gc --amend --no-edit";
-        gce = "gc --amend";
+        gce = "gc --amend"; # add current staged into prev commit
+        gca = "gc --amend --no-edit"; # gce with no edit
 
         gu = "git pull";
         gp = "git push";
