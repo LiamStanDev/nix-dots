@@ -47,6 +47,7 @@
   };
 
   # Filesystem support
+  boot.initrd.supportedFilesystems = ["btrfs"];
   boot.supportedFilesystems = ["ntfs" "exfat" "ext4" "fat32" "btrfs"];
   services.devmon.enable = true; # automatic device mounting daemon
   services.gvfs.enable = true; # userspace virtual filesystem

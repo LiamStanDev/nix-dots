@@ -2,15 +2,16 @@
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/nvme0n1";
+        device = "/dev/vda";
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
             # EFI system partition
             ESP = {
+              label = "boot";
               size = "512M";
-              type = "EF00"; # UEFI
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -19,7 +20,8 @@
               };
             };
             swap = {
-              size = "8G";
+              size = "16G";
+              label = "swap";
               content = {
                 type = "swap";
                 resumeDevice = true; # allow hibernation
@@ -31,15 +33,15 @@
                 type = "btrfs";
                 extraArgs = ["-f"];
                 subvolumes = {
-                  "@root" = {
+                  "/root" = {
                     mountpoint = "/";
                     mountOptions = ["compress=zstd"];
                   };
-                  "@home" = {
+                  "/home" = {
                     mountpoint = "/home";
                     mountOptions = ["compress=zstd"];
                   };
-                  "@var" = {
+                  "/var" = {
                     mountpoint = "/var";
                     mountOptions = ["compress=zstd:1"];
                   };

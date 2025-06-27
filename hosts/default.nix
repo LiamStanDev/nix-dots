@@ -8,6 +8,7 @@
 }: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
   inherit (inputs) nix-index-database; # nix locate
+  inherit (inputs) disko; # nix locate
 
   # Get all hosts directory contents
   dirContent = builtins.readDir ./.;
@@ -24,8 +25,11 @@ in
         system = "x86_64-linux";
         specialArgs = {inherit self inputs host wheelUser;};
         modules = [
+          # 3rd party modules
           nix-index-database.nixosModules.nix-index
-          ../system/home-manager.nix
+          disko.nixosModules.disko
+
+          # Host configuration
           ./${host}
         ];
       };

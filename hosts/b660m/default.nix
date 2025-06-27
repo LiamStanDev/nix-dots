@@ -1,6 +1,5 @@
 {
   self,
-  host,
   inputs,
   wheelUser,
   ...
@@ -14,7 +13,7 @@
     # "desc:LG Electronics LG HDR 4K 0x000641E,3840x2160,2560x0,1.5"
     "desc:LG Electronics LG HDR 4K 0x000641E, 2560x1440, 2560x0, 1"
   ];
-in {
+in rec {
   # Import base laptop modules and additional configuration files
   imports =
     desktop
@@ -33,18 +32,15 @@ in {
       # "${self}/system/virt/looking-glass.nix"
 
       # Home manager
+      ../../system/home-manager.nix
       {
-        home-manager.users.${wheelUser} = "${self}/home/profiles/${host}.nix";
-        home-manager.extraSpecialArgs = {inherit self host inputs monitors wheelUser;};
+        home-manager.users.${wheelUser} = "${self}/home/profiles/${networking.hostName}.nix";
+        home-manager.extraSpecialArgs = {inherit self inputs wheelUser monitors;};
       }
     ];
 
   # Set the hostname for this machine
   networking.hostName = "b660m";
-
-  # Boot configuration
-  # initial ramdisk settings
-  boot.initrd.supportedFilesystems = ["btrfs"];
 
   services = {
     # Enable fstrim service to keep SSDs and NVMe drives healthy
