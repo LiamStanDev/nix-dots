@@ -75,7 +75,7 @@ in {
     "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
     "$mainMod, T, exec, pkill foot || ${pkgs.foot}/bin/foot --title=btop -e btop"
     # "$mainMod, B, exec, google-chrome-stable"
-    "$mainMod, B, exec, zen"
+    "$mainMod, B, exec, flatpak run app.zen_browser.zen"
     # "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
     "$mainMod, S, exec, screenshot"
     "$mainMod SHIFT, S, exec, screenshot --save"

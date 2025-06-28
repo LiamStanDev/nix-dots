@@ -19,6 +19,7 @@ let
 
       ./desktop/dm.nix
       ./desktop/fonts.nix
+      ./desktop/flatpak.nix
     ];
 
   laptop =

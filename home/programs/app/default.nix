@@ -34,6 +34,5 @@
     libsForQt5.okular # PDF reader
     gimp3 # Image editor
     loupe # Image viewer (GTK)
-    inputs.zen-browser.packages."${pkgs.system}".default
   ];
 }
