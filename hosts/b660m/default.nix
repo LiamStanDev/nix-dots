@@ -32,6 +32,7 @@ in rec {
       "${self}/system/network/spotify.nix"
       "${self}/system/virt"
       "${self}/system/gaming"
+      "${self}/system/desktop/flatpak.nix"
       # "${self}/system/virt/looking-glass.nix"
 
       # Home manager
