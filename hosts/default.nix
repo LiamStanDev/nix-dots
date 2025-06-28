@@ -44,6 +44,7 @@ in
               XDG_DATA_HOME = "$HOME/.local/share";
               XDG_BIN_HOME = "$HOME/.local/bin";
               XDG_DATA_DIRS = [
+                "$HOME/.local/share"
                 "$HOME/.local/share/flatpak/exports/share"
                 "/var/lib/flatpak/exports/share"
               ];
