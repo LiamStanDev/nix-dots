@@ -52,7 +52,7 @@ passwd <user>  # change user password
 su <user>
 chown -R <user>:users nix-dots
 cd nix-dots/dots
-mkdir -p ~/.config ~/.local/share
+mkdir -p ~/.config ~/.local/share ~/.config/hypr
 nix-shell -p gnumake stow
 make link
 exit 
