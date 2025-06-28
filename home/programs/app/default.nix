@@ -35,6 +35,5 @@
     gimp3 # Image editor
     loupe # Image viewer (GTK)
     inputs.zen-browser.packages."${pkgs.system}".default
-    (bottles.override {removeWarningPopup = true;}) # Windows software using Wine
   ];
 }
