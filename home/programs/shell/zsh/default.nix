@@ -39,6 +39,9 @@ in {
           zi light "jeffreytse/zsh-vi-mode"
           zi light "Aloxaf/fzf-tab"
 
+          # flatpak
+          export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
+
           # nodejs
           export PNPM_HOME="$HOME/.pnpm"
           PATH="$PNPM_HOME:$PATH"
