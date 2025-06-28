@@ -23,61 +23,40 @@ sudo -i
 
 git clone https://github.com/LiamStanDev/nix-dots.git
 
-# 1. Get nix disko config and edit it
-cp nix-dots/hosts/<your-machine>/disko.nix /tmp/disko.nix
-vim /tmp/disko.nix
+# Options: install vim (if not exist)
+# nix-shell -p vim
 
-# 2. Partitioning
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /tmp/disko.nix
+# 0. New machine
+mkdir -p nix-dots/hosts/<your-machine> # create new hosts setup
+vim nix-dots/hosts/<your-machine>/default.nix
+
+# 1. Partitioning
+lsblk -f
+vim nix-dots/hosts/<your-machine>/disko.nix
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount nix-dots/hosts/<your-machine>/disko.nix
 
 # 3. Check partition
 mount | grep /mnt # verify auto mount. (important)
 
-# 4. Editing system
-nixos-generate-config --no-filesystems --root /mnt
-cp /tmp/disko.nix /mnt/etc/nixos/disko.nix
-vim /mnt/etc/nixos/configuration.nix
+# 4. Generate hardware-configuration
+nixos-generate-config --root /tmp/config --no-filesystems
+cp /tmp/config/etc/nixos/hardware-configuration.nix nix-dots/hosts/<your-machine>
 
-```
-```
-```
-```
-```
-
-`/etc/nixos/configuration.nix`
-
-```nix
-imports =
- [
-   ./hardware-configuration.nix
-   "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
-   ./disko.nix
- ];
-
-boot.loader.grub.enable = true;
-boot.loader.grub.efiSupport = true;
-boot.loader.grub.efiInstallAsRemovable = true;
-
-```
-
-
-```bash
 # 3. Install NixOS
-nixos-install
+nixos-install --flake ./nix-dots#<your-machine>
 
-# 4. Copy hardware-configuration.nix file
+# 4. Enter new system
+cp nix-dots /mnt/home/<user>
 nixos-enter --root /mnt # enter your brand-new os
 passwd <user>  # change user password
 cd /home/<user>
-git clone https://github.com/LiamStanDev/nix-dots.git
-cp /etc/nixos/hardware-configuration.nix /home/<user>/nix-dots/hosts/<host>
 exit 
 
 # 4. Reboot
 reboot
 ```
 
-> Note: Use label instead of UUID for disko setup. label is way easier
+> Note: Use label instead of UUID for disko setup. Use label is way easier.
 
 
 nix --experimental-features "nix-command flakes" run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake '/tmp/config/etc/nixos#mymachine' --disk main /dev/vda
