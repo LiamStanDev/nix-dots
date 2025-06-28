@@ -27,10 +27,10 @@
               };
             };
             root = {
+              label = "root";
               size = "100%";
               content = {
                 type = "btrfs";
-                label = "root";
                 extraArgs = [
                   "-L"
                   "nixos"
