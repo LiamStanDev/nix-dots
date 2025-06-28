@@ -8,8 +8,8 @@
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
-  environment.SystemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     flatpak
-    gnome.gnome-software
+    gnome-software
   ];
 }
