@@ -7,10 +7,10 @@
         content = {
           type = "gpt";
           partitions = {
-            # EFI system partition
             ESP = {
+              label = "boot";
               size = "512M";
-              type = "EF00"; # UEFI
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -19,7 +19,8 @@
               };
             };
             swap = {
-              size = "8G";
+              size = "16G";
+              label = "swap";
               content = {
                 type = "swap";
                 resumeDevice = true; # allow hibernation
@@ -29,19 +30,28 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = ["-f"];
+                label = "root";
+                extraArgs = [
+                  "-L"
+                  "nixos"
+                  "-f"
+                ];
                 subvolumes = {
-                  "@root" = {
+                  "/root" = {
                     mountpoint = "/";
-                    mountOptions = ["compress=zstd"];
+                    mountOptions = ["subvol=root" "compress=zstd" "noatime" "ssd"];
                   };
-                  "@home" = {
+                  "/home" = {
                     mountpoint = "/home";
-                    mountOptions = ["compress=zstd"];
+                    mountOptions = ["subvol=home" "compress=zstd" "noatime" "ssd"];
                   };
-                  "@var" = {
-                    mountpoint = "/var";
-                    mountOptions = ["compress=zstd:1"];
+                  "/nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = ["subvol=nix" "compress=zstd:1" "noatime" "ssd"];
+                  };
+                  "/log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = ["subvol=log" "compress=zstd" "noatime" "ssd"];
                   };
                 };
               };
