@@ -43,6 +43,8 @@ in {
     nvidiaSettings = true;
   };
 
+  hardware.nvidia-container-toolkit.enable = true;
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -51,21 +53,5 @@ in {
       vaapiVdpau
       libvdpau-va-gl
     ];
-  };
-
-  nixpkgs.config = {
-    nvidia.acceptLicense = true;
-    cudaSupport = true;
-    allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        "cudatoolkit"
-        "nvidia-persistenced"
-        "nvidia-settings"
-        "nvidia-x11"
-      ];
-  };
-  nix.settings = {
-    substituters = ["https://cuda-maintainers.cachix.org"];
-    trusted-public-keys = ["cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="];
   };
 }

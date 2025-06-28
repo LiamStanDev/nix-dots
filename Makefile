@@ -4,14 +4,6 @@ check:
 	@git add .
 	@nix flake check
 
-# .PHONY: upgrade
-# upgrade:
-# 	@echo "🔄 Full upgrading..."
-# 	@git add .
-# 	@sudo nixos-rebuild switch --flake .#<host> |& nom && make link
-# 	@make link
-
-
 .PHONY: update
 update:
 	@echo "🔄 Flake channel updating..."
@@ -34,7 +26,6 @@ unlink:
 	@echo "📦 Unlink Config..."
 	@cd dots && make unlink
 	@echo "✅ Config files unliked successfully"
-
 
 
 .PHONY: install

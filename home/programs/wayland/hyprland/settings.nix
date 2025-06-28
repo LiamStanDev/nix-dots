@@ -75,11 +75,15 @@
   };
 
   general = {
-    gaps_in = 5;
-    gaps_out = 10;
-    no_border_on_floating = true;
+    gaps_in = 3;
+    gaps_out = "1, 6, 6, 6";
+
     border_size = 2;
+    no_border_on_floating = false;
+    resize_on_border = true;
+
     "col.active_border" = "0xFFFFC87F";
+
     layout = "dwindle";
   };
 
@@ -89,6 +93,13 @@
     # Opacity
     active_opacity = 1;
     inactive_opacity = 1;
+
+    blur = {
+      enabled = true;
+      size = 3;
+      passes = 3;
+      vibrancy = 0.1696;
+    };
   };
 
   animations = {
@@ -113,6 +124,13 @@
     ];
   };
 
+  # see: https://wiki.hypr.land/Configuring/Dwindle-Layout/
+  dwindle = {
+    pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    preserve_split = true; # You probably want this
+    force_split = 0;
+  };
+
   misc = {
     animate_manual_resizes = true;
     animate_mouse_windowdragging = true;
@@ -120,5 +138,6 @@
     render_ahead_of_time = false;
     disable_hyprland_logo = true;
     focus_on_activate = true;
+    force_default_wallpaper = -1;
   };
 }

@@ -73,7 +73,7 @@ in {
     "$mainMod, RETURN, exec, [tile] ${pkgs.ghostty}/bin/ghostty -e zellij"
     "$mainMod, SPACE, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/launcher_t6"
     "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
-    "$mainMod, T, exec, pkill foot || ${pkgs.foot}/bin/foot --title=btm -e btm"
+    "$mainMod, T, exec, pkill foot || ${pkgs.foot}/bin/foot --title=btop -e btop"
     # "$mainMod, B, exec, google-chrome-stable"
     "$mainMod, B, exec, zen"
     # "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"

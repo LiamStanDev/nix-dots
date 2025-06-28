@@ -15,14 +15,14 @@
     "fullscreen, title:^.* on QEMU/KVM$"
 
     # size
-    "size 600 500, class:foot, title:btop"
+    "size 800 500, class:foot, title:btop"
     "size 600 500, class:foot, title:btm"
     "size 600 500, class:foot, title:nmtui"
     "size 600 500, class:org.pulseaudio.pavucontrol"
 
     # move
-    "move 1320 50, class:foot, title:btop"
-    "move 1320 50, class:foot, title:btm"
+    # "move 1320 50, class:foot, title:btop"
+    # "move 1320 50, class:foot, title:btm"
     "move 1320 50, class:foot, title:nmtui"
     "move 1320 50, class:org.pulseaudio.pavucontrol"
 

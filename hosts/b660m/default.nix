@@ -31,6 +31,7 @@ in rec {
       "${self}/system/network/avahi.nix"
       "${self}/system/network/spotify.nix"
       "${self}/system/virt"
+      "${self}/system/gaming"
       # "${self}/system/virt/looking-glass.nix"
 
       # Home manager

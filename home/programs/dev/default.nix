@@ -23,5 +23,6 @@
     python313 # Python 3.13 interpreter
     uv # Python package manager (ultrafast pip)
     nix-output-monitor # Enhanced output viewer for nix builds
+    dtc # Device Tree Compiler (for qemu development)
   ];
 }
