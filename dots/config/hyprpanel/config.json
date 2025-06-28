@@ -516,7 +516,7 @@
             "tooltip": "Color Picker"
           },
           "shortcut3": {
-            "command": "$HOME/.config/hyprpanel/scripts/screenshot.sh --save",
+            "command": "screenshot --save",
             "icon": "󰄀",
             "tooltip": "Screenshot"
           }

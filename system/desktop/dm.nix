@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  sddm-sugar-dark = pkgs.libsForQt5.callPackage "${self}/pkgs/sddm-sugar-dark.nix" {};
+  sddm-sugar-dark = import "${self}/pkgs/sddm-sugar-dark.nix" {inherit pkgs;};
 in {
   environment.systemPackages = [sddm-sugar-dark];
 

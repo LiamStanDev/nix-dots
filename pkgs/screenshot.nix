@@ -1,34 +1,28 @@
-{pkgs, ...}: {
-  program = let
-    screenshot = pkgs.writeShellApplication {
-      name = "screenshot";
-      text = ''
-        save=0
-        savepath="$HOME/Pictures/screenshot/screenshot-$(date +%s).png"
-        while [[ $# -gt 0 ]]; do
-          case "$1" in
-            --save)
-              save=1
-              shift
-              ;;
-            *)
-              shift
-              ;;
-          esac
-        done
+# Screen shot command
+# You can test by the following command
+# cd $(nix-build ./screenshot.nix --no-link)
+{pkgs ? import <nixpkgs> {}}:
+pkgs.writeShellScriptBin "screenshot" ''
+  save=0
+  savepath="$HOME/Pictures/screenshot/screenshot-$(date +%s).png"
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --save)
+        save=1
+        shift
+        ;;
+      *)
+        shift
+        ;;
+    esac
+  done
 
-        if [ "$save" -eq 1 ]; then
-          mkdir -p "$(dirname "$savepath")"
-          grim -g "$(slurp)" "$savepath"
-          pkill slurp
-          notify-send -i "$savepath" "Screenshot saved to $savepath"
-        else
-          grim -l 0 -g "$(slurp)" - | wl-copy
-          pkill slurp
-          notify-send "Screenshot copied to clipboard"
-        fi
-      '';
-      runtimeInputs = with pkgs; [grim slurp wl-clipboard libnotify];
-    };
-  in "${screenshot}/bin/screenshot";
-}
+  if [ "$save" -eq 1 ]; then
+    mkdir -p "$(dirname "$savepath")"
+    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$savepath"
+    ${pkgs.libnotify}/bin/notify-send -i "$savepath" "Screenshot saved to $savepath"
+  else
+    ${pkgs.grim}/bin/grim -l 0 -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy
+    ${pkgs.libnotify}/bin/notify-send "Screenshot copied to clipboard"
+  fi
+''

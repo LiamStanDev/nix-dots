@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: let
-  # Screenshot
-  screenshot = import "${self}/pkgs/screenshot.nix" {inherit pkgs;};
 in {
   "$mainMod" = "SUPER";
   bind = [
@@ -79,8 +77,8 @@ in {
     # "$mainMod, B, exec, google-chrome-stable"
     "$mainMod, B, exec, zen"
     # "$mainMod, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
-    "$mainMod, S, exec, ${screenshot.program}"
-    "$mainMod SHIFT, S, exec, ${screenshot.program} --save"
+    "$mainMod, S, exec, screenshot"
+    "$mainMod SHIFT, S, exec, screenshot --save"
   ];
 
   # Move/resize windows with mainMod + LMB/RMB and dragging

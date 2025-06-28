@@ -17,8 +17,7 @@
 
       background = [
         {
-          # monitor = "";
-          path = (import "${self}/home/specializations.nix").lockscreen;
+          path = "${(import "${self}/home/specializations.nix").lockscreen}";
         }
       ];
 

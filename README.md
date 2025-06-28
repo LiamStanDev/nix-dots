@@ -49,9 +49,11 @@ nixos-install --flake ./nix-dots#<your-machine>
 cp -r nix-dots /mnt/home/<user>
 nixos-enter --root /mnt # enter your brand-new os
 passwd <user>  # change user password
-cd /home/<user>
+su <user>
 chown -R <user>:users nix-dots
-cd /home/<user>/nix-dots/dots
+cd nix-dots/dots
+mkdir -p ~/.config ~/.local/share
+nix-shell -p gnumake stow
 make link
 exit 
 
