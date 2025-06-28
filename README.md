@@ -46,10 +46,13 @@ cp /tmp/config/etc/nixos/hardware-configuration.nix nix-dots/hosts/<your-machine
 nixos-install --flake ./nix-dots#<your-machine>
 
 # 4. Enter new system
-cp nix-dots /mnt/home/<user>
+cp -r nix-dots /mnt/home/<user>
 nixos-enter --root /mnt # enter your brand-new os
 passwd <user>  # change user password
 cd /home/<user>
+chown -R <user>:users nix-dots
+cd /home/<user>/nix-dots/dots
+make link
 exit 
 
 # 4. Reboot

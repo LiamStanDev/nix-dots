@@ -6,9 +6,10 @@
   wheelUser,
   ...
 }: let
+  # abbreviation
   inherit (inputs.nixpkgs.lib) nixosSystem;
   inherit (inputs) nix-index-database; # nix locate
-  inherit (inputs) disko; # nix locate
+  inherit (inputs) disko;
 
   # Get all hosts directory contents
   dirContent = builtins.readDir ./.;
@@ -27,7 +28,7 @@ in
         modules = [
           # 3rd party modules
           nix-index-database.nixosModules.nix-index
-          disko.nixosModules.disko
+          disko.nixosModules.disko # Auto scan disko no need filesystem
 
           # Host configuration
           ./${host}

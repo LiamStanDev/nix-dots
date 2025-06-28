@@ -20,6 +20,8 @@ in rec {
   imports =
     laptop
     ++ [
+      # Disk
+      ./disko.nix
       # Hardware
       ./hardware-configuration.nix
 

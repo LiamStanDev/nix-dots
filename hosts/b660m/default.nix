@@ -18,6 +18,8 @@ in rec {
   imports =
     desktop
     ++ [
+      # Disk
+      ./disko.nix
       # Hardware
       ./hardware-configuration.nix
 
