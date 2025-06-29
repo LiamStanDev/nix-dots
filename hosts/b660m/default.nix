@@ -26,12 +26,14 @@ in rec {
       # System
       "${self}/system/hardware/video/intel.nix"
       "${self}/system/hardware/video/nvidia.nix"
+      "${self}/system/hardware/fancontrol.nix"
       "${self}/system/network"
       "${self}/system/network/tailscale.nix"
       "${self}/system/network/avahi.nix"
       "${self}/system/network/spotify.nix"
       "${self}/system/virt"
       "${self}/system/gaming"
+
       # "${self}/system/virt/looking-glass.nix"
 
       # Home manager

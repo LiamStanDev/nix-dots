@@ -10,7 +10,6 @@ let
     ++ [
       ./hardware/video/intel.nix
       ./hardware/sound.nix
-      ./hardware/fancontrol.nix
       ./hardware/battery.nix
 
       ./services/dubs.nix
