@@ -8,7 +8,7 @@ in {
   environment.systemPackages = [sddm-sugar-dark];
 
   # GDM (may crash when using hyprland)
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # SDDM
   services.displayManager = {
@@ -16,8 +16,8 @@ in {
       enable = true;
       wayland.enable = true;
       extraPackages = with pkgs; [
-        # libsForQt5.qt5.qtquickcontrols2 # for sddm-sugar-dark
-        # libsForQt5.qt5.qtgraphicaleffects # for sddm-sugar-dark
+        libsForQt5.qt5.qtquickcontrols2 # for sddm-sugar-dark
+        libsForQt5.qt5.qtgraphicaleffects # for sddm-sugar-dark
       ];
       theme = "sugar-dark";
     };
