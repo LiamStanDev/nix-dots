@@ -16,9 +16,6 @@
   # Connect to other devices
   services.kdeconnect.enable = true;
 
-  # Game
-  programs.lutris.enable = true;
-
   # Note: I install app not only here but also flatpak. (comments is use flatpak)
   home.packages = with pkgs; [
     obsidian # Markdown-based note-taking app
