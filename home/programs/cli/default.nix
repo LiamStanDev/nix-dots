@@ -53,6 +53,7 @@
     vim # Terminal text editor
     htop # Interactive process viewer
     duf # Disk usage viewer
+    dust # Disk usage analyzer
     fd # Fast alternative to `find`
     stow # Symlink manager
     unzip # Extract zip files
