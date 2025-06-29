@@ -16,8 +16,8 @@ in {
       enable = true;
       wayland.enable = true;
       extraPackages = with pkgs; [
-        libsForQt5.qt5.qtquickcontrols2 # for sddm-sugar-dark
-        libsForQt5.qt5.qtgraphicaleffects # for sddm-sugar-dark
+        # libsForQt5.qt5.qtquickcontrols2 # for sddm-sugar-dark
+        # libsForQt5.qt5.qtgraphicaleffects # for sddm-sugar-dark
       ];
       theme = "sugar-dark";
     };
