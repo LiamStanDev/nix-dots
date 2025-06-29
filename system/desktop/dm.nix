@@ -8,7 +8,7 @@ in {
   environment.systemPackages = [sddm-sugar-dark];
 
   # GDM (may crash when using hyprland)
-  # services.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # SDDM
   services.displayManager = {
