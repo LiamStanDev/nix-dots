@@ -39,5 +39,6 @@
     # gimp3 # Image editor
     loupe # Image viewer (GTK)
     (bottles.override {removeWarningPopup = true;}) # Windows software using Wine
+    heroic
   ];
 }
