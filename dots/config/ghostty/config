@@ -1,11 +1,26 @@
-background-opacity = 0.800000
-confirm-close-surface = false
+# Window Configuration
+window-decoration = none
+window-padding-x = 10, 10
+window-padding-y = 4, 7
+
+# Font Configuration
 font-family = JetBrains Mono
 font-family = CaskaydiaCove Nerd Font
 font-family = Yozai
 font-family = Noto Color Emoji
 font-size = 13
+font-feature = -calt, -liga, -dlig # Disable ligatures
+
+# Theme and Colors
 theme = catppuccin-frappe
-window-decoration = none
-window-padding-x = 10, 10
-window-padding-y = 4, 7
+background-opacity = 0.800000
+
+# Mics
+confirm-close-surface = false
+
+# Keybindings
+# check: ghostty +list-keybinds --default
+keybind = ctrl+alt+minus=decrease_font_size:1
+keybind = ctrl+alt+plus=increase_font_size:1
+keybind = ctrl+alt+equal=increase_font_size:1
+keybind = ctrl+alt+r=reload_config

@@ -34,5 +34,6 @@
     libsForQt5.okular # PDF reader
     gimp3 # Image editor
     loupe # Image viewer (GTK)
+    (bottles.override {removeWarningPopup = true;}) # Windows software using Wine
   ];
 }
