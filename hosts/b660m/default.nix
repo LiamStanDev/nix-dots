@@ -26,7 +26,6 @@ in rec {
       # System
       "${self}/system/hardware/video/intel.nix"
       "${self}/system/hardware/video/nvidia.nix"
-      "${self}/system/hardware/fancontrol.nix"
       "${self}/system/network"
       "${self}/system/network/tailscale.nix"
       "${self}/system/network/avahi.nix"

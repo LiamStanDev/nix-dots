@@ -11,6 +11,7 @@ let
       ./hardware/video/intel.nix
       ./hardware/sound.nix
       ./hardware/battery.nix
+      ./hardware/fancontrol.nix
 
       ./services/dubs.nix
       ./services/fwupd.nix
