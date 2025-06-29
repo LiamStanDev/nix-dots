@@ -13,6 +13,7 @@
     "float, class:^zen.*$, title:Library"
     "tile, class:obsidian"
     "fullscreen, title:^.* on QEMU/KVM$"
+    "fullscreen, class:^steam_app.*$"
 
     # size
     "size 800 500, class:foot, title:btop"

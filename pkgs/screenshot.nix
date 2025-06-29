@@ -19,10 +19,10 @@ pkgs.writeShellScriptBin "screenshot" ''
 
   if [ "$save" -eq 1 ]; then
     mkdir -p "$(dirname "$savepath")"
-    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$savepath"
+    ${pkgs.grim}/bin/grim -g "$(slurp)" "$savepath"
     ${pkgs.libnotify}/bin/notify-send -i "$savepath" "Screenshot saved to $savepath"
   else
-    ${pkgs.grim}/bin/grim -l 0 -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy
+    ${pkgs.grim}/bin/grim -l 0 -g "$(slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy
     ${pkgs.libnotify}/bin/notify-send "Screenshot copied to clipboard"
   fi
 ''
