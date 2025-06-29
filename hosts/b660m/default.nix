@@ -45,6 +45,11 @@ in rec {
   # Set the hostname for this machine
   networking.hostName = "b660m";
 
+  # Sensor devices for coolercontrol
+  boot.kernelModules = ["nct6775"];
+  # Force pwm mode
+  boot.kernelParams = ["nct6775.force_pwm=1"];
+
   services = {
     # Enable fstrim service to keep SSDs and NVMe drives healthy
     fstrim.enable = true;
