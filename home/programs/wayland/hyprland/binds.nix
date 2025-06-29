@@ -11,10 +11,6 @@ in {
     "$mainMod, R, exec, hyprctl reload,"
     "$mainMod SHIFT, Q, exec, pkill ${pkgs.rofi}/bin/rofi || exec ~/.config/rofi/scripts/powermenu_t3"
 
-    # Screenshot
-    "$mainMod, S, exec, grim -g \"$(slurp)\" - | wl-copy"
-    "$mainMod SHIFT, S, exec, grim -g \"$(slurp)\""
-
     # Layout
     "$mainMod, M, fullscreen,"
     "$mainMod, F, togglefloating,"
