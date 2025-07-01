@@ -10,8 +10,8 @@
   monitors = [
     # home monitor
     "desc:ASUSTek COMPUTER INC VG27A N8LMQS004677, 2560x1440, 0x0, 1"
-    # "desc:LG Electronics LG HDR 4K 0x000641E,3840x2160,2560x0,1.5"
-    "desc:LG Electronics LG HDR 4K 0x000641E, 2560x1440, 2560x0, 1"
+    "desc:LG Electronics LG HDR 4K 0x000641E,3840x2160,2560x0,1.5"
+    # "desc:LG Electronics LG HDR 4K 0x000641E, 2560x1440, 2560x0, 1"
   ];
 in rec {
   # Import base laptop modules and additional configuration files
