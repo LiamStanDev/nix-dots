@@ -52,6 +52,8 @@
     neovim # Modern Vim-based editor
     vim # Terminal text editor
     htop # Interactive process viewer
+    btop-cuda # Better `top` alternative with cuda support
+    # nvtopPackages.nvidia # gpu top
     duf # Disk usage viewer
     dust # Disk usage analyzer
     fd # Fast alternative to `find`

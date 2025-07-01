@@ -19,8 +19,8 @@
 
   # Note: I install app not only here but also flatpak. (comments is use flatpak)
   home.packages = with pkgs; [
-    obsidian # Markdown-based note-taking app
-    bitwarden-desktop # Password manager
+    obsidian # Markdown-based note-taking app (don't use flatpak)
+    bitwarden-desktop # Password manager (dot't use flatpak)
     pavucontrol # PulseAudio volume control GUI
     nautilus # GNOME file manager
     file-roller # GNOME compression manager (GUI)

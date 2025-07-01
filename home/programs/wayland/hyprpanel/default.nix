@@ -10,7 +10,6 @@
     bluez-tools
     gvfs
     wf-recorder # screen record
-    btop
     hyprpicker
     hyprsunset
     brightnessctl
