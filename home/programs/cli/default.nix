@@ -60,5 +60,6 @@
     wget # Network downloader
     lazygit # Git TUI
     lazydocker # Docker TUI
+    appimage-run # Support to run AppImage
   ];
 }
