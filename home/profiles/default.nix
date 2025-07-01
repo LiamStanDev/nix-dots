@@ -12,7 +12,8 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    TERM = "xterm-256color";
+    # TERM = "xterm-256color";
+    TERM = "xterm-kitty"; # see: https://yazi-rs.github.io/docs/image-preview/#zellij
     NIXOS_OZONE_WL = "1"; # hint Electron apps to use Wayland
   };
 
