@@ -19,16 +19,11 @@
 
   # Note: I install app not only here but also flatpak. (comments is use flatpak)
   home.packages = with pkgs; [
-    obsidian # Markdown-based note-taking app
-    bitwarden-desktop # Password manager
     pavucontrol # PulseAudio volume control GUI
     nautilus # GNOME file manager
     file-roller # GNOME compression manager (GUI)
-    gedit # text editor GUI for Gnome
     coolercontrol.coolercontrol-gui # fancontrol GUI
     coolercontrol.coolercontrol-ui-data # fancontrol UI data
-    loupe # Image viewer (GTK)
-    mission-center # Windows like task manager
     boxbuddy # GUI for managing your Distroboxes
     nvidia-system-monitor-qt # Nvidia monitor
   ];
