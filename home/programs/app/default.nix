@@ -28,5 +28,7 @@
     coolercontrol.coolercontrol-gui # fancontrol GUI
     coolercontrol.coolercontrol-ui-data # fancontrol UI data
     loupe # Image viewer (GTK)
+    mission-center # Windows like task manager
+    boxbuddy # GUI for managing your Distroboxes
   ];
 }
