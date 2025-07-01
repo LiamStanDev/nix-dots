@@ -30,5 +30,6 @@
     loupe # Image viewer (GTK)
     mission-center # Windows like task manager
     boxbuddy # GUI for managing your Distroboxes
+    nvidia-system-monitor-qt # Nvidia monitor
   ];
 }
