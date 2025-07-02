@@ -1,6 +1,11 @@
 local G = require("core")
 
 return {
+	-- navigation
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false, -- always needed
+	},
 	-- Hightlight
 	{
 		"nvim-treesitter/nvim-treesitter",
