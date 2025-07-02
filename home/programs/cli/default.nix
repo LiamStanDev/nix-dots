@@ -18,7 +18,8 @@
   programs.zoxide.enable = true;
   programs.fzf.enable = true;
   programs.direnv.enable = true;
-  programs.zellij.enable = true;
+  # programs.zellij.enable = true;
+  programs.tmux.enable = true;
   programs.starship.enable = true;
   programs.yazi = {
     enable = true;
