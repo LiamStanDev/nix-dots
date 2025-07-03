@@ -19,7 +19,6 @@
   programs.fzf.enable = true;
   programs.direnv.enable = true;
   # programs.zellij.enable = true;
-  programs.tmux.enable = true;
   programs.starship.enable = true;
   programs.yazi = {
     enable = true;
@@ -42,6 +41,7 @@
     playerctl # Control media players
     pamixer # CLI PulseAudio volume controller
     bottom # Modern `top` alternative
+    tmux # terminal multiplexer
     bat # `cat` with syntax highlighting
     git # Version control system
     delta # Git diff viewer with syntax highlighting
