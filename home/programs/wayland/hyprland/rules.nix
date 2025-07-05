@@ -7,6 +7,7 @@
     # window type
     "pseudo, class:fcitx, title:fcitx"
     "tile, class:code" # vscode
+    "tile, class:Code" # vscode(flatpak)
     # "tile, class:org.wezfurlong.wezterm"
     "tile, class:google-chrome"
     "tile, class:^zen.*$"
