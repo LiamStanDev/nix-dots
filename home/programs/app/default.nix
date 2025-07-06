@@ -8,6 +8,7 @@
   programs.obs-studio.enable = true;
 
   # Editor
+  programs.vscode.enable = true;
   programs.zed-editor.enable = true;
 
   # Video player
