@@ -1,3 +1,4 @@
 .vscode
 .stfolder/
 .syncthing.*.tmp
+dots/config/tmux/plugins/
