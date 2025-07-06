@@ -2,9 +2,11 @@
   self,
   pkgs,
   monitors,
+  workspace,
   ...
 }: {
   monitor = monitors;
+  inherit workspace;
 
   env = [
     # XDG Specifications

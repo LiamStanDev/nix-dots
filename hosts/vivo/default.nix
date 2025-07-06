@@ -15,6 +15,20 @@
     # work monitor
     "desc:Acer Technologies Acer V246HL LXMTT0104229, 1920x1080, 1920x0, 1"
   ];
+
+  workspace = [
+    # home monitor
+    "1, desc:Samsung Display Corp. 0x4161"
+    "2, desc:Samsung Display Corp. 0x4161"
+    "3, desc:Samsung Display Corp. 0x4161"
+    "4, desc:Samsung Display Corp. 0x4161"
+    "5, desc:Samsung Display Corp. 0x4161"
+    "6, desc:Samsung Display Corp. 0x4161"
+    "7, desc:Samsung Display Corp. 0x4161"
+    "8, desc:Samsung Display Corp. 0x4161"
+    "9, desc:Samsung Display Corp. 0x4161"
+    "0, desc:Samsung Display Corp. 0x4161"
+  ];
 in rec {
   # Import base laptop modules and additional configuration files
   imports =
@@ -36,7 +50,7 @@ in rec {
       ../../system/home-manager.nix
       {
         home-manager.users.${wheelUser} = "${self}/home/profiles/${networking.hostName}.nix";
-        home-manager.extraSpecialArgs = {inherit self inputs wheelUser monitors;};
+        home-manager.extraSpecialArgs = {inherit self inputs wheelUser monitors workspace;};
       }
     ];
 

@@ -13,6 +13,20 @@
     "desc:LG Electronics LG HDR 4K 0x000641E,3840x2160,2560x0,1.5"
     # "desc:LG Electronics LG HDR 4K 0x000641E, 2560x1440, 2560x0, 1"
   ];
+
+  workspace = [
+    # home monitor
+    "1, desc:ASUSTek COMPUTER INC VG27A N8LMQS004677"
+    "2, desc:ASUSTek COMPUTER INC VG27A N8LMQS004677"
+    "3, desc:ASUSTek COMPUTER INC VG27A N8LMQS004677"
+    "4, desc:ASUSTek COMPUTER INC VG27A N8LMQS004677"
+    "5, desc:ASUSTek COMPUTER INC VG27A N8LMQS004677"
+    "6, desc:LG Electronics LG HDR 4K 0x000641E"
+    "7, desc:LG Electronics LG HDR 4K 0x000641E"
+    "8, desc:LG Electronics LG HDR 4K 0x000641E"
+    "9, desc:LG Electronics LG HDR 4K 0x000641E"
+    "0, desc:LG Electronics LG HDR 4K 0x000641E"
+  ];
 in rec {
   # Import base laptop modules and additional configuration files
   imports =
@@ -39,7 +53,7 @@ in rec {
       ../../system/home-manager.nix
       {
         home-manager.users.${wheelUser} = "${self}/home/profiles/${networking.hostName}.nix";
-        home-manager.extraSpecialArgs = {inherit self inputs wheelUser monitors;};
+        home-manager.extraSpecialArgs = {inherit self inputs wheelUser monitors workspace;};
       }
     ];
 
