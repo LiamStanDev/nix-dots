@@ -6,7 +6,7 @@
   ...
 }: {
   monitor = monitors;
-  inherit workspace;
+  workspace = workspace;
 
   env = [
     # XDG Specifications

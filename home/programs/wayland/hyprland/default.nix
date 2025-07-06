@@ -4,6 +4,7 @@
   pkgs,
   lib,
   monitors,
+  workspace,
   ...
 }: {
   # Env
@@ -67,7 +68,7 @@
     settings = lib.mkMerge [
       (import ./binds.nix {inherit self pkgs;})
       (import ./rules.nix)
-      (import ./settings.nix {inherit self pkgs monitors;})
+      (import ./settings.nix {inherit self pkgs monitors workspace;})
     ];
   };
 }

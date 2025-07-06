@@ -18,16 +18,16 @@
 
   workspace = [
     # home monitor
-    "1, desc:Samsung Display Corp. 0x4161"
-    "2, desc:Samsung Display Corp. 0x4161"
-    "3, desc:Samsung Display Corp. 0x4161"
-    "4, desc:Samsung Display Corp. 0x4161"
-    "5, desc:Samsung Display Corp. 0x4161"
-    "6, desc:Samsung Display Corp. 0x4161"
-    "7, desc:Samsung Display Corp. 0x4161"
-    "8, desc:Samsung Display Corp. 0x4161"
-    "9, desc:Samsung Display Corp. 0x4161"
-    "0, desc:Samsung Display Corp. 0x4161"
+    "1, monitor:desc:Samsung Display Corp. 0x4161"
+    "2, monitor:desc:Samsung Display Corp. 0x4161"
+    "3, monitor:desc:Samsung Display Corp. 0x4161"
+    "4, monitor:desc:Samsung Display Corp. 0x4161"
+    "5, monitor:desc:Samsung Display Corp. 0x4161"
+    "6, monitor:desc:Samsung Display Corp. 0x4161"
+    "7, monitor:desc:Samsung Display Corp. 0x4161"
+    "8, monitor:desc:Samsung Display Corp. 0x4161"
+    "9, monitor:desc:Samsung Display Corp. 0x4161"
+    "0, monitor:desc:Samsung Display Corp. 0x4161"
   ];
 in rec {
   # Import base laptop modules and additional configuration files

@@ -11,6 +11,8 @@
     # builtin monitor
     ", prefer, 0x0, 1"
   ];
+
+  workspace = [];
 in rec {
   # Import base laptop modules and additional configuration files
   imports =
@@ -32,7 +34,7 @@ in rec {
       ../../system/home-manager.nix
       {
         home-manager.users.${wheelUser} = "${self}/home/profiles/${networking.hostName}.nix";
-        home-manager.extraSpecialArgs = {inherit self inputs wheelUser monitors;};
+        home-manager.extraSpecialArgs = {inherit self inputs wheelUser monitors workspace;};
       }
     ];
 
