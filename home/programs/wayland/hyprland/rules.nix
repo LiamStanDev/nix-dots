@@ -29,10 +29,10 @@
     "move 1320 50, class:org.pulseaudio.pavucontrol"
 
     # workspace
-    "workspace 2, class:^zen.*$" # Browser
+    "workspace 6, class:^zen.*$" # Browser
     "workspace 4, class:Spotify" # Misc
-    "workspace 8, class:steam" # Gaming
-    "workspace 9, title:^.* on QEMU/KVM$" # Virtual Machine
+    "workspace 5, class:steam" # Gaming
+    "workspace 4, title:^.* on QEMU/KVM$" # Virtual Machine
 
     # effect
     "opacity 1.0, class:google-chrome"
