@@ -7,10 +7,6 @@
   # Streaming
   programs.obs-studio.enable = true;
 
-  # Editor
-  # programs.vscode.enable = true; # use flatpak
-  programs.zed-editor.enable = true;
-
   # Video player
   programs.mpv.enable = true;
 
@@ -19,6 +15,8 @@
 
   # Note: I install app not only here but also flatpak. (comments is use flatpak)
   home.packages = with pkgs; [
+    vscode # code editor
+    zed-editor # code editor
     obsidian # Markdown-based note-taking app (don't use flatpak)
     bitwarden-desktop # Password manager (dot't use flatpak)
     pavucontrol # PulseAudio volume control GUI
