@@ -94,6 +94,15 @@ in {
         # rg
         rg = "rg --hidden --smart-case --glob='!.git/' --no-search-zip --trim --colors=line:fg:black --colors=line:style:bold --colors=path:fg:magenta --colors=match:style:nobold";
 
+        # pnpm
+        pm = "pnpm";
+
+        # tmux
+        tmux = "tmux attach || tmux new";
+        ta = "tmux attach -t";
+        tk = "tmux kill-session -t";
+        tls = "tmux switch-client -t $(tmux ls | fzf | cut -d: -f1)";
+
         # edit
         e = "$EDITOR";
         E = "sudo -e";
@@ -127,6 +136,7 @@ in {
 
         # docker
         dps = "docker ps --format \"table {{.Names}}\t{{.Status}}\t{{.Ports}}\"";
+        dsh = "docker exec -it";
         dl = "docker logs --tail=100";
         dc = "docker compose";
       };
