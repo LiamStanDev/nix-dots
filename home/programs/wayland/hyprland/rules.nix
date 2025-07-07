@@ -29,7 +29,6 @@
     "move 1320 50, class:org.pulseaudio.pavucontrol"
 
     # workspace
-    "workspace 6, class:^zen.*$" # Browser
     "workspace 4, class:Spotify" # Misc
     "workspace 5, class:steam" # Gaming
     "workspace 4, title:^.* on QEMU/KVM$" # Virtual Machine
