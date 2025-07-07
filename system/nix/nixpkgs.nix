@@ -5,6 +5,6 @@
   };
 
   nixpkgs.overlays = [
-    inputs.hyprpanel.overlay
+    # inputs.hyprpanel.overlay
   ];
 }

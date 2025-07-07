@@ -54,12 +54,26 @@ in {
           export RUSTPATH="$HOME/.cargo/bin"
           PATH="$RUSTPATH:$PATH"
         '';
-        afterContent = lib.mkOrder 1000 "";
+        afterContent = lib.mkOrder 1000 ''
+          tmux_new() {
+            read "sname?Enter new session name: "
+            tmux new -s "$sname"
+          }
+
+          tmux_kill_fzf() {
+            local session=$(tmux ls | fzf | awk -F: '{print $1}')
+            if [[ -n "$session" ]]; then
+              read -q "REPLY?Kill session '$session'? [y/N] "
+              echo
+              [[ "$REPLY" == [Yy] ]] && tmux kill-session -t "$session"
+            fi
+          }
+        '';
       in
         lib.mkMerge [earlyInit beforeCompInit content afterContent];
 
       shellAliases = {
-        reload = "source ~/.config/zsh/.zshrc";
+        # reload = "source ~/.config/zsh/.zshrc";
         # system
         ".." = "cd ..";
         "..." = "cd ../..";
@@ -98,10 +112,11 @@ in {
         pm = "pnpm";
 
         # tmux
-        tmux = "tmux attach || tmux new";
+        tn = "tmux_new";
         ta = "tmux attach -t";
-        tk = "tmux kill-session -t";
-        tls = "tmux switch-client -t $(tmux ls | fzf | cut -d: -f1)";
+        tls = "tmux ls";
+        tk = "tmux_kill_fzf";
+        ts = "tmux switch-client -t $(tmux ls | fzf | awk -F: '{print $1}')";
 
         # edit
         e = "$EDITOR";
