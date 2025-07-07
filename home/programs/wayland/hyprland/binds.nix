@@ -66,7 +66,8 @@ in {
 
     # Launch apps
     # "$mainMod, RETURN, exec, [float;tile] ${pkgs.wezterm}/bin/wezterm start --always-new-process"
-    "$mainMod, RETURN, exec, [tile] ghostty -e 'tmux attach -t undefined || tmux new -s undefined'"
+    # "$mainMod, RETURN, exec, [tile] ghostty -e 'tmux attach -t undefined || tmux new -s undefined'"
+    "$mainMod, RETURN, exec, [tile] ghostty"
     "$mainMod, SPACE, exec, pkill rofi || exec ~/.config/rofi/scripts/launcher_t6"
     "$mainMod, E, exec, ${pkgs.nautilus}/bin/nautilus"
     "$mainMod, T, exec, pkill foot || ${pkgs.foot}/bin/foot --title=btop -e btop"
