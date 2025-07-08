@@ -523,7 +523,7 @@
         }
       },
       "stats": {
-        "enable_gpu": true,
+        "enable_gpu": false,
         "enabled": true,
         "interval": 2000
       }

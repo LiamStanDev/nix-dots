@@ -36,5 +36,9 @@
     # Yazi
     yazi.url = "github:sxyazi/yazi";
     yazi.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Ghostty
+    ghostty.url = "github:ghostty-org/ghostty";
+    ghostty.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

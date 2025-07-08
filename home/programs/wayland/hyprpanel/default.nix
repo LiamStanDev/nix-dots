@@ -1,11 +1,16 @@
 {
-  self,
-  # inputs,
   pkgs,
+  inputs,
   ...
 }: {
+  # this will override config
+  # programs.hyprpanel = {
+  #   enable = true;
+  #   package = inputs.hyprpanel.packages.${pkgs.system}.default;
+  # };
+
   home.packages = with pkgs; [
-    hyprpanel
+    inputs.hyprpanel.packages.${pkgs.system}.default
     bluez
     bluez-tools
     gvfs

@@ -1,6 +1,7 @@
 # ──────── 🪟 Wayland / Hyprland ────────
 {
   self,
+  inputs,
   pkgs,
   lib,
   monitors,
@@ -56,7 +57,10 @@
   # XDG
   xdg.enable = true;
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
+  ];
   xdg.portal.xdgOpenUsePortal = true;
 
   wayland.windowManager.hyprland = {

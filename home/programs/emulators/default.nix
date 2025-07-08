@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     wezterm
     kitty
-    ghostty
+    inputs.ghostty.packages.${pkgs.system}.default
     foot
   ];
 }
