@@ -93,7 +93,7 @@ G.dap_servers = {
 --[[ Set the color theme
   Change to your preferred theme (e.g., "gruvbox", "catppuccin").
 ]]
-G.colorscheme = "catppuccin"
+G.colorscheme = "catppuccin-macchiato"
 
 --[[ Disable the quit confirmation dialog
   Set to true to disable confirmation when quitting.
