@@ -4,6 +4,10 @@
   pkgs,
   ...
 }: {
+  # editor
+  programs.zed-editor.enable = true;
+  programs.vscode.enable = true;
+
   # Streaming
   programs.obs-studio.enable = true;
 
@@ -14,9 +18,7 @@
   services.kdeconnect.enable = true;
 
   home.packages = with pkgs; [
-    vscode # code editor
     discord # all-in-one voice and text chat for gamers
-    zed-editor # code editor
     obsidian # Markdown-based note-taking app (don't use flatpak)
     bitwarden-desktop # Password manager (dot't use flatpak)
     pavucontrol # PulseAudio volume control GUI

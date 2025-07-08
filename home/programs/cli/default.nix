@@ -23,7 +23,6 @@
   programs.yazi = {
     enable = true;
     shellWrapperName = "y";
-    package = inputs.yazi.packages.${pkgs.system}.default;
   };
 
   # Packags

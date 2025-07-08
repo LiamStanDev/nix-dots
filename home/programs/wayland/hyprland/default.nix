@@ -65,7 +65,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true; # also enable hyprland-protocols
-    xwayland.enable = true;
     systemd.variables = ["--all"]; # add $PATH to systemd
     systemd.enable = true; # enable hyprland-session.target
 

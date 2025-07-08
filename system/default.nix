@@ -12,6 +12,7 @@ let
       ./hardware/sound.nix
       ./hardware/battery.nix
       ./hardware/fancontrol.nix
+      ./hardware/key.nix
 
       ./services/dubs.nix
       ./services/fwupd.nix

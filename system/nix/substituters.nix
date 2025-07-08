@@ -7,7 +7,6 @@
 
       "https://nix-community.cachix.org"
       "https://nix-gaming.cachix.org"
-      "https://yazi.cachix.org"
       "https://cuda-maintainers.cachix.org"
     ];
 
@@ -16,7 +15,6 @@
 
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
     ];
   };

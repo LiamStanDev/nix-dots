@@ -4,7 +4,5 @@
     permittedInsecurePackages = ["electron-25.9.0"];
   };
 
-  nixpkgs.overlays = [
-    inputs.yazi.overlays.default
-  ];
+  nixpkgs.overlays = [];
 }

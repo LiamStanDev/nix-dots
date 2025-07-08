@@ -33,12 +33,7 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprpanel.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Yazi
-    yazi.url = "github:sxyazi/yazi";
-    yazi.inputs.nixpkgs.follows = "nixpkgs";
-
     # Ghostty
     ghostty.url = "github:ghostty-org/ghostty";
-    ghostty.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

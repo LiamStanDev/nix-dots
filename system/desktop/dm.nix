@@ -27,6 +27,8 @@ in {
   # hyprland
   programs.hyprland = {
     enable = true;
+    xwayland.enable = true;
+    package = pkgs.hyprland;
   };
   services.displayManager.defaultSession = "hyprland";
 }
