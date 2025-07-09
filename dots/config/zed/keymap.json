@@ -13,9 +13,33 @@
     }
   },
   {
-    "context": "Editor && vim_mode == insert && !menu",
+    "context": "ProjectPanel",
     "bindings": {
-      // "j k": "vim::SwitchToNormalMode"
+      "y": "project_panel::Copy",
+      "x": "project_panel::Cut",
+      "d": "project_panel::Delete",
+      "r": "project_panel::Rename",
+      "p": "project_panel::Paste"
+    }
+  },
+  {
+    "bindings": {
+      "space e": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "space p": "file_finder::Toggle",
+      "space f": "editor::Format",
+      "space w": "workspace::Save"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-tab": "pane::ActivateNextItem",
+      "ctrl-shift-tab": "pane::ActivatePreviousItem"
     }
   }
 ]

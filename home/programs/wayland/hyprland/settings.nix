@@ -25,12 +25,7 @@
   ];
 
   # Execute only when launch
-  exec-once = [
-    "${pkgs.swww}/bin/swww img ${(import "${self}/home/specializations.nix").wallpaper}"
-    # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
-    "fcitx5 -r"
-    "coolercontrol"
-  ];
+  exec-once = [];
 
   # Execute every reload
   exec = [
@@ -38,6 +33,8 @@
     # Note: not use 'systemctl --user start fcitx5.service' (see: nixos wiki)
     "fcitx5 -r"
     "hyprpanel -q; hyprpanel"
+    "systemctl --user restart polkit-gnome"
+    "systemctl --user restart gnome-keyring"
   ];
 
   debug = {

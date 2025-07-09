@@ -22,13 +22,68 @@
     "dark": "Catppuccin Macchiato (Blur)"
   },
   "icon_theme": "Symbols",
-  "vim_mode": true,
   "ui_font_size": 18,
   "buffer_font_size": 16,
   "buffer_font_family": "JetBrainsMono Nerd Font",
+  "tabs": {
+    "show_diagnostics": "errors"
+  },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
+  },
+  "scrollbar": {
+    "show": "never"
+  },
+  // panels location
   "project_panel": {
     "button": true,
     "default_width": 240,
+    "dock": "right",
+    "git_status": true
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
     "dock": "left"
-  }
+  },
+  "git_panel": {
+    "dock": "right"
+  },
+  "notification_panel": {
+    "dock": "left"
+  },
+  "chat_panel": {
+    "dock": "left"
+  },
+
+  // vim
+  "relative_line_numbers": true,
+  "base_keymap": "VSCode",
+  "vim_mode": true,
+
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    // above is default from Zed
+    "**/out",
+    "**/dist",
+    "**/.husky",
+    "**/.turbo",
+    "**/.vscode-test",
+    "**/.vscode",
+    "**/.next",
+    "**/.storybook",
+    "**/.tap",
+    "**/.nyc_output",
+    "**/report",
+    "**/node_modules"
+  ]
 }
