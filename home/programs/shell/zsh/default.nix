@@ -120,7 +120,7 @@ in {
 
         # edit
         e = "$EDITOR";
-        E = "sudo -e";
+        E = "zeditor";
 
         # lazy
         lzg = "lazygit";

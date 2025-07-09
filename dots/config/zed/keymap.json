@@ -9,37 +9,94 @@
   {
     "context": "Workspace",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
+      "alt-/": "workspace::ToggleRightDock",
+      "alt-`": "workspace::ToggleBottomDock",
+      "alt-1": "project_panel::ToggleFocus",
+      "alt-2": "agent::ToggleFocus", // Chat with AI
+
+      // Window movement bindings
+      // Ctrl jklk to move between panes
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {
-    "context": "ProjectPanel",
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
+      // put key-bindings here if you want them to work in normal & visual mode
+
+      // Go to file with `gf`
+      "g f": "editor::OpenExcerpts"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space e": "pane::RevealInProjectPanel",
+      "space q": "pane::CloseActiveItem",
+      "space f": "editor::Format",
+      "space w": "workspace::Save",
+      "space p": "file_finder::Toggle",
+
+      // + Buffers
+      // Switch between buffers
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+
+      // +LSP
+      "g a": "editor::ToggleCodeActions",
+      "g n": "editor::Rename",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g T": "editor::GoToTypeDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      // search
+      "space s s": "project_symbols::Toggle",
+      "space s g": "project_search::ToggleFocus",
+
+      // +Git
+      "space g g": "git_panel::ToggleFocus",
+      // Git prev/next hunk
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+
+      // +Debug
+      "space d b": "editor::ToggleBreakpoint",
+      "space d r": "debugger::Start",
+      "space d c": "debugger::Continue",
+      "space d s": "debugger::StepInto",
+      "space d n": "debugger::StepOver",
+      "space d o": "debugger::StepOut",
+      "space d q": "debugger::Stop"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "space p": "file_finder::Toggle"
+    }
+  },
+  // File panel
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
       "y": "project_panel::Copy",
       "x": "project_panel::Cut",
       "d": "project_panel::Delete",
       "r": "project_panel::Rename",
-      "p": "project_panel::Paste"
-    }
-  },
-  {
-    "bindings": {
-      "space e": "workspace::ToggleRightDock"
-    }
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      "space p": "file_finder::Toggle",
-      "space f": "editor::Format",
-      "space w": "workspace::Save"
-    }
-  },
-  {
-    "context": "Pane",
-    "bindings": {
-      "ctrl-tab": "pane::ActivateNextItem",
-      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+      "p": "project_panel::Paste",
+      // close
+      "space e": "workspace::ToggleRightDock",
+      "q": "workspace::ToggleRightDock"
     }
   }
 ]

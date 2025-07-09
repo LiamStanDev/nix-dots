@@ -8,6 +8,7 @@
     "pseudo, class:fcitx, title:fcitx"
     "tile, class:code" # vscode
     "tile, class:Code" # vscode(flatpak)
+    "tile, class:dev.zed.Zed"
     # "tile, class:org.wezfurlong.wezterm"
     "tile, class:google-chrome"
     "tile, class:^zen.*$"

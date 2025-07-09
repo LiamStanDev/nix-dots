@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent": {
-    "model_parameters": [],
+    "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-sonnet-4"
@@ -21,12 +21,23 @@
     "light": "One Light",
     "dark": "Catppuccin Macchiato (Blur)"
   },
-  "icon_theme": "Symbols",
+  "icon_theme": "Symbols Icon Theme",
   "ui_font_size": 18,
   "buffer_font_size": 16,
-  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_fallbacks": [
+    "Yozai",
+    "CaskaydiaCove Nerd Font",
+    "Noto Color Emoji"
+  ],
   "tabs": {
     "show_diagnostics": "errors"
+  },
+  "minimap": {
+    "show": "always",
+    "thumb": "always",
+    "thumb_border": "right_open",
+    "current_line_highlight": null
   },
   "indent_guides": {
     "enabled": true,
@@ -63,6 +74,97 @@
   "base_keymap": "VSCode",
   "vim_mode": true,
 
+  // LSP
+  "inlay_hints": {
+    "enabled": true
+  },
+  "lsp": {
+    // Rust
+    "rust-analyzer": {
+      "initialization_options": {
+        "diagnostics": {
+          "experimental": {
+            "enable": true
+          },
+          "cargo": {
+            "fetch_cargo_diagnostics": false
+          }
+        },
+        "check": {
+          "enabled": true,
+          "command": "clippy",
+          "feature": "all"
+        },
+        "cargo": {
+          "allTargets": false,
+          "features": "all",
+          "buildScripts": {
+            "enabled": true
+          }
+        },
+        "procMacro": {
+          "enabled": true,
+          "ignore": {}
+        },
+        "imports": {
+          "granularity": {
+            "group": "module" // Group imports by module.
+          },
+          "prefix": "self" // Use `self` as the import prefix.
+        }
+      },
+      "enable_lsp_tasks": true
+    },
+    // Python
+    "languages": {
+      "Python": {
+        "language_servers": ["pyright", "ruff"],
+        "formatter": [
+          {
+            "code_actions": {
+              "source.organizeImports.ruff": true,
+              "source.fixAll.ruff": true
+            }
+          },
+          {
+            "language_server": {
+              "name": "ruff"
+            }
+          }
+        ]
+      }
+    },
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          "typeCheckingMode": "strict",
+          "autoSearchPaths": true,
+          "inlayHints": {
+            "variableTypes": true,
+            "functionReturnTypes": true
+          },
+          "autoImportCompletions": true,
+          "useLibraryCodeForTypes": true
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    },
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "lineLength": 80,
+          "lint": {
+            "extendSelect": ["I"]
+          }
+        }
+      }
+    }
+  },
+
+  // MISCS
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -85,5 +187,13 @@
     "**/.nyc_output",
     "**/report",
     "**/node_modules"
-  ]
+  ],
+  "file_types": {
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "JSON": ["json", "jsonc", "*.code-snippets"]
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  }
 }
