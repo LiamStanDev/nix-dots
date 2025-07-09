@@ -7,12 +7,15 @@
 // from the command palette.
 [
   {
-    "context": "Workspace",
     "bindings": {
       "alt-/": "workspace::ToggleRightDock",
       "alt-`": "workspace::ToggleBottomDock",
       "alt-1": "project_panel::ToggleFocus",
       "alt-2": "agent::ToggleFocus", // Chat with AI
+      "alt-3": "git_panel::ToggleFocus",
+
+      "ctrl-q": "pane::CloseActiveItem",
+      "ctrl-c": "pane::CloseAllItems",
 
       // Window movement bindings
       // Ctrl jklk to move between panes
@@ -36,6 +39,7 @@
     "bindings": {
       "space e": "pane::RevealInProjectPanel",
       "space q": "pane::CloseActiveItem",
+      "space c": "pane::CloseAllItems",
       "space f": "editor::Format",
       "space w": "workspace::Save",
       "space p": "file_finder::Toggle",
@@ -44,6 +48,12 @@
       // Switch between buffers
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
+
+      // +Pane
+      "space b h": "pane::SplitLeft",
+      "space b j": "pane::SplitDown",
+      "space b k": "pane::SplitUp",
+      "space b l": "pane::SplitRight",
 
       // +LSP
       "g a": "editor::ToggleCodeActions",
@@ -59,7 +69,7 @@
       "[ d": "editor::GoToPreviousDiagnostic",
       // search
       "space s s": "project_symbols::Toggle",
-      "space s g": "project_search::ToggleFocus",
+      "space s g": "pane::DeploySearch",
 
       // +Git
       "space g g": "git_panel::ToggleFocus",
@@ -75,6 +85,48 @@
       "space d n": "debugger::StepOver",
       "space d o": "debugger::StepOut",
       "space d q": "debugger::Stop"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "space a q": "assistant::InlineAssist",
+      "space a e": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "Write an explanation for the selected code as paragraphs of text."
+        }
+      ],
+      "space a f": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "There is a problem in this code. Identify the issues and rewrite the code with fixes. Explain what was wrong and how your changes address the problems."
+        }
+      ],
+      "space a o": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "Optimize the selected code to improve performance and readability. Explain your optimization strategy and the benefits of your changes."
+        }
+      ],
+      "space a d": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "Please add documentation comments to the selected code."
+        }
+      ],
+      "space a t": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "Please generate tests for my code."
+        }
+      ],
+      "space a r": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "Review the selected code."
+        }
+      ]
     }
   },
   {
@@ -94,9 +146,34 @@
       "d": "project_panel::Delete",
       "r": "project_panel::Rename",
       "p": "project_panel::Paste",
+      "c": "workspace::CopyPath",
+      "h": "project_panel::CollapseSelectedEntry",
+      "l": "project_panel::ExpandSelectedEntry",
+      "E": "project_panel::RevealInFileManager",
+      "z": "project_panel::CollapseAllEntries",
+      // options
+      "ctrl-i": "project_panel::ToggleHideGitIgnore",
       // close
       "space e": "workspace::ToggleRightDock",
       "q": "workspace::ToggleRightDock"
+    }
+  },
+
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious"
+    }
+  },
+  {
+    "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
+    "bindings": {
+      "ctrl-shift-p": "file_finder::SelectPrevious",
+      "ctrl-s": "pane::SplitDown",
+      "ctrl-v": "pane::SplitLeft",
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious"
     }
   }
 ]

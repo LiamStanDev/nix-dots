@@ -30,8 +30,11 @@
     "CaskaydiaCove Nerd Font",
     "Noto Color Emoji"
   ],
-  "tabs": {
-    "show_diagnostics": "errors"
+  "buffer_font_features": {
+    "calt": false // no ligature
+  },
+  "tab_bar": {
+    "show": false
   },
   "minimap": {
     "show": "always",
@@ -48,8 +51,8 @@
   },
   // panels location
   "project_panel": {
+    "hide_gitignore": false,
     "button": true,
-    "default_width": 240,
     "dock": "right",
     "git_status": true
   },
@@ -67,6 +70,15 @@
   },
   "chat_panel": {
     "dock": "left"
+  },
+  // git
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": false,
+      "delay_ms": 2000,
+      "show_commit_summary": true
+    }
   },
 
   // vim
