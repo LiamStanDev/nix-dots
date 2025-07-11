@@ -22,16 +22,21 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      // Pane
+      "alt-q": "pane::CloseActiveItem",
+      "alt--": "pane::SplitDown",
+      "alt-\\": "pane::SplitRight"
     }
   },
+
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       // put key-bindings here if you want them to work in normal & visual mode
-
-      // Go to file with `gf`
-      "g f": "editor::OpenExcerpts"
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp"
     }
   },
   {
@@ -48,12 +53,6 @@
       // Switch between buffers
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
-
-      // +Pane
-      "space b h": "pane::SplitLeft",
-      "space b j": "pane::SplitDown",
-      "space b k": "pane::SplitUp",
-      "space b l": "pane::SplitRight",
 
       // +LSP
       "g a": "editor::ToggleCodeActions",
