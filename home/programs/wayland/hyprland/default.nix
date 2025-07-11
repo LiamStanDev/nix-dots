@@ -49,9 +49,7 @@
   services.polkit-gnome.enable = true;
   # Wallpaper deamon
   services.swww.enable = true;
-  # Keyring
-  services.gnome-keyring.enable = true;
-  security.pam.services.sddm.enableGnomeKeyring = true;
+
   # Waybar
   # programs.waybar.enable = true;
   # programs.waybar.systemd.enable = true;

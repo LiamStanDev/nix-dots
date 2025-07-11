@@ -91,22 +91,16 @@
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       "space a q": "assistant::InlineAssist",
-      "space a e": [
-        "assistant::InlineAssist",
-        {
-          "prompt": "Write an explanation for the selected code as paragraphs of text."
-        }
-      ],
       "space a f": [
         "assistant::InlineAssist",
         {
-          "prompt": "There is a problem in this code. Identify the issues and rewrite the code with fixes. Explain what was wrong and how your changes address the problems."
+          "prompt": "There is a problem in this code. Rewrite the code with fixes."
         }
       ],
       "space a o": [
         "assistant::InlineAssist",
         {
-          "prompt": "Optimize the selected code to improve performance and readability. Explain your optimization strategy and the benefits of your changes."
+          "prompt": "Optimize the selected code to improve performance and readability."
         }
       ],
       "space a d": [
@@ -119,12 +113,6 @@
         "assistant::InlineAssist",
         {
           "prompt": "Please generate tests for my code."
-        }
-      ],
-      "space a r": [
-        "assistant::InlineAssist",
-        {
-          "prompt": "Review the selected code."
         }
       ]
     }

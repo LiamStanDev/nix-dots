@@ -86,6 +86,30 @@
   "base_keymap": "VSCode",
   "vim_mode": true,
 
+  // Language
+  "languages": {
+    "Python": {
+      "language_servers": ["pyright", "ruff"],
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    },
+
+    "Nix": {
+      "language_servers": ["nixd", "nil"]
+    }
+  },
+
   // LSP
   "inlay_hints": {
     "enabled": true
@@ -97,9 +121,6 @@
         "diagnostics": {
           "experimental": {
             "enable": true
-          },
-          "cargo": {
-            "fetch_cargo_diagnostics": false
           }
         },
         "check": {
@@ -128,24 +149,6 @@
       "enable_lsp_tasks": true
     },
     // Python
-    "languages": {
-      "Python": {
-        "language_servers": ["pyright", "ruff"],
-        "formatter": [
-          {
-            "code_actions": {
-              "source.organizeImports.ruff": true,
-              "source.fixAll.ruff": true
-            }
-          },
-          {
-            "language_server": {
-              "name": "ruff"
-            }
-          }
-        ]
-      }
-    },
     "pyright": {
       "settings": {
         "python.analysis": {
@@ -171,6 +174,14 @@
           "lint": {
             "extendSelect": ["I"]
           }
+        }
+      }
+    },
+    // Nix
+    "nixd": {
+      "initialization_options": {
+        "formatting": {
+          "command": ["alejandra", "--quiet", "--"]
         }
       }
     }

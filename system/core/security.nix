@@ -45,6 +45,8 @@
   security = {
     # allow wayland lockers to unlock the screen
     pam.services.hyprlock.text = "auth include login";
+    # unlock keyring when login
+    pam.services.sddm.enableGnomeKeyring = true;
 
     # rtkit is used by pipewire to set the realtime priority of audio/video processes
     rtkit.enable = true;
@@ -55,4 +57,8 @@
     # polkit
     polkit.enable = true;
   };
+
+  # keyring
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true; # gnome-keyring GUI
 }
