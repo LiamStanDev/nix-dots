@@ -156,11 +156,23 @@
   {
     "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
     "bindings": {
-      "ctrl-shift-p": "file_finder::SelectPrevious",
       "ctrl-s": "pane::SplitDown",
       "ctrl-v": "pane::SplitLeft",
       "ctrl-j": "menu::SelectNext",
       "ctrl-k": "menu::SelectPrevious"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      // NOTE: alt + l create commit completion
+      "a": "git::StageAll",
+      "A": "git::UnstageAll",
+      "space": "git::ToggleStaged",
+      "c": "git::Commit",
+      "p": "git::Push",
+      "u": "git::Pull", // update
+      "s": "git::CheckoutBranch" // git switch
     }
   }
 ]

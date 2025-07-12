@@ -29,16 +29,7 @@
     "customModules": {
       "cava": {
         "autoSensitivity": true,
-        "barCharacters": [
-          "▁",
-          "▂",
-          "▃",
-          "▄",
-          "▅",
-          "▆",
-          "▇",
-          "█"
-        ],
+        "barCharacters": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
         "bars": 10,
         "channels": 2,
         "framerate": 60,
@@ -221,11 +212,7 @@
         "scrollUp": "",
         "showIcon": true,
         "showTime": true,
-        "tz": [
-          "America/New_York",
-          "Europe/Paris",
-          "Asia/Tokyo"
-        ]
+        "tz": ["America/New_York", "Europe/Paris", "Asia/Tokyo"]
       }
     },
     "launcher": {
@@ -317,28 +304,9 @@
   },
   "bar.layouts": {
     "0": {
-      "left": [
-        "dashboard",
-        "workspaces",
-        "windowtitle",
-        "cpu",
-        "cputemp",
-        "ram",
-        "systray"
-      ],
-      "middle": [
-        "media"
-      ],
-      "right": [
-        "volume",
-        "network",
-        "bluetooth",
-        "battery",
-        "clock",
-        "custom/hypridle",
-        "notifications",
-        "power"
-      ]
+      "left": [],
+      "middle": [],
+      "right": []
     },
     "1": {
       "left": [
@@ -350,9 +318,7 @@
         "ram",
         "systray"
       ],
-      "middle": [
-        "media"
-      ],
+      "middle": ["media"],
       "right": [
         "volume",
         "network",
@@ -382,9 +348,7 @@
           "ram",
           "systray"
         ],
-        "middle": [
-          "media"
-        ],
+        "middle": ["media"],
         "right": [
           "volume",
           "network",
@@ -406,9 +370,7 @@
           "ram",
           "systray"
         ],
-        "middle": [
-          "media"
-        ],
+        "middle": ["media"],
         "right": [
           "volume",
           "network",
@@ -849,7 +811,5 @@
     "image": "",
     "pywal": false
   },
-  "bar.customModules.storage.paths": [
-    "/"
-  ]
+  "bar.customModules.storage.paths": ["/"]
 }

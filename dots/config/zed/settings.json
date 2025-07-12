@@ -8,12 +8,12 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent": {
+    "version": "2",
     "default_profile": "ask",
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-sonnet-4"
-    },
-    "version": "2"
+    }
   },
   // ui
   "theme": {
@@ -54,7 +54,8 @@
     "hide_gitignore": false,
     "button": true,
     "dock": "right",
-    "git_status": true
+    "git_status": false,
+    "diagnostics": "errors"
   },
   "outline_panel": {
     "dock": "right"
@@ -188,6 +189,13 @@
   },
 
   // MISCS
+  "diagnostics_max_severity": "info",
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "max_severity": null
+    }
+  },
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
