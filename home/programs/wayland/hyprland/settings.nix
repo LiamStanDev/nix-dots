@@ -46,7 +46,7 @@
     kb_layout = "us";
     # kb_options = "caps:escape"; # use keyd instead which more general
 
-    follow_mouse = 1;
+    follow_mouse = false;
 
     touchpad = {
       natural_scroll = true;

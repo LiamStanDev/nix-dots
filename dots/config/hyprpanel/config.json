@@ -29,7 +29,16 @@
     "customModules": {
       "cava": {
         "autoSensitivity": true,
-        "barCharacters": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "barCharacters": [
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
         "bars": 10,
         "channels": 2,
         "framerate": 60,
@@ -212,7 +221,11 @@
         "scrollUp": "",
         "showIcon": true,
         "showTime": true,
-        "tz": ["America/New_York", "Europe/Paris", "Asia/Tokyo"]
+        "tz": [
+          "America/New_York",
+          "Europe/Paris",
+          "Asia/Tokyo"
+        ]
       }
     },
     "launcher": {
@@ -318,7 +331,9 @@
         "ram",
         "systray"
       ],
-      "middle": ["media"],
+      "middle": [
+        "media"
+      ],
       "right": [
         "volume",
         "network",
@@ -348,7 +363,9 @@
           "ram",
           "systray"
         ],
-        "middle": ["media"],
+        "middle": [
+          "media"
+        ],
         "right": [
           "volume",
           "network",
@@ -370,7 +387,9 @@
           "ram",
           "systray"
         ],
-        "middle": ["media"],
+        "middle": [
+          "media"
+        ],
         "right": [
           "volume",
           "network",
@@ -811,5 +830,7 @@
     "image": "",
     "pywal": false
   },
-  "bar.customModules.storage.paths": ["/"]
+  "bar.customModules.storage.paths": [
+    "/"
+  ]
 }
